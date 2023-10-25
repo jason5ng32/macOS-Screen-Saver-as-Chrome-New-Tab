@@ -78,7 +78,7 @@
     }
 
     pre {
-        background-color: #f2f2f2;
+        background-color: #e6e6e6;
         padding: 16px;
         border-radius: 5px;
         margin-right: 10px;
@@ -86,6 +86,14 @@
         overflow: auto;
     font-size: 85%;
     line-height: 1.45;
+    }
+
+    code {
+        background-color: #e6e6e6;
+        padding: 2px 4px 2px 4px;
+        border-radius: 4px;
+        overflow: auto;
+        font-size: 85%;
     }
   </style>
 </head>
@@ -99,36 +107,16 @@
     <p>It's not recommended to download all the videos, as they can take up a significant amount of space.</p>
     <p>Once downloaded, the videos will be saved in the following directory:</p>
     <pre>/Library/Application Support/com.apple.idleassetsd/Customer/4KSDR240FPS</pre>
-    <h1>Step 2: Start a local server</h1>
     <p>This directory will be used later.</p>
-    <p>You don't have to download all of them, as they are too large to download conveniently.</p>
-    <p>Below, I will use the system's built-in Apache as an example to illustrate how to deploy the server-side. You can also use other programs, such as Nginx, but I strongly recommend using Apache because it comes pre-installed with the system.</p>
-    <p>macOS comes with Apache pre-installed, but starting from an unspecified version, it can only be run through the terminal. First, modify the httpd.conf file. Open /private/etc/apache2/httpd.conf and add or modify the following fields:</p>
-    <pre>&lt;IfDefine SERVER_APP_HAS_DEFAULT_PORTS&gt;
-    Listen 18080
-&lt;/IfDefine&gt;
-&lt;IfDefine !SERVER_APP_HAS_DEFAULT_PORTS&gt;
-    Listen 18000
-&lt;/IfDefine&gt;</pre>
-    <p>It's not recommended to use the default port 80, as other web server applications may use it.</p>
-    <p>Add Directory Mapping</p>
-    <pre>Alias /videos &quot;/Library/Application Support/com.apple.idleassetsd/Customer/4KSDR240FPS&quot;
-&lt;Directory &quot;/Library/Application Support/com.apple.idleassetsd/Customer/4KSDR240FPS&quot;&gt;
-    Options +Indexes
-    Require all granted
-    Header set Access-Control-Allow-Origin &quot;*&quot;
-&lt;/Directory&gt;</pre>
-    <p>At the beginning of the file, make sure the following line exists:</p>
-    <pre>LoadModule headers_module libexec/apache2/mod_headers.so</pre>
-    <p>Then open the terminal and run:</p>
-    <p>Similarly, when the configuration changes, run:
-    <pre>sudo apachectl start</pre>
-    <p>Now, the local backend service is up and running and listening on port 18000.</p>
-    <pre>sudo apachectl restart</pre>
-
+    <h1>Step 2: Start a local server</h1>
+    <p>1. Download the videoserver.conf file from the <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab">code repository</a>.</p>
+    <p>2. Save it to a directory that you won't easily delete, let's assume the directory is <code>/path/to/your/videoserver.conf</code>.</p>
+    <p>3. Open <code>/private/etc/apache2/</code> in Finder and use your preferred text editor to open <code>httpd.conf</code>.</p>
+    <p>4. Add the following code at the bottom of the file and save it. You may be prompted to enter your password:</p>
+    <pre>Include /path/to/your/videoserver.conf</pre>
+    <p>Open the terminal and enter <code>sudo apachectl restart</code>.</p>
     <h1>Enjoy</h1>
     <p>Now, you can enjoy unsing macOS's screen saver vidoes as your chrome's start page.</p>
-
   </main>
 </body>
 

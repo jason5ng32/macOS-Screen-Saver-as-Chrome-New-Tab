@@ -36,50 +36,14 @@ You don't have to download all of them, as they are too large to download conven
 
 ## Step 2: Start a local server
 
-Below, I will use the system's built-in Apache as an example to illustrate how to deploy the server-side. You can also use other programs, such as Nginx, but I strongly recommend using Apache because it comes pre-installed with the system.
-
-macOS comes with Apache pre-installed, but starting from an unspecified version, it can only be run through the terminal. First, modify the `httpd.conf` file. Open `/private/etc/apache2/httpd.conf` and add or modify the following fields:
-
+1. Download the videoserver.conf file from the code repository.
+2. Save it to a directory that you won't easily delete, let's assume the directory is `/path/to/your/videoserver.conf`.
+3. Open `/private/etc/apache2/` in Finder and use your preferred text editor to open `httpd.conf`.
+4. Add the following code at the bottom of the file and save it. You may be prompted to enter your password:
 ```
-<IfDefine SERVER_APP_HAS_DEFAULT_PORTS>
-    Listen 18080
-</IfDefine>
-<IfDefine !SERVER_APP_HAS_DEFAULT_PORTS>
-    Listen 18000
-</IfDefine>
+Include /path/to/your/videoserver.conf
 ```
-
-It's not recommended to use the default port 80, as other web server applications may use it.
-
-Add Directory Mapping
-
-```
-Alias /videos "/Library/Application Support/com.apple.idleassetsd/Customer/4KSDR240FPS"
-
-<Directory "/Library/Application Support/com.apple.idleassetsd/Customer/4KSDR240FPS">
-    Options +Indexes
-    Require all granted
-    Header set Access-Control-Allow-Origin "*"
-</Directory>
-```
-
-At the beginning of the file, make sure the following line exists:
-
-```
-LoadModule headers_module libexec/apache2/mod_headers.so
-```
-
-Then open the terminal and run:
-
-```
-sudo apachectl start
-```
-
-Similarly, when the configuration changes, run:
-
-```
-sudo apachectl restart
-```
+5. Open the terminal and enter `sudo apachectl restart`.
 
 Now, the local backend service is up and running and listening on port 18000.
 
