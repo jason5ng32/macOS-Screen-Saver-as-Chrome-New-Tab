@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
       isValid = false;  // 标记为无效
     }
 
-    if (weatherAPIKEY.length < 30 || !/^[a-zA-Z0-9]+$/.test(weatherAPIKEY)) {
+    if (showWeather && (weatherAPIKEY.length < 30 || !/^[a-zA-Z0-9]+$/.test(weatherAPIKEY))) {
       alert('The API Key must be at least 30 characters long and consist only of letters and numbers.');
       document.getElementById('showWeather').checked = false;
       isValid = false;  // 标记为无效
