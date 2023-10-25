@@ -1,18 +1,18 @@
 # Chrome-macOS-Screen-Saver-Tab
 
-Replace Chrome's new tab with macOS's screen saver videos. You need to deploy local http server first.
+Replace Chrome's new tab with macOS's screen saver videos. You need to first deploy a local HTTP server.
 
 ![Screenshot](screenshot.png)
 
-## Step 1: Download screen saver videos in system settings
+## Step 1: Download screen saver videos in system preferences
 
-Firstly, connect to WiFi and open System Preferences.
+First, connect to Wi-Fi and open System Preferences.
 
-Open the "Screensaver" settings in System Preferences, and in the aerial screensaver videos, click on the ones you want to download. The size of each video varies from 500MB to 1GB, so you'll need to wait for the download to complete. Sometimes the download may fail and multiple retries may be necessary.
+Navigate to the "Screensaver" settings in System Preferences. In the aerial screensaver section, click on the videos you want to download. The size of each video varies from 500MB to 1GB, so you'll need to wait for the download to complete. Sometimes the download may fail, and multiple retries may be necessary.
 
-It's not recommended to download all the videos as they really take up a lot of space.
+It's not recommended to download all the videos, as they can take up a significant amount of space.
 
-Once downloaded, the videos will be saved in:
+Once downloaded, the videos will be saved in the following directory:
 
 ```
 /Library/Application Support/com.apple.idleassetsd/Customer/4KSDR240FPS
@@ -20,11 +20,11 @@ Once downloaded, the videos will be saved in:
 
 This directory will be used later.
 
-You don't have to download all of them, cause they are too big to download.
+You don't have to download all of them, as they are too large to download conveniently.
 
 ## Step 2: Start a local server
 
-macOS comes with Apache pre-installed, but starting from an unknown version, it can only be run through the terminal. First, modify the `httpd.conf` file. Open `/private/etc/apache2/httpd.conf`, and add or modify the following fields:
+macOS comes with Apache pre-installed, but starting from an unspecified version, it can only be run through the terminal. First, modify the `httpd.conf` file. Open `/private/etc/apache2/httpd.conf` and add or modify the following fields:
 
 ```
 <IfDefine SERVER_APP_HAS_DEFAULT_PORTS>
@@ -34,6 +34,9 @@ macOS comes with Apache pre-installed, but starting from an unknown version, it 
     Listen 18000
 </IfDefine>
 ```
+
+It's not recommended to use the default port 80, as other web server applications may use it.
+
 Add Directory Mapping
 
 ```
@@ -46,13 +49,11 @@ Alias /videos "/Library/Application Support/com.apple.idleassetsd/Customer/4KSDR
 </Directory>
 ```
 
+At the beginning of the file, make sure the following line exists:
 
-At the beginning of the file, make sure the following exists:
-
-```shell
+```
 LoadModule headers_module libexec/apache2/mod_headers.so
 ```
-
 
 Then open the terminal and run:
 
@@ -66,13 +67,13 @@ Similarly, when the configuration changes, run:
 sudo apachectl restart
 ```
 
-Now, the local backend service is up and running and listening to port 18000.
+Now, the local backend service is up and running and listening on port 18000.
 
 ## Step 3: Install this extension
 
-1. First, install [this extension](https://chrome.google.com/webstore/detail/chatgpt-deeplink/bmkbpmkcppdmkdbpihmijgeilchgeapo?snuoi). Ask ChatGPT will only work if this extension is installed and enabled. There is a delay setting in this extension; it is recommended to set it to 2000 (In reality, I could merge this extension into my own, but there's no need to. Respecting copyright is important).
+1. First, install [this extension](https://chrome.google.com/webstore/detail/chatgpt-deeplink/bmkbpmkcppdmkdbpihmijgeilchgeapo?snuoi). ChatGPT will only work if this extension is installed and enabled. There is a delay setting in this extension; it's recommended to set it to 2000. (In reality, I could merge this extension into my own, but there's no need to. Respecting copyright is important).
 2. Make sure Chrome has Developer Mode enabled.
 3. Go to the Extensions interface.
-4. Extract the code above in a directory that you won't easily tamper with (because unpacked extensions aren't saved in Chrome's storage; they run from the specified directory every time).
+4. Download the code and extract them into a directory that you won't easily tamper with (because unpacked extensions are not stored in Chrome's storage; they run from the specified directory each time).
 5. In Chrome's Extensions interface, click "Load Unpacked Extension."
-6. Now you can enjoy the macOS screen saver video as Chrome's new tab.
+6. Now you can enjoy the macOS screen saver videos as Chrome's new tab.
