@@ -20,6 +20,7 @@
       "js": ["content.js"]
     }
   ],
+  "host_permissions": ["*://chat.openai.com/*"],
   "chrome_url_overrides": {
     "newtab": "popup.html"
   }
