@@ -14,6 +14,7 @@ This Chrome extension offers the following features:
 P.S. If you're not a macOS user, no worries! You can still use this extension, but you'll need to sort out the video source on your own. 🛠️
 
 ![Screenshot](screenshot.png)
+![Screenshot](screenshot.gif)
 
 ## Step 1: Download screen saver videos in system preferences
 
