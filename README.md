@@ -55,13 +55,13 @@ LoadModule headers_module libexec/apache2/mod_headers.so
 Then open the terminal and run:
 
 ```
-apachectl start
+sudo apachectl start
 ```
 
 Similarly, when the configuration changes, run:
 
-```shell
-apachectl restart
+```
+sudo apachectl restart
 ```
 
 Now, the local backend service is up and running and listening to port 18000.
