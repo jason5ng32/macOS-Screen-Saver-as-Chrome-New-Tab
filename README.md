@@ -2,6 +2,17 @@
 
 Replace Chrome's new tab with macOS's screen saver videos. You need to first deploy a local HTTP server.
 
+## Features
+
+This Chrome extension offers the following features:
+
+1. 🎥 Elevate your Chrome start page and new tab experience with stunning 4K videos, sourced from macOS' built-in aerial screen savers.
+2. 🌦️ Get real-time weather updates along with a 3-day forecast.
+3. 💬 Access ChatGPT web version directly by entering text into the extension and start chatting.
+4. 🌟 Enjoy randomly displayed motivational quotes.
+
+P.S. If you're not a macOS user, no worries! You can still use this extension, but you'll need to sort out the video source on your own. 🛠️
+
 ![Screenshot](screenshot.png)
 
 ## Step 1: Download screen saver videos in system preferences
