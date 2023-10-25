@@ -39,6 +39,10 @@
     .setting {
       margin-bottom: 10pt;
       font-size: 14pt;
+      display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     }
 
     .input {
@@ -96,7 +100,8 @@
     }
     label {
     display: inline-block;
-    width: 130pt;
+    padding-right: 10pt;
+    min-width: 130pt;
     }
   </style>
   <script src="fonts.js"></script>
@@ -113,11 +118,11 @@
       <div class="setting">
         <label for="videoSourceUrl">Videos list URL :</label>
         <input type="text" class="input" id="videoSourceUrl">
-        <div class="note">
-          If you are going to use macOS's screen saver videos, please follow the <a
-            href="instructions.html">instructions</a> to set up a local
-          server.
-        </div>
+      </div>
+      <div class="note">
+        If you are going to use macOS's screen saver videos, please follow the <a
+          href="instructions.html">instructions</a> to set up a local
+        server.
       </div>
     </div>
     <div class="area">
@@ -133,9 +138,10 @@
       <div class="setting">
         <label for="weatherAPIKEY">Weatherapi.com API:</label>
         <input type="text" class="input" id="weatherAPIKEY">
-        <div class="note">
-          Go to <a href="https://www.weatherapi.com/">weatherapi.com</a> to get your API key.
-        </div>
+        
+      </div>
+      <div class="note">
+        Go to <a href="https://www.weatherapi.com/">weatherapi.com</a> to get your API key.
       </div>
     </div>
 
@@ -149,17 +155,16 @@
         <label for="modelType">Choose default model:</label>
         <select id="modelType">
           <option value="gpt-4">GPT-4</option>
-          <option value="text-davinci-002-render-sha">Text Davinci 002 Render Sha</option>
+          <option value="text-davinci-002-render-sha">GPT-3</option>
         </select>
       </div>
       <div class="setting">
         <label for="delayTime">Input delay time in ms:</label>
         <input type="text" class="input" id="delayTime" min="0">
-        <div class="note">
-          2000 or more would be recommended.
-        </div>
       </div>
-
+      <div class="note">
+        2000 or more would be recommended.
+      </div>
     </div>
 
 
