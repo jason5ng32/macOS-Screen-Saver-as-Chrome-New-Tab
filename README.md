@@ -24,6 +24,8 @@ You don't have to download all of them, as they are too large to download conven
 
 ## Step 2: Start a local server
 
+Below, I will use the system's built-in Apache as an example to illustrate how to deploy the server-side. You can also use other programs, such as Nginx, but I strongly recommend using Apache because it comes pre-installed with the system.
+
 macOS comes with Apache pre-installed, but starting from an unspecified version, it can only be run through the terminal. First, modify the `httpd.conf` file. Open `/private/etc/apache2/httpd.conf` and add or modify the following fields:
 
 ```
