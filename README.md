@@ -73,9 +73,9 @@ Now, the local backend service is up and running and listening on port 18000.
 
 ## Step 3: Install this extension
 
-1. First, install [this extension](https://chrome.google.com/webstore/detail/chatgpt-deeplink/bmkbpmkcppdmkdbpihmijgeilchgeapo?snuoi). ChatGPT will only work if this extension is installed and enabled. There is a delay setting in this extension; it's recommended to set it to 2000. (In reality, I could merge this extension into my own, but there's no need to. Respecting copyright is important).
+1. Download the code.
 2. Make sure Chrome has Developer Mode enabled.
 3. Go to the Extensions interface.
-4. Download the code and extract them into a directory that you won't easily tamper with (because unpacked extensions are not stored in Chrome's storage; they run from the specified directory each time).
+4. Extract the code into a directory that you won't easily tamper with (because unpacked extensions are not stored in Chrome's storage; they run from the specified directory each time).
 5. In Chrome's Extensions interface, click "Load Unpacked Extension."
 6. Now you can enjoy the macOS screen saver videos as Chrome's new tab.

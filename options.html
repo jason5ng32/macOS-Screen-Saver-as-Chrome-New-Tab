@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>New Tab Settings</title>
   <style>
-        @font-face {
+    @font-face {
       font-family: 'CustomFont';
-      src: url('Infinity.ttf') format('truetype');
+      src: url('font.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
+
     body {
       background-color: #f2f2f2;
+      font-family: "CustomFont";
     }
+
     main {
       display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: flex-start;
-    width: 35vw;
-    margin: 0 auto;
-    background-color: white;
-    box-shadow: 0 0 3px #c0c0c0;
-    padding: 20pt;
-    font-family: "CustomFont";
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: center;
+      align-items: flex-start;
+      width: 35vw;
+      margin: 0 auto;
+      background-color: white;
+      box-shadow: 0 0 3px #c0c0c0;
+      padding: 20pt;
+      font-family: "CustomFont";
     }
+
     .area {
       width: 100%;
     }
+
     .setting {
       margin-bottom: 10pt;
-    font-size: 14pt;
+      font-size: 14pt;
     }
+
     .input {
       font-family: 'CustomFont';
       font-size: 14pt;
@@ -41,29 +48,50 @@
       margin-left: 6pt;
       width: 50%;
     }
+
     h1 {
       margin-bottom: 20pt;
     }
+
     button {
       border: 1px solid #318fff;
-    background-color: #0275ff;
-    color: white;
-    border-radius: 18px;
-    height: 25pt;
-    width: 50pt;
-    margin-top: 16pt;
+      background-color: #0275ff;
+      color: white;
+      border-radius: 18px;
+      height: 25pt;
+      width: 50pt;
+      margin-top: 16pt;
     }
+
     button:active {
-    background-color: #005ecf; /* 稍微深一点的颜色 */
-    border-color: #005ecf;     /* 与背景颜色相同 */
-}
+      background-color: #005ecf;
+      /* 稍微深一点的颜色 */
+      border-color: #005ecf;
+      /* 与背景颜色相同 */
+    }
+
     .note {
       font-size: 10pt;
       margin-top: 2pt;
       color: #252525;
     }
+
+    select {
+      font-family: "CustomFont";
+    }
+
+    input {
+      font-family: "CustomFont";
+    }
+    footer {
+      float: right;
+      width: 100%;
+      text-align: right;
+      padding-top: 10px;
+    }
   </style>
 </head>
+
 <body>
   <main>
     <h1>New Tab Settings</h1>
@@ -72,54 +100,75 @@
     </div>
     <div class="area">
       <h2>📺 Videos</h2>
-    <div class="setting">
-      <label for="videoSourceUrl">Videos list URL :</label>
-      <input type="text" class= "input" id="videoSourceUrl">
-      <div class="note">
-        If you are going to use macOS's screen saver videos, please follow the <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab">instructions</a> to set up a local server.
+      <div class="setting">
+        <label for="videoSourceUrl">Videos list URL :</label>
+        <input type="text" class="input" id="videoSourceUrl">
+        <div class="note">
+          If you are going to use macOS's screen saver videos, please follow the <a
+            href="instructions.html">instructions</a> to set up a local
+          server.
+        </div>
       </div>
     </div>
-  </div>
     <div class="area">
       <h2>🌥️ Weather</h2>
       <div class="setting">
         <label for="showWeather">Show Weather</label>
         <input type="checkbox" id="showWeather">
       </div>
-    <div class="setting">
-      <label for="city">City name (EN) :</label>
-      <input type="text" class= "input" id="city">
-    </div>
-    <div class="setting">
-      <label for="weatherAPIKEY">Weatherapi.com API:</label>
-      <input type="text" class= "input" id="weatherAPIKEY">
-      <div class="note">
-        Go to <a href="https://www.weatherapi.com/">weatherapi.com</a> to get your API key.
+      <div class="setting">
+        <label for="city">City name (EN) :</label>
+        <input type="text" class="input" id="city">
+      </div>
+      <div class="setting">
+        <label for="weatherAPIKEY">Weatherapi.com API:</label>
+        <input type="text" class="input" id="weatherAPIKEY">
+        <div class="note">
+          Go to <a href="https://www.weatherapi.com/">weatherapi.com</a> to get your API key.
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="area">
-    <h2>🔘 Others</h2>
-    <div class="setting">
-      <label for="showTime">Show Clock</label>
-      <input type="checkbox" id="showTime">
+    <div class="area">
+      <h2>💬 Ask ChatGPT</h2>
+      <div class="setting">
+        <label for="showSearch">Show ChatGPT</label>
+        <input type="checkbox" id="showSearch">
+      </div>
+      <div class="setting">
+        <label for="modelType">Choose default model:</label>
+        <select id="modelType">
+          <option value="gpt-4">GPT-4</option>
+          <option value="text-davinci-002-render-sha">Text Davinci 002 Render Sha</option>
+        </select>
+      </div>
+      <div class="setting">
+        <label for="delayTime">Input delay time in ms:</label>
+        <input type="text" id="delayTime" min="0">
+        <div class="note">
+          2000 or more would be recommended.
+        </div>
+      </div>
+
     </div>
-    <div class="setting">
-      <label for="showMotto">Show Motto</label>
-      <input type="checkbox" id="showMotto">
+
+
+    <div class="area">
+      <h2>🔘 Others</h2>
+      <div class="setting">
+        <label for="showTime">Show Clock</label>
+        <input type="checkbox" id="showTime">
+      </div>
+      <div class="setting">
+        <label for="showMotto">Show Motto</label>
+        <input type="checkbox" id="showMotto">
+      </div>
     </div>
-    <div class="setting">
-    <label for="showSearch">Show ChatGPT</label>
-    <input type="checkbox" id="showSearch">
-    <div class="note">
-      Please Install <a href="https://chrome.google.com/webstore/detail/chatgpt/omjgkhhbpfjihkjpbmefhjgjgjgjgjgj">this extension</a> first to make this option work. Delay option should be more than 2000.
-    </div>
-    </div>
-  </div>
 
     <button id="save">Save</button>
+    <footer>Created by <a href="https://jasonng.org">Jason Ng</a> and Setilis.</footer>
     <script src="options.js"></script>
   </main>
 </body>
+
 </html>

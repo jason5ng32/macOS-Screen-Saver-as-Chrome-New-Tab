@@ -9,7 +9,7 @@ const SETTINGS_KEYS = {
   'showMotto': true,
   'weatherAPIKEY': 'Replace with your own API KEY',
   'videoSourceUrl': videoSourceUrl_default,
-  'supportedFormats': supportedFormats_default 
+  'supportedFormats': supportedFormats_default
 };
 
 
@@ -54,20 +54,13 @@ function appendVideo(src) {
   document.body.appendChild(video);
 }
 
-// function initSearch() {
-//   const searchInput = document.getElementById('search');
-//   searchInput.addEventListener('keypress', function(event) {
-//     if (event.key === 'Enter') {
-//       window.location.href = `https://www.google.com/search?q=${encodeURIComponent(event.target.value)}`;
-//     }
-//   });
-// }
-
 function initSearch() {
   const searchInput = document.getElementById('search');
   searchInput.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
-      window.location.href = `https://chat.openai.com/?model=gpt-4&query=${encodeURIComponent(event.target.value)}`;
+      // 通过 Chrome 扩展 API 发送消息给 background.js
+      const input = encodeURIComponent(event.target.value);
+      chrome.runtime.sendMessage({ action: 'openUrlAndType', input });
     }
   });
 }
@@ -162,7 +155,7 @@ async function useDefaultLocation() {
   }
 }
 
-// 此处略去 getCurrentWeather 和 getForecastWeather 函数，因为它们本身已经很简洁了。
+// 获取天气
 async function getCurrentWeather(city) {
   try {
     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${weatherAPIKEY}&q=${city}`);
