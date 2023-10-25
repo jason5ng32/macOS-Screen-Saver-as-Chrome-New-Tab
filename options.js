@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'showWeather': false,
     'showSearch': true,
     'showMotto': true,
+    'fontChoice': 'infinity',
     'videoSourceUrl': 'http://localhost:18000/videos/',
     'weatherAPIKEY': 'Replace with your own API KEY',
     'modelType': 'gpt-4',

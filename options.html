@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>New Tab Settings</title>
-  <style>
+  <title>Macify Settings</title>
+  <style id="dynamic-styles">
     @font-face {
       font-family: 'CustomFont';
       src: url('font.ttf') format('truetype');
@@ -42,11 +42,11 @@
     }
 
     .input {
-      font-family: 'CustomFont';
+      font-family: "CustomFont";
       font-size: 14pt;
       padding-left: 4pt;
-      margin-left: 6pt;
-      width: 50%;
+      margin-left: 3pt;
+      width: 250pt;
     }
 
     h1 {
@@ -78,6 +78,11 @@
 
     select {
       font-family: "CustomFont";
+      font-size: 14pt;
+      padding-left: 4pt;
+      margin-left: 3pt;
+      padding-bottom: 4pt;
+      width: 258pt;
     }
 
     input {
@@ -89,12 +94,17 @@
       text-align: right;
       padding-top: 10px;
     }
+    label {
+    display: inline-block;
+    width: 130pt;
+    }
   </style>
+  <script src="fonts.js"></script>
 </head>
 
 <body>
   <main>
-    <h1>New Tab Settings</h1>
+    <h1>Macify new tab settings</h1>
     <div class="note">
       Please config the options below before using this extension.
     </div>
@@ -144,7 +154,7 @@
       </div>
       <div class="setting">
         <label for="delayTime">Input delay time in ms:</label>
-        <input type="text" id="delayTime" min="0">
+        <input type="text" class="input" id="delayTime" min="0">
         <div class="note">
           2000 or more would be recommended.
         </div>
@@ -155,6 +165,13 @@
 
     <div class="area">
       <h2>🔘 Others</h2>
+      <div class="setting">
+        <label for="fontChoice">Choose font:</label>
+        <select id="fontChoice">
+          <option value="system-default">System Default</option>
+          <option value="infinity">Infinity</option>
+        </select>
+      </div>
       <div class="setting">
         <label for="showTime">Show Clock</label>
         <input type="checkbox" id="showTime">
