@@ -53,5 +53,5 @@ Now, the local backend service is up and running and listening on port 18000.
 2. Make sure Chrome has Developer Mode enabled.
 3. Go to the Extensions interface.
 4. Extract the code into a directory that you won't easily tamper with (because unpacked extensions are not stored in Chrome's storage; they run from the specified directory each time).
-5. In Chrome's Extensions interface, click "Load Unpacked Extension."
+5. In Chrome's Extensions interface, click "Load Unpacked Extension." Then, open the src directory in the code folder you had extracted.
 6. Now you can enjoy the macOS screen saver videos as Chrome's new tab.
