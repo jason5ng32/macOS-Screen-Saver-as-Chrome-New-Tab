@@ -35,9 +35,8 @@
     /* search bar styling */
 
     ::placeholder {
-      color: rgba(255, 255, 255, 0.88);
+      color: rgb(255, 255, 255);
       opacity: 1;
-      /* Firefox */
       font-weight: 400;
       font-family: "CustomFont";
     }
@@ -55,11 +54,11 @@
       font-weight: lighter;
       background-color: #ffffff36;
       color: white;
-      /* text-shadow: 1px 1px #00000073; */
+      transition: box-shadow 0.7s, background-color 0.7s;
     }
 
     input[type="text"]:focus {
-      box-shadow: 0 0 5px white;
+      box-shadow: 0 0 10pt white;
       background-color: rgba(62, 62, 62, 0.375);
     }
 
@@ -103,8 +102,8 @@
     }
 
     #weather-info img {
-      width: 25pt;
-      height: 25pt;
+      width: 30pt;
+      height: 30pt;
     }
 
     .current-aera {
