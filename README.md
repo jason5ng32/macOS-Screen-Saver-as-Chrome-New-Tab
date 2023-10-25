@@ -1,12 +1,12 @@
 # Chrome-macOS-Screen-Saver-Tab
 
-Replace new tab with macOS's screen saver videos. You need to deploy local http server first.
+Replace Chrome's new tab with macOS's screen saver videos. You need to deploy local http server first.
 
 ![Screenshot](screenshot.png)
 
 ## Step 1: Download screen saver videos in system settings
 
-Fistly, connect to WiFi and open System Preferences.
+Firstly, connect to WiFi and open System Preferences.
 
 Open the "Screensaver" settings in System Preferences, and in the aerial screensaver videos, click on the ones you want to download. The size of each video varies from 500MB to 1GB, so you'll need to wait for the download to complete. Sometimes the download may fail and multiple retries may be necessary.
 
