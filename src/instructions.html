@@ -110,11 +110,15 @@
     <p>This directory will be used later.</p>
     <h1>Step 2: Start a local server</h1>
     <p>1. Download the videoserver.conf file from the <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab">code repository</a>.</p>
-    <p>2. Save it to a directory that you won't easily delete, let's assume the directory is <code>/path/to/your/videoserver.conf</code>.</p>
-    <p>3. Open <code>/private/etc/apache2/</code> in Finder and use your preferred text editor to open <code>httpd.conf</code>.</p>
-    <p>4. Add the following code at the bottom of the file and save it. You may be prompted to enter your password:</p>
-    <pre>Include /path/to/your/videoserver.conf</pre>
-    <p>Open the terminal and enter <code>sudo apachectl restart</code>.</p>
+    <p>2. Save it to a directory that you won't easily delete, let's assume the directory is</p>
+    <pre>/path/to/your/videoserver.conf</pre>
+    <p>3. Open terminal app.</p>
+    <p>4. Backup your apache config file with the following shell:</p>
+    <pre>sudo cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk</pre>
+    <p>5. And then (❗️❗️❗️REMEMBER TO REPLACE THE PATH WITH YOURS):</p>
+    <pre>echo -e "\nInclude /path/to/your/videoserver.conf" | sudo tee -a /private/etc/apache2/httpd.conf</pre>
+    <p>6. Restart Apache:</p>
+    <pre>sudo apachectl restart</pre>
     <h1>Enjoy</h1>
     <p>Now, you can enjoy unsing macOS's screen saver vidoes as your chrome's start page.</p>
   </main>

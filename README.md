@@ -28,7 +28,7 @@ It's not recommended to download all the videos, as they can take up a significa
 
 Once downloaded, the videos will be saved in the following directory:
 
-```
+```shell
 /Library/Application Support/com.apple.idleassetsd/Customer/4KSDR240FPS
 ```
 
@@ -39,13 +39,30 @@ You don't have to download all of them, as they are too large to download conven
 ## Step 2: Start a local server
 
 1. Download the videoserver.conf file from the code repository.
-2. Save it to a directory that you won't easily delete, let's assume the directory is `/path/to/your/videoserver.conf`.
-3. Open `/private/etc/apache2/` in Finder and use your preferred text editor to open `httpd.conf`.
-4. Add the following code at the bottom of the file and save it. You may be prompted to enter your password:
-```
-Include /path/to/your/videoserver.conf
-```
-5. Open the terminal and enter `sudo apachectl restart`.
+2. Save it to a directory that you won't easily delete, let's assume the directory is
+
+    ```shell
+    /path/to/your/videoserver.conf
+    ```
+
+3. Open terminal app
+4. Backup your apache config file with the following shell:
+
+    ```shell
+    sudo cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk
+    ```
+
+5. And then (❗️❗️❗️REMEMBER TO REPLACE THE PATH WITH YOURS):
+
+    ```shell
+    echo -e "\nInclude /path/to/your/videoserver.conf" | sudo tee -a /private/etc/apache2/httpd.conf
+    ```
+
+6. Restart Apache:
+
+    ```shell
+    sudo apachectl restart
+    ```
 
 Now, the local backend service is up and running and listening on port 18000.
 
@@ -55,5 +72,5 @@ Now, the local backend service is up and running and listening on port 18000.
 2. Make sure Chrome has Developer Mode enabled.
 3. Go to the Extensions interface.
 4. Extract the code into a directory that you won't easily tamper with (because unpacked extensions are not stored in Chrome's storage; they run from the specified directory each time).
-5. In Chrome's Extensions interface, click "Load Unpacked Extension." Then, open the src directory in the code folder you had extracted.
+5. In Chrome's Extensions interface, click "Load Unpacked Extension." Then, open the `src`  directory in the code folder you had extracted.
 6. Now you can enjoy the macOS screen saver videos as Chrome's new tab.
