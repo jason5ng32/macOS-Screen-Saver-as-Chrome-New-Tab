@@ -5,7 +5,7 @@ const SETTINGS_KEYS = {
   'city': 'Beijing',
   'showTime': true,
   'showWeather': false,
-  'showSearch': false,
+  'showSearch': true,
   'showMotto': true,
   'weatherAPIKEY': 'Replace with your own API KEY',
   'videoSourceUrl': videoSourceUrl_default,
