@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "macOS screen saver videos new tab",
+  "version": "1.0",
+  "description": "Replace new tab with macOS's screen saver videos. You need to deploy local http server first.",
+  "permissions": ["storage", "activeTab","geolocation","tabs","management"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "128": "icon.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["Infinity.ttf"],
+      "matches": ["<all_urls>"],
+      "use_dynamic_url": false
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "chrome_url_overrides": {
+    "newtab": "popup.html"
+  }
+}

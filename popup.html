@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>New Tab</title>
+  <style>
+    @font-face {
+      font-family: 'CustomFont';
+      src: url('Infinity.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /* video styling */
+    video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      height: 100vh;
+      z-index: -1;
+      object-fit: fill;
+    }
+
+    /* centering content */
+    .centered {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    /* search bar styling */
+
+    ::placeholder {
+      color: rgba(255, 255, 255, 0.88);
+      opacity: 1;
+      /* Firefox */
+      font-weight: 400;
+      font-family: "CustomFont";
+    }
+
+    input[type="text"] {
+      width: 35vw;
+      height: 10vh;
+      max-height: 50px;
+      min-width: 400px;
+      border-radius: 40px;
+      border: 2px solid #ffffff;
+      outline: none;
+      padding-left: 20px;
+      font-size: large;
+      font-weight: lighter;
+      background-color: #ffffff36;
+      color: white;
+      /* text-shadow: 1px 1px #00000073; */
+    }
+
+    input[type="text"]:focus {
+      box-shadow: 0 0 5px white;
+      background-color: rgba(255, 255, 255, 0.311);
+    }
+
+    /* motto styling */
+    .motto {
+      /* position: fixed; */
+      /* background-color: #ffffff63; */
+      color: white;
+      padding: 40px;
+      /* left: 50%; */
+      /* bottom: 30%; */
+      /* transform: translateX(-50%); */
+      /* width: 50vw; */
+      font-size: 4vh;
+      font-weight: bold;
+      text-align: center;
+      /* text-shadow: 1px 1px 0 #d7d7d7, -1px -1px 0 #808080, 1px -1px 0 #808080, -1px 1px 0 #808080; */
+      font-family: "CustomFont";
+      margin-top: 50px;
+      height: 20vh;
+    }
+
+    .author {
+      position: fixed;
+      left: 1%;
+      bottom: 1%;
+      color: #ffffff70;
+      font-family: "CustomFont";
+      font-size: 12px;
+    }
+
+    #current-time {
+      margin-bottom: 20px;
+      color: white;
+      font-family: "CustomFont";
+      font-size: 10vh;
+    }
+
+    #weather-info {
+      position: fixed;
+      top: 1%;
+      right: 1%;
+      color: white;
+      font-size: 12px;
+      display: flex;
+      flex-direction: row;
+      max-width: 30vw;
+    }
+
+    #weather-info img {
+      width: 25pt;
+      height: 25pt;
+    }
+
+    .current-aera {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: flex-start;
+      align-items: center;
+      width: 60pt;
+      text-align: center;
+      overflow: auto;
+    }
+
+    #forcast-aera {
+      display: flex;
+      flex-direction: row;
+    }
+
+    #forcast-aera img {
+      width: 25pt;
+      height: 25pt;
+    }
+
+    #forcast-vertical {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: flex-start;
+      align-items: center;
+      width: 60pt;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <video autoplay loop>
+    <!-- video source will be set by JavaScript -->
+  </video>
+  <div class="author">
+    <p>Made by Jason Ng & Setilis</p>
+  </div>
+  <div id="weather-info">
+    <div class="current-aera">
+      <div class="weather-text">
+        <p>Now</p>
+      </div>
+      <img id="weather-icon" src="weather.webp" alt="Weather Icon">
+      <p id="current-weather">0°</p>
+    </div>
+
+    <div id="forcast-vertical">
+      <div class="weather-text">
+        <p>Day 1</p>
+      </div>
+      <img id="weather-icon1" src="weather.webp" alt="Weather Icon">
+      <p id="forecast1">0°</p>
+    </div>
+
+    <div id="forcast-vertical">
+      <div class="weather-text">
+        <p>Day 2</p>
+      </div>
+      <img id="weather-icon2" src="weather.webp" alt="Weather Icon">
+      <p id="forecast2">0°</p>
+    </div>
+
+    <div id="forcast-vertical">
+      <div class="weather-text">
+        <p>Day 3</p>
+      </div>
+      <img id="weather-icon3" src="weather.webp" alt="Weather Icon">
+      <p id="forecast3">0°</p>
+    </div>
+
+  </div>
+
+  </div>
+  <div class="centered">
+    <div id="current-time"></div>
+    <input type="text" id="search" placeholder="Ask ChatGPT...">
+
+    <div class="motto" id="motto">As you walk in God's divine wisdom, you will surely begin to see a greater measure of victory and good success in your life. — Joseph Prince</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>
