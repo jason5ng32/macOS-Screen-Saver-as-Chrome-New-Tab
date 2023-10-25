@@ -2,6 +2,8 @@
 
 Replace new tab with macOS's screen saver videos. You need to deploy local http server first.
 
+![Screenshot](screenshot.png)
+
 ## Step 1: Download screen saver videos in system settings
 
 Fistly, connect to WiFi and open System Preferences.
