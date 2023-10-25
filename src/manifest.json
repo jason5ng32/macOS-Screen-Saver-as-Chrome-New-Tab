@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Macify Your Tab - Use macOS screen saver videos as start page",
-  "version": "1.1",
+  "name": "Macify - macOS screen saver videos new tab",
+  "version": "1.2",
   "description": "Replace new tab with macOS's screen saver videos. Created by Jason Ng and Setilis.",
-  "permissions": ["storage", "activeTab","geolocation","tabs","management","scripting"],
+  "permissions": ["storage", "activeTab","geolocation","scripting"],
   "action": {
     "default_popup": "popup.html"
   },
@@ -11,13 +11,6 @@
   "icons": {
     "128": "icon.png"
   },
-  "web_accessible_resources": [
-    {
-      "resources": ["Infinity.ttf"],
-      "matches": ["<all_urls>"],
-      "use_dynamic_url": false
-    }
-  ],
   "background": {
     "service_worker": "background.js"
   },
