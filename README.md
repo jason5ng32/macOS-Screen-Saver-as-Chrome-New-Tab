@@ -22,6 +22,8 @@ First, connect to Wi-Fi and open System Preferences.
 
 Navigate to the "Screensaver" settings in System Preferences. In the aerial screensaver section, click on the videos you want to download. The size of each video varies from 500MB to 1GB, so you'll need to wait for the download to complete. Sometimes the download may fail, and multiple retries may be necessary.
 
+![Screenshot](systempreferrence.jpg)
+
 It's not recommended to download all the videos, as they can take up a significant amount of space.
 
 Once downloaded, the videos will be saved in the following directory:
