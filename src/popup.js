@@ -246,7 +246,7 @@ async function initSettings() {
   }
 
   if (showWeather === true) {
-    city ? updateWeather(city) : useDefaultLocation();
+    updateWeather(city);
   }
 
   if (showSearch === true) {
@@ -265,16 +265,6 @@ function setDisplay(id, value) {
 async function updateWeather(city) {
   getCurrentWeather(city);
   getForecastWeather(city);
-}
-
-async function useDefaultLocation() {
-  try {
-    const position = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
-    const { latitude, longitude } = position.coords;
-    updateWeather(`${latitude},${longitude}`);
-  } catch (error) {
-    console.error(`Get location failed: ${error.message}`);
-  }
 }
 
 // 获取天气

@@ -14,6 +14,8 @@
 
     body {
       background-color: #f2f2f2;
+      width: min-content;
+      margin: 0 auto;
       font-family: "CustomFont";
     }
 
@@ -24,12 +26,13 @@
       align-content: center;
       justify-content: center;
       align-items: flex-start;
-      width: 35vw;
       margin: 0 auto;
       background-color: white;
       box-shadow: 0 0 3px #c0c0c0;
-      padding: 20pt;
+      padding: 30pt;
       font-family: "CustomFont";
+      width: min-content;
+
     }
 
     .area {
@@ -43,6 +46,7 @@
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
+      margin-left: 16pt;
     }
 
     .input {
@@ -63,8 +67,11 @@
       color: white;
       border-radius: 18px;
       height: 25pt;
-      width: 50pt;
       margin-top: 16pt;
+      width: 70pt;
+    margin-top: 16pt;
+    font-size: 14pt;
+    font-family: "CustomFont";
     }
 
     button:active {
@@ -75,9 +82,10 @@
     }
 
     .note {
-      font-size: 10pt;
+      font-size: 11pt;
       margin-top: 2pt;
       color: #252525;
+      margin-left: 16pt;
     }
 
     select {
@@ -103,7 +111,24 @@
     label {
       display: inline-block;
       padding-right: 10pt;
-      min-width: 130pt;
+      min-width: 150pt;
+    }
+
+    .success {
+      color: green;
+      font-size: 14pt;
+    }
+
+    .error {
+      color: red;
+      font-size: 14pt;
+    }
+    #message {
+      margin-top: 10pt;
+      height: 20pt;
+    }
+    .saveinfo {
+      margin-left: 16pt;
     }
   </style>
   <script src="fonts.js"></script>
@@ -112,7 +137,7 @@
 <body>
   <main>
     <h1>Macify new tab settings</h1>
-    <div class="note">
+    <div class="note" style="margin-left: 0;">
       Please config the options below before using this extension.
     </div>
     <div class="area">
@@ -122,7 +147,8 @@
         <input type="text" class="input" id="videoSourceUrl">
       </div>
       <div class="note">
-        By default, this program will traverse all .mov and .mp4 format videos at the specified URL and one level below it. Please ensure the URL you provide opens to a file list, not a webpage.<br />
+        By default, this program will traverse all .mov and .mp4 format videos at the specified URL and one level below
+        it. Please ensure the URL you provide opens to a file list, not a webpage.<br />
         If you are going to use macOS's screen saver videos, please follow this <a
           href="instructions.html">instructions</a> to set up a local
         server.
@@ -205,7 +231,10 @@
       </div>
     </div>
 
+    <div class="saveinfo">
     <button id="save">Save</button>
+    <div id="message"></div>
+  </div>
     <footer>Created by <a href="https://jasonng.org">Jason Ng</a> and Setilis.</footer>
     <script src="options.js"></script>
   </main>

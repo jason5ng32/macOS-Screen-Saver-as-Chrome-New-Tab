@@ -28,6 +28,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // 创建提示信息
+  const messageDiv = document.getElementById('message');
+  function showMessage(message, type) {
+    messageDiv.textContent = message;
+    messageDiv.className = type;
+    if (type === 'success') {
+      setTimeout(() => {
+        messageDiv.textContent = '';
+        messageDiv.className = '';
+      }, 2000);
+    }
+  }
 
   document.getElementById('save').addEventListener('click', function () {
     let isValid = true;
@@ -40,28 +52,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 验证 delayTime 是否在 1 到 10000 的范围内
     if (isNaN(delayTimeInt) || delayTimeInt < 1 || delayTimeInt > 10000 || delayTime !== String(delayTimeInt)) {
-      alert('Delay time must be an integer between 1 and 10000.');
-      isValid = false;  // 标记为无效
+      showMessage('Delay time must be an integer between 1 and 10000.', 'error');
+      isValid = false;
     }
 
     if (!videoSourceUrl) {
-      alert('Please input Videos list URL');
+      showMessage('Please input Videos list URL', 'error');
       isValid = false;  // 标记为无效
     }
 
     if (showWeather && (!city || !weatherAPIKEY)) {
-      alert('Please input City Name and weatherapi.com API KEY');
+      showMessage('Please input City Name and weatherapi.com API KEY', 'error');
       isValid = false;  // 标记为无效
     }
 
     if (showWeather && (weatherAPIKEY.length < 30 || !/^[a-zA-Z0-9]+$/.test(weatherAPIKEY))) {
-      alert('The API Key must be at least 30 characters long and consist only of letters and numbers.');
+      showMessage('The API Key must be at least 30 characters long and consist only of letters and numbers.', 'error');
       document.getElementById('showWeather').checked = false;
       isValid = false;  // 标记为无效
     }
 
     if (isValid) {
-      saveSettings();  // 只有在所有设置都有效时才保存设置
+      saveSettings();
+      showMessage('Settings saved.', 'success');  // 新增这一行
     }
   });
 
@@ -80,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     chrome.storage.sync.set(settingObj, function () {
-      alert('Settings saved');
+      showMessage('Settings saved', 'success');
     });
   }
 
