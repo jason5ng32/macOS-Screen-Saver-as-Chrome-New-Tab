@@ -39,19 +39,19 @@ To conserve storage, it's advised against downloading the entire video collectio
 4. Make a backup of your apache config file utilizing the command below:
 
     ```shell
-    cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk
+    sudo cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk
     ```
 
 5. Next, ensure to replace the path placeholder with your actual path:
 
     ```shell
-    echo -e "\nInclude /path/to/your/videoserver.conf" | tee -a /private/etc/apache2/httpd.conf
+    echo -e "\nInclude /path/to/your/videoserver.conf" | sudo tee -a /private/etc/apache2/httpd.conf
     ```
 
 6. To activate the changes, restart Apache:
 
     ```shell
-    apachectl restart
+    sudo apachectl restart
     ```
 
 Your local backend service should now be operational, with port 18000 as its designated listening port.
