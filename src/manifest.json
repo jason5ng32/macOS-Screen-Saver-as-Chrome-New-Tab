@@ -3,7 +3,7 @@
   "name": "Macify - macOS screen saver videos new tab",
   "version": "1.3",
   "description": "Replace new tab with macOS's screen saver videos. Created by Jason Ng and Setilis.",
-  "permissions": ["storage", "activeTab","geolocation","scripting"],
+  "permissions": ["storage","geolocation","scripting"],
   "action": {
     "default_popup": "popup.html"
   },
