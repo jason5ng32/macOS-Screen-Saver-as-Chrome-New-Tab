@@ -31,28 +31,28 @@ To conserve storage, it's advised against downloading the entire video collectio
 1. Retrieve the `videoserver.conf` file from the code repository.
 2. Store it in a directory that you intend to keep intact. For demonstration, let's use:
 
-    \```shell
+    ```shell
     /path/to/your/videoserver.conf
-    \```
+    ```
 
 3. Launch the terminal application.
 4. Make a backup of your apache config file utilizing the command below:
 
-    \```shell
+    ```shell
     cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk
-    \```
+    ```
 
 5. Next, ensure to replace the path placeholder with your actual path:
 
-    \```shell
+    ```shell
     echo -e "\nInclude /path/to/your/videoserver.conf" | tee -a /private/etc/apache2/httpd.conf
-    \```
+    ```
 
 6. To activate the changes, restart Apache:
 
-    \```shell
+    ```shell
     apachectl restart
-    \```
+    ```
 
 Your local backend service should now be operational, with port 18000 as its designated listening port.
 
