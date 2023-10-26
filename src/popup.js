@@ -1,5 +1,7 @@
 let videoSourceUrl_default = 'http://localhost:18000/videos/';
 let supportedFormats_default = ['.mov', '.mp4'];
+const subDirectories = ['4KSDR240FPS', '4KSDR', '4KHDR', '2KSDR', '2KHDR', '2KAVC'];
+const videoSourceBase = 'http://localhost:18000/videos-';
 
 const SETTINGS_KEYS = {
   'city': 'Beijing',
@@ -25,22 +27,32 @@ async function init() {
 
 async function fetchRandomVideo() {
   try {
-    const html = await fetch(videoSourceUrl).then(res => res.text());
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    
-    const videoFiles = Array.from(doc.querySelectorAll('a'))
-      .map(a => a.href)
-      .filter(href => supportedFormats.some(format => href.endsWith(format)))
-      .map(href => href.split('/').pop());
+    const allVideoFiles = [];
+    const allVideoUrls = []; // 新增数组以存储每个视频的完整URL
 
-    if (videoFiles.length > 0) {
-      const randomVideoFile = videoFiles[Math.floor(Math.random() * videoFiles.length)];
-      appendVideo(`${videoSourceUrl}${randomVideoFile}`);
+    for (const dir of subDirectories) {
+      const currentDirUrl = videoSourceBase + dir + '/'; // 存储当前子目录的完整URL
+      const html = await fetch(currentDirUrl).then(res => res.text());
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      
+      const videoFiles = Array.from(doc.querySelectorAll('a'))
+        .map(a => a.href)
+        .filter(href => supportedFormats.some(format => href.endsWith(format)))
+        .map(href => href.split('/').pop());
+
+      allVideoFiles.push(...videoFiles);
+      allVideoUrls.push(...videoFiles.map(file => currentDirUrl + file)); // 存储完整的视频URL
+    }
+
+    if (allVideoUrls.length > 0) {
+      const randomVideoUrl = allVideoUrls[Math.floor(Math.random() * allVideoUrls.length)]; // 使用完整的视频URL
+      appendVideo(randomVideoUrl);
     }
   } catch (error) {
     console.error('Error fetching directory:', error);
   }
 }
+
 
 function appendVideo(src) {
   const video = Object.assign(document.createElement('video'), {
