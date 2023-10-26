@@ -12,6 +12,7 @@ const SETTINGS_KEYS = {
   'weatherAPIKEY': 'Replace with your own API KEY',
   'tempUnit': 'celsius',
   'refreshButton': true,
+  'authorInfo': true,
   'videoSourceUrl': videoSourceUrl_default,
   'supportedFormats': supportedFormats_default
 };
@@ -22,9 +23,6 @@ document.addEventListener('DOMContentLoaded', init);
 async function init() {
   await initSettings();
   await fetchRandomVideo();
-  initSearch();
-  fetchRandomMotto();
-  initClock();
 }
 
 // 初始化视频切换按钮
@@ -218,7 +216,7 @@ async function initSettings() {
     chrome.storage.sync.set(data);  // 保存更新后的设置
   }
 
-  const { showTime, showWeather, showSearch, showMotto, city, videoSourceUrl, supportedFormats, weatherAPIKEY, refreshButton } = data;
+  const { showTime, showWeather, showSearch, showMotto, city, videoSourceUrl, supportedFormats, weatherAPIKEY, refreshButton, authorInfo } = data;
 
   // 更新全局变量
   if (videoSourceUrl) {
@@ -236,8 +234,27 @@ async function initSettings() {
   setDisplay('search', showSearch ? '' : 'none');
   setDisplay('switchVideoBtn', refreshButton ? '' : 'none');
   setDisplay('motto', showMotto ? 'flex' : 'none');
+  setDisplay('author', authorInfo ? '' : 'none');
 
-  city ? updateWeather(city) : useDefaultLocation();
+  if (showMotto === true) {
+    fetchRandomMotto();
+  } else {
+    let elements = document.querySelectorAll('.centered');
+    elements.forEach(function(element) {
+        element.style.top = '35%';
+    });
+  }
+
+  if (showWeather === true) {
+    city ? updateWeather(city) : useDefaultLocation();
+  }
+
+  if (showSearch === true) {
+    initSearch();
+  }
+  if (showTime === true) {
+    initClock();
+  }
 }
 
 

@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'modelType': 'gpt-4',
     'refreshButton': true,
     'tempUnit': 'celsius',
+    'authorInfo': true,
     'delayTime': 2000
   };
 
