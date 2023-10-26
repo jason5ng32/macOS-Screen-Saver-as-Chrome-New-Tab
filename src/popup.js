@@ -11,6 +11,7 @@ const SETTINGS_KEYS = {
   'showMotto': true,
   'weatherAPIKEY': 'Replace with your own API KEY',
   'tempUnit': 'celsius',
+  'refreshButton': true,
   'videoSourceUrl': videoSourceUrl_default,
   'supportedFormats': supportedFormats_default
 };
@@ -119,19 +120,30 @@ function switchToNextVideo() {
     console.warn("No videos available to switch.");
     return;
   }
-  
-  currentVideoIndex = (currentVideoIndex + 1) % allAvailableVideos.length;
-  const nextVideoUrl = allAvailableVideos[currentVideoIndex];
+
   const videoElement = document.getElementById('myVideo');
 
   if (videoElement) {
-    videoElement.src = nextVideoUrl;
-    videoElement.load(); // 重新加载新的视频源
-    videoElement.play(); // 确保视频继续播放
+    // 淡出当前视频
+    videoElement.style.opacity = 0;
+
+    // 在淡出动画完成后进行视频切换，并淡入新视频
+    setTimeout(() => {
+      currentVideoIndex = (currentVideoIndex + 1) % allAvailableVideos.length;
+      const nextVideoUrl = allAvailableVideos[currentVideoIndex];
+
+      videoElement.src = nextVideoUrl;
+      videoElement.load(); // 重新加载新的视频源
+      videoElement.play(); // 确保视频继续播放
+
+      // 淡入新视频
+      videoElement.style.opacity = 1;
+    }, 650); // 0.5秒后执行，与 CSS 中的过渡时间相同
   } else {
     console.error("No video element found to switch source.");
   }
 }
+
 
 function initSearch() {
   const searchInput = document.getElementById('search');
@@ -193,7 +205,7 @@ async function initSettings() {
     chrome.storage.sync.set(data);  // 保存更新后的设置
   }
 
-  const { showTime, showWeather, showSearch, showMotto, city, videoSourceUrl, supportedFormats,weatherAPIKEY } = data;
+  const { showTime, showWeather, showSearch, showMotto, city, videoSourceUrl, supportedFormats,weatherAPIKEY, refreshButton } = data;
 
   // 更新全局变量
   if (videoSourceUrl) {
@@ -209,6 +221,7 @@ async function initSettings() {
   setDisplay('current-time', showTime ? 'block' : 'none');
   setDisplay('weather-info', showWeather ? 'flex' : 'none');
   setDisplay('search', showSearch ? '' : 'none');
+  setDisplay('switchVideoBtn', refreshButton ? '' : 'none');
   setDisplay('motto', showMotto ? 'flex' : 'none');
 
   city ? updateWeather(city) : useDefaultLocation();

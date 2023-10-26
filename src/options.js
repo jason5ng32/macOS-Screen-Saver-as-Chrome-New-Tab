@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'videoSourceUrl': 'http://localhost:18000/videos/',
     'weatherAPIKEY': 'Replace with your own API KEY',
     'modelType': 'gpt-4',
+    'refreshButton': true,
     'tempUnit': 'celsius',
     'delayTime': 2000
   };
