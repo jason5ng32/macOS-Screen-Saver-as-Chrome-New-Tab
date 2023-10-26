@@ -10,6 +10,7 @@ const SETTINGS_KEYS = {
   'showSearch': true,
   'showMotto': true,
   'weatherAPIKEY': 'Replace with your own API KEY',
+  'tempUnit': 'celsius',
   'videoSourceUrl': videoSourceUrl_default,
   'supportedFormats': supportedFormats_default
 };
@@ -172,9 +173,12 @@ async function getCurrentWeather(city) {
   try {
     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${weatherAPIKEY}&q=${city}`);
     const data = await response.json();
-    const { temp_c, condition } = data.current;
-    document.getElementById('current-weather').textContent = `${temp_c}°`;
-    document.getElementById('weather-icon').src = `https://${condition.icon}`;
+    
+    const unit = await new Promise(resolve => chrome.storage.sync.get('tempUnit', data => resolve(data.tempUnit || 'celsius')));
+    const temperature = unit === 'celsius' ? data.current.temp_c : data.current.temp_f;
+    
+    document.getElementById('current-weather').textContent = `${temperature}°`;
+    document.getElementById('weather-icon').src = `https://${data.current.condition.icon}`;
   } catch (error) {
     console.error(`Get weather failed: ${error}`);
   }
@@ -182,6 +186,7 @@ async function getCurrentWeather(city) {
 
 async function getForecastWeather(city) {
   try {
+    const unit = await new Promise(resolve => chrome.storage.sync.get('tempUnit', data => resolve(data.tempUnit || 'celsius')));
     const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${weatherAPIKEY}&q=${city}&days=3`);
     const data = await response.json();
     const { forecastday } = data.forecast;
@@ -193,11 +198,12 @@ async function getForecastWeather(city) {
       document.getElementById(`weather-icon${i + 1}`).src = `https://${day.day.condition.icon}`;
       
       // 更新温度范围，并保留整数部分
-      const minTemp = Math.round(day.day.mintemp_c);
-      const maxTemp = Math.round(day.day.maxtemp_c);
+      const minTemp = unit === 'celsius' ? Math.round(day.day.mintemp_c) : Math.round(day.day.mintemp_f);
+      const maxTemp = unit === 'celsius' ? Math.round(day.day.maxtemp_c) : Math.round(day.day.maxtemp_f);
+      
       document.getElementById(`forecast${i + 1}`).textContent = `${minTemp}°-${maxTemp}°`;
     }
   } catch (error) {
-    console.error(`Get forcast failed: ${error}`);
+    console.error(`Get forecast failed: ${error}`);
   }
 }
