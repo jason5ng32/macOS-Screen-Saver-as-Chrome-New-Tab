@@ -57,6 +57,7 @@
       transition: box-shadow 0.7s, background-color 0.7s;
     }
 
+    
     input[type="text"]:focus {
       box-shadow: 0 0 10pt white;
       background-color: rgba(62, 62, 62, 0.375);
@@ -76,11 +77,25 @@
 
     .author {
       position: fixed;
-      left: 1%;
-      bottom: 1%;
-      color: #ffffff70;
-      font-family: "CustomFont";
-      font-size: 12px;
+    left: 1%;
+    bottom: 1%;
+    color: white;
+    font-family: "CustomFont";
+    font-size: 10pt;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    opacity: 0.6;
+    }
+
+    .author img {
+      width: 12pt;
+      height: 12pt;
+      margin-left: 4pt;
+      background-color: white;
+      border-radius:50pt;
     }
 
     #current-time {
@@ -155,8 +170,8 @@
 
     .refresh {
     position: fixed;
-    top: 20pt;
-    left: 20pt;
+    bottom: 1%;
+    right: 1%;
     width: 30pt;
     height: 30pt;
 }
@@ -172,13 +187,27 @@
     position: relative;
     opacity: 0.5;
     transition: transform 0.8s ease, opacity 0.8s ease;
+    border: 1pt solid #ffffffa6;
+    border-radius: 50pt;
+    box-shadow: 0 0 3pt white;
+    background-color: rgba(255, 255, 255, 0.509);
 }
 
 #switchVideoBtn:hover {
-    transform: rotate(360deg);
+    transform: rotate(120deg);
     opacity: 1;
+    background-color: white;
 }
 
+#switchVideoBtn.rotating {
+    transform: rotate(3600deg);
+    opacity: 0.8;
+    background-color: #e0e0e0;
+}
+#switchVideoBtn.rotating2 {
+    opacity: 0.8;
+    background-color: #e0e0e0;
+}
 
   </style>
 </head>
@@ -189,9 +218,10 @@
   </video>
   <div class="author">
     <p>Created by Jason Ng & Setilis</p>
+    <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab" target="_blank" title="Project's Github"><img src="github.png"/></a>
   </div>
   <div class="refresh">
-  <button id="switchVideoBtn"></button>
+  <button id="switchVideoBtn" title="Refresh video"></button>
 </div>
   <div id="weather-info">
     <div class="current-aera">

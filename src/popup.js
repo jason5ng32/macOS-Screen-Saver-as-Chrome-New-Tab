@@ -28,9 +28,37 @@ async function init() {
 
 // 初始化视频切换按钮
 const switchVideoButton = document.getElementById('switchVideoBtn');
+
 if (switchVideoButton) {
-    switchVideoButton.addEventListener('click', switchToNextVideo);
+    switchVideoButton.addEventListener('click', function(event) {
+        // 先调用 switchToNextVideo 函数
+        switchToNextVideo(event);
+
+        // 根据当前的类名切换旋转效果，以确保每次点击都会触发动画
+        if (this.classList.contains("rotating")) {
+            this.classList.remove("rotating");
+            this.classList.add("rotating2");
+        } else {
+            this.classList.remove("rotating2");
+            this.classList.add("rotating");
+        }
+
+        // 在动画结束后，只有当鼠标不再悬停在按钮上时才移除 rotating 和 rotating2 类
+        this.addEventListener("transitionend", function() {
+            // 如果鼠标不再悬停在按钮上，移除 rotating 和 rotating2 类
+            if (!this.matches(":hover")) {
+                this.classList.remove("rotating", "rotating2");
+            }
+        }, { once: true }); // 使用 once 选项确保事件只触发一次
+    });
+
+    // 如果鼠标离开按钮，检查是否需要移除 rotating 和 rotating2 类
+    switchVideoButton.addEventListener('mouseleave', function() {
+        this.classList.remove("rotating", "rotating2");
+    });
 }
+
+
 
 async function fetchRandomVideo() {
   try {
