@@ -1,76 +1,66 @@
 # Chrome-macOS-Screen-Saver-Tab
 
-Replace Chrome's new tab with macOS's screen saver videos. You need to first deploy a local HTTP server.
+Transform your Chrome's new tab page by showcasing macOS's aerial screen saver videos. To achieve this, start by setting up a local HTTP server.
 
 ## Features
 
-This Chrome extension offers the following features:
+This Chrome extension delivers the following capabilities:
 
-1. 🎥 Elevate your Chrome start page and new tab experience with stunning 4K videos, sourced from macOS' built-in aerial screen savers.
-2. 🌦️ Get real-time weather updates along with a 3-day forecast.
-3. 💬 Access ChatGPT web version directly by entering text into the extension and start chatting.
-4. 🌟 Enjoy randomly displayed motivational quotes.
+1. 🎥 Enhance your Chrome startup page and new tab view with breathtaking 4K videos, taken directly from macOS' native aerial screen savers.
+2. 🌦️ Receive up-to-the-minute weather updates accompanied by a 3-day forecast.
+3. 💬 Engage with the web version of ChatGPT: simply type into the search box and begin your conversation.
+4. 🌟 Discover motivational quotes that change randomly with each new tab.
 
-P.S. If you're not a macOS user, no worries! You can still use this extension, but you'll need to sort out the video source on your own. 🛠️
+P.S. If you're not using macOS, fear not! This extension remains compatible, though you'll need to secure the video source independently. 🛠️
 
 ![Screenshot](screenshot.png)
 ![Screenshot](screenshot.gif)
 
-## Step 1: Download screen saver videos in system preferences
+## Step 1: Acquire Screen Saver Videos via System Preferences
 
-First, connect to Wi-Fi and open System Preferences.
+Ensure you're connected to Internet and proceed to open System Preferences.
 
-Navigate to the "Screensaver" settings in System Preferences. In the aerial screensaver section, click on the videos you want to download. The size of each video varies from 500MB to 1GB, so you'll need to wait for the download to complete. Sometimes the download may fail, and multiple retries may be necessary.
+Journey to the "Screensaver" settings within System Preferences. Within the aerial screensaver category, select the videos you wish to download. Bear in mind, the file size of each video spans between 500MB to 1GB; patience is required during the download process. Occasionally, downloads might experience interruptions, necessitating multiple attempts.
 
 ![Screenshot](systempreferrence.jpg)
 
-It's not recommended to download all the videos, as they can take up a significant amount of space.
+To conserve storage, it's advised against downloading the entire video collection.
 
-Once downloaded, the videos will be saved in the following directory:
+## Step 2: Initiate a Local Server
 
-```shell
-/Library/Application Support/com.apple.idleassetsd/Customer/4KSDR240FPS
-```
+1. Retrieve the `videoserver.conf` file from the code repository.
+2. Store it in a directory that you intend to keep intact. For demonstration, let's use:
 
-This directory will be used later.
-
-You don't have to download all of them, as they are too large to download conveniently.
-
-## Step 2: Start a local server
-
-1. Download the videoserver.conf file from the code repository.
-2. Save it to a directory that you won't easily delete, let's assume the directory is
-
-    ```shell
+    \```shell
     /path/to/your/videoserver.conf
-    ```
+    \```
 
-3. Open terminal app
-4. Backup your apache config file with the following shell:
+3. Launch the terminal application.
+4. Make a backup of your apache config file utilizing the command below:
 
-    ```shell
-    sudo cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk
-    ```
+    \```shell
+    cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk
+    \```
 
-5. And then (❗️❗️❗️REMEMBER TO REPLACE THE PATH WITH YOURS):
+5. Next, ensure to replace the path placeholder with your actual path:
 
-    ```shell
-    echo -e "\nInclude /path/to/your/videoserver.conf" | sudo tee -a /private/etc/apache2/httpd.conf
-    ```
+    \```shell
+    echo -e "\nInclude /path/to/your/videoserver.conf" | tee -a /private/etc/apache2/httpd.conf
+    \```
 
-6. Restart Apache:
+6. To activate the changes, restart Apache:
 
-    ```shell
-    sudo apachectl restart
-    ```
+    \```shell
+    apachectl restart
+    \```
 
-Now, the local backend service is up and running and listening on port 18000.
+Your local backend service should now be operational, with port 18000 as its designated listening port.
 
-## Step 3: Install this extension
+## Step 3: Deploy the Extension
 
-1. Download the code.
-2. Make sure Chrome has Developer Mode enabled.
-3. Go to the Extensions interface.
-4. Extract the code into a directory that you won't easily tamper with (because unpacked extensions are not stored in Chrome's storage; they run from the specified directory each time).
-5. In Chrome's Extensions interface, click "Load Unpacked Extension." Then, open the `src`  directory in the code folder you had extracted.
-6. Now you can enjoy the macOS screen saver videos as Chrome's new tab.
+1. Download the source code.
+2. Ensure Chrome's Developer Mode is activated.
+3. Access the Extensions dashboard.
+4. Unzip the code into a directory that you're unlikely to modify (since unpacked extensions don't reside in Chrome's dedicated storage but operate from the designated directory).
+5. Within Chrome's Extensions dashboard, select "Load Unpacked Extension." Navigate to and open the `src` directory from the code folder you unzipped.
+6. Revel in the beauty of macOS screen saver videos every time you open a new tab in Chrome.

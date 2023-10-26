@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>New Tab Settings</title>
+  <title>Macify Instrution</title>
   <style>
 
     body {
@@ -100,27 +100,42 @@
 
 <body>
   <main>
-    <p>Replace Chrome's new tab with macOS's screen saver videos. You need to first deploy a local HTTP server. </p>
-    <h1>Step 1: Download screen saver videos in system preferences</h1>
-    <p>First, connect to Wi-Fi and open System Preferences.</p>
-    <p>Navigate to the "Screensaver" settings in System Preferences. In the aerial screensaver section, click on the videos you want to download. The size of each video varies from 500MB to 1GB, so you'll need to wait for the download to complete. Sometimes the download may fail, and multiple retries may be necessary.</p>
-    <p>It's not recommended to download all the videos, as they can take up a significant amount of space.</p>
-    <p>Once downloaded, the videos will be saved in the following directory:</p>
-    <pre>/Library/Application Support/com.apple.idleassetsd/Customer/4KSDR240FPS</pre>
-    <p>This directory will be used later.</p>
-    <h1>Step 2: Start a local server</h1>
-    <p>1. Download the videoserver.conf file from the <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab">code repository</a>.</p>
-    <p>2. Save it to a directory that you won't easily delete, let's assume the directory is</p>
-    <pre>/path/to/your/videoserver.conf</pre>
-    <p>3. Open terminal app.</p>
-    <p>4. Backup your apache config file with the following shell:</p>
-    <pre>sudo cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk</pre>
-    <p>5. And then (❗️❗️❗️REMEMBER TO REPLACE THE PATH WITH YOURS):</p>
-    <pre>echo -e "\nInclude /path/to/your/videoserver.conf" | sudo tee -a /private/etc/apache2/httpd.conf</pre>
-    <p>6. Restart Apache:</p>
-    <pre>sudo apachectl restart</pre>
-    <h1>Enjoy</h1>
-    <p>Now, you can enjoy unsing macOS's screen saver vidoes as your chrome's start page.</p>
+    <h1>How to start</h1>
+    <p>This extention transform your Chrome's new tab page by showcasing macOS's aerial screen saver videos. To achieve this, start by setting up a local HTTP server.</p>
+
+    <h2>Features</h2>
+    <p>This Chrome extension delivers the following capabilities:</p>
+    <ol>
+        <li>🎥 Enhance your Chrome startup page and new tab view with breathtaking 4K videos, taken directly from macOS' native aerial screen savers.</li>
+        <li>🌦️ Receive up-to-the-minute weather updates accompanied by a 3-day forecast.</li>
+        <li>💬 Engage with the web version of ChatGPT: simply type into the extension's input field and begin your conversation.</li>
+        <li>🌟 Discover motivational quotes that change randomly with each new tab.</li>
+    </ol>
+    <p>P.S. If you're not using macOS, fear not! This extension remains compatible, though you'll need to secure the video source independently. 🛠️</p>
+
+    <h2>Step 1: Acquire Screen Saver Videos via System Preferences</h2>
+    <p>Ensure you're connected to Wi-Fi and proceed to open System Preferences.</p>
+    <p>Journey to the "Screensaver" settings within System Preferences. Within the aerial screensaver category, select the videos you wish to download. Bear in mind, the file size of each video spans between 500MB to 1GB; patience is required during the download process. Occasionally, downloads might experience interruptions, necessitating multiple attempts.</p>
+    <p>To conserve storage, it's advised against downloading the entire video collection.</p>
+
+    <h2>Step 2: Initiate a Local Server</h2>
+    <p>Let's start a local server now.</p>
+    <ol>
+        <li>Retrieve the <code>videoserver.conf</code> file from the <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab">code repository</a>.</li>
+        <li>Store it in a directory that you intend to keep intact. For demonstration, let's use:</li>
+        <pre><code>/path/to/your/videoserver.conf</code></pre>
+        <li>Launch the terminal application.</li>
+        <li>Make a backup of your apache config file utilizing the command below:</li>
+        <pre><code>cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk</code></pre>
+        <li>Next, ensure to replace the path placeholder with your actual path:</li>
+        <pre><code>echo -e "\nInclude /path/to/your/videoserver.conf" | tee -a /private/etc/apache2/httpd.conf</code></pre>
+        <li>To activate the changes, restart Apache:</li>
+        <pre><code>apachectl restart</code></pre>
+    </ol>
+    <p>Your local backend service should now be operational, with port 18000 as its designated listening port.</p>
+
+    <h2>Step 3: Enjoy</h2>
+<p>Now, you can enjoy breathtaking 4K videos as your Chrome's new start page.</p>
   </main>
 </body>
 
