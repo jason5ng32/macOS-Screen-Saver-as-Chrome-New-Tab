@@ -40,9 +40,9 @@
       margin-bottom: 10pt;
       font-size: 14pt;
       display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
     }
 
     .input {
@@ -92,16 +92,18 @@
     input {
       font-family: "CustomFont";
     }
+
     footer {
       float: right;
       width: 100%;
       text-align: right;
       padding-top: 10px;
     }
+
     label {
-    display: inline-block;
-    padding-right: 10pt;
-    min-width: 130pt;
+      display: inline-block;
+      padding-right: 10pt;
+      min-width: 130pt;
     }
   </style>
   <script src="fonts.js"></script>
@@ -140,12 +142,12 @@
         <select id="tempUnit">
           <option value="celsius">Celsius (°C)</option>
           <option value="fahrenheit">Fahrenheit (°F)</option>
-      </select>
+        </select>
       </div>
       <div class="setting">
         <label for="weatherAPIKEY">Weatherapi.com API:</label>
         <input type="text" class="input" id="weatherAPIKEY">
-        
+
       </div>
       <div class="note">
         Go to <a href="https://www.weatherapi.com/">weatherapi.com</a> to get your API key.

@@ -15,12 +15,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 function handleOpenUrlAndType(request) {
-  chrome.storage.sync.get(['modelType', 'delayTime'], function(data) {
+  chrome.storage.sync.get(['modelType', 'delayTime'], function (data) {
     const modelType = data.modelType || 'gpt-4';
     const delayTime = data.delayTime || 2000;
-  
+
     console.log("Received input:", decodeURIComponent(request.input));
-  
+
     chrome.tabs.create({ url: `https://chat.openai.com/?model=${modelType}` }, (tab) => {
       setTimeout(() => {
         try {

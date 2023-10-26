@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <title>Macify Set Up Instruction</title>
   <style>
-
     body {
       background-color: #f2f2f2;
       font-size: 12pt;
@@ -78,22 +77,22 @@
     }
 
     pre {
-        background-color: #e6e6e6;
-        padding: 16px;
-        border-radius: 5px;
-        margin-right: 10px;
-        width: 98%;
-        overflow: auto;
-    font-size: 85%;
-    line-height: 1.45;
+      background-color: #e6e6e6;
+      padding: 16px;
+      border-radius: 5px;
+      margin-right: 10px;
+      width: 98%;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
     }
 
     code {
-        background-color: #e6e6e6;
-        padding: 2px 4px 2px 4px;
-        border-radius: 4px;
-        overflow: auto;
-        font-size: 85%;
+      background-color: #e6e6e6;
+      padding: 2px 4px 2px 4px;
+      border-radius: 4px;
+      overflow: auto;
+      font-size: 85%;
     }
   </style>
 </head>
@@ -101,41 +100,49 @@
 <body>
   <main>
     <h1>Macify Set Up Instruction</h1>
-    <p>This extention transform your Chrome's new tab page by showcasing macOS's aerial screen saver videos. To achieve this, start by setting up a local HTTP server.</p>
+    <p>This extention transform your Chrome's new tab page by showcasing macOS's aerial screen saver videos. To achieve
+      this, start by setting up a local HTTP server.</p>
 
     <h2>Features</h2>
     <p>This Chrome extension delivers the following capabilities:</p>
     <ol>
-        <li>🎥 Enhance your Chrome startup page and new tab view with breathtaking 4K videos, taken directly from macOS' native aerial screen savers.</li>
-        <li>🌦️ Receive up-to-the-minute weather updates accompanied by a 3-day forecast.</li>
-        <li>💬 Engage with the web version of ChatGPT: simply type into the extension's input field and begin your conversation.</li>
-        <li>🌟 Discover motivational quotes that change randomly with each new tab.</li>
+      <li>🎥 Enhance your Chrome startup page and new tab view with breathtaking 4K videos, taken directly from macOS'
+        native aerial screen savers.</li>
+      <li>🌦️ Receive up-to-the-minute weather updates accompanied by a 3-day forecast.</li>
+      <li>💬 Engage with the web version of ChatGPT: simply type into the extension's input field and begin your
+        conversation.</li>
+      <li>🌟 Discover motivational quotes that change randomly with each new tab.</li>
     </ol>
-    <p>P.S. If you're not using macOS, fear not! This extension remains compatible, though you'll need to secure the video source independently. 🛠️</p>
+    <p>P.S. If you're not using macOS, fear not! This extension remains compatible, though you'll need to secure the
+      video source independently. 🛠️</p>
 
     <h2>Step 1: Acquire Screen Saver Videos via System Preferences</h2>
     <p>Ensure you're connected to Wi-Fi and proceed to open System Preferences.</p>
-    <p>Journey to the "Screensaver" settings within System Preferences. Within the aerial screensaver category, select the videos you wish to download. Bear in mind, the file size of each video spans between 500MB to 1GB; patience is required during the download process. Occasionally, downloads might experience interruptions, necessitating multiple attempts.</p>
+    <p>Journey to the "Screensaver" settings within System Preferences. Within the aerial screensaver category, select
+      the videos you wish to download. Bear in mind, the file size of each video spans between 500MB to 1GB; patience is
+      required during the download process. Occasionally, downloads might experience interruptions, necessitating
+      multiple attempts.</p>
     <p>To conserve storage, it's advised against downloading the entire video collection.</p>
 
     <h2>Step 2: Initiate a Local Server</h2>
     <p>Let's start a local server now.</p>
     <ol>
-        <li>Retrieve the <code>videoserver.conf</code> file from the <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab">code repository</a>.</li>
-        <li>Store it in a directory that you intend to keep intact. For demonstration, let's use:</li>
-        <pre><code>/path/to/your/videoserver.conf</code></pre>
-        <li>Launch the terminal application.</li>
-        <li>Make a backup of your apache config file utilizing the command below:</li>
-        <pre><code>sudo cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk</code></pre>
-        <li>Next, ensure to replace the path placeholder with your actual path:</li>
-        <pre><code>echo -e "\nInclude /path/to/your/videoserver.conf" | sudo tee -a /private/etc/apache2/httpd.conf</code></pre>
-        <li>To activate the changes, restart Apache:</li>
-        <pre><code>sudo apachectl restart</code></pre>
+      <li>Retrieve the <code>videoserver.conf</code> file from the <a
+          href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab">code repository</a>.</li>
+      <li>Store it in a directory that you intend to keep intact. For demonstration, let's use:</li>
+      <pre><code>/path/to/your/videoserver.conf</code></pre>
+      <li>Launch the terminal application.</li>
+      <li>Make a backup of your apache config file utilizing the command below:</li>
+      <pre><code>sudo cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk</code></pre>
+      <li>Next, ensure to replace the path placeholder with your actual path:</li>
+      <pre><code>echo -e "\nInclude /path/to/your/videoserver.conf" | sudo tee -a /private/etc/apache2/httpd.conf</code></pre>
+      <li>To activate the changes, restart Apache:</li>
+      <pre><code>sudo apachectl restart</code></pre>
     </ol>
     <p>Your local backend service should now be operational, with port 18000 as its designated listening port.</p>
 
     <h2>Step 3: Enjoy</h2>
-<p>Now, you can enjoy breathtaking 4K videos as your Chrome's new start page.</p>
+    <p>Now, you can enjoy breathtaking 4K videos as your Chrome's new start page.</p>
   </main>
 </body>
 
