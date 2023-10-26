@@ -1,7 +1,7 @@
 let videoSourceUrl_default = 'http://localhost:18000/videos/';
 let supportedFormats_default = ['.mov', '.mp4'];
-const subDirectories = ['4KSDR240FPS', '4KSDR', '4KHDR', '2KSDR', '2KHDR', '2KAVC'];
-const videoSourceBase = 'http://localhost:18000/videos-';
+let allAvailableVideos = [];
+let currentVideoIndex = -1; // 用于跟踪当前播放的视频
 
 const SETTINGS_KEYS = {
   'city': 'Beijing',
@@ -26,27 +26,45 @@ async function init() {
   initClock();
 }
 
+// 初始化视频切换按钮
+const switchVideoButton = document.getElementById('switchVideoBtn');
+if (switchVideoButton) {
+    switchVideoButton.addEventListener('click', switchToNextVideo);
+}
+
 async function fetchRandomVideo() {
   try {
-    const allVideoFiles = [];
-    const allVideoUrls = []; // 新增数组以存储每个视频的完整URL
+    const allVideoUrls = [];
+    allAvailableVideos = allVideoUrls;
+    const html = await fetch(videoSourceUrl).then(res => res.text());
+    const doc = new DOMParser().parseFromString(html, 'text/html');
 
-    for (const dir of subDirectories) {
-      const currentDirUrl = videoSourceBase + dir + '/'; // 存储当前子目录的完整URL
-      const html = await fetch(currentDirUrl).then(res => res.text());
-      const doc = new DOMParser().parseFromString(html, 'text/html');
-      
-      const videoFiles = Array.from(doc.querySelectorAll('a'))
+    // 获取主目录中的视频文件
+    const mainDirVideoFiles = Array.from(doc.querySelectorAll('a'))
+      .map(a => a.href)
+      .filter(href => supportedFormats.some(format => href.endsWith(format)))
+      .map(href => videoSourceUrl + href.split('/').pop()); // 确保拼接完整URL
+    allVideoUrls.push(...mainDirVideoFiles);
+
+    // 遍历子目录
+    const baseHref = doc.querySelector('base') ? doc.querySelector('base').href : videoSourceUrl;
+    const subDirLinks = Array.from(doc.querySelectorAll('a'))
+      .map(a => new URL(a.getAttribute('href'), baseHref).href)
+      .filter(href => href.endsWith('/'));
+
+    for (const dirLink of subDirLinks) {
+      const dirName = dirLink.split('/').slice(-2, -1)[0]; // 获取子目录名称
+      const subDirHtml = await fetch(dirLink).then(res => res.text());
+      const subDirDoc = new DOMParser().parseFromString(subDirHtml, 'text/html');
+      const subDirVideoFiles = Array.from(subDirDoc.querySelectorAll('a'))
         .map(a => a.href)
         .filter(href => supportedFormats.some(format => href.endsWith(format)))
-        .map(href => href.split('/').pop());
-
-      allVideoFiles.push(...videoFiles);
-      allVideoUrls.push(...videoFiles.map(file => currentDirUrl + file)); // 存储完整的视频URL
+        .map(href => videoSourceUrl + dirName + '/' + href.split('/').pop()); // 拼接子目录名称
+      allVideoUrls.push(...subDirVideoFiles);
     }
 
     if (allVideoUrls.length > 0) {
-      const randomVideoUrl = allVideoUrls[Math.floor(Math.random() * allVideoUrls.length)]; // 使用完整的视频URL
+      const randomVideoUrl = allVideoUrls[Math.floor(Math.random() * allVideoUrls.length)];
       appendVideo(randomVideoUrl);
     }
   } catch (error) {
@@ -54,7 +72,7 @@ async function fetchRandomVideo() {
   }
 }
 
-
+// 设置视频播放器
 function appendVideo(src) {
   const video = Object.assign(document.createElement('video'), {
     id: 'myVideo',
@@ -65,6 +83,26 @@ function appendVideo(src) {
     style: 'position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1;'
   });
   document.body.appendChild(video);
+}
+
+// 手动切换视频
+function switchToNextVideo() {
+  if (allAvailableVideos.length === 0) {
+    console.warn("No videos available to switch.");
+    return;
+  }
+  
+  currentVideoIndex = (currentVideoIndex + 1) % allAvailableVideos.length;
+  const nextVideoUrl = allAvailableVideos[currentVideoIndex];
+  const videoElement = document.getElementById('myVideo');
+
+  if (videoElement) {
+    videoElement.src = nextVideoUrl;
+    videoElement.load(); // 重新加载新的视频源
+    videoElement.play(); // 确保视频继续播放
+  } else {
+    console.error("No video element found to switch source.");
+  }
 }
 
 function initSearch() {

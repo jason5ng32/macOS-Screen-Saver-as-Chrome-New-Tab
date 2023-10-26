@@ -152,6 +152,34 @@
     border-radius: 4pt;
     box-shadow: 0 0 2pt rgba(255, 255, 255, 0.524);
     }
+
+    .refresh {
+    position: fixed;
+    top: 20pt;
+    left: 20pt;
+    width: 30pt;
+    height: 30pt;
+}
+
+#switchVideoBtn {
+    width: 80%;
+    height: 80%;
+    border: none;
+    background: url('refresh.png') no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    opacity: 0.5;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+#switchVideoBtn:hover {
+    transform: rotate(360deg);
+    opacity: 1;
+}
+
+
   </style>
 </head>
 
@@ -162,6 +190,9 @@
   <div class="author">
     <p>Created by Jason Ng & Setilis</p>
   </div>
+  <div class="refresh">
+  <button id="switchVideoBtn"></button>
+</div>
   <div id="weather-info">
     <div class="current-aera">
       <div class="weather-text">
