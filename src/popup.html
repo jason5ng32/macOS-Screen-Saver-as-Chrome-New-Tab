@@ -59,7 +59,7 @@
       transition: box-shadow 0.7s, background-color 0.7s;
     }
 
-    
+
     input[type="text"]:focus {
       box-shadow: 0 0 10pt white;
       background-color: rgba(62, 62, 62, 0.375);
@@ -79,29 +79,30 @@
 
     .author {
       position: fixed;
-    left: 1%;
-    bottom: 1%;
-    color: white;
-    font-family: "CustomFont";
-    font-size: 10pt;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: flex-start;
-    align-items: center;
-    opacity: 0.6;
+      left: 1%;
+      bottom: 1%;
+      color: white;
+      font-family: "CustomFont";
+      font-size: 10pt;
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      justify-content: flex-start;
+      align-items: center;
+      opacity: 0.6;
     }
 
     .author:hover {
       opacity: 1;
       transition: transform 0.8s ease, opacity 0.8s ease;
     }
+
     .author img {
       width: 12pt;
       height: 12pt;
       margin-left: 4pt;
       background-color: white;
-      border-radius:50pt;
+      border-radius: 50pt;
     }
 
     #current-time {
@@ -141,9 +142,9 @@
     }
 
     .current-aera:hover {
-    background-color: rgba(0, 0, 0, 0.157);
-    border-radius: 4pt;
-    box-shadow: 0 0 2pt rgba(255, 255, 255, 0.524);
+      background-color: rgba(0, 0, 0, 0.157);
+      border-radius: 4pt;
+      box-shadow: 0 0 2pt rgba(255, 255, 255, 0.524);
     }
 
     #forcast-aera {
@@ -170,51 +171,51 @@
 
     #forcast-vertical:hover {
       background-color: rgba(0, 0, 0, 0.157);
-    border-radius: 4pt;
-    box-shadow: 0 0 2pt rgba(255, 255, 255, 0.524);
+      border-radius: 4pt;
+      box-shadow: 0 0 2pt rgba(255, 255, 255, 0.524);
     }
 
     .refresh {
-    position: fixed;
-    bottom: 1%;
-    right: 1%;
-    width: 30pt;
-    height: 30pt;
-}
+      position: fixed;
+      bottom: 1%;
+      right: 1%;
+      width: 30pt;
+      height: 30pt;
+    }
 
-#switchVideoBtn {
-    width: 80%;
-    height: 80%;
-    border: none;
-    background: url('refresh.png') no-repeat center center;
-    background-size: contain;
-    cursor: pointer;
-    outline: none;
-    position: relative;
-    opacity: 0.5;
-    transition: transform 0.8s ease, opacity 0.8s ease;
-    border: 1pt solid #ffffffa6;
-    border-radius: 50pt;
-    box-shadow: 0 0 3pt white;
-    background-color: rgba(255, 255, 255, 0.509);
-}
+    #switchVideoBtn {
+      width: 80%;
+      height: 80%;
+      border: none;
+      background: url('refresh.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;
+      outline: none;
+      position: relative;
+      opacity: 0.5;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+      border: 1pt solid #ffffffa6;
+      border-radius: 50pt;
+      box-shadow: 0 0 3pt white;
+      background-color: rgba(255, 255, 255, 0.509);
+    }
 
-#switchVideoBtn:hover {
-    transform: rotate(120deg);
-    opacity: 1;
-    background-color: white;
-}
+    #switchVideoBtn:hover {
+      transform: rotate(120deg);
+      opacity: 1;
+      background-color: white;
+    }
 
-#switchVideoBtn.rotating {
-    transform: rotate(480deg);
-    opacity: 0.8;
-    background-color: #e0e0e0;
-}
-#switchVideoBtn.rotating2 {
-    opacity: 0.8;
-    background-color: #e0e0e0;
-}
+    #switchVideoBtn.rotating {
+      transform: rotate(480deg);
+      opacity: 0.8;
+      background-color: #e0e0e0;
+    }
 
+    #switchVideoBtn.rotating2 {
+      opacity: 0.8;
+      background-color: #e0e0e0;
+    }
   </style>
 </head>
 
@@ -226,11 +227,12 @@
 
   <div class="author">
     <p>Created by Jason Ng & Setilis</p>
-    <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab" target="_blank" title="Project's Github"><img src="github.png"/></a>
+    <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab" target="_blank"
+      title="Project's Github"><img src="github.png" /></a>
   </div>
   <div class="refresh">
-  <button id="switchVideoBtn" title="Refresh video"></button>
-</div>
+    <button id="switchVideoBtn" title="Refresh video"></button>
+  </div>
   <div id="weather-info">
     <div class="current-aera">
       <div class="weather-text">
@@ -270,8 +272,9 @@
   <div class="centered">
     <div id="current-time"></div>
     <input type="text" id="search" placeholder="Ask ChatGPT...">
-    
-    <div class="motto" id="motto">As you walk in God's divine wisdom, you will surely begin to see a greater measure of victory and good success in your life. — Joseph Prince</div>
+
+    <div class="motto" id="motto">As you walk in God's divine wisdom, you will surely begin to see a greater measure of
+      victory and good success in your life. — Joseph Prince</div>
   </div>
   <script src="popup.js"></script>
 </body>
