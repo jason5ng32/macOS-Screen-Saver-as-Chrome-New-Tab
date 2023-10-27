@@ -86,6 +86,7 @@
       margin-top: 2pt;
       color: #252525;
       margin-left: 16pt;
+      margin-bottom: 16pt;
     }
 
     select {
@@ -143,15 +144,22 @@
     <div class="area">
       <h2>📺 Videos</h2>
       <div class="setting">
-        <label for="videoSourceUrl">Videos list URL :</label>
+        <label for="videoSrc">Video Source :</label>
+        <select id="videoSrc">
+          <option value="apple">Apple Server</option>
+          <option value="local">Local Server</option>
+        </select>
+      </div>
+      <div class="note">
+        The default speed of fetching videos from Apple's servers may be slow. In fact, the screensaver videos already exist on your macOS system. You might consider setting up a local HTTP service to improve the video display speed, following these <a
+        href="instructions.html">instructions</a>.
+      </div>
+            <div class="setting">
+        <label for="videoSourceUrl">Local Videos list URL :</label>
         <input type="text" class="input" id="videoSourceUrl">
       </div>
       <div class="note">
-        By default, this program will traverse all .mov and .mp4 format videos at the specified URL and one level below
-        it. Please ensure the URL you provide opens to a file list, not a webpage.<br />
-        If you are going to use macOS's screen saver videos, please follow this <a
-          href="instructions.html">instructions</a> to set up a local
-        server.
+        This URL will only take effect when you select the local server in the server settings.
       </div>
     </div>
     <div class="area">

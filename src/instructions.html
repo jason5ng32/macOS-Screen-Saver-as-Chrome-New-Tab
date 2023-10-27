@@ -100,8 +100,7 @@
 <body>
   <main>
     <h1>Macify Set Up Instruction</h1>
-    <p>This extention transform your Chrome's new tab page by showcasing macOS's aerial screen saver videos. To achieve
-      this, start by setting up a local HTTP server.</p>
+    <p>This extention transform your Chrome's new tab page by showcasing macOS's aerial screen saver videos. You can use apple server by default, or start by setting up a local HTTP server, which is recommended.</p>
 
     <h2>Features</h2>
     <p>This Chrome extension delivers the following capabilities:</p>
@@ -113,10 +112,12 @@
         conversation.</li>
       <li>🌟 Discover motivational quotes that change randomly with each new tab.</li>
     </ol>
-    <p>P.S. If you're not using macOS, fear not! This extension remains compatible, though you'll need to secure the
-      video source independently. 🛠️</p>
+    <p>P.S. If you're not using macOS, fear not! This extension remains compatible. 🛠️</p>
+    <h2>Getting started</h2>
+    <p>There are two ways to use this extension. If you have a good internet connection and don't mind the data consumption each time a video loads, you can go directly to the 'Install Extension' section and start using it.</p>
+    <p>If you want to enjoy higher quality, faster-loading 4K videos, and you are using macOS, you can follow the steps that come next."</p>
 
-    <h2>Step 1: Acquire Screen Saver Videos via System Preferences</h2>
+    <h2>Acquire Screen Saver Videos via System Preferences</h2>
     <p>Ensure you're connected to Wi-Fi and proceed to open System Preferences.</p>
     <p>Journey to the "Screensaver" settings within System Preferences. Within the aerial screensaver category, select
       the videos you wish to download. Bear in mind, the file size of each video spans between 500MB to 1GB; patience is
@@ -124,7 +125,7 @@
       multiple attempts.</p>
     <p>To conserve storage, it's advised against downloading the entire video collection.</p>
 
-    <h2>Step 2: Initiate a Local Server</h2>
+    <h2>Initiate a Local Server</h2>
     <p>Let's start a local server now.</p>
     <ol>
       <li>Retrieve the <code>videoserver.conf</code> file from the <a
@@ -140,8 +141,10 @@
       <pre><code>sudo apachectl restart</code></pre>
     </ol>
     <p>Your local backend service should now be operational, with port 18000 as its designated listening port.</p>
-
-    <h2>Step 3: Enjoy</h2>
+    <h2>Make Changes in the Settings</h2>
+  <p>If you are using local server, you need to change the server settings in the extension's option page.</p>
+  <p>In the extension's option, change the video source to "Local Server" and then enter your local address. If you are using the configuration file I provided, the default address is <code>http://localhost:18000/videos/</code>.</p>
+    <h2>Enjoy</h2>
     <p>Now, you can enjoy breathtaking 4K videos as your Chrome's new start page.</p>
   </main>
 </body>

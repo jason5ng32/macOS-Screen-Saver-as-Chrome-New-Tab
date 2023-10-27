@@ -11,6 +11,7 @@ const SETTINGS_KEYS = {
   'tempUnit': 'celsius',
   'refreshButton': true,
   'authorInfo': true,
+  'videoSrc': 'apple',
   'videoSourceUrl': 'http://localhost:18000/videos/'
 };
 
@@ -100,6 +101,36 @@ async function fetchRandomVideo() {
     document.body.style.backgroundColor = 'black';
   }
 }
+
+// 从苹果 Server 获取视频
+
+async function fetchRandomVideo_fromApple() {
+  try {
+    const allVideoUrls = [];
+    allAvailableVideos = allVideoUrls;
+
+    // 读取本地JSON文件
+    const response = await fetch('videosrc.json');
+    const data = await response.json();
+
+    // 将获取到的URL添加到数组中
+    for (const videoKey in data) {
+      allVideoUrls.push(data[videoKey]);
+    }
+
+    if (allVideoUrls.length > 0) {
+      const randomVideoUrl = allVideoUrls[Math.floor(Math.random() * allVideoUrls.length)];
+      appendVideo(randomVideoUrl);
+    }
+  } catch (error) {
+    console.error('Error fetching local JSON:', error);
+    const errorBox = document.getElementById('errorBox');
+    errorBox.textContent = 'Error fetching video from Apple.';
+    errorBox.style.display = 'flex';
+    document.body.style.backgroundColor = 'black';
+  }
+}
+
 
 // 设置视频播放器
 function appendVideo(src) {
@@ -228,11 +259,15 @@ async function initSettings() {
     chrome.storage.sync.set(data);  // 保存更新后的设置
   }
 
-  const { showTime, showWeather, showSearch, showMotto, city, videoSourceUrl, weatherAPIKEY, refreshButton, authorInfo } = data;
+  const { showTime, showWeather, showSearch, showMotto, city, videoSourceUrl, weatherAPIKEY, refreshButton, authorInfo, videoSrc } = data;
 
-  if (!window.videoSourceUrl || window.videoSourceUrl !== videoSourceUrl) {
-    window.videoSourceUrl = videoSourceUrl;
-    await fetchRandomVideo();  // 只有当 videoSourceUrl 发生变化时才调用
+  if (videoSrc === 'local') {
+    if (!window.videoSourceUrl || window.videoSourceUrl !== videoSourceUrl) {
+      window.videoSourceUrl = videoSourceUrl;
+      await fetchRandomVideo();  // 只有当 videoSourceUrl 发生变化时才调用
+    }
+  } else {
+    await fetchRandomVideo_fromApple();
   }
 
   // 更新全局变量
