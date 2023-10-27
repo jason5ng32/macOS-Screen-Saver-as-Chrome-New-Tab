@@ -230,7 +230,7 @@ async function initSettings() {
   }
 
   setDisplay('current-time', showTime ? 'block' : 'none');
-  setDisplay('weather-info', showWeather ? 'flex' : 'none');
+  setDisplay('weather-area', showWeather ? 'flex' : 'none');
   setDisplay('search', showSearch ? '' : 'none');
   setDisplay('switchVideoBtn', refreshButton ? '' : 'none');
   setDisplay('motto', showMotto ? 'flex' : 'none');
@@ -247,6 +247,18 @@ async function initSettings() {
 
   if (showWeather === true) {
     updateWeather(city);
+    let wthElements = document.querySelectorAll('.wth');
+  let weatherInfo = document.querySelector('#weather-info');
+
+  wthElements.forEach(function(wthElement) {
+    wthElement.addEventListener('mouseover', function() {
+      weatherInfo.style.opacity = '1';
+    });
+    
+    wthElement.addEventListener('mouseout', function() {
+      weatherInfo.style.opacity = '0';
+    });
+  });
   }
 
   if (showSearch === true) {
