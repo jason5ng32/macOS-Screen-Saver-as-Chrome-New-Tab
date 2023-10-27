@@ -277,18 +277,20 @@ async function initSettings() {
 
   if (showWeather === true) {
     updateWeather(city);
-    let wthElements = document.querySelectorAll('.wth');
-    let weatherInfo = document.querySelector('#weather-info');
+    let wthElements = document.querySelectorAll('#wthBtn');
+let weatherInfo = document.querySelector('#weather-info');
 
-    wthElements.forEach(function (wthElement) {
-      wthElement.addEventListener('mouseover', function () {
-        weatherInfo.style.opacity = '1';
-      });
+wthElements.forEach(function (wthElement) {
+  wthElement.addEventListener('mouseover', function () {
+    weatherInfo.style.opacity = '1';
+    weatherInfo.style.transform = 'translateY(0)'; // 从页面顶部滑入
+  });
 
-      wthElement.addEventListener('mouseout', function () {
-        weatherInfo.style.opacity = '0';
-      });
-    });
+  wthElement.addEventListener('mouseout', function () {
+    weatherInfo.style.opacity = '0';
+    weatherInfo.style.transform = 'translateY(-100%)'; // 回到页面顶部
+  });
+});
   }
 
   if (showSearch === true) {
