@@ -55,6 +55,7 @@ if (switchVideoButton) {
   switchVideoButton.addEventListener('mouseleave', function () {
     this.classList.remove("rotating", "rotating2");
   });
+
 }
 
 
@@ -238,27 +239,56 @@ async function initSettings() {
 
   if (showMotto === true) {
     fetchRandomMotto();
+    // 获取包含 .motto 类的元素
+    var mottoElement = document.querySelector('.motto');
+
+    // 给该元素添加点击事件监听器
+    mottoElement.addEventListener('click', function (e) {
+      // 获取被点击元素
+      var clickedElement = e.target;
+
+      // 检查点击的是否是 .motto 元素本身，而不是它的子元素
+      if (clickedElement === mottoElement) {
+        // 这里可以进一步判断是否点击的确实是文字部分
+        var range = document.createRange();
+        var rectList;
+        for (var i = 0; i < mottoElement.childNodes.length; i++) {
+          var node = mottoElement.childNodes[i];
+          if (node.nodeType === 3) { // 是文本节点
+            range.selectNode(node);
+            rectList = range.getClientRects();
+            for (var j = 0; j < rectList.length; j++) {
+              if (e.clientX >= rectList[j].left && e.clientX <= rectList[j].right &&
+                e.clientY >= rectList[j].top && e.clientY <= rectList[j].bottom) {
+                fetchRandomMotto();
+                return; // 结束循环
+              }
+            }
+          }
+        }
+      }
+    });
   } else {
     let elements = document.querySelectorAll('.centered');
-    elements.forEach(function(element) {
-        element.style.top = '35%';
+    elements.forEach(function (element) {
+      element.style.top = '35%';
     });
   }
 
   if (showWeather === true) {
     updateWeather(city);
     let wthElements = document.querySelectorAll('.wth');
-  let weatherInfo = document.querySelector('#weather-info');
+    let weatherInfo = document.querySelector('#weather-info');
 
-  wthElements.forEach(function(wthElement) {
-    wthElement.addEventListener('mouseover', function() {
-      weatherInfo.style.opacity = '1';
+    wthElements.forEach(function (wthElement) {
+      wthElement.addEventListener('mouseover', function () {
+        weatherInfo.style.opacity = '1';
+      });
+
+      wthElement.addEventListener('mouseout', function () {
+        weatherInfo.style.opacity = '0';
+      });
     });
-    
-    wthElement.addEventListener('mouseout', function() {
-      weatherInfo.style.opacity = '0';
-    });
-  });
   }
 
   if (showSearch === true) {
