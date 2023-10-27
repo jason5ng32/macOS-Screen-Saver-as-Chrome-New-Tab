@@ -18,7 +18,7 @@ P.S. If you're not using macOS, fear not! This extension remains compatible. ðŸ›
 
 ## Getting started
 
-There are two ways to use this extension. If you have a good internet connection and don't mind the data consumption each time a video loads, you can go directly to the 'Install Extension' section and start using it.
+There are two ways to use this extension. If you have a good internet connection and don't mind the data consumption each time a video loads, you can go directly to the [Install the Extension](#install-the-extension) section and start using it.
 
 If you want to enjoy higher quality, faster-loading 4K videos, and you are using macOS, you can follow the steps that come next."
 
