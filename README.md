@@ -26,7 +26,7 @@ There are two ways to use this extension. If you have a good internet connection
 >
 >I believe this is a temporary issue, and Apple will likely fix the certificate error in the future.
 
-If you want to enjoy higher quality, faster-loading 4K videos, and you are using macOS, you can follow the steps that come next."
+If you want to enjoy higher quality, faster-loading 4K videos, and you are using macOS, you can follow the steps that come next.
 
 ## Acquire Screen Saver Videos via System Preferences
 
