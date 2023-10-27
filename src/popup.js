@@ -11,7 +11,7 @@ const SETTINGS_KEYS = {
   'tempUnit': 'celsius',
   'refreshButton': true,
   'authorInfo': true,
-  'videoSrc': 'apple',
+  'videoSrc': 'local',
   'videoSourceUrl': 'http://localhost:18000/videos/'
 };
 

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'refreshButton': true,
     'tempUnit': 'celsius',
     'authorInfo': true,
-    'videoSrc' : 'apple',
+    'videoSrc' : 'local',
     'delayTime': 2000
   };
 
