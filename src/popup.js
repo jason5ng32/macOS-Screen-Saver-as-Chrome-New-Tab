@@ -1,5 +1,3 @@
-let videoSourceUrl_default = 'http://localhost:18000/videos/';
-let supportedFormats_default = ['.mov', '.mp4'];
 let allAvailableVideos = [];
 let currentVideoIndex = -1; // 用于跟踪当前播放的视频
 
@@ -13,16 +11,14 @@ const SETTINGS_KEYS = {
   'tempUnit': 'celsius',
   'refreshButton': true,
   'authorInfo': true,
-  'videoSourceUrl': videoSourceUrl_default,
-  'supportedFormats': supportedFormats_default
+  'videoSourceUrl': 'http://localhost:18000/videos/'
 };
 
 
 document.addEventListener('DOMContentLoaded', init);
 
-async function init() {
-  await initSettings();
-  await fetchRandomVideo();
+function init() {
+  initSettings();
 }
 
 // 初始化视频切换按钮
@@ -66,6 +62,7 @@ async function fetchRandomVideo() {
     allAvailableVideos = allVideoUrls;
     const html = await fetch(videoSourceUrl).then(res => res.text());
     const doc = new DOMParser().parseFromString(html, 'text/html');
+    let supportedFormats = ['.mov', '.mp4'];
 
     // 获取主目录中的视频文件
     const mainDirVideoFiles = Array.from(doc.querySelectorAll('a'))
@@ -97,6 +94,10 @@ async function fetchRandomVideo() {
     }
   } catch (error) {
     console.error('Error fetching directory:', error);
+    const errorBox = document.getElementById('errorBox');
+    errorBox.textContent = 'Error fetching video directory. Please check the URL and instrutions then try again.';
+    errorBox.style.display = 'flex';
+    document.body.style.backgroundColor = 'black';
   }
 }
 
@@ -152,7 +153,10 @@ function switchToNextVideo() {
       videoElement.style.opacity = 1;
     }, 650); // 0.5秒后执行，与 CSS 中的过渡时间相同
   } else {
-    console.error("No video element found to switch source.");
+    const errorBox = document.getElementById('errorBox');
+    errorBox.textContent = 'No video element found to switch source.';
+    errorBox.style.display = 'flex';
+    document.body.style.backgroundColor = 'black';
   }
 }
 
@@ -193,6 +197,13 @@ async function fetchRandomMotto() {
     mottoElement.textContent = `${content} — ${author}`;
   } catch (error) {
     mottoElement.textContent = 'As you walk in Gods divine wisdom, you will surely begin to see a greater measure of victory and good success in your life. — Joseph Prince (load failed)';
+    console.error(`Get motto failed.`);
+    const errorBox = document.getElementById('errorBox');
+    errorBox.textContent = 'Get motto failed, using cache now.';
+    errorBox.style.display = 'flex';
+    document.body.style.backgroundColor = 'black';
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    errorBox.style.display = 'none';
   }
 }
 
@@ -217,14 +228,16 @@ async function initSettings() {
     chrome.storage.sync.set(data);  // 保存更新后的设置
   }
 
-  const { showTime, showWeather, showSearch, showMotto, city, videoSourceUrl, supportedFormats, weatherAPIKEY, refreshButton, authorInfo } = data;
+  const { showTime, showWeather, showSearch, showMotto, city, videoSourceUrl, weatherAPIKEY, refreshButton, authorInfo } = data;
+
+  if (!window.videoSourceUrl || window.videoSourceUrl !== videoSourceUrl) {
+    window.videoSourceUrl = videoSourceUrl;
+    await fetchRandomVideo();  // 只有当 videoSourceUrl 发生变化时才调用
+  }
 
   // 更新全局变量
   if (videoSourceUrl) {
     window.videoSourceUrl = videoSourceUrl;
-  }
-  if (supportedFormats) {
-    window.supportedFormats = supportedFormats;
   }
   if (weatherAPIKEY) {
     window.weatherAPIKEY = weatherAPIKEY;
@@ -278,19 +291,19 @@ async function initSettings() {
   if (showWeather === true) {
     updateWeather(city);
     let wthElements = document.querySelectorAll('#wthBtn');
-let weatherInfo = document.querySelector('#weather-info');
+    let weatherInfo = document.querySelector('#weather-info');
 
-wthElements.forEach(function (wthElement) {
-  wthElement.addEventListener('mouseover', function () {
-    weatherInfo.style.opacity = '1';
-    weatherInfo.style.transform = 'translateY(0)'; // 从页面顶部滑入
-  });
+    wthElements.forEach(function (wthElement) {
+      wthElement.addEventListener('mouseover', function () {
+        weatherInfo.style.opacity = '1';
+        weatherInfo.style.transform = 'translateY(0)'; // 从页面顶部滑入
+      });
 
-  wthElement.addEventListener('mouseout', function () {
-    weatherInfo.style.opacity = '0';
-    weatherInfo.style.transform = 'translateY(-100%)'; // 回到页面顶部
-  });
-});
+      wthElement.addEventListener('mouseout', function () {
+        weatherInfo.style.opacity = '0';
+        weatherInfo.style.transform = 'translateY(-100%)'; // 回到页面顶部
+      });
+    });
   }
 
   if (showSearch === true) {
@@ -324,7 +337,12 @@ async function getCurrentWeather(city) {
     document.getElementById('weather-icon').src = `https://${data.current.condition.icon}`;
   } catch (error) {
     console.error(`Get weather failed: ${error}`);
+    const errorBox = document.getElementById('errorBox');
+    errorBox.textContent = 'Get weather failed. Please check the API key and city name then try again.';
+    errorBox.style.display = 'flex';
+    document.body.style.backgroundColor = 'black';
   }
+
 }
 
 async function getForecastWeather(city) {
