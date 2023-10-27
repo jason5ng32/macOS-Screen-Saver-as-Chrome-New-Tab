@@ -23,8 +23,6 @@ There are two ways to use this extension. If you have a good internet connection
 > If you encounter issues loading the video upon first use (which defaults to using Apple's server), the issue may likely be due to the browser not trusting Apple's certificate. The solution is to open any Apple screen saver video link in your browser, such as [this one](https://sylvan.apple.com/Videos/AK_A004_C012_SDR_20191217_SDR_2K_AVC.mov), and then forcibly trust the certificate to gain access.
 >
 >After doing so, you should be able to use this extension normally.
->
->I believe this is a temporary issue, and Apple will likely fix the certificate error in the future.
 
 If you want to enjoy higher quality, faster-loading 4K videos, and you are using macOS, you can follow the steps that come next.
 
