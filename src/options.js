@@ -59,13 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let delayTimeInt = parseInt(delayTime, 10); // 转换为整数
 
     const videoSrc = document.getElementById("videoSrc").value;
-    if (videoSrc === "apple" || videoSourceUrl) {
+    if (videoSrc !== "apple" && !videoSourceUrl) {
       // 允许保存设置
-      if (isValid) {
-        saveSettings();
-        showMessage("Settings saved.", "success"); // 新增这一行
-      }
-    } else {
       showMessage("Please input Videos list URL", "error");
       isValid = false; // 标记为无效
     }
@@ -108,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (isValid) {
       saveSettings();
-      showMessage("Settings saved.", "success"); // 新增这一行
+      // showMessage("Settings saved.", "success"); // 新增这一行
     }
   });
 
