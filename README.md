@@ -16,7 +16,7 @@ P.S. If you're not using macOS, fear not! This extension remains compatible. ðŸ›
 ![Screenshot](screenshot.png)
 ![Screenshot](screenshot.gif)
 
-## Getting started
+## Getting Started
 
 There are two ways to use this extension. If you have a good internet connection and don't mind the data consumption each time a video loads, you can go directly to the [Install the Extension](#install-the-extension) section and start using it.
 

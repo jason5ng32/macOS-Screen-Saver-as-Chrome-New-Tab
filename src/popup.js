@@ -123,9 +123,9 @@ async function fetchRandomVideo_fromApple() {
       appendVideo(randomVideoUrl);
     }
   } catch (error) {
-    console.error('Error fetching local JSON:', error);
+    console.error('Error fetching video from Apple Server:', error);
     const errorBox = document.getElementById('errorBox');
-    errorBox.textContent = 'Error fetching video from Apple.';
+    errorBox.textContent = 'Error fetching video from Apple Server.\nThis might be due to a certificate error when connecting to Apple\'s servers.\nSee extension instructions for more details.';
     errorBox.style.display = 'flex';
     document.body.style.backgroundColor = 'black';
   }
