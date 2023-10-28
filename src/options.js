@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     showMotto: true,
     fontChoice: 'infinity',
     videoSourceUrl: 'http://localhost:18000/videos/',
-    weatherAPIKEY: 'Replace with your own API KEY',
+    weatherAPIKEY: '',
     modelType: 'gpt-4',
     refreshButton: true,
     tempUnit: 'celsius',
