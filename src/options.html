@@ -220,6 +220,24 @@
       </div>
     </div>
 
+    <div class="area">
+      <h2>🕑 Time</h2>
+      <div class="setting">
+        <label for="showTime">Show Clock</label>
+        <input type="checkbox" id="showTime">
+      </div>
+      <div class="setting">
+        <label for="hourSystem">Hour System</label>
+        <select id="hourSystem">
+          <option value="12">12-Hour</option>
+          <option value="24">24-Hour</option>
+        </select>
+      </div>
+      <div class="note">
+        Only affected when clock is shown.
+      </div>
+    </div>
+
 
     <div class="area">
       <h2>🔘 Others</h2>
@@ -229,14 +247,6 @@
           <option value="system-default">System Default</option>
           <option value="infinity">Infinity</option>
         </select>
-      </div>
-      <div class="setting">
-        <label for="showTime">Show Clock</label>
-        <input type="checkbox" id="showTime">
-      </div>
-      <div class="setting">
-        <label for="timeMode">24 hour clock</label>
-        <input type="checkbox" id="timeMode">
       </div>
       <div class="setting">
         <label for="showMotto">Show Motto</label>
@@ -256,7 +266,7 @@
       <button id="save">Save</button>
       <div id="message"></div>
     </div>
-    <footer>Created by <a href="https://jasonng.org">Jason Ng</a> and Setilis.</footer>
+    <footer>Created by <a href="https://jasonng.org">Jason Ng</a>, <a href="https://dofy.net/">Dofy</a>, Setilis.</footer>
     <script src="options.js"></script>
   </main>
 </body>

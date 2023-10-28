@@ -4,7 +4,7 @@ let currentVideoIndex = -1; // 用于跟踪当前播放的视频
 const SETTINGS_KEYS = {
   city: 'Beijing',
   showTime: true,
-  timeMode: false,
+  hourSystem: '12',
   showWeather: false,
   showSearch: true,
   showMotto: true,
