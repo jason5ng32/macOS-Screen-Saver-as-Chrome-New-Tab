@@ -7,10 +7,9 @@
   <script src="fonts.js"></script>
   <style>
     body {
+      margin: 0;
+      padding: 0;
       background-color: black;
-      background-image: url('https://source.unsplash.com/1920x1080/?black');
-      background-repeat: no-repeat;
-      background-position-x: center;
     }
 
     @font-face {
@@ -18,17 +17,6 @@
       src: url('font.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
-    }
-
-    video {
-      right: 0;
-      bottom: 0;
-      z-index: 1;
-      position: fixed;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: fill;
-      transition: opacity 0.65s;
     }
 
     #errorBox {
@@ -47,6 +35,39 @@
       margin-top: 15pt;
       z-index: 9;
     }
+
+    #videoBox {
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    video {
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.65s;
+    }
+
+    .background {
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      background-image: url('https://source.unsplash.com/1920x1080/?black');
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-size: cover;
+    }
+
 
     .top-layer {
       z-index: 2;
@@ -291,6 +312,8 @@
 </head>
 
 <body>
+  <div class="background"></div>
+  <div id="videoBox"></div>
   <div id="errorBox"></div>
 
   <div id="author" class="author top-layer">

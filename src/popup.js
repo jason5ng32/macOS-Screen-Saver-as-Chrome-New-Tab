@@ -158,7 +158,7 @@ function appendVideo(src) {
     loop: true,
     muted: true,
   });
-  document.body.appendChild(video);
+  document.getElementById('videoBox').appendChild(video);
 }
 
 // 手动切换视频
