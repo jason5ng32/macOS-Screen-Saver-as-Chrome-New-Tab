@@ -103,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (isValid) {
       saveSettings();
-      // showMessage("Settings saved.", "success"); // 新增这一行
     }
   });
 
