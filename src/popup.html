@@ -6,6 +6,12 @@
   <title>Macify Tab</title>
   <script src="fonts.js"></script>
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+    }
+
     @font-face {
       font-family: "CustomFont";
       src: url('font.ttf') format('truetype');
@@ -14,27 +20,57 @@
     }
 
     #errorBox {
+      position: relative;
       margin: 0 auto;
-    color: rgb(255 255 255);
-    font-size: 12pt;
-    background-color: #ff000094;
-    padding: 12pt;
-    /* border: 1px solid white; */
-    /* box-shadow: 0 0 5pt white; */
-    /* border-radius: 5pt; */
-    font-family: "CUSTOMFONT";
-    width: fit-content;
-    display: none;
-    margin-top: 15pt;
+      color: rgb(255 255 255);
+      font-size: 12pt;
+      background-color: #ff000094;
+      padding: 12pt;
+      /* border: 1px solid white; */
+      /* box-shadow: 0 0 5pt white; */
+      /* border-radius: 5pt; */
+      font-family: "CustomFont";
+      width: fit-content;
+      display: none;
+      margin-top: 15pt;
+      z-index: 9;
     }
-    video {
-      position: fixed;
-      right: 0;
-      bottom: 0;
+
+    #videoBox {
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100vw;
       height: 100vh;
-      z-index: -1;
-      object-fit: fill;
+      position: absolute;
+    }
+
+    video {
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       transition: opacity 0.65s;
+    }
+
+    .background {
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      background-image: url('https://source.unsplash.com/1920x1080/?black');
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-size: cover;
+    }
+
+
+    .top-layer {
+      z-index: 2;
     }
 
     .centered {
@@ -90,6 +126,7 @@
       font-family: "CustomFont";
       margin-top: 40pt;
       height: 20vh;
+      cursor: default;
     }
 
     .author {
@@ -105,6 +142,7 @@
       justify-content: flex-start;
       align-items: center;
       opacity: 0.6;
+      cursor: default;
     }
 
     .author:hover {
@@ -125,6 +163,7 @@
       color: white;
       font-family: "CustomFont";
       font-size: 10vh;
+      cursor: default;
     }
 
     #weather-area {
@@ -273,20 +312,19 @@
 </head>
 
 <body>
+  <div class="background"></div>
   <div id="errorBox"></div>
-  <video class="videos" autoplay loop>
-    <!-- video source will be set by JavaScript -->
-  </video>
+  <div id="videoBox"></div>
 
-  <div id="author" class="author">
+  <div id="author" class="author top-layer">
     <p>Created by Jason Ng & Setilis</p>
     <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab" target="_blank"
       title="Project's Github"><img src="github.png" /></a>
   </div>
-  <div class="refresh">
+  <div class="refresh top-layer">
     <button id="switchVideoBtn" title="Refresh video"></button>
   </div>
-  <div id="weather-area">
+  <div id="weather-area" class="top-layer">
     <div id="weather-info">
 
       <div class="current-aera">
@@ -327,16 +365,17 @@
     </div>
   </div>
   </div>
-  <div class="centered">
+  <div class="centered top-layer">
     <div id="current-time"></div>
     <input type="text" id="search" placeholder="Ask ChatGPT...">
 
-    <div class="motto" id="motto"><span>As you walk in God's divine wisdom, you will surely begin to see a greater measure of
-      victory and good success in your life. — Joseph Prince</span>
+    <div class="motto" id="motto"><span>As you walk in God's divine wisdom, you will surely begin to see a greater
+        measure of
+        victory and good success in your life. — Joseph Prince</span>
     </div>
 
   </div>
-  
+
   <script src="popup.js"></script>
 </body>
 
