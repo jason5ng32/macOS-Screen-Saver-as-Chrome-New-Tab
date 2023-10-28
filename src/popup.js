@@ -12,6 +12,7 @@ const SETTINGS_KEYS = {
   'refreshButton': true,
   'authorInfo': true,
   'videoSrc': 'local',
+  'reverseProxy': false,
   'videoSourceUrl': 'http://localhost:18000/videos/'
 };
 
@@ -104,13 +105,16 @@ async function fetchRandomVideo() {
 
 // 从苹果 Server 获取视频
 
-async function fetchRandomVideo_fromApple() {
+async function fetchRandomVideo_fromApple(reverseProxy) {
   try {
     const allVideoUrls = [];
     allAvailableVideos = allVideoUrls;
 
+    // 根据 reverseProxy 的设置选择不同的 JSON 文件
+    const jsonFile = reverseProxy ? 'videosrc.json' : 'videosrc_o.json';
+
     // 读取本地JSON文件
-    const response = await fetch('videosrc.json');
+    const response = await fetch(jsonFile);
     const data = await response.json();
 
     // 将获取到的URL添加到数组中
@@ -259,7 +263,7 @@ async function initSettings() {
     chrome.storage.sync.set(data);  // 保存更新后的设置
   }
 
-  const { showTime, showWeather, showSearch, showMotto, city, videoSourceUrl, weatherAPIKEY, refreshButton, authorInfo, videoSrc } = data;
+  const { showTime, showWeather, showSearch, showMotto, city, videoSourceUrl, weatherAPIKEY, refreshButton, authorInfo, videoSrc, reverseProxy } = data;
 
   if (videoSrc === 'local') {
     if (!window.videoSourceUrl || window.videoSourceUrl !== videoSourceUrl) {
@@ -267,7 +271,7 @@ async function initSettings() {
       await fetchRandomVideo();  // 只有当 videoSourceUrl 发生变化时才调用
     }
   } else {
-    await fetchRandomVideo_fromApple();
+    await fetchRandomVideo_fromApple(reverseProxy);
   }
 
   // 更新全局变量

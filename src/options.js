@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     'refreshButton': true,
     'tempUnit': 'celsius',
     'authorInfo': true,
-    'videoSrc' : 'local',
+    'videoSrc': 'local',
+    'reverseProxy': false,
     'delayTime': 2000
   };
 
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
         element.value = data[key] || defaultValue;
       }
     }
+    updateVideoSrcSettings();
   });
 
   // 创建提示信息
@@ -42,6 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+
+  document.getElementById('videoSrc').addEventListener('change', updateVideoSrcSettings);
+
   document.getElementById('save').addEventListener('click', function () {
     let isValid = true;
     let videoSourceUrl = document.getElementById('videoSourceUrl').value;
@@ -50,6 +55,18 @@ document.addEventListener('DOMContentLoaded', function () {
     let weatherAPIKEY = document.getElementById('weatherAPIKEY').value;
     let delayTime = document.getElementById('delayTime').value; // 获取 delayTime 的值
     let delayTimeInt = parseInt(delayTime, 10); // 转换为整数
+
+    const videoSrc = document.getElementById('videoSrc').value;
+    if (videoSrc === 'apple' || videoSourceUrl) {
+      // 允许保存设置
+      if (isValid) {
+        saveSettings();
+        showMessage('Settings saved.', 'success');  // 新增这一行
+      }
+    } else {
+      showMessage('Please input Videos list URL', 'error');
+      isValid = false;  // 标记为无效
+    }
 
     // 验证 delayTime 是否在 1 到 10000 的范围内
     if (isNaN(delayTimeInt) || delayTimeInt < 1 || delayTimeInt > 10000 || delayTime !== String(delayTimeInt)) {
@@ -96,6 +113,23 @@ document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.sync.set(settingObj, function () {
       showMessage('Settings saved', 'success');
     });
+  }
+
+  function updateVideoSrcSettings() {
+    const videoSrc = document.getElementById('videoSrc').value;
+    const reverseProxySetting = document.getElementById('reverseProxySetting'); 
+    const videoSourceUrlSetting = document.getElementById('videoSourceUrlSetting'); 
+    // const videoSourceUrlNote = document.getElementById('videoSourceUrlNote'); 
+
+    if (videoSrc === 'apple') {
+      reverseProxySetting.style.display = 'flex';
+      videoSourceUrlSetting.style.display = 'none';
+      // videoSourceUrlNote.style.display = 'none';
+    } else if (videoSrc === 'local') {
+      reverseProxySetting.style.display = 'none';
+      videoSourceUrlSetting.style.display = 'flex';
+      // videoSourceUrlNote.style.display = 'flex';
+    }
   }
 
 });

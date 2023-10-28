@@ -69,9 +69,9 @@
       height: 25pt;
       margin-top: 16pt;
       width: 70pt;
-    margin-top: 16pt;
-    font-size: 14pt;
-    font-family: "CustomFont";
+      margin-top: 16pt;
+      font-size: 14pt;
+      font-family: "CustomFont";
     }
 
     button:active {
@@ -124,10 +124,12 @@
       color: red;
       font-size: 14pt;
     }
+
     #message {
       margin-top: 10pt;
       height: 20pt;
     }
+
     .saveinfo {
       margin-left: 16pt;
     }
@@ -144,7 +146,10 @@
     <div class="area">
       <h2>📺 Videos</h2>
       <div class="note">
-        You may encounter a certificate error upon first use when you choose Apple Server. Click <a href="instructions.html">here</a> to see how to resolve it.
+        If you choose to fetch videos from Apple Server, Chrome may not trust Apple's root certificate, so you can
+        temporarily use my Cloudflare reverse proxy to fetch videos (check the checkbox below). However, I cannot
+        guarantee the long-term availability of this service. Therefore, I strongly recommend that you follow the <a
+          href="instructions.html">instructions</a> to manual trust it.
       </div>
       <div class="setting">
         <label for="videoSrc">Video Source :</label>
@@ -153,15 +158,17 @@
           <option value="local">Local Server</option>
         </select>
       </div>
-      <div class="note">
-        In fact, the screensaver videos already exist on your macOS system. You might consider setting up a local HTTP service to improve the video display speed, following these <a href="instructions.html">instructions</a>.
+      <div class="setting" id="reverseProxySetting">
+        <label for="reverseProxy">Reverse Proxy :</label>
+        <input type="checkbox" id="reverseProxy">
       </div>
-            <div class="setting">
+      <div class="setting" id="videoSourceUrlSetting">
         <label for="videoSourceUrl">Local Videos list URL :</label>
         <input type="text" class="input" id="videoSourceUrl">
       </div>
-      <div class="note">
-        This URL will only take effect when you select the local server in the server settings.
+      <div class="note" id="videoSourceUrlNote">
+        The better way to use this extension is setting up a local HTTP service, following these <a
+          href="instructions.html">instructions</a>.
       </div>
     </div>
     <div class="area">
@@ -242,9 +249,9 @@
     </div>
 
     <div class="saveinfo">
-    <button id="save">Save</button>
-    <div id="message"></div>
-  </div>
+      <button id="save">Save</button>
+      <div id="message"></div>
+    </div>
     <footer>Created by <a href="https://jasonng.org">Jason Ng</a> and Setilis.</footer>
     <script src="options.js"></script>
   </main>
