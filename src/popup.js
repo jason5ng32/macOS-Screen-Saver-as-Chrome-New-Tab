@@ -205,14 +205,14 @@ function initSearch() {
   });
 }
 
-function updateTime(timeMode) {
+function updateTime(hourSystem) {
   const currentTimeElement = document.getElementById('current-time');
   const now = new Date();
   let hours = now.getHours();
   let minutes = now.getMinutes();
   const ampm = hours >= 12 ? 'PM' : 'AM';
 
-  if (!timeMode) {
+  if (!hourSystem) {
     // 将24小时制转换为12小时制，并修正12点的小时
     hours = hours % 12;
     hours = hours ? hours : 12; // 如果小时是0，则显示为12
@@ -221,7 +221,7 @@ function updateTime(timeMode) {
   // 如果分钟是一位数，添加前导零
   minutes = minutes < 10 ? '0' + minutes : minutes;
 
-  const timeString = `${hours}:${minutes} ${timeMode ? '' : ampm}`;
+  const timeString = `${hours}:${minutes} ${hourSystem ? '' : ampm}`;
   currentTimeElement.textContent = timeString;
 }
 
@@ -245,9 +245,9 @@ async function fetchRandomMotto() {
   }
 }
 
-function initClock(timeMode) {
-  updateTime(timeMode);
-  setInterval(updateTime, 1000, timeMode);
+function initClock(hourSystem) {
+  updateTime(hourSystem);
+  setInterval(updateTime, 1000, hourSystem);
 }
 
 async function initSettings() {
@@ -270,7 +270,7 @@ async function initSettings() {
 
   const {
     showTime,
-    timeMode,
+    hourSystem,
     showWeather,
     showSearch,
     showMotto,
@@ -372,7 +372,7 @@ async function initSettings() {
     initSearch();
   }
   if (showTime === true) {
-    initClock(timeMode);
+    initClock(hourSystem);
   }
 }
 
