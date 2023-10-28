@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const settingsKeys = {
     city: "Beijing",
     showTime: true,
-    timeMode: true,
+    timeMode: false,
     showWeather: false,
     showSearch: true,
     showMotto: true,
