@@ -157,16 +157,6 @@ function appendVideo(src) {
     autoplay: true,
     loop: true,
     muted: true,
-    style: `
-      right: 0;
-      bottom: 0;
-      z-index: 1;
-      position: fixed;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: fill;
-      transition: opacity 0.65s;
-      `,
   });
   document.body.appendChild(video);
 }
