@@ -8,7 +8,7 @@ const SETTINGS_KEYS = {
   showWeather: false,
   showSearch: true,
   showMotto: true,
-  weatherAPIKEY: 'Replace with your own API KEY',
+  weatherAPIKEY: '',
   tempUnit: 'celsius',
   refreshButton: true,
   authorInfo: true,
@@ -212,16 +212,16 @@ function updateTime(hourSystem) {
   let minutes = now.getMinutes();
   const ampm = hours >= 12 ? 'PM' : 'AM';
 
-  if (!hourSystem) {
+  if (hourSystem === '12') {
     // 将24小时制转换为12小时制，并修正12点的小时
     hours = hours % 12;
-    hours = hours ? hours : 12; // 如果小时是0，则显示为12
+    hours = hours || 12; // 如果小时是0，则显示为12
   }
 
   // 如果分钟是一位数，添加前导零
   minutes = minutes < 10 ? '0' + minutes : minutes;
 
-  const timeString = `${hours}:${minutes} ${hourSystem ? '' : ampm}`;
+  const timeString = `${hours}:${minutes} ${hourSystem === '24' ? '' : ampm}`;
   currentTimeElement.textContent = timeString;
 }
 
