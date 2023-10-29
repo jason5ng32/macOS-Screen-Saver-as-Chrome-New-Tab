@@ -10,7 +10,6 @@
       margin: 0;
       padding: 0;
       background-color: black;
-      text-shadow: #e0e0e0 0 0 3pt;
     }
 
     @font-face {
@@ -56,6 +55,11 @@
       transition: opacity 0.65s;
     }
 
+    #myVideo {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
     .background {
       top: 0;
       left: 0;
@@ -63,7 +67,6 @@
       width: 100vw;
       height: 100vh;
       position: fixed;
-      background-image: url('default.jpg');
       background-repeat: no-repeat;
       background-position-x: center;
       background-size: cover;
@@ -91,6 +94,12 @@
       font-family: "CustomFont";
     }
 
+    #search {
+      display: none;
+      transition: box-shadow 0.7s ease-in-out, background-color 0.7s ease-in-out, opacity 0.5s ease-in-out;
+      opacity: 0;
+    }
+
     input[type="text"] {
       width: 35vw;
       height: 10vh;
@@ -104,7 +113,6 @@
       font-weight: lighter;
       background-color: #ffffff36;
       color: white;
-      transition: box-shadow 0.7s, background-color 0.7s;
     }
 
     input[type="text"]:hover {
@@ -128,6 +136,8 @@
       margin-top: 40pt;
       height: 20vh;
       cursor: default;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
     }
 
     .author {
@@ -165,6 +175,8 @@
       font-family: "CustomFont";
       font-size: 10vh;
       cursor: default;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
     }
 
     #weather-area {
@@ -367,12 +379,10 @@
   </div>
   </div>
   <div class="centered top-layer">
-    <div id="current-time"></div>
+    <div id="current-time">--:--</div>
     <input type="text" id="search" placeholder="Ask ChatGPT...">
 
-    <div class="motto" id="motto"><span>As you walk in God's divine wisdom, you will surely begin to see a greater
-        measure of
-        victory and good success in your life. — Joseph Prince</span>
+    <div class="motto" id="motto"><span>Loading motto...</span>
     </div>
 
   </div>

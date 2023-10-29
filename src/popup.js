@@ -158,6 +158,11 @@ function appendVideo(src) {
     loop: true,
     muted: true,
   });
+  // 当视频可以播放时，改变透明度
+  video.addEventListener('canplay', function() {
+    video.style.opacity = '1';
+  });
+
   document.getElementById('videoBox').appendChild(video);
 }
 
@@ -194,8 +199,10 @@ function switchToNextVideo() {
   }
 }
 
-function initSearch() {
+async function initSearch() {
   const searchInput = document.getElementById('search');
+  await new Promise((resolve) => setTimeout(resolve, 200));
+  search.style.opacity = '1';
   searchInput.addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
       // 通过 Chrome 扩展 API 发送消息给 background.js
@@ -223,18 +230,22 @@ function updateTime(hourSystem) {
 
   const timeString = `${hours}:${minutes} ${hourSystem === '24' ? '' : ampm}`;
   currentTimeElement.textContent = timeString;
+  currentTimeElement.style.opacity = '1';
 }
 
 async function fetchRandomMotto() {
   const mottoElement = document.getElementById('motto');
+  mottoElement.style.opacity = '0';
   try {
     const { content, author } = await fetch(
       'https://api.quotable.io/random'
     ).then((res) => res.json());
     mottoElement.textContent = `${content} — ${author}`;
+    mottoElement.style.opacity = '1';
   } catch (error) {
-    mottoElement.textContent =
-      'As you walk in Gods divine wisdom, you will surely begin to see a greater measure of victory and good success in your life. — Joseph Prince (load failed)';
+    // mottoElement.textContent =
+    //   'As you walk in Gods divine wisdom, you will surely begin to see a greater measure of victory and good success in your life. — Joseph Prince (load failed)';
+    mottoElement.style.opacity = '1';
     console.error(`Get motto failed.`);
     const errorBox = document.getElementById('errorBox');
     errorBox.textContent = 'Get motto failed, using cache now.';
@@ -302,9 +313,9 @@ async function initSettings() {
 
   setDisplay('current-time', showTime ? 'block' : 'none');
   setDisplay('weather-area', showWeather ? 'flex' : 'none');
-  setDisplay('search', showSearch ? '' : 'none');
+  setDisplay('search', showSearch ? 'inline' : 'none');
   setDisplay('switchVideoBtn', refreshButton ? '' : 'none');
-  setDisplay('motto', showMotto ? 'flex' : 'none');
+  setDisplay('motto', showMotto ? 'block' : 'none');
   setDisplay('author', authorInfo ? '' : 'none');
 
   if (showMotto === true) {
