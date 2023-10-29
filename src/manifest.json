@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Macify - macOS screen saver videos new tab",
   "version": "1.5",
-  "description": "Replace new tab with macOS's screen saver videos. Created by Jason Ng, Dofy, Setilis.",
+  "description": "Replace new tab with macOS's gorgeous screensaver aerial video.",
   "permissions": ["storage","scripting"],
   "action": {
     "default_popup": "options.html"
