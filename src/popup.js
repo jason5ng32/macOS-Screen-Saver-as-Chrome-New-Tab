@@ -121,17 +121,20 @@ async function fetchRandomVideo_fromApple(reverseProxy) {
   try {
     const allVideoUrls = [];
     allAvailableVideos = allVideoUrls;
+    domain_cloudflare = 'https://applescreensaver.macify.workers.dev/Videos/';
+    domain_apple = 'https://sylvan.apple.com/Videos/';
+    const jsonFile = 'videosrc.json';
 
-    // 根据 reverseProxy 的设置选择不同的 JSON 文件
-    const jsonFile = reverseProxy ? 'videosrc.json' : 'videosrc_o.json';
+    // 根据 reverseProxy 的设置选择不同的前缀
+    const domainPrefix = reverseProxy ? domain_cloudflare : domain_apple;
 
     // 读取本地JSON文件
     const response = await fetch(jsonFile);
     const data = await response.json();
 
-    // 将获取到的URL添加到数组中
+    // 将获取到的视频文件名添加到数组中，并添加相应的前缀
     for (const videoKey in data) {
-      allVideoUrls.push(data[videoKey]);
+      allVideoUrls.push(domainPrefix + data[videoKey]);
     }
 
     if (allVideoUrls.length > 0) {
@@ -149,6 +152,7 @@ async function fetchRandomVideo_fromApple(reverseProxy) {
   }
 }
 
+
 // 设置视频播放器
 function appendVideo(src) {
   const video = Object.assign(document.createElement('video'), {
@@ -159,7 +163,7 @@ function appendVideo(src) {
     muted: true,
   });
   // 当视频可以播放时，改变透明度
-  video.addEventListener('canplay', function() {
+  video.addEventListener('canplay', function () {
     video.style.opacity = '1';
   });
 
