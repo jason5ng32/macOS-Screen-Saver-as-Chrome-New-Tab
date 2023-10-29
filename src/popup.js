@@ -235,6 +235,7 @@ function updateTime(hourSystem) {
 
 async function fetchRandomMotto() {
   const mottoElement = document.getElementById('motto');
+  await new Promise((resolve) => setTimeout(resolve, 100));
   mottoElement.style.opacity = '0';
   try {
     const { content, author } = await fetch(
@@ -248,10 +249,10 @@ async function fetchRandomMotto() {
     mottoElement.style.opacity = '1';
     console.error(`Get motto failed.`);
     const errorBox = document.getElementById('errorBox');
-    errorBox.textContent = 'Get motto failed, using cache now.';
+    errorBox.textContent = 'Get motto failed.';
     errorBox.style.display = 'flex';
     document.body.style.backgroundColor = 'black';
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     errorBox.style.display = 'none';
   }
 }
