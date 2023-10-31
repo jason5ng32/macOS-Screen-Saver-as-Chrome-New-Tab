@@ -1,8 +1,6 @@
 let allAvailableVideos = [];
 let currentVideoIndex = -1; // 用于跟踪当前播放的视频
-let currentMottoIndex = 0;
-let currentMottoArray = 'mottos1'; // 初始化使用的本地存储数组
-let alternateMottoArray = 'mottos2'; // 另一个备用的本地存储数组
+let currentIndex = 0; // 用于跟踪当前展示到哪条格言
 
 // 初始化
 document.addEventListener('DOMContentLoaded', initSettings);
@@ -35,14 +33,6 @@ async function initSettings() {
 
   // 展示 Motto
   if (newdata.showMotto) {
-    chrome.storage.local.get(['mottos1', 'mottos2'], async function (result) {
-      if (!result.mottos1 || result.mottos1.length === 0) {
-        await fetchMottosToLocalStorage('mottos1');
-      }
-      if (!result.mottos2 || result.mottos2.length === 0) {
-        await fetchMottosToLocalStorage('mottos2');
-      }
-    });
     fetchRandomMotto();
     refreshRandomMotto();
   } else {
@@ -320,49 +310,41 @@ function updateTime(hourSystem) {
   currentTimeElement.style.opacity = '1';
 }
 
-async function fetchMottosToLocalStorage(targetArray) {
-  const response = await fetch('https://api.quotable.io/quotes/random?limit=10');
-  const data = await response.json();
-  chrome.storage.local.set({ [targetArray]: data });
-}
-
 async function fetchRandomMotto() {
   const mottoElement = document.getElementById('motto');
 
-  chrome.storage.local.get([currentMottoArray], async function (result) {
+  try {
+    let quotes = JSON.parse(localStorage.getItem('quotes'));
 
-    // 当前数组为空或者到达数组末尾时，切换到另一个数组，并确保该数组已加载
-    if (!result[currentMottoArray] || result[currentMottoArray].length <= currentMottoIndex) {
-      [currentMottoArray, alternateMottoArray] = [alternateMottoArray, currentMottoArray];
-      currentMottoIndex = 0;
-      result = await new Promise((resolve) => {
-        chrome.storage.local.get([currentMottoArray], (newResult) => resolve(newResult));
-      });
-
-      // 提前加载下一个数组
-      fetchMottosToLocalStorage(alternateMottoArray);
+    // 如果本地存储里没有格言或者格言已经用完，从 API 获取新数据
+    if (!quotes || currentIndex >= quotes.length) {
+      const response = await fetch('https://api.quotable.io/quotes/random?limit=50');
+      const data = await response.json();
+      quotes = data;
+      localStorage.setItem('quotes', JSON.stringify(quotes));
+      currentIndex = 0; // 重置索引
     }
 
-    // 当到达第 5 条格言时，开始预加载另一个数组
-    if (currentMottoIndex === 4) {
-      fetchMottosToLocalStorage(alternateMottoArray);
-    }
+    const { content, author } = quotes[currentIndex];
+    currentIndex++; // 更新索引以便下次获取新的格言
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    mottoElement.style.opacity = '0';
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    mottoElement.style.opacity = '1';
+    mottoElement.textContent = `${content} — ${author}`;
+    
 
-    if (result[currentMottoArray] && result[currentMottoArray].length > currentMottoIndex) {
-      await new Promise((resolve) => setTimeout(resolve, 100));
-      mottoElement.style.opacity = '0';
-
-      const { content, author } = result[currentMottoArray][currentMottoIndex];
-      currentMottoIndex++;
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      mottoElement.style.opacity = '1';
-      mottoElement.textContent = `${content} — ${author}`;
-    } else {
-      console.error('No valid motto data available');
-    }
-  });
+  } catch (error) {
+    mottoElement.style.opacity = '1';
+    console.error('Get motto failed.');
+    const errorBox = document.getElementById('errorBox');
+    errorBox.textContent = 'Get motto failed.';
+    errorBox.style.display = 'flex';
+    document.body.style.backgroundColor = 'black';
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    errorBox.style.display = 'none';
+  }
 }
-
 
 async function refreshRandomMotto() {
   var mottoElement = document.querySelector('.motto');

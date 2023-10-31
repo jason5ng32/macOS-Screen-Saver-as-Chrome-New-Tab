@@ -15,23 +15,27 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 function handleOpenUrlAndType(request) {
-  chrome.storage.sync.get(['modelType'], function (data) {
+  chrome.storage.sync.get(['modelType', 'delayTime'], function (data) {
     const modelType = data.modelType || 'gpt-4';
+    const delayTime = data.delayTime || 2000;
+
+    console.log("Received input:", decodeURIComponent(request.input));
 
     chrome.tabs.create({ url: `https://chat.openai.com/?model=${modelType}` }, (tab) => {
-      try {
-        chrome.scripting.executeScript({
-          target: { tabId: tab.id },
-          files: ['content.js']
-        }, () => {
-          chrome.tabs.sendMessage(tab.id, { action: 'typeInput', input: request.input });
-        });
-      } catch (error) {
-        console.error(error);
-      }
+      setTimeout(() => {
+        try {
+          chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            files: ['content.js']
+          }, () => {
+            chrome.tabs.sendMessage(tab.id, { action: 'typeInput', input: request.input });
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }, delayTime);
     });
   });
 }
-
 
 
