@@ -1,0 +1,18 @@
+{
+    "city": "Beijing",
+    "showTime": true,
+    "hourSystem": "12",
+    "showWeather": false,
+    "showSearch": true,
+    "showMotto": true,
+    "fontChoice": "infinity",
+    "videoSourceUrl": "http://localhost:18000/videos/",
+    "weatherAPIKEY": "",
+    "modelType": "gpt-4",
+    "refreshButton": true,
+    "tempUnit": "celsius",
+    "authorInfo": true,
+    "videoSrc": "local",
+    "reverseProxy": false,
+    "delayTime": 2000
+}  

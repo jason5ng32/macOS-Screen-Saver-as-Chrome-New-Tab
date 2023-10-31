@@ -1,25 +1,9 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const settingsKeys = {
-    city: 'Beijing',
-    showTime: true,
-    hourSystem: '12',
-    showWeather: false,
-    showSearch: true,
-    showMotto: true,
-    fontChoice: 'infinity',
-    videoSourceUrl: 'http://localhost:18000/videos/',
-    weatherAPIKEY: '',
-    modelType: 'gpt-4',
-    refreshButton: true,
-    tempUnit: 'celsius',
-    authorInfo: true,
-    videoSrc: 'local',
-    reverseProxy: false,
-    delayTime: 2000,
-  };
+document.addEventListener('DOMContentLoaded', async function () {
 
-  chrome.storage.sync.get(Object.keys(settingsKeys), function (data) {
-    for (const [key, defaultValue] of Object.entries(settingsKeys)) {
+  let SETTINGS_KEYS = await fetchDefaultSettings();
+
+  chrome.storage.sync.get(Object.keys(SETTINGS_KEYS), function (data) {
+    for (const [key, defaultValue] of Object.entries(SETTINGS_KEYS)) {
       const element = document.getElementById(key);
       if (element.type === 'checkbox') {
         element.checked = data[key] !== undefined ? data[key] : defaultValue;
@@ -60,9 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const videoSrc = document.getElementById('videoSrc').value;
     if (videoSrc !== 'apple' && !videoSourceUrl) {
-      // 允许保存设置
+
       showMessage('Please input Videos list URL', 'error');
-      isValid = false; // 标记为无效
+      isValid = false;
     }
 
     // 验证 delayTime 是否在 1 到 10000 的范围内
@@ -81,12 +65,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!videoSourceUrl) {
       showMessage('Please input Videos list URL', 'error');
-      isValid = false; // 标记为无效
+      isValid = false;
     }
 
     if (showWeather && (!city || !weatherAPIKEY)) {
       showMessage('Please input City Name and weatherapi.com API KEY', 'error');
-      isValid = false; // 标记为无效
+      isValid = false;
     }
 
     if (
@@ -98,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'error'
       );
       document.getElementById('showWeather').checked = false;
-      isValid = false; // 标记为无效
+      isValid = false;
     }
 
     if (isValid) {
@@ -109,12 +93,12 @@ document.addEventListener('DOMContentLoaded', function () {
   function saveSettings() {
     const settingObj = {};
 
-    Object.keys(settingsKeys).forEach((key) => {
+    Object.keys(SETTINGS_KEYS).forEach((key) => {
       const element = document.getElementById(key);
       if (element.type === 'checkbox') {
         settingObj[key] = element.checked;
       } else if (element.tagName === 'SELECT') {
-        settingObj[key] = element.value; // 这里处理 <select> 元素
+        settingObj[key] = element.value;
       } else {
         settingObj[key] = element.value;
       }
@@ -131,8 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const videoSourceUrlSetting = document.getElementById(
       'videoSourceUrlSetting'
     );
-    // const videoSourceUrlNote = document.getElementById('videoSourceUrlNote');
-
+    
     if (videoSrc === 'apple') {
       reverseProxySetting.style.display = 'flex';
       videoSourceUrlSetting.style.display = 'none';
@@ -144,3 +127,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 });
+
+async function fetchDefaultSettings() {
+  const response = await fetch('default_settings.json');
+  const data = await response.json();
+  return data;
+}
