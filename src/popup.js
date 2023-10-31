@@ -17,154 +17,21 @@ const SETTINGS_KEYS = {
   videoSourceUrl: 'http://localhost:18000/videos/',
 };
 
-// 初始化
-document.addEventListener('DOMContentLoaded', initSettings);
-initSettings();
+document.addEventListener('DOMContentLoaded', init);
 
-// 主程序
-async function initSettings() {
-  const data = await new Promise((resolve) =>
-    chrome.storage.sync.get(Object.keys(SETTINGS_KEYS), resolve)
-  );
-
-  // 确保即使字段值为 undefined 也会设置为默认值，并保存。
-  let shouldUpdateStorage = false;
-  for (const [key, defaultValue] of Object.entries(SETTINGS_KEYS)) {
-    if (typeof data[key] === 'undefined') {
-      data[key] = defaultValue;
-      shouldUpdateStorage = true;
-    }
-  }
-
-  if (shouldUpdateStorage) {
-    chrome.storage.sync.set(data); // 保存更新后的设置
-  }
-
-  const {
-    showTime,
-    hourSystem,
-    showWeather,
-    showSearch,
-    showMotto,
-    city,
-    videoSourceUrl,
-    weatherAPIKEY,
-    refreshButton,
-    authorInfo,
-    videoSrc,
-    reverseProxy,
-  } = data;
-
-  if (videoSrc === 'local') {
-    if (!window.videoSourceUrl || window.videoSourceUrl !== videoSourceUrl) {
-      window.videoSourceUrl = videoSourceUrl;
-      await fetchRandomVideo(); // 只有当 videoSourceUrl 发生变化时才调用
-      switchVideo();
-    }
-  } else {
-    await fetchRandomVideo_fromApple(reverseProxy);
-    switchVideo();
-  }
-
-  // 更新全局变量
-  if (videoSourceUrl) {
-    window.videoSourceUrl = videoSourceUrl;
-  }
-  if (weatherAPIKEY) {
-    window.weatherAPIKEY = weatherAPIKEY;
-  }
-
-  setDisplay('current-time', showTime ? 'block' : 'none');
-  setDisplay('weather-area', showWeather ? 'flex' : 'none');
-  setDisplay('search', showSearch ? 'inline' : 'none');
-  setDisplay('switchVideoBtn', refreshButton ? '' : 'none');
-  setDisplay('motto', showMotto ? 'block' : 'none');
-  setDisplay('author', authorInfo ? '' : 'none');
-
-  // 展示 Motto 时，点击 Motto 可以刷新
-  if (showMotto === true) {
-    fetchRandomMotto();
-    var mottoElement = document.querySelector('.motto');
-    mottoElement.addEventListener('click', function (e) {
-      var clickedElement = e.target;
-      if (clickedElement === mottoElement) {
-        var range = document.createRange();
-        var rectList;
-        for (var i = 0; i < mottoElement.childNodes.length; i++) {
-          var node = mottoElement.childNodes[i];
-          if (node.nodeType === 3) {
-            // 是文本节点
-            range.selectNode(node);
-            rectList = range.getClientRects();
-            for (var j = 0; j < rectList.length; j++) {
-              if (
-                e.clientX >= rectList[j].left &&
-                e.clientX <= rectList[j].right &&
-                e.clientY >= rectList[j].top &&
-                e.clientY <= rectList[j].bottom
-              ) {
-                fetchRandomMotto();
-                return;
-              }
-            }
-          }
-        }
-      }
-    });
-  } else {
-    let elements = document.querySelectorAll('.centered');
-    elements.forEach(function (element) {
-      element.style.top = '35%';
-    });
-  }
-
-  // 展示天气时，鼠标悬停在天气图标上时显示天气信息
-  if (showWeather === true) {
-    updateWeather(city);
-    let wthElements = document.querySelectorAll('#wthBtn');
-    let weatherInfo = document.querySelector('#weather-info');
-
-    wthElements.forEach(function (wthElement) {
-      wthElement.addEventListener('mouseover', function () {
-        weatherInfo.style.opacity = '1';
-        weatherInfo.style.transform = 'translateY(0)'; // 从页面顶部滑入
-      });
-
-      wthElement.addEventListener('mouseout', function () {
-        weatherInfo.style.opacity = '0';
-        weatherInfo.style.transform = 'translateY(-100%)'; // 回到页面顶部
-      });
-    });
-  }
-
-  // 展示搜索框
-  if (showSearch === true) {
-    initSearch();
-  }
-  // 展示时间
-  if (showTime === true) {
-    initClock(hourSystem);
-  }
-}
-
-// 设置显示或隐藏
-function setDisplay(id, value) {
-  document.getElementById(id).style.display = value;
-}
-
-// 更新天气
-async function updateWeather(city) {
-  getCurrentWeather(city);
-  getForecastWeather(city);
+function init() {
+  initSettings();
 }
 
 // 初始化视频切换按钮
-function switchVideo() {
 const switchVideoButton = document.getElementById('switchVideoBtn');
 
 if (switchVideoButton) {
   switchVideoButton.addEventListener('click', function (event) {
+    // 先调用 switchToNextVideo 函数
     switchToNextVideo(event);
+
+    // 根据当前的类名切换旋转效果，以确保每次点击都会触发动画
     if (this.classList.contains('rotating')) {
       this.classList.remove('rotating');
       this.classList.add('rotating2');
@@ -172,24 +39,26 @@ if (switchVideoButton) {
       this.classList.remove('rotating2');
       this.classList.add('rotating');
     }
+
+    // 在动画结束后，只有当鼠标不再悬停在按钮上时才移除 rotating 和 rotating2 类
     this.addEventListener(
       'transitionend',
       function () {
+        // 如果鼠标不再悬停在按钮上，移除 rotating 和 rotating2 类
         if (!this.matches(':hover')) {
           this.classList.remove('rotating', 'rotating2');
         }
       },
       { once: true }
-    );
+    ); // 使用 once 选项确保事件只触发一次
   });
 
+  // 如果鼠标离开按钮，检查是否需要移除 rotating 和 rotating2 类
   switchVideoButton.addEventListener('mouseleave', function () {
     this.classList.remove('rotating', 'rotating2');
   });
 }
-}
 
-// 从本地目录获取视频
 async function fetchRandomVideo() {
   try {
     const allVideoUrls = [];
@@ -247,6 +116,7 @@ async function fetchRandomVideo() {
 }
 
 // 从苹果 Server 获取视频
+
 async function fetchRandomVideo_fromApple(reverseProxy) {
   try {
     const allVideoUrls = [];
@@ -258,6 +128,7 @@ async function fetchRandomVideo_fromApple(reverseProxy) {
     // 根据 reverseProxy 的设置选择不同的前缀
     const domainPrefix = reverseProxy ? domain_cloudflare : domain_apple;
 
+    // 读取本地JSON文件
     const response = await fetch(jsonFile);
     const data = await response.json();
 
@@ -309,16 +180,21 @@ function switchToNextVideo() {
   const videoElement = document.getElementById('myVideo');
 
   if (videoElement) {
+    // 淡出当前视频
     videoElement.style.opacity = 0;
+
+    // 在淡出动画完成后进行视频切换，并淡入新视频
     setTimeout(() => {
       currentVideoIndex = (currentVideoIndex + 1) % allAvailableVideos.length;
       const nextVideoUrl = allAvailableVideos[currentVideoIndex];
 
       videoElement.src = nextVideoUrl;
-      videoElement.load(); 
-      videoElement.play(); 
+      videoElement.load(); // 重新加载新的视频源
+      videoElement.play(); // 确保视频继续播放
+
+      // 淡入新视频
       videoElement.style.opacity = 1;
-    }, 650);
+    }, 650); // 0.5秒后执行，与 CSS 中的过渡时间相同
   } else {
     const errorBox = document.getElementById('errorBox');
     errorBox.textContent = 'No video element found to switch source.';
@@ -372,6 +248,8 @@ async function fetchRandomMotto() {
     mottoElement.textContent = `${content} — ${author}`;
     mottoElement.style.opacity = '1';
   } catch (error) {
+    // mottoElement.textContent =
+    //   'As you walk in Gods divine wisdom, you will surely begin to see a greater measure of victory and good success in your life. — Joseph Prince (load failed)';
     mottoElement.style.opacity = '1';
     console.error(`Get motto failed.`);
     const errorBox = document.getElementById('errorBox');
@@ -386,6 +264,141 @@ async function fetchRandomMotto() {
 function initClock(hourSystem) {
   updateTime(hourSystem);
   setInterval(updateTime, 1000, hourSystem);
+}
+
+async function initSettings() {
+  const data = await new Promise((resolve) =>
+    chrome.storage.sync.get(Object.keys(SETTINGS_KEYS), resolve)
+  );
+
+  // 这里确保即使字段值为undefined也会设置为默认值，并保存。
+  let shouldUpdateStorage = false;
+  for (const [key, defaultValue] of Object.entries(SETTINGS_KEYS)) {
+    if (typeof data[key] === 'undefined') {
+      data[key] = defaultValue;
+      shouldUpdateStorage = true;
+    }
+  }
+
+  if (shouldUpdateStorage) {
+    chrome.storage.sync.set(data); // 保存更新后的设置
+  }
+
+  const {
+    showTime,
+    hourSystem,
+    showWeather,
+    showSearch,
+    showMotto,
+    city,
+    videoSourceUrl,
+    weatherAPIKEY,
+    refreshButton,
+    authorInfo,
+    videoSrc,
+    reverseProxy,
+  } = data;
+
+  if (videoSrc === 'local') {
+    if (!window.videoSourceUrl || window.videoSourceUrl !== videoSourceUrl) {
+      window.videoSourceUrl = videoSourceUrl;
+      await fetchRandomVideo(); // 只有当 videoSourceUrl 发生变化时才调用
+    }
+  } else {
+    await fetchRandomVideo_fromApple(reverseProxy);
+  }
+
+  // 更新全局变量
+  if (videoSourceUrl) {
+    window.videoSourceUrl = videoSourceUrl;
+  }
+  if (weatherAPIKEY) {
+    window.weatherAPIKEY = weatherAPIKEY;
+  }
+
+  setDisplay('current-time', showTime ? 'block' : 'none');
+  setDisplay('weather-area', showWeather ? 'flex' : 'none');
+  setDisplay('search', showSearch ? 'inline' : 'none');
+  setDisplay('switchVideoBtn', refreshButton ? '' : 'none');
+  setDisplay('motto', showMotto ? 'block' : 'none');
+  setDisplay('author', authorInfo ? '' : 'none');
+
+  if (showMotto === true) {
+    fetchRandomMotto();
+    // 获取包含 .motto 类的元素
+    var mottoElement = document.querySelector('.motto');
+
+    // 给该元素添加点击事件监听器
+    mottoElement.addEventListener('click', function (e) {
+      // 获取被点击元素
+      var clickedElement = e.target;
+
+      // 检查点击的是否是 .motto 元素本身，而不是它的子元素
+      if (clickedElement === mottoElement) {
+        // 这里可以进一步判断是否点击的确实是文字部分
+        var range = document.createRange();
+        var rectList;
+        for (var i = 0; i < mottoElement.childNodes.length; i++) {
+          var node = mottoElement.childNodes[i];
+          if (node.nodeType === 3) {
+            // 是文本节点
+            range.selectNode(node);
+            rectList = range.getClientRects();
+            for (var j = 0; j < rectList.length; j++) {
+              if (
+                e.clientX >= rectList[j].left &&
+                e.clientX <= rectList[j].right &&
+                e.clientY >= rectList[j].top &&
+                e.clientY <= rectList[j].bottom
+              ) {
+                fetchRandomMotto();
+                return; // 结束循环
+              }
+            }
+          }
+        }
+      }
+    });
+  } else {
+    let elements = document.querySelectorAll('.centered');
+    elements.forEach(function (element) {
+      element.style.top = '35%';
+    });
+  }
+
+  if (showWeather === true) {
+    updateWeather(city);
+    let wthElements = document.querySelectorAll('#wthBtn');
+    let weatherInfo = document.querySelector('#weather-info');
+
+    wthElements.forEach(function (wthElement) {
+      wthElement.addEventListener('mouseover', function () {
+        weatherInfo.style.opacity = '1';
+        weatherInfo.style.transform = 'translateY(0)'; // 从页面顶部滑入
+      });
+
+      wthElement.addEventListener('mouseout', function () {
+        weatherInfo.style.opacity = '0';
+        weatherInfo.style.transform = 'translateY(-100%)'; // 回到页面顶部
+      });
+    });
+  }
+
+  if (showSearch === true) {
+    initSearch();
+  }
+  if (showTime === true) {
+    initClock(hourSystem);
+  }
+}
+
+function setDisplay(id, value) {
+  document.getElementById(id).style.display = value;
+}
+
+async function updateWeather(city) {
+  getCurrentWeather(city);
+  getForecastWeather(city);
 }
 
 // 获取天气
