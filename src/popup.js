@@ -17,9 +17,11 @@ const SETTINGS_KEYS = {
   videoSourceUrl: 'http://localhost:18000/videos/',
 };
 
+// 初始化
 document.addEventListener('DOMContentLoaded', initSettings);
 initSettings();
 
+// 主程序
 async function initSettings() {
   const data = await new Promise((resolve) =>
     chrome.storage.sync.get(Object.keys(SETTINGS_KEYS), resolve)
