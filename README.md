@@ -70,6 +70,10 @@ Your local backend service should now be operational, with port 18000 as its des
 
 ## Install the Extension
 
+🎉🎉 **You can just simply install this extension on Chrome web store now!** [Click here](https://chromewebstore.google.com/detail/macify-macos-screensaver/lgdipcalomggcjkohjhkhkbcpgladnoe?hl=zh-CN) to install.
+
+If you wanna install from the source code, follow the steps:
+
 1. Download the source code.
 2. Ensure Chrome's Developer Mode is activated.
 3. Access the Extensions dashboard.
