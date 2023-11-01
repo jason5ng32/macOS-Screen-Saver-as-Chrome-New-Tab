@@ -318,7 +318,7 @@ async function fetchRandomMotto() {
 
     // 如果本地存储里没有格言或者格言已经用完，从 API 获取新数据
     if (!quotes || currentIndex >= quotes.length) {
-      const response = await fetch('https://api.quotable.io/quotes/random?limit=50');
+      const response = await fetch('https://api.quotable.io/quotes/random?limit=50&maxLength=150');
       const data = await response.json();
       quotes = data;
       localStorage.setItem('quotes', JSON.stringify(quotes));
