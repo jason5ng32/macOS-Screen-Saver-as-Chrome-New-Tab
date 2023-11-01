@@ -315,6 +315,7 @@ async function fetchRandomMotto() {
 
   try {
     let quotes = JSON.parse(localStorage.getItem('quotes'));
+    let currentIndex = parseInt(localStorage.getItem('currentIndex')) || 0; // 从本地存储中获取当前索引
 
     // 如果本地存储里没有格言或者格言已经用完，从 API 获取新数据
     if (!quotes || currentIndex >= quotes.length) {
@@ -326,7 +327,8 @@ async function fetchRandomMotto() {
     }
 
     const { content, author } = quotes[currentIndex];
-    currentIndex++; // 更新索引以便下次获取新的格言
+    localStorage.setItem('currentIndex', currentIndex + 1); // 更新并保存当前索引到本地存储
+
     await new Promise((resolve) => setTimeout(resolve, 10));
     mottoElement.style.opacity = '0';
     await new Promise((resolve) => setTimeout(resolve, 400));
@@ -345,6 +347,7 @@ async function fetchRandomMotto() {
     errorBox.style.display = 'none';
   }
 }
+
 
 async function refreshRandomMotto() {
   var mottoElement = document.querySelector('.motto');
