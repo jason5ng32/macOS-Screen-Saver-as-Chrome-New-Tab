@@ -1,6 +1,18 @@
 let allAvailableVideos = [];
 let currentVideoIndex = -1; // 用于跟踪当前播放的视频
 let currentIndex = 0; // 用于跟踪当前展示到哪条格言
+const defaultQuotes = [
+  { content: "Radiate boundless love towards the entire world — above, below, and across — unhindered, without ill will, without enmity.", author: "The Buddha" },
+  { content: "I'll prepare and someday my chance will come.", author: "Abraham Lincoln" },
+  { content: "If you love someone, set them free. If they come back, they're yours; if they don't, they never were.", author: "Richard Bach" },
+  { content: "He who is taught to live upon little owes more to his father's wisdom than he who has a great deal left him does to his father's care.", author: "William C. Menninger" },
+  { content: "Life is a progress, and not a station.", author: "Ralph Waldo Emerson" },
+  { content: "History will be kind to me for I intend to write it.", author: "Winston Churchill" },
+  { content: "Everything that irritates us about others can lead us to a better understanding of ourselves.", author: "Carl Jung" },
+  { content: "here is nothing in a caterpillar that tells you it's going to be a butterfly.", author: "Buckminster Fuller" },
+  { content: "You can't shake hands with a clenched fist.", author: "Indira Gandhi" },
+  { content: "Men in general judge more from appearances than from reality. All men have eyes, but few have the gift of penetration.", author: "Niccolò Machiavelli" }
+];
 
 // 初始化
 document.addEventListener('DOMContentLoaded', initSettings);
@@ -310,24 +322,36 @@ function updateTime(hourSystem) {
   currentTimeElement.style.opacity = '1';
 }
 
+// 获取格言
 async function fetchRandomMotto() {
   const mottoElement = document.getElementById('motto');
 
   try {
     let quotes = JSON.parse(localStorage.getItem('quotes'));
-    let currentIndex = parseInt(localStorage.getItem('currentIndex')) || 0; // 从本地存储中获取当前索引
+    let currentIndex = parseInt(localStorage.getItem('currentIndex')) || 0;
+    let usingDefaults = JSON.parse(localStorage.getItem('usingDefaults')) || false;
 
-    // 如果本地存储里没有格言或者格言已经用完，从 API 获取新数据
     if (!quotes || currentIndex >= quotes.length) {
-      const response = await fetch('https://api.quotable.io/quotes/random?limit=50&maxLength=150');
-      const data = await response.json();
-      quotes = data;
-      localStorage.setItem('quotes', JSON.stringify(quotes));
-      currentIndex = 0; // 重置索引
+      try {
+        const response = await fetch('https://api.quotable.io/quotes/random?limit=50&maxLength=150');
+        const data = await response.json();
+        quotes = data;
+        localStorage.setItem('quotes', JSON.stringify(quotes));
+        localStorage.setItem('usingDefaults', 'false');
+        currentIndex = 0;
+      } catch (apiError) {
+        usingDefaults = true;
+        localStorage.setItem('usingDefaults', 'true');
+      }
+    }
+
+    if (usingDefaults) {
+      quotes = defaultQuotes;
+      currentIndex = currentIndex % defaultQuotes.length;
     }
 
     const { content, author } = quotes[currentIndex];
-    localStorage.setItem('currentIndex', currentIndex + 1); // 更新并保存当前索引到本地存储
+    localStorage.setItem('currentIndex', currentIndex + 1);
 
     await new Promise((resolve) => setTimeout(resolve, 10));
     mottoElement.style.opacity = '0';
@@ -335,7 +359,6 @@ async function fetchRandomMotto() {
     mottoElement.style.opacity = '1';
     mottoElement.textContent = `${content} — ${author}`;
     
-
   } catch (error) {
     mottoElement.style.opacity = '1';
     console.error('Get motto failed.');
