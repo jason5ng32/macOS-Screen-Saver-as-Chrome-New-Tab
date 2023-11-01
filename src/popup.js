@@ -450,7 +450,11 @@ async function getCurrentWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
 
     const temperature = tempUnit === 'celsius' ? data.current.temp_c : data.current.temp_f;
     document.getElementById('current-weather').textContent = `${temperature}°`;
-    document.getElementById('weather-icon').src = `https://${data.current.condition.icon}`;
+    const weatherIcon = document.getElementById('weather-icon');
+        weatherIcon.src = `https://${data.current.condition.icon}`;
+        weatherIcon.onerror = function() {
+          this.src = 'weather.webp'; 
+        };
   } catch (error) {
     console.error(`Get weather failed: ${error}`);
     const errorBox = document.getElementById('errorBox');
@@ -480,12 +484,12 @@ async function getForecastWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
 
     for (let i = 0; i < forecastday.length; i++) {
       const day = forecastday[i];
-
-      // 更新天气图标
-      document.getElementById(
-        `weather-icon${i + 1}`
-      ).src = `https://${day.day.condition.icon}`;
-
+      const forecastIcon = document.getElementById(`weather-icon${i + 1}`);
+    
+      forecastIcon.src = `https://${day.day.condition.icon}`;
+      forecastIcon.onerror = function() {
+        this.src = 'weather.webp';
+      };
       // 更新温度范围，并保留整数部分
       const minTemp =
         tempUnit === 'celsius'
