@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     chrome.storage.sync.set(settingObj, function () {
       showMessage('Settings saved', 'success');
     });
+    localStorage.setItem('shouldUpdate', 'true');
   }
 
   function updateVideoSrcSettings() {

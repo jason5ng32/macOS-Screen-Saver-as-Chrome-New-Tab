@@ -409,24 +409,48 @@ function initClock(hourSystem) {
 
 // 更新天气
 async function updateWeather({ city, tempUnit, weatherAPIKEY }) {
-  getCurrentWeather(city, tempUnit, weatherAPIKEY);
-  getForecastWeather(city, tempUnit, weatherAPIKEY);
+  const lastUpdated = localStorage.getItem('weatherLastUpdated');
+  const now = new Date().getTime();
+
+  let shouldUpdate = localStorage.getItem('shouldUpdate') === 'true';
+
+  if (!shouldUpdate && lastUpdated && now - lastUpdated < 30 * 60 * 1000) { // 30分钟
+    shouldUpdate = false;
+  } else {
+    shouldUpdate = true;
+  }
+
+  // 如果决定更新，重置 shouldUpdate 标记
+  if (shouldUpdate) {
+    localStorage.setItem('shouldUpdate', 'false');
+  }
+
+  await getCurrentWeather(city, tempUnit, weatherAPIKEY, shouldUpdate);
+  await getForecastWeather(city, tempUnit, weatherAPIKEY, shouldUpdate);
+
+  if (shouldUpdate) {
+    localStorage.setItem('weatherLastUpdated', now.toString());
+  }
 }
 
-// 获取天气
-async function getCurrentWeather(city, tempUnit, weatherAPIKEY) {
+// 获取实时天气
+async function getCurrentWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
   try {
-    const response = await fetch(
-      `http://api.weatherapi.com/v1/current.json?key=${weatherAPIKEY}&q=${city}`
-    );
-    const data = await response.json();
-    const temperature =
-      tempUnit === 'celsius' ? data.current.temp_c : data.current.temp_f;
+    let data;
 
+    if (!shouldUpdate) {
+      data = JSON.parse(localStorage.getItem('currentWeather'));
+    } else {
+      const response = await fetch(
+        `http://api.weatherapi.com/v1/current.json?key=${weatherAPIKEY}&q=${city}`
+      );
+      data = await response.json();
+      localStorage.setItem('currentWeather', JSON.stringify(data));
+    }
+
+    const temperature = tempUnit === 'celsius' ? data.current.temp_c : data.current.temp_f;
     document.getElementById('current-weather').textContent = `${temperature}°`;
-    document.getElementById(
-      'weather-icon'
-    ).src = `https://${data.current.condition.icon}`;
+    document.getElementById('weather-icon').src = `https://${data.current.condition.icon}`;
   } catch (error) {
     console.error(`Get weather failed: ${error}`);
     const errorBox = document.getElementById('errorBox');
@@ -437,12 +461,21 @@ async function getCurrentWeather(city, tempUnit, weatherAPIKEY) {
   }
 }
 
-async function getForecastWeather(city, tempUnit, weatherAPIKEY) {
+// 获取预测天气
+async function getForecastWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
   try {
-    const response = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=${weatherAPIKEY}&q=${city}&days=3`
-    );
-    const data = await response.json();
+    let data;
+
+    if (!shouldUpdate) {
+      data = JSON.parse(localStorage.getItem('forecastWeather'));
+    } else {
+      const response = await fetch(
+        `http://api.weatherapi.com/v1/forecast.json?key=${weatherAPIKEY}&q=${city}&days=3`
+      );
+      data = await response.json();
+      localStorage.setItem('forecastWeather', JSON.stringify(data));
+    }
+
     const { forecastday } = data.forecast;
 
     for (let i = 0; i < forecastday.length; i++) {
