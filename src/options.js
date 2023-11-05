@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       showMessage('Settings saved', 'success');
     });
     localStorage.setItem('shouldUpdate', 'true');
+    localStorage.setItem('shouldRefreshSites', 'true');
   }
 
   function updateVideoSrcSettings() {

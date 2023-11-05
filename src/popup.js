@@ -53,6 +53,11 @@ async function initSettings() {
       element.style.top = '35%';
     });
   }
+  // 展示 Top Sites
+  if (newdata.showTopSites) {
+    updateTopSites(newdata.sitesCycle);
+    topSitesUI();
+  }
 }
 
 //
@@ -90,9 +95,10 @@ async function updateStorage(data) {
 }
 
 // 设置显示或隐藏
-function updateUI({ showTime, showWeather, showSearch, showMotto, refreshButton, authorInfo }) {
+function updateUI({ showTime, showWeather, showSearch, showMotto, refreshButton, authorInfo, showTopSites }) {
   setDisplay('current-time', showTime ? 'block' : 'none');
   setDisplay('weather-area', showWeather ? 'flex' : 'none');
+  setDisplay('topsites-area', showTopSites ? 'block' : 'none');
   setDisplay('search', showSearch ? 'inline' : 'none');
   setDisplay('switchVideoBtn', refreshButton ? '' : 'none');
   setDisplay('motto', showMotto ? 'block' : 'none');
@@ -255,7 +261,7 @@ function appendVideo(src) {
   // 监听视频加载错误
   video.addEventListener('error', function () {
     console.error('Error in video loading: ', video.error);
-    
+
     // 根据 newdata 的值调用 videoSettingsSuggestion
     if (newdata.videoSrc === 'apple' && !newdata.reverseProxy) {
       // 如果从 Apple 服务器加载视频失败，且未使用反向代理
@@ -556,7 +562,158 @@ function videoSettingsSuggestion(videoStatus) {
   } else if (videoStatus === '3') {
     errorBox.innerHTML =
       "It looks like you are our reverse proxy. The great way to use Macify is to set up local server or use Apple's Server without reverse proxy.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it better.";
-      errorBox.style.backgroundColor = '#328d6e';
+    errorBox.style.backgroundColor = '#328d6e';
   }
   errorBox.style.display = 'flex';
+}
+
+
+// 获取 Top Sites
+function updateTopSites(sitesCycle) {
+  // 从 localStorage 中获取 shouldRefreshSites 的值和上次更新 top sites 的时间
+  let shouldRefreshSites = localStorage.getItem('shouldRefreshSites');
+  let lastSitesUpdated = localStorage.getItem('lastSitesUpdated');
+
+  const now = Date.now();
+  // 如果上次更新时间超过了 10 分钟，则设置 shouldRefreshSites 为 true
+  if (lastSitesUpdated === null || now - parseInt(lastSitesUpdated, 10) > 10 * 60 * 1000) {
+    shouldRefreshSites = 'true';
+  }
+  if (shouldRefreshSites === null || shouldRefreshSites === 'true') {
+    // 需要刷新 top sites，进行计算并更新
+    computeAndUpdateTopSites(sitesCycle);
+  } else {
+    // 从 localStorage 获取 top sites 数据
+    let storedTopSites = localStorage.getItem('topSites');
+    if (storedTopSites) {
+      storedTopSites = JSON.parse(storedTopSites);
+      updateTopSitesList(storedTopSites);
+    } else {
+      console.log('No Top Sites data found in local storage.');
+    }
+  }
+}
+
+function computeAndUpdateTopSites(sitesCycle) {
+  const startDate = Date.now() - (sitesCycle * 24 * 60 * 60 * 1000);
+  const now = Date.now();
+  chrome.history.search({ text: '', startTime: startDate, endTime: now, maxResults: 10000 }, historyItems => {
+    const domainCountMap = new Map();
+    historyItems.forEach(item => {
+      if (item.url.startsWith('http://') || item.url.startsWith('https://')) {
+        const domain = new URL(item.url).hostname;
+        domainCountMap.set(domain, (domainCountMap.get(domain) || 0) + item.visitCount);
+      }
+    });
+
+    const topSites = Array.from(domainCountMap)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([domain, count]) => ({
+        url: historyItems.find(item => new URL(item.url).hostname === domain).url,
+        count,
+        title: historyItems.find(item => new URL(item.url).hostname === domain).title || domain,
+      }));
+
+    updateTopSitesList(topSites);
+
+    // 将 top sites 数据转换为字符串并存储到 localStorage
+    localStorage.setItem('topSites', JSON.stringify(topSites));
+    localStorage.setItem('lastSitesUpdated', now.toString());
+    localStorage.setItem('shouldRefreshSites', 'false');
+  });
+}
+
+
+// 标题缩短
+function trimTitle(title, maxLength) {
+  let length = 0;
+  let trimmedTitle = '';
+  for (let i = 0; i < title.length; i++) {
+    length += title.charCodeAt(i) > 255 ? 2 : 1;
+    if (length > maxLength) break;
+    trimmedTitle = title.substring(0, i + 1);
+  }
+  return length > maxLength ? trimmedTitle + '...' : title;
+}
+
+// 获取 Favicon
+function fetchFavicon(domain, onUpdate) {
+  const defaultFavicon = 'url.png';
+  const faviconUrl = `https://s2.googleusercontent.com/s2/favicons?domain_url=${domain}&sz=64`;
+
+  // 首先返回默认图片
+  onUpdate(defaultFavicon);
+
+  const img = new Image();
+  img.onload = () => onUpdate(faviconUrl); // 成功加载后，通过回调更新 favicon
+  img.onerror = () => onUpdate(defaultFavicon); // 加载失败，确认使用默认图片
+  img.src = faviconUrl;
+}
+
+
+
+// 展示 Topsites
+function updateTopSitesList(topSites) {
+  const topSitesList = document.getElementById('topsites');
+  topSitesList.innerHTML = '';
+  const defaultFaviconUrl = 'url.png';
+
+  topSites.forEach(site => {
+    const trimmedTitle = trimTitle(site.title, 40);
+    topSitesList.innerHTML += `
+      <li style="display: flex; align-items: center; margin-bottom: 10px;">
+        <img id="favicon-${site.url}" src="${defaultFaviconUrl}" style="width: 12pt; height: auto; cursor: pointer;" onclick="window.open('${site.url}', '_blank')">
+        <span style="cursor: pointer; margin-left: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${site.title}" onclick="window.open('${site.url}', '_blank')">
+          ${trimmedTitle}
+        </span>
+      </li>
+    `;
+
+    // 异步更新favicon
+    fetchFavicon(new URL(site.url).origin, (updatedFaviconUrl) => {
+      const faviconElement = document.getElementById(`favicon-${site.url}`);
+      if (faviconElement) {
+        faviconElement.src = updatedFaviconUrl;
+      }
+    });
+  });
+}
+
+
+
+function topSitesUI() {
+  let tssElements = document.querySelectorAll('#tssBtn');
+  let tssInfo = document.querySelector('#topsites');
+  let timeoutId = null;
+
+  tssElements.forEach(function (tssElement) {
+    tssElement.addEventListener('mouseover', function () {
+      clearTimeout(timeoutId);
+      tssInfo.style.opacity = '1';
+      tssInfo.style.transform = 'translateX(0)';
+      tssElement.classList.add('active-hover');
+    });
+
+    tssElement.addEventListener('mouseout', function () {
+      timeoutId = setTimeout(function () {
+        tssInfo.style.opacity = '0';
+        tssInfo.style.transform = 'translateX(-100%)';
+        tssElement.classList.remove('active-hover');
+      }, 400);
+    });
+  });
+
+  tssInfo.addEventListener('mouseover', function () {
+    clearTimeout(timeoutId);
+    tssElements.forEach(element => element.classList.add('active-hover'));
+  });
+
+  tssInfo.addEventListener('mouseout', function () {
+    timeoutId = setTimeout(function () {
+      tssInfo.style.opacity = '0';
+      tssInfo.style.transform = 'translateX(-100%)';
+      tssElements.forEach(element => element.classList.remove('active-hover'));
+    }, 100);
+  });
 }

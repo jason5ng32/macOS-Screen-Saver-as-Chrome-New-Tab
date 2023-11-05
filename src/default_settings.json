@@ -5,6 +5,8 @@
     "showWeather": false,
     "showSearch": true,
     "showMotto": true,
+    "showTopSites": true,
+    "sitesCycle": "7",
     "fontChoice": "infinity",
     "videoSourceUrl": "http://localhost:18000/videos/",
     "weatherAPIKEY": "",
