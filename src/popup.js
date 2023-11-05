@@ -553,7 +553,7 @@ function videoSettingsSuggestion(videoStatus) {
 
   if (videoStatus === '1') {
     errorBox.innerHTML =
-      'It looks like you are using local videos. Please make sure you have set the correct URL.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.';
+      'It looks like you are using local video server but fetching videos failed. Please make sure you have set the correct URL.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.';
     errorBox.style.backgroundColor = '#ff000094';
   } else if (videoStatus === '2') {
     errorBox.innerHTML =
@@ -660,17 +660,42 @@ function updateTopSitesList(topSites) {
   const defaultFaviconUrl = 'url.png';
 
   topSites.forEach(site => {
-    const trimmedTitle = trimTitle(site.title, 40);
-    topSitesList.innerHTML += `
-      <li style="display: flex; align-items: center; margin-bottom: 10px;">
-        <img id="favicon-${site.url}" src="${defaultFaviconUrl}" style="width: 12pt; height: auto; cursor: pointer;" onclick="window.open('${site.url}', '_blank')">
-        <span style="cursor: pointer; margin-left: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${site.title}" onclick="window.open('${site.url}', '_blank')">
-          ${trimmedTitle}
-        </span>
-      </li>
-    `;
+    // 创建 list item
+    const listItem = document.createElement('li');
+    listItem.style.display = 'flex';
+    listItem.style.alignItems = 'center';
+    listItem.style.marginBottom = '10px';
 
-    // 异步更新favicon
+    // 创建 favicon image
+    const favicon = new Image();
+    favicon.id = `favicon-${site.url}`;
+    favicon.src = defaultFaviconUrl;
+    favicon.style.width = '12pt';
+    favicon.style.cursor = 'pointer';
+    favicon.style.height = 'auto';
+    
+    // 创建 title span
+    const titleSpan = document.createElement('span');
+    titleSpan.style.cursor = 'pointer';
+    titleSpan.style.marginLeft = '10px';
+    titleSpan.style.whiteSpace = 'nowrap';
+    titleSpan.style.overflow = 'hidden';
+    titleSpan.style.textOverflow = 'ellipsis';
+    titleSpan.title = site.title;
+    titleSpan.textContent = trimTitle(site.title, 25);
+
+    // 绑定 click 事件打开新窗口
+    favicon.addEventListener('click', () => window.open(site.url, '_blank'));
+    titleSpan.addEventListener('click', () => window.open(site.url, '_blank'));
+
+    // 将 favicon 和 title span 添加到 list item
+    listItem.appendChild(favicon);
+    listItem.appendChild(titleSpan);
+
+    // 将 list item 添加到 list
+    topSitesList.appendChild(listItem);
+
+    // 异步更新 favicon
     fetchFavicon(new URL(site.url).origin, (updatedFaviconUrl) => {
       const faviconElement = document.getElementById(`favicon-${site.url}`);
       if (faviconElement) {
@@ -679,6 +704,7 @@ function updateTopSitesList(topSites) {
     });
   });
 }
+
 
 
 
