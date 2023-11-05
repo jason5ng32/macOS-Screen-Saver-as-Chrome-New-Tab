@@ -197,12 +197,9 @@ async function fetchRandomVideo() {
       appendVideo(randomVideoUrl);
     }
   } catch (error) {
+    const videoStatus = '1';
     console.error('Error fetching directory:', error);
-    const errorBox = document.getElementById('errorBox');
-    errorBox.textContent =
-      'Error fetching video directory. Please check the URL and instrutions then try again.';
-    errorBox.style.display = 'flex';
-    document.body.style.backgroundColor = 'black';
+    videoSettingsSuggestion(videoStatus);
   }
 }
 
@@ -231,16 +228,14 @@ async function fetchRandomVideo_fromApple(reverseProxy) {
         allVideoUrls[Math.floor(Math.random() * allVideoUrls.length)];
       appendVideo(randomVideoUrl);
     }
+
+    if (reverseProxy) {
+      videoSettingsSuggestion('3');
+    }
   } catch (error) {
     console.error('Error fetching video from Apple Server:', error);
-    const errorBox = document.getElementById('errorBox');
-    errorBox.textContent =
-      "Error fetching video from Apple Server.\nThis might be due to a certificate error when connecting to Apple's servers.\nSee extension instructions for more details.";
-    errorBox.style.display = 'flex';
-    document.body.style.backgroundColor = 'black';
   }
 }
-
 
 // 设置视频播放器
 function appendVideo(src) {
@@ -251,13 +246,30 @@ function appendVideo(src) {
     loop: true,
     muted: true,
   });
+
   // 当视频可以播放时，改变透明度
   video.addEventListener('canplay', function () {
     video.style.opacity = '1';
   });
 
+  // 监听视频加载错误
+  video.addEventListener('error', function () {
+    console.error('Error in video loading: ', video.error);
+    
+    // 根据 newdata 的值调用 videoSettingsSuggestion
+    if (newdata.videoSrc === 'apple' && !newdata.reverseProxy) {
+      // 如果从 Apple 服务器加载视频失败，且未使用反向代理
+      videoSettingsSuggestion('2');
+    } else if (newdata.videoSrc === 'local') {
+      // 如果从本地服务器加载视频失败
+      videoSettingsSuggestion('1');
+    }
+    // 其他情况则不调用 videoSettingsSuggestion，或者您可以设定一个默认处理
+  });
+
   document.getElementById('videoBox').appendChild(video);
 }
+
 
 // 手动切换视频
 function switchToNextVideo() {
@@ -283,6 +295,7 @@ function switchToNextVideo() {
     const errorBox = document.getElementById('errorBox');
     errorBox.textContent = 'No video element found to switch source.';
     errorBox.style.display = 'flex';
+    errorBox.style.backgroundColor = '#ff000094';
     document.body.style.backgroundColor = 'black';
   }
 }
@@ -358,12 +371,13 @@ async function fetchRandomMotto() {
     await new Promise((resolve) => setTimeout(resolve, 400));
     mottoElement.style.opacity = '1';
     mottoElement.textContent = `${content} — ${author}`;
-    
+
   } catch (error) {
     mottoElement.style.opacity = '1';
     console.error('Get motto failed.');
     const errorBox = document.getElementById('errorBox');
     errorBox.textContent = 'Get motto failed.';
+    errorBox.style.backgroundColor = '#ff000094';
     errorBox.style.display = 'flex';
     document.body.style.backgroundColor = 'black';
     await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -451,16 +465,17 @@ async function getCurrentWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
     const temperature = tempUnit === 'celsius' ? data.current.temp_c : data.current.temp_f;
     document.getElementById('current-weather').textContent = `${temperature}°`;
     const weatherIcon = document.getElementById('weather-icon');
-        weatherIcon.src = `https://${data.current.condition.icon}`;
-        weatherIcon.onerror = function() {
-          this.src = 'weather.webp'; 
-        };
+    weatherIcon.src = `https://${data.current.condition.icon}`;
+    weatherIcon.onerror = function () {
+      this.src = 'weather.webp';
+    };
   } catch (error) {
     console.error(`Get weather failed: ${error}`);
     const errorBox = document.getElementById('errorBox');
     errorBox.textContent =
       'Get weather failed. Please check the API key and city name then try again.';
     errorBox.style.display = 'flex';
+    errorBox.style.backgroundColor = '#ff000094';
     document.body.style.backgroundColor = 'black';
   }
 }
@@ -485,9 +500,9 @@ async function getForecastWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
     for (let i = 0; i < forecastday.length; i++) {
       const day = forecastday[i];
       const forecastIcon = document.getElementById(`weather-icon${i + 1}`);
-    
+
       forecastIcon.src = `https://${day.day.condition.icon}`;
-      forecastIcon.onerror = function() {
+      forecastIcon.onerror = function () {
         this.src = 'weather.webp';
       };
       // 更新温度范围，并保留整数部分
@@ -524,4 +539,24 @@ function weatherUI() {
       weatherInfo.style.transform = 'translateY(-100%)'; // 回到页面顶部
     });
   });
+}
+
+// 视频设置建议
+function videoSettingsSuggestion(videoStatus) {
+  const errorBox = document.getElementById('errorBox');
+
+  if (videoStatus === '1') {
+    errorBox.innerHTML =
+      'It looks like you are using local videos. Please make sure you have set the correct URL.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.';
+    errorBox.style.backgroundColor = '#ff000094';
+  } else if (videoStatus === '2') {
+    errorBox.innerHTML =
+      "It looks like you are using Apple Server as video source, but havn't trust Apple's Root Certificate yet.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.";
+    errorBox.style.backgroundColor = '#ff000094';
+  } else if (videoStatus === '3') {
+    errorBox.innerHTML =
+      "It looks like you are our reverse proxy. The great way to use Macify is to set up local server or use Apple's Server without reverse proxy.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it better.";
+      errorBox.style.backgroundColor = '#328d6e';
+  }
+  errorBox.style.display = 'flex';
 }
