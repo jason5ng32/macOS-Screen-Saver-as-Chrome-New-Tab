@@ -98,7 +98,9 @@ async function updateStorage(data) {
 function updateUI({ showTime, showWeather, showSearch, showMotto, refreshButton, authorInfo, showTopSites }) {
   setDisplay('current-time', showTime ? 'block' : 'none');
   setDisplay('weather-area', showWeather ? 'flex' : 'none');
-  setDisplay('topsites-area', showTopSites ? 'block' : 'none');
+  setDisplay('wth', showWeather ? 'block' : 'none');
+  setDisplay('topsites-area', showTopSites ? 'flex' : 'none');
+  setDisplay('tss', showTopSites ? 'block' : 'none');
   setDisplay('search', showSearch ? 'inline' : 'none');
   setDisplay('switchVideoBtn', refreshButton ? '' : 'none');
   setDisplay('motto', showMotto ? 'block' : 'none');
@@ -711,8 +713,11 @@ function updateTopSitesList(topSites) {
 function topSitesUI() {
   let tssElements = document.querySelectorAll('#tssBtn');
   let tssInfo = document.querySelector('#topsites');
+  let tssArea = document.querySelector('#topsites-area');
   let timeoutId = null;
-
+  if (newdata.showWeather) {
+    tssArea.style.marginTop = '28pt';
+  }
   tssElements.forEach(function (tssElement) {
     tssElement.addEventListener('mouseover', function () {
       clearTimeout(timeoutId);
@@ -724,9 +729,9 @@ function topSitesUI() {
     tssElement.addEventListener('mouseout', function () {
       timeoutId = setTimeout(function () {
         tssInfo.style.opacity = '0';
-        tssInfo.style.transform = 'translateX(-100%)';
+        tssInfo.style.transform = 'translateX(+140%)';
         tssElement.classList.remove('active-hover');
-      }, 400);
+      }, 100);
     });
   });
 
@@ -738,7 +743,7 @@ function topSitesUI() {
   tssInfo.addEventListener('mouseout', function () {
     timeoutId = setTimeout(function () {
       tssInfo.style.opacity = '0';
-      tssInfo.style.transform = 'translateX(-100%)';
+      tssInfo.style.transform = 'translateX(+140%)';
       tssElements.forEach(element => element.classList.remove('active-hover'));
     }, 100);
   });

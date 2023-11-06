@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (isValid) {
       if (historyPermissionNeeded) {
         // 请求历史权限
-        chrome.permissions.request({permissions: ['history']}, function(granted) {
+        chrome.permissions.request({ permissions: ['history'] }, function (granted) {
           if (granted) {
             saveSettings();
           } else {
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const videoSourceUrlSetting = document.getElementById(
       'videoSourceUrlSetting'
     );
-    
+
     if (videoSrc === 'apple') {
       reverseProxySetting.style.display = 'flex';
       videoSourceUrlSetting.style.display = 'none';

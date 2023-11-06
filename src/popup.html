@@ -190,6 +190,8 @@
       align-items: flex-start;
       position: fixed;
       justify-content: flex-end;
+      margin-top: -8pt;
+      margin-right: 28pt;
     }
 
     #weather-info {
@@ -217,8 +219,7 @@
     .wth {
       width: 30pt;
       height: 30pt;
-      display: block;
-      z-index: 100;
+      display: none;
     }
 
     #wthBtn {
@@ -329,11 +330,16 @@
 
     .topsites-area {
       top: 2%;
-      left: 1%;
+      right: 1%;
       flex-direction: row;
       align-items: flex-start;
       position: fixed;
       justify-content: flex-end;
+      margin-top: -8pt;
+      margin-right: 28pt;
+      display: flex;
+      flex-direction: row-reverse;
+      z-index: 1000;
     }
 
     .favicon {
@@ -361,7 +367,7 @@
       box-shadow: 0 0 4pt rgba(255, 255, 255, 0.777);
       border: 1pt solid #ffffff;
       opacity: 0;
-      transform: translateX(-100%);
+      transform: translateX(+140%);
       transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
       margin-right: 1vw;
       flex-wrap: nowrap;
@@ -374,8 +380,7 @@
     .tss {
       width: 30pt;
       height: 30pt;
-      display: block;
-      z-index: 100;
+      display: none;
     }
 
     #tssBtn {
@@ -393,19 +398,26 @@
       border-radius: 50pt;
       box-shadow: 0 0 3pt white;
       background-color: rgba(255, 255, 255, 0.509);
-      background-position: right;
+      background-position: left;
     }
 
     #tssBtn:hover {
       opacity: 0.777;
       background-color: white;
-      background-position: left;
+      background-position: right;
     }
 
     #tssBtn.active-hover {
       opacity: 0.777;
       background-color: white;
-      background-position: left;
+      background-position: right;
+    }
+
+    .toggle {
+      top:1%;
+      right: 1%;
+      position: fixed;
+      z-index: 100;
     }
   </style>
 </head>
@@ -423,10 +435,16 @@
   <div class="refresh top-layer">
     <button id="switchVideoBtn" title="Refresh video"></button>
   </div>
-  <div class="topsites-area top-layer" id="topsites-area">
-    <div class="tss">
+  <div class="toggle top-layer">
+    <div class="wth" id="wth">
+      <button id="wthBtn"></button>
+    </div>
+    <div class="tss" id="tss">
       <button id="tssBtn" title="Top Sites"></button>
     </div>
+    </div>
+  <div class="topsites-area top-layer" id="topsites-area">
+    
     <div class="topsites-info top-layer" id="topsites">
       <span>Loading Top sites...</span>
     </div>
@@ -468,9 +486,6 @@
         <p id="forecast3">-</p>
       </div>
 
-    </div>
-    <div class="wth">
-      <button id="wthBtn"></button>
     </div>
   </div>
   </div>
