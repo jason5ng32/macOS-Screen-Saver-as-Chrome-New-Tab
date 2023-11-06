@@ -278,7 +278,6 @@ function appendVideo(src) {
   document.getElementById('videoBox').appendChild(video);
 }
 
-
 // 手动切换视频
 function switchToNextVideo() {
   if (allAvailableVideos.length === 0) {
@@ -308,6 +307,26 @@ function switchToNextVideo() {
   }
 }
 
+// 视频设置建议
+function videoSettingsSuggestion(videoStatus) {
+  const errorBox = document.getElementById('errorBox');
+
+  if (videoStatus === '1') {
+    errorBox.innerHTML =
+      'It looks like you are using local video server but fetching videos failed. Please make sure you have set the correct URL.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.';
+    errorBox.style.backgroundColor = '#ff000094';
+  } else if (videoStatus === '2') {
+    errorBox.innerHTML =
+      "It looks like you are using Apple Server as video source, but havn't trust Apple's Root Certificate yet.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.";
+    errorBox.style.backgroundColor = '#ff000094';
+  } else if (videoStatus === '3') {
+    errorBox.innerHTML =
+      "It looks like you are our reverse proxy. The great way to use Macify is to set up local server or use Apple's Server without reverse proxy.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it better.";
+    errorBox.style.backgroundColor = '#328d6e';
+  }
+  errorBox.style.display = 'flex';
+}
+
 // 搜索框
 async function initSearch() {
   const searchInput = document.getElementById('search');
@@ -322,6 +341,13 @@ async function initSearch() {
   });
 }
 
+// 启动时钟
+function initClock(hourSystem) {
+  updateTime(hourSystem);
+  setInterval(updateTime, 1000, hourSystem);
+}
+
+// 时制显示
 function updateTime(hourSystem) {
   const currentTimeElement = document.getElementById('current-time');
   const now = new Date();
@@ -393,7 +419,7 @@ async function fetchRandomMotto() {
   }
 }
 
-
+// 刷新格言
 async function refreshRandomMotto() {
   var mottoElement = document.querySelector('.motto');
   mottoElement.addEventListener('click', function (e) {
@@ -422,11 +448,6 @@ async function refreshRandomMotto() {
       }
     }
   });
-}
-
-function initClock(hourSystem) {
-  updateTime(hourSystem);
-  setInterval(updateTime, 1000, hourSystem);
 }
 
 // 更新天气
@@ -532,6 +553,7 @@ async function getForecastWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
   }
 }
 
+// 更新天气 UI
 function weatherUI() {
   let wthElements = document.querySelectorAll('#wthBtn');
   let weatherInfo = document.querySelector('#weather-info');
@@ -549,28 +571,7 @@ function weatherUI() {
   });
 }
 
-// 视频设置建议
-function videoSettingsSuggestion(videoStatus) {
-  const errorBox = document.getElementById('errorBox');
-
-  if (videoStatus === '1') {
-    errorBox.innerHTML =
-      'It looks like you are using local video server but fetching videos failed. Please make sure you have set the correct URL.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.';
-    errorBox.style.backgroundColor = '#ff000094';
-  } else if (videoStatus === '2') {
-    errorBox.innerHTML =
-      "It looks like you are using Apple Server as video source, but havn't trust Apple's Root Certificate yet.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.";
-    errorBox.style.backgroundColor = '#ff000094';
-  } else if (videoStatus === '3') {
-    errorBox.innerHTML =
-      "It looks like you are our reverse proxy. The great way to use Macify is to set up local server or use Apple's Server without reverse proxy.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it better.";
-    errorBox.style.backgroundColor = '#328d6e';
-  }
-  errorBox.style.display = 'flex';
-}
-
-
-// 获取 Top Sites
+// 初始化 Top Sites
 function updateTopSites(sitesCycle) {
   // 从 localStorage 中获取 shouldRefreshSites 的值和上次更新 top sites 的时间
   let shouldRefreshSites = localStorage.getItem('shouldRefreshSites');
@@ -596,6 +597,7 @@ function updateTopSites(sitesCycle) {
   }
 }
 
+// 计算并更新 Top Sites
 function computeAndUpdateTopSites(sitesCycle) {
   const startDate = Date.now() - (sitesCycle * 24 * 60 * 60 * 1000);
   const now = Date.now();
@@ -641,9 +643,7 @@ function computeAndUpdateTopSites(sitesCycle) {
   });
 }
 
-
-
-// 标题缩短
+// Top Sites 标题缩短
 function trimTitle(title, maxLength) {
   let length = 0;
   let trimmedTitle = '';
@@ -655,7 +655,7 @@ function trimTitle(title, maxLength) {
   return length > maxLength ? trimmedTitle + '...' : title;
 }
 
-// 获取 Favicon
+// 获取 Top Sites Favicon
 function fetchFavicon(domain, onUpdate) {
   const defaultFavicon = 'res/url.png';
   const faviconUrl = `https://s2.googleusercontent.com/s2/favicons?domain_url=${domain}&sz=64`;
@@ -669,9 +669,7 @@ function fetchFavicon(domain, onUpdate) {
   img.src = faviconUrl;
 }
 
-
-
-// 展示 Topsites
+// 展示 Top Sites
 function updateTopSitesList(topSites) {
   const topSitesList = document.getElementById('topsites');
   topSitesList.innerHTML = '';
@@ -723,9 +721,7 @@ function updateTopSitesList(topSites) {
   });
 }
 
-
-
-
+// 更新 Top Sites UI
 function topSitesUI() {
   let tssElements = document.querySelectorAll('#tssBtn');
   let tssInfo = document.querySelector('#topsites');
