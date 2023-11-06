@@ -38,7 +38,7 @@ Using the Apple server as a video source is a good option. However, since the UR
 
 Simply open this address in Chrome: [https://sylvan.apple.com/](https://sylvan.apple.com/). The first time you open it, you will see a warning. Just click the *Proceed to sylvan.apple.com (unsafe)* button to ignore the warning, and that’s it.
 
-![chromewarnning.png](src/res/chromewarnning.png)
+![chromewarnning.png](src/res/chromewarnning.jpg)
 
 Now, you can enjoy videos from the Apple video source.
 
