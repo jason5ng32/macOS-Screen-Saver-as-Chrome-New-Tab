@@ -3,7 +3,8 @@
   "name": "Macify - macOS screensaver videos new tab",
   "version": "1.6.0",
   "description": "Replace new tab with macOS's gorgeous screensaver aerial videos.",
-  "permissions": ["storage","scripting","history"],
+  "permissions": ["storage","scripting"],
+  "optional_permissions": ["history"],
   "action": {
     "default_popup": "options.html"
   },
