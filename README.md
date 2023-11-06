@@ -6,8 +6,6 @@ Transform your Chrome's new tab page by showcasing macOS's aerial screen saver v
 
 ![screenshot.png](src/res/screenshot.png)
 
-![AnimatedImage.gif](screenshot.gif)
-
 ## Features
 
 This Chrome extension delivers the following features:
@@ -17,6 +15,8 @@ This Chrome extension delivers the following features:
 3. 💬 Engage with the web version of ChatGPT: simply type into the search box and begin your conversation.
 4. 🌟 Discover motivational quotes that change randomly with each new tab.
 5. 🔗 Compile your browsing history from the chosen timeframe and offer a quick-access list for your convenience.
+
+![AnimatedImage.gif](screenshot.gif)
 
 ## Getting Started
 
@@ -62,7 +62,7 @@ Ensure you're connected to Internet and proceed to open System Preferences.
 
 Journey to the "Screensaver" settings within System Preferences. Within the aerial screensaver category, select the videos you wish to download. Bear in mind, the file size of each video spans between 500MB to 1GB; patience is required during the download process. Occasionally, downloads might experience interruptions, necessitating multiple attempts.
 
-![systempreferrence.jpeg](src/res/systempreferrence.jpeg)
+![systempreferrence.jpeg](src/res/systempreferrence.jpg)
 
 To conserve storage, it's advised against downloading the entire video collection.
 
