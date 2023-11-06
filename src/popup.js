@@ -577,8 +577,8 @@ function updateTopSites(sitesCycle) {
   let lastSitesUpdated = localStorage.getItem('lastSitesUpdated');
 
   const now = Date.now();
-  // 如果上次更新时间超过了 10 分钟，则设置 shouldRefreshSites 为 true
-  if (lastSitesUpdated === null || now - parseInt(lastSitesUpdated, 10) > 10 * 60 * 1000) {
+  // 如果上次更新时间超过了 20 分钟，则设置 shouldRefreshSites 为 true
+  if (lastSitesUpdated === null || now - parseInt(lastSitesUpdated, 10) > 20 * 60 * 1000) {
     shouldRefreshSites = 'true';
   }
   if (shouldRefreshSites === null || shouldRefreshSites === 'true') {
