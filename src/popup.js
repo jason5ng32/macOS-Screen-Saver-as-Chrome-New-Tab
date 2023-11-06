@@ -547,8 +547,8 @@ function videoSettingsSuggestion(videoStatus) {
 
   if (videoStatus === '1') {
     errorBox.innerHTML =
-      'It looks like you are using local videos. Please make sure you have set the correct URL.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.';
-    errorBox.style.backgroundColor = '#ff000094';
+      'It looks like you are using local video server but fetching videos failed. Please make sure you have set the correct URL.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.';
+      errorBox.style.backgroundColor = '#ff000094';
   } else if (videoStatus === '2') {
     errorBox.innerHTML =
       "It looks like you are using Apple Server as video source, but havn't trust Apple's Root Certificate yet.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.";
