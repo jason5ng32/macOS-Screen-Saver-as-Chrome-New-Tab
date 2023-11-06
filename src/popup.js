@@ -601,21 +601,36 @@ function computeAndUpdateTopSites(sitesCycle) {
   const now = Date.now();
   chrome.history.search({ text: '', startTime: startDate, endTime: now, maxResults: 10000 }, historyItems => {
     const domainCountMap = new Map();
+    const urlMap = new Map();
+
     historyItems.forEach(item => {
-      if (item.url.startsWith('http://') || item.url.startsWith('https://')) {
-        const domain = new URL(item.url).hostname;
-        domainCountMap.set(domain, (domainCountMap.get(domain) || 0) + item.visitCount);
+      const urlWithoutQuery = new URL(item.url);
+      urlWithoutQuery.search = ''; // 移除查询参数
+      const urlKey = urlWithoutQuery.toString();
+
+      // 累加不包含查询参数的URL访问次数
+      const prevCount = domainCountMap.get(urlKey) || 0;
+      domainCountMap.set(urlKey, prevCount + item.visitCount);
+
+      // 存储每个无查询参数URL对应的访问次数最多的实际URL
+      const prevMax = urlMap.get(urlKey);
+      if (!prevMax || item.visitCount > prevMax.count) {
+        urlMap.set(urlKey, { url: item.url, count: item.visitCount, title: item.title });
       }
     });
 
+    // 将访问次数合并并排序
     const topSites = Array.from(domainCountMap)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 10)
-      .map(([domain, count]) => ({
-        url: historyItems.find(item => new URL(item.url).hostname === domain).url,
-        count,
-        title: historyItems.find(item => new URL(item.url).hostname === domain).title || domain,
-      }));
+      .map(([urlKey, _]) => {
+        const { url, count, title } = urlMap.get(urlKey);
+        return {
+          url, // 实际访问次数最多的URL
+          count: domainCountMap.get(urlKey), // 合并后的访问次数
+          title: title || new URL(url).hostname, // 标题，如果没有则使用域名
+        };
+      });
 
     updateTopSitesList(topSites);
 
@@ -625,6 +640,7 @@ function computeAndUpdateTopSites(sitesCycle) {
     localStorage.setItem('shouldRefreshSites', 'false');
   });
 }
+
 
 
 // 标题缩短
@@ -675,7 +691,7 @@ function updateTopSitesList(topSites) {
     favicon.style.width = '12pt';
     favicon.style.cursor = 'pointer';
     favicon.style.height = 'auto';
-    
+
     // 创建 title span
     const titleSpan = document.createElement('span');
     titleSpan.style.cursor = 'pointer';
@@ -683,7 +699,7 @@ function updateTopSitesList(topSites) {
     titleSpan.style.whiteSpace = 'nowrap';
     titleSpan.style.overflow = 'hidden';
     titleSpan.style.textOverflow = 'ellipsis';
-    titleSpan.title = site.title;
+    titleSpan.title = site.title + ' - ' + site.url;
     titleSpan.textContent = trimTitle(site.title, 25);
 
     // 绑定 click 事件打开新窗口
