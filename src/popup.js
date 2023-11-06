@@ -716,7 +716,7 @@ function topSitesUI() {
   let tssArea = document.querySelector('#topsites-area');
   let timeoutId = null;
   if (newdata.showWeather) {
-    tssArea.style.marginTop = '28pt';
+    tssArea.style.marginTop = '30pt';
   }
   tssElements.forEach(function (tssElement) {
     tssElement.addEventListener('mouseover', function () {
