@@ -475,7 +475,7 @@ async function getCurrentWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
     const weatherIcon = document.getElementById('weather-icon');
     weatherIcon.src = `https://${data.current.condition.icon}`;
     weatherIcon.onerror = function () {
-      this.src = 'weather.webp';
+      this.src = 'res/weather.webp';
     };
   } catch (error) {
     console.error(`Get weather failed: ${error}`);
@@ -511,7 +511,7 @@ async function getForecastWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
 
       forecastIcon.src = `https://${day.day.condition.icon}`;
       forecastIcon.onerror = function () {
-        this.src = 'weather.webp';
+        this.src = 'res/weather.webp';
       };
       // 更新温度范围，并保留整数部分
       const minTemp =
@@ -641,7 +641,7 @@ function trimTitle(title, maxLength) {
 
 // 获取 Favicon
 function fetchFavicon(domain, onUpdate) {
-  const defaultFavicon = 'url.png';
+  const defaultFavicon = 'res/url.png';
   const faviconUrl = `https://s2.googleusercontent.com/s2/favicons?domain_url=${domain}&sz=64`;
 
   // 首先返回默认图片
@@ -659,7 +659,7 @@ function fetchFavicon(domain, onUpdate) {
 function updateTopSitesList(topSites) {
   const topSitesList = document.getElementById('topsites');
   topSitesList.innerHTML = '';
-  const defaultFaviconUrl = 'url.png';
+  const defaultFaviconUrl = 'res/url.png';
 
   topSites.forEach(site => {
     // 创建 list item

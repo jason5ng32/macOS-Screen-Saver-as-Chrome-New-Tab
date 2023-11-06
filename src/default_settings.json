@@ -14,7 +14,7 @@
     "refreshButton": true,
     "tempUnit": "celsius",
     "authorInfo": true,
-    "videoSrc": "local",
-    "reverseProxy": false,
+    "videoSrc": "apple",
+    "reverseProxy": true,
     "delayTime": 2000
 }  

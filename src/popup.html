@@ -14,7 +14,7 @@
 
     @font-face {
       font-family: "CustomFont";
-      src: url('font.ttf') format('truetype');
+      src: url('res/font.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
@@ -102,6 +102,10 @@
       display: none;
       transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, opacity 0.5s ease-in-out;
       opacity: 0;
+      background-image: url('res/gpt.png');
+    background-repeat: no-repeat;
+    background-size: 16pt;
+    background-position: 3%;
     }
 
     input[type="text"] {
@@ -112,7 +116,7 @@
       border-radius: 40px;
       border: 2px solid #ffffff;
       outline: none;
-      padding-left: 20px;
+      padding-left: 36pt;
       font-size: large;
       font-weight: lighter;
       background-color: #ffffff36;
@@ -225,7 +229,7 @@
       width: 80%;
       height: 80%;
       border: none;
-      background: url(weather.png) no-repeat;
+      background: url('res/weather.png') no-repeat;
       background-size: 100%;
       cursor: pointer;
       outline: none;
@@ -295,7 +299,7 @@
       width: 80%;
       height: 80%;
       border: none;
-      background: url('refresh.png') no-repeat center center;
+      background: url('res/refresh.png') no-repeat center center;
       background-size: contain;
       cursor: pointer;
       outline: none;
@@ -386,7 +390,7 @@
       width: 80%;
       height: 80%;
       border: none;
-      background: url(topsites.png) no-repeat;
+      background: url('res/topsites.png') no-repeat;
       background-size: 200%;
       cursor: pointer;
       outline: none;
@@ -429,7 +433,7 @@
   <div id="author" class="author top-layer">
     <p>Created by Jason Ng, Dofy, Setilis.</p>
     <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab" target="_blank"
-      title="Project's Github"><img src="github.png" /></a>
+      title="Project's Github"><img src="res/github.png" /></a>
   </div>
   <div class="refresh top-layer">
     <button id="switchVideoBtn" title="Refresh video"></button>
@@ -457,7 +461,7 @@
         <div class="weather-text">
           <p>Now</p>
         </div>
-        <img id="weather-icon" src="weather.webp" alt="Weather Icon">
+        <img id="weather-icon" src="res/weather.webp" alt="Weather Icon">
         <p id="current-weather">-</p>
       </div>
 
@@ -465,7 +469,7 @@
         <div class="weather-text">
           <p>Today</p>
         </div>
-        <img id="weather-icon1" src="weather.webp" alt="Weather Icon">
+        <img id="weather-icon1" src="res/weather.webp" alt="Weather Icon">
         <p id="forecast1">-</p>
       </div>
 
@@ -473,7 +477,7 @@
         <div class="weather-text">
           <p>T + 1</p>
         </div>
-        <img id="weather-icon2" src="weather.webp" alt="Weather Icon">
+        <img id="weather-icon2" src="res/weather.webp" alt="Weather Icon">
         <p id="forecast2">-</p>
       </div>
 
@@ -481,7 +485,7 @@
         <div class="weather-text">
           <p>T + 2</p>
         </div>
-        <img id="weather-icon3" src="weather.webp" alt="Weather Icon">
+        <img id="weather-icon3" src="res/weather.webp" alt="Weather Icon">
         <p id="forecast3">-</p>
       </div>
 
