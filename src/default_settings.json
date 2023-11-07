@@ -5,6 +5,8 @@
     "showWeather": false,
     "showSearch": true,
     "showMotto": true,
+    "showTopSites": false,
+    "sitesCycle": "7",
     "fontChoice": "infinity",
     "videoSourceUrl": "http://localhost:18000/videos/",
     "weatherAPIKEY": "",
@@ -12,7 +14,7 @@
     "refreshButton": true,
     "tempUnit": "celsius",
     "authorInfo": true,
-    "videoSrc": "local",
-    "reverseProxy": false,
+    "videoSrc": "apple",
+    "reverseProxy": true,
     "delayTime": 2000
 }  

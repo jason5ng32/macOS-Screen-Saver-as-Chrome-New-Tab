@@ -1,15 +1,16 @@
 {
   "manifest_version": 3,
   "name": "Macify - macOS screensaver videos new tab",
-  "version": "1.5.4",
+  "version": "1.6.0",
   "description": "Replace new tab with macOS's gorgeous screensaver aerial videos.",
   "permissions": ["storage","scripting"],
+  "optional_permissions": ["history"],
   "action": {
     "default_popup": "options.html"
   },
   "options_page": "options.html",
   "icons": {
-    "128": "icon.png"
+    "128": "res/icon.png"
   },
   "background": {
     "service_worker": "background.js"

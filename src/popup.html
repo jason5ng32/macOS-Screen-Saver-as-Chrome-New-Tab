@@ -14,7 +14,7 @@
 
     @font-face {
       font-family: "CustomFont";
-      src: url('font.ttf') format('truetype');
+      src: url('res/font.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
@@ -102,6 +102,10 @@
       display: none;
       transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, opacity 0.5s ease-in-out;
       opacity: 0;
+      background-image: url('res/gpt.png');
+    background-repeat: no-repeat;
+    background-size: 16pt;
+    background-position: 3%;
     }
 
     input[type="text"] {
@@ -112,7 +116,7 @@
       border-radius: 40px;
       border: 2px solid #ffffff;
       outline: none;
-      padding-left: 20px;
+      padding-left: 36pt;
       font-size: large;
       font-weight: lighter;
       background-color: #ffffff36;
@@ -190,6 +194,7 @@
       align-items: flex-start;
       position: fixed;
       justify-content: flex-end;
+      margin-right: 28pt;
     }
 
     #weather-info {
@@ -198,7 +203,7 @@
       display: flex;
       flex-direction: row;
       max-width: 30vw;
-      background-color: rgba(0, 0, 0, 0.86);
+      background-color: rgba(0, 0, 0, 0.45);
       border-radius: 8pt;
       box-shadow: 0 0 4pt rgba(255, 255, 255, 0.777);
       border: 1pt solid #ffffff;
@@ -217,15 +222,14 @@
     .wth {
       width: 30pt;
       height: 30pt;
-      display: block;
-      z-index: 100;
+      display: none;
     }
 
     #wthBtn {
       width: 80%;
       height: 80%;
       border: none;
-      background: url(weather.png) no-repeat;
+      background: url('res/weather.png') no-repeat;
       background-size: 100%;
       cursor: pointer;
       outline: none;
@@ -295,7 +299,7 @@
       width: 80%;
       height: 80%;
       border: none;
-      background: url('refresh.png') no-repeat center center;
+      background: url('res/refresh.png') no-repeat center center;
       background-size: contain;
       cursor: pointer;
       outline: none;
@@ -324,6 +328,100 @@
       opacity: 0.777;
       background-color: #e0e0e0;
     }
+
+    /* topsites */
+
+    .topsites-area {
+      top: 2%;
+      right: 1%;
+      flex-direction: row;
+      align-items: flex-start;
+      position: fixed;
+      justify-content: flex-end;
+      /* margin-top: -8pt; */
+      margin-right: 28pt;
+      display: flex;
+      flex-direction: row-reverse;
+      z-index: 1000;
+    }
+
+    .favicon {
+      width: 12pt;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .title {
+      margin-left: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+    }
+
+    .topsites-info {
+      color: white;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      max-width: 30vw;
+      background-color: rgba(0, 0, 0, 0.45);
+      border-radius: 8pt;
+      box-shadow: 0 0 4pt rgba(255, 255, 255, 0.777);
+      border: 1pt solid #ffffff;
+      opacity: 0;
+      transform: translateX(+140%);
+      transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+      margin-right: 1vw;
+      flex-wrap: nowrap;
+      align-content: flex-start;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 1vw;
+    }
+
+    .tss {
+      width: 30pt;
+      height: 30pt;
+      display: none;
+    }
+
+    #tssBtn {
+      width: 80%;
+      height: 80%;
+      border: none;
+      background: url('res/topsites.png') no-repeat;
+      background-size: 200%;
+      cursor: pointer;
+      outline: none;
+      position: relative;
+      opacity: 0.5;
+      transition: opacity 0.5s ease, background-position 0.5s ease-in-out;
+      border: 1pt solid #ffffffa6;
+      border-radius: 50pt;
+      box-shadow: 0 0 3pt white;
+      background-color: rgba(255, 255, 255, 0.509);
+      background-position: left;
+    }
+
+    #tssBtn:hover {
+      opacity: 0.777;
+      background-color: white;
+      background-position: right;
+    }
+
+    #tssBtn.active-hover {
+      opacity: 0.777;
+      background-color: white;
+      background-position: right;
+    }
+
+    .toggle {
+      top:2%;
+      right: 1%;
+      position: fixed;
+      z-index: 100;
+    }
   </style>
 </head>
 
@@ -335,10 +433,26 @@
   <div id="author" class="author top-layer">
     <p>Created by Jason Ng, Dofy, Setilis.</p>
     <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab" target="_blank"
-      title="Project's Github"><img src="github.png" /></a>
+      title="Project's Github"><img src="res/github.png" /></a>
   </div>
   <div class="refresh top-layer">
     <button id="switchVideoBtn" title="Refresh video"></button>
+  </div>
+  <div class="toggle top-layer">
+    <div class="wth" id="wth">
+      <button id="wthBtn" title="Weather"></button>
+    </div>
+    <div class="tss" id="tss">
+      <button id="tssBtn" title="Top Sites"></button>
+    </div>
+    </div>
+  <div class="topsites-area top-layer" id="topsites-area">
+    
+    <div class="topsites-info top-layer" id="topsites">
+      <span>Loading Top sites...</span>
+    </div>
+
+
   </div>
   <div id="weather-area" class="top-layer">
     <div id="weather-info">
@@ -347,7 +461,7 @@
         <div class="weather-text">
           <p>Now</p>
         </div>
-        <img id="weather-icon" src="weather.webp" alt="Weather Icon">
+        <img id="weather-icon" src="res/weather.webp" alt="Weather Icon">
         <p id="current-weather">-</p>
       </div>
 
@@ -355,7 +469,7 @@
         <div class="weather-text">
           <p>Today</p>
         </div>
-        <img id="weather-icon1" src="weather.webp" alt="Weather Icon">
+        <img id="weather-icon1" src="res/weather.webp" alt="Weather Icon">
         <p id="forecast1">-</p>
       </div>
 
@@ -363,7 +477,7 @@
         <div class="weather-text">
           <p>T + 1</p>
         </div>
-        <img id="weather-icon2" src="weather.webp" alt="Weather Icon">
+        <img id="weather-icon2" src="res/weather.webp" alt="Weather Icon">
         <p id="forecast2">-</p>
       </div>
 
@@ -371,13 +485,10 @@
         <div class="weather-text">
           <p>T + 2</p>
         </div>
-        <img id="weather-icon3" src="weather.webp" alt="Weather Icon">
+        <img id="weather-icon3" src="res/weather.webp" alt="Weather Icon">
         <p id="forecast3">-</p>
       </div>
 
-    </div>
-    <div class="wth">
-      <button id="wthBtn"></button>
     </div>
   </div>
   </div>

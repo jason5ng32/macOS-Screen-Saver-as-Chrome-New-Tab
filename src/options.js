@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     let weatherAPIKEY = document.getElementById('weatherAPIKEY').value;
     let delayTime = document.getElementById('delayTime').value; // 获取 delayTime 的值
     let delayTimeInt = parseInt(delayTime, 10); // 转换为整数
+    let historyPermissionNeeded = document.getElementById('showTopSites').checked;
 
     const videoSrc = document.getElementById('videoSrc').value;
     if (videoSrc !== 'apple' && !videoSourceUrl) {
@@ -86,7 +87,19 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     if (isValid) {
-      saveSettings();
+      if (historyPermissionNeeded) {
+        // 请求历史权限
+        chrome.permissions.request({ permissions: ['history'] }, function (granted) {
+          if (granted) {
+            saveSettings();
+          } else {
+            showMessage('History permission is required to enable this feature.', 'error');
+            document.getElementById('showTopSites').checked = false; // 可以选择性地关闭复选框
+          }
+        });
+      } else {
+        saveSettings();
+      }
     }
   });
 
@@ -108,6 +121,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       showMessage('Settings saved', 'success');
     });
     localStorage.setItem('shouldUpdate', 'true');
+    localStorage.setItem('shouldRefreshSites', 'true');
   }
 
   function updateVideoSrcSettings() {
@@ -116,7 +130,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const videoSourceUrlSetting = document.getElementById(
       'videoSourceUrlSetting'
     );
-    
+
     if (videoSrc === 'apple') {
       reverseProxySetting.style.display = 'flex';
       videoSourceUrlSetting.style.display = 'none';

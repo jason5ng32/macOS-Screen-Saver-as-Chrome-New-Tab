@@ -53,6 +53,11 @@ async function initSettings() {
       element.style.top = '35%';
     });
   }
+  // 展示 Top Sites
+  if (newdata.showTopSites) {
+    updateTopSites(newdata.sitesCycle);
+    topSitesUI();
+  }
 }
 
 //
@@ -90,9 +95,12 @@ async function updateStorage(data) {
 }
 
 // 设置显示或隐藏
-function updateUI({ showTime, showWeather, showSearch, showMotto, refreshButton, authorInfo }) {
+function updateUI({ showTime, showWeather, showSearch, showMotto, refreshButton, authorInfo, showTopSites }) {
   setDisplay('current-time', showTime ? 'block' : 'none');
   setDisplay('weather-area', showWeather ? 'flex' : 'none');
+  setDisplay('wth', showWeather ? 'block' : 'none');
+  setDisplay('topsites-area', showTopSites ? 'flex' : 'none');
+  setDisplay('tss', showTopSites ? 'block' : 'none');
   setDisplay('search', showSearch ? 'inline' : 'none');
   setDisplay('switchVideoBtn', refreshButton ? '' : 'none');
   setDisplay('motto', showMotto ? 'block' : 'none');
@@ -255,7 +263,7 @@ function appendVideo(src) {
   // 监听视频加载错误
   video.addEventListener('error', function () {
     console.error('Error in video loading: ', video.error);
-    
+
     // 根据 newdata 的值调用 videoSettingsSuggestion
     if (newdata.videoSrc === 'apple' && !newdata.reverseProxy) {
       // 如果从 Apple 服务器加载视频失败，且未使用反向代理
@@ -269,7 +277,6 @@ function appendVideo(src) {
 
   document.getElementById('videoBox').appendChild(video);
 }
-
 
 // 手动切换视频
 function switchToNextVideo() {
@@ -300,6 +307,26 @@ function switchToNextVideo() {
   }
 }
 
+// 视频设置建议
+function videoSettingsSuggestion(videoStatus) {
+  const errorBox = document.getElementById('errorBox');
+
+  if (videoStatus === '1') {
+    errorBox.innerHTML =
+      'It looks like you are using local video server but fetching videos failed. Please make sure you have set the correct URL.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.';
+    errorBox.style.backgroundColor = '#ff000094';
+  } else if (videoStatus === '2') {
+    errorBox.innerHTML =
+      "It looks like you are using Apple Server as video source, but havn't trust Apple's Root Certificate yet.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.";
+    errorBox.style.backgroundColor = '#ff000094';
+  } else if (videoStatus === '3') {
+    errorBox.innerHTML =
+      "It looks like you are our reverse proxy. The great way to use Macify is to set up local server or use Apple's Server without reverse proxy.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it better.";
+    errorBox.style.backgroundColor = '#328d6e';
+  }
+  errorBox.style.display = 'flex';
+}
+
 // 搜索框
 async function initSearch() {
   const searchInput = document.getElementById('search');
@@ -314,6 +341,13 @@ async function initSearch() {
   });
 }
 
+// 启动时钟
+function initClock(hourSystem) {
+  updateTime(hourSystem);
+  setInterval(updateTime, 1000, hourSystem);
+}
+
+// 时制显示
 function updateTime(hourSystem) {
   const currentTimeElement = document.getElementById('current-time');
   const now = new Date();
@@ -385,7 +419,7 @@ async function fetchRandomMotto() {
   }
 }
 
-
+// 刷新格言
 async function refreshRandomMotto() {
   var mottoElement = document.querySelector('.motto');
   mottoElement.addEventListener('click', function (e) {
@@ -414,11 +448,6 @@ async function refreshRandomMotto() {
       }
     }
   });
-}
-
-function initClock(hourSystem) {
-  updateTime(hourSystem);
-  setInterval(updateTime, 1000, hourSystem);
 }
 
 // 更新天气
@@ -467,7 +496,7 @@ async function getCurrentWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
     const weatherIcon = document.getElementById('weather-icon');
     weatherIcon.src = `https://${data.current.condition.icon}`;
     weatherIcon.onerror = function () {
-      this.src = 'weather.webp';
+      this.src = 'res/weather.webp';
     };
   } catch (error) {
     console.error(`Get weather failed: ${error}`);
@@ -503,7 +532,7 @@ async function getForecastWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
 
       forecastIcon.src = `https://${day.day.condition.icon}`;
       forecastIcon.onerror = function () {
-        this.src = 'weather.webp';
+        this.src = 'res/weather.webp';
       };
       // 更新温度范围，并保留整数部分
       const minTemp =
@@ -524,6 +553,7 @@ async function getForecastWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
   }
 }
 
+// 更新天气 UI
 function weatherUI() {
   let wthElements = document.querySelectorAll('#wthBtn');
   let weatherInfo = document.querySelector('#weather-info');
@@ -541,22 +571,200 @@ function weatherUI() {
   });
 }
 
-// 视频设置建议
-function videoSettingsSuggestion(videoStatus) {
-  const errorBox = document.getElementById('errorBox');
+// 初始化 Top Sites
+function updateTopSites(sitesCycle) {
+  // 从 localStorage 中获取 shouldRefreshSites 的值和上次更新 top sites 的时间
+  let shouldRefreshSites = localStorage.getItem('shouldRefreshSites');
+  let lastSitesUpdated = localStorage.getItem('lastSitesUpdated');
 
-  if (videoStatus === '1') {
-    errorBox.innerHTML =
-      'It looks like you are using local video server but fetching videos failed. Please make sure you have set the correct URL.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.';
-      errorBox.style.backgroundColor = '#ff000094';
-  } else if (videoStatus === '2') {
-    errorBox.innerHTML =
-      "It looks like you are using Apple Server as video source, but havn't trust Apple's Root Certificate yet.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work.";
-    errorBox.style.backgroundColor = '#ff000094';
-  } else if (videoStatus === '3') {
-    errorBox.innerHTML =
-      "It looks like you are our reverse proxy. The great way to use Macify is to set up local server or use Apple's Server without reverse proxy.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it better.";
-      errorBox.style.backgroundColor = '#328d6e';
+  const now = Date.now();
+  // 如果上次更新时间超过了 20 分钟，则设置 shouldRefreshSites 为 true
+  if (lastSitesUpdated === null || now - parseInt(lastSitesUpdated, 10) > 20 * 60 * 1000) {
+    shouldRefreshSites = 'true';
   }
-  errorBox.style.display = 'flex';
+  if (shouldRefreshSites === null || shouldRefreshSites === 'true') {
+    // 需要刷新 top sites，进行计算并更新
+    computeAndUpdateTopSites(sitesCycle);
+  } else {
+    // 从 localStorage 获取 top sites 数据
+    let storedTopSites = localStorage.getItem('topSites');
+    if (storedTopSites) {
+      storedTopSites = JSON.parse(storedTopSites);
+      updateTopSitesList(storedTopSites);
+    } else {
+      console.log('No Top Sites data found in local storage.');
+    }
+  }
+}
+
+// 计算并更新 Top Sites
+function computeAndUpdateTopSites(sitesCycle) {
+  const startDate = Date.now() - (sitesCycle * 24 * 60 * 60 * 1000);
+  const now = Date.now();
+  chrome.history.search({ text: '', startTime: startDate, endTime: now, maxResults: 10000 }, historyItems => {
+    const domainCountMap = new Map();
+    const urlMap = new Map();
+
+    historyItems.forEach(item => {
+      const urlWithoutQuery = new URL(item.url);
+      urlWithoutQuery.search = ''; // 移除查询参数
+      const urlKey = urlWithoutQuery.toString();
+
+      // 累加不包含查询参数的URL访问次数
+      const prevCount = domainCountMap.get(urlKey) || 0;
+      domainCountMap.set(urlKey, prevCount + item.visitCount);
+
+      // 存储每个无查询参数URL对应的访问次数最多的实际URL
+      const prevMax = urlMap.get(urlKey);
+      if (!prevMax || item.visitCount > prevMax.count) {
+        urlMap.set(urlKey, { url: item.url, count: item.visitCount, title: item.title });
+      }
+    });
+
+    // 将访问次数合并并排序
+    const topSites = Array.from(domainCountMap)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([urlKey, _]) => {
+        const { url, count, title } = urlMap.get(urlKey);
+        return {
+          url, // 实际访问次数最多的URL
+          count: domainCountMap.get(urlKey), // 合并后的访问次数
+          title: title || new URL(url).hostname, // 标题，如果没有则使用域名
+        };
+      });
+
+    updateTopSitesList(topSites);
+
+    // 将 top sites 数据转换为字符串并存储到 localStorage
+    localStorage.setItem('topSites', JSON.stringify(topSites));
+    localStorage.setItem('lastSitesUpdated', now.toString());
+    localStorage.setItem('shouldRefreshSites', 'false');
+  });
+}
+
+// Top Sites 标题缩短
+function trimTitle(title, maxLength) {
+  let length = 0;
+  let trimmedTitle = '';
+  for (let i = 0; i < title.length; i++) {
+    length += title.charCodeAt(i) > 255 ? 2 : 1;
+    if (length > maxLength) break;
+    trimmedTitle = title.substring(0, i + 1);
+  }
+  return length > maxLength ? trimmedTitle + '...' : title;
+}
+
+// 获取 Top Sites Favicon
+function fetchFavicon(domain, onUpdate) {
+  const defaultFavicon = 'res/url.png';
+  const faviconUrl = `https://s2.googleusercontent.com/s2/favicons?domain_url=${domain}&sz=64`;
+
+  // 首先返回默认图片
+  onUpdate(defaultFavicon);
+
+  const img = new Image();
+  img.onload = () => {
+    // 检查图片是否是 Google 返回的默认 16x16 图片
+    if (img.width === 16 && img.height === 16) {
+      onUpdate(defaultFavicon); // 如果是，则使用默认图片
+    } else {
+      onUpdate(faviconUrl); // 否则，使用获取到的 favicon
+    }
+  };
+  img.onerror = () => onUpdate(defaultFavicon); // 加载失败时使用默认图片
+  img.src = faviconUrl;
+}
+
+
+// 展示 Top Sites
+function updateTopSitesList(topSites) {
+  const topSitesList = document.getElementById('topsites');
+  topSitesList.innerHTML = '';
+  const defaultFaviconUrl = 'res/url.png';
+
+  topSites.forEach(site => {
+    // 创建 list item
+    const listItem = document.createElement('li');
+    listItem.style.display = 'flex';
+    listItem.style.alignItems = 'center';
+    listItem.style.marginBottom = '10px';
+
+    // 创建 favicon image
+    const favicon = new Image();
+    favicon.id = `favicon-${site.url}`;
+    favicon.src = defaultFaviconUrl;
+    favicon.style.width = '12pt';
+    favicon.style.cursor = 'pointer';
+    favicon.style.height = 'auto';
+
+    // 创建 title span
+    const titleSpan = document.createElement('span');
+    titleSpan.style.cursor = 'pointer';
+    titleSpan.style.marginLeft = '10px';
+    titleSpan.style.whiteSpace = 'nowrap';
+    titleSpan.style.overflow = 'hidden';
+    titleSpan.style.textOverflow = 'ellipsis';
+    titleSpan.title = site.title + ' - ' + site.url;
+    titleSpan.textContent = trimTitle(site.title, 25);
+
+    // 绑定 click 事件打开新窗口
+    favicon.addEventListener('click', () => window.open(site.url, '_blank'));
+    titleSpan.addEventListener('click', () => window.open(site.url, '_blank'));
+
+    // 将 favicon 和 title span 添加到 list item
+    listItem.appendChild(favicon);
+    listItem.appendChild(titleSpan);
+
+    // 将 list item 添加到 list
+    topSitesList.appendChild(listItem);
+
+    // 异步更新 favicon
+    fetchFavicon(new URL(site.url).origin, (updatedFaviconUrl) => {
+      const faviconElement = document.getElementById(`favicon-${site.url}`);
+      if (faviconElement) {
+        faviconElement.src = updatedFaviconUrl;
+      }
+    });
+  });
+}
+
+// 更新 Top Sites UI
+function topSitesUI() {
+  let tssElements = document.querySelectorAll('#tssBtn');
+  let tssInfo = document.querySelector('#topsites');
+  let tssArea = document.querySelector('#topsites-area');
+  let timeoutId = null;
+  if (newdata.showWeather) {
+    tssArea.style.marginTop = '30pt';
+  }
+  tssElements.forEach(function (tssElement) {
+    tssElement.addEventListener('mouseover', function () {
+      clearTimeout(timeoutId);
+      tssInfo.style.opacity = '1';
+      tssInfo.style.transform = 'translateX(0)';
+      tssElement.classList.add('active-hover');
+    });
+
+    tssElement.addEventListener('mouseout', function () {
+      timeoutId = setTimeout(function () {
+        tssInfo.style.opacity = '0';
+        tssInfo.style.transform = 'translateX(+140%)';
+        tssElement.classList.remove('active-hover');
+      }, 100);
+    });
+  });
+
+  tssInfo.addEventListener('mouseover', function () {
+    clearTimeout(timeoutId);
+    tssElements.forEach(element => element.classList.add('active-hover'));
+  });
+
+  tssInfo.addEventListener('mouseout', function () {
+    timeoutId = setTimeout(function () {
+      tssInfo.style.opacity = '0';
+      tssInfo.style.transform = 'translateX(+140%)';
+      tssElements.forEach(element => element.classList.remove('active-hover'));
+    }, 100);
+  });
 }

@@ -7,7 +7,7 @@
   <style id="dynamic-styles">
     @font-face {
       font-family: 'CustomFont';
-      src: url('font.ttf') format('truetype');
+      src: url('res/font.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
@@ -194,7 +194,7 @@
 
       </div>
       <div class="note">
-        Go to <a href="https://www.weatherapi.com/">weatherapi.com</a> to get your API key.
+        Go to <a href="https://www.weatherapi.com/">weatherapi.com</a> to get your free API key.
       </div>
     </div>
 
@@ -235,6 +235,27 @@
       </div>
       <div class="note">
         Only affected when clock is shown.
+      </div>
+    </div>
+
+    <div class="area">
+      <h2>🔗 Top Sites</h2>
+      <div class="setting">
+        <label for="showTopSites">Show Top Sites</label>
+        <input type="checkbox" id="showTopSites">
+      </div>
+      <div class="setting">
+        <label for="sitesCycle">Histories within</label>
+        <select id="sitesCycle">
+          <option value="30">1 Month</option>
+          <option value="14">2 Weeks</option>
+          <option value="7">1 Week</option>
+          <option value="3">3 Days</option>
+          <option value="1">1 Day</option>
+        </select>
+      </div>
+      <div class="note">
+        History permission is required for this feature.
       </div>
     </div>
 

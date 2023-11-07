@@ -1,88 +1,103 @@
 # Chrome-macOS-Screen-Saver-Tab
 
-Transform your Chrome's new tab page by showcasing macOS's aerial screen saver videos. You can use apple server by default, or start by setting up a local HTTP server, which is recommended.
+Transform your Chrome's new tab page by showcasing macOS's aerial screen saver videos.
+
+🖥️ If you're not using macOS, fear not! This extension remains compatible.
+
+![screenshot.png](src/res/screenshot.png)
 
 ## Features
 
-This Chrome extension delivers the following capabilities:
+This Chrome extension delivers the following features:
 
-1. 🎥 Enhance your Chrome startup page and new tab view with breathtaking 4K videos, taken directly from macOS' native aerial screen savers.
+1. 🎥 Enhance your Chrome start page and new tab view with breathtaking 4K videos, taken directly from macOS' native aerial screen savers.
 2. 🌦️ Receive up-to-the-minute weather updates accompanied by a 3-day forecast.
 3. 💬 Engage with the web version of ChatGPT: simply type into the search box and begin your conversation.
 4. 🌟 Discover motivational quotes that change randomly with each new tab.
+5. 🔗 Compile your browsing history from the chosen timeframe and offer a quick-access list for your convenience.
 
-P.S. If you're not using macOS, fear not! This extension remains compatible. 🛠️
-
-![Screenshot](screenshot.png)
-![Screenshot](screenshot.gif)
+![AnimatedImage.gif](screenshot.gif)
 
 ## Getting Started
 
-There are two ways to use this extension. If you have a good internet connection and don't mind the data consumption each time a video loads, you can go directly to the [Install the Extension](#install-the-extension) section and start using it.
+Firstly, Install Macify on Chrome web store,  [Click here](https://chromewebstore.google.com/detail/macify-macos-screensaver/lgdipcalomggcjkohjhkhkbcpgladnoe?hl=zh-CN) to install.
 
-> If you encounter issues loading the video upon first use (which defaults to using Apple's server), the issue may likely be due to the browser not trusting Apple's certificate. The solution is to open any Apple screen saver video link in your browser, such as [this one](https://sylvan.apple.com/Videos/AK_A004_C012_SDR_20191217_SDR_2K_AVC.mov), and then forcibly trust the certificate to gain access.
->
->After doing so, you should be able to use this extension normally.
->
->You can also solve this problem by install [Apple's Root Certificates](https://www.apple.com/certificateauthority/) and turst them in your system.
+To get started, you need to configure the video source. We offer 3 options:
 
-If you want to enjoy higher quality, faster-loading 4K videos, and you are using macOS, you can follow the steps that come next.
+1. Manually set up a local HTTP server ( recommended ).
+2. Directly use the services of Apple Server.
+3. Connect to Apple Server using our built-in reverse proxy.
 
-## Acquire Screen Saver Videos via System Preferences
+If you're not technically inclined, consider opting for the second or third option.
+
+And, you will need to get your free weatherapi.com API Key, if you want to enable the weather feature.
+
+## Use Apple Server as video source
+
+Using the Apple server as a video source is a good option. However, since the URL where the screensaver videos are located is not trusted by most operating systems, you need to make the system trust the Apple server's certificate first. After that, you will be able to use the Apple server as a video source smoothly.
+
+Simply open this address in Chrome: [https://sylvan.apple.com/](https://sylvan.apple.com/). The first time you open it, you will see a warning. Just click the *Proceed to sylvan.apple.com (unsafe)* button to ignore the warning, and that’s it.
+
+![chromewarnning.png](src/res/chromewarnning.jpg)
+
+Now, you can enjoy videos from the Apple video source.
+
+## Use built-in reverse proxy as video source
+
+By selecting the Apple Server as the video source and enabling the reverse proxy option, you will use the built-in reverse proxy to fetch videos from Apple indirectly.
+
+This is juet for temporary convenience, it is not recommended to use the built-in reverse proxy for an extended period as it is only a temporary solution.
+
+I cannot guarantee the long-term availability of this built-in reverse proxy.
+
+## Use local HTTP server as video source
+
+It is recommended that you set up a local http server as video source if you are a macOS user.
+
+You will be able to enjoy higher quality, faster-loading 4K videos, it’s very easy to set the server up, just follow the steps that come next.
+
+### Step 1️⃣: Acquire Screen Saver Videos via System Preferences
 
 Ensure you're connected to Internet and proceed to open System Preferences.
 
 Journey to the "Screensaver" settings within System Preferences. Within the aerial screensaver category, select the videos you wish to download. Bear in mind, the file size of each video spans between 500MB to 1GB; patience is required during the download process. Occasionally, downloads might experience interruptions, necessitating multiple attempts.
 
-![Screenshot](systempreferrence.jpg)
+![systempreferrence.jpeg](src/res/systempreferrence.jpg)
 
 To conserve storage, it's advised against downloading the entire video collection.
 
-## Initiate a Local Server
+### Step 2️⃣: Initiate a Local Server
 
-1. Retrieve the `videoserver.conf` file from the code repository.
+1. Download the `videoserver.conf` file from the [code repository](https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab).
 2. Store it in a directory that you intend to keep intact. For demonstration, let's use:
 
-    ```shell
-    /path/to/your/videoserver.conf
-    ```
+```shell
+/path/to/your/videoserver.conf
+```
 
-3. Launch the terminal application.
-4. Make a backup of your apache config file utilizing the command below:
+3. Launch the terminal application, and input the following commands.
+4. Make a backup of your apache config file utilizing the command below (optional) :
 
-    ```shell
-    sudo cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk
-    ```
+```shell
+sudo cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk
+```
 
 5. Next, ensure to replace the path placeholder with your actual path:
 
-    ```shell
-    echo -e "\nInclude /path/to/your/videoserver.conf" | sudo tee -a /private/etc/apache2/httpd.conf
-    ```
+```shell
+echo -e "\nInclude /path/to/your/videoserver.conf" | sudo tee -a /private/etc/apache2/httpd.conf
+```
 
 6. To activate the changes, restart Apache:
 
-    ```shell
-    sudo apachectl restart
-    ```
+```shell
+sudo apachectl restart
+```
 
 Your local backend service should now be operational, with port 18000 as its designated listening port.
 
-## Install the Extension
+### Step 3️⃣: Make Changes in the Settings
 
-🎉🎉 **You can just simply install this extension on Chrome web store now!** [Click here](https://chromewebstore.google.com/detail/macify-macos-screensaver/lgdipcalomggcjkohjhkhkbcpgladnoe?hl=zh-CN) to install.
-
-If you wanna install from the source code, follow the steps:
-
-1. Download the source code.
-2. Ensure Chrome's Developer Mode is activated.
-3. Access the Extensions dashboard.
-4. Unzip the code into a directory that you're unlikely to modify (since unpacked extensions don't reside in Chrome's dedicated storage but operate from the designated directory).
-5. Within Chrome's Extensions dashboard, select "Load Unpacked Extension." Navigate to and open the `src` directory from the code folder you unzipped.
-6. Revel in the beauty of macOS screen saver videos every time you open a new tab in Chrome.
-
-## Make Changes in the Settings
-
-If you are using local server, you need to change the server settings in the extension's option page.
+After you set up your local video server, you need to change the server settings in the extension's option page.
 
 In the extension's option, change the video source to "Local Server" and then enter your local address. If you are using the configuration file I provided, the default address is `http://localhost:18000/videos/`.
