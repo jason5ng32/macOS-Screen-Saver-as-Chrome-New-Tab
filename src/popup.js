@@ -664,10 +664,18 @@ function fetchFavicon(domain, onUpdate) {
   onUpdate(defaultFavicon);
 
   const img = new Image();
-  img.onload = () => onUpdate(faviconUrl); // 成功加载后，通过回调更新 favicon
-  img.onerror = () => onUpdate(defaultFavicon); // 加载失败，确认使用默认图片
+  img.onload = () => {
+    // 检查图片是否是 Google 返回的默认 16x16 图片
+    if (img.width === 16 && img.height === 16) {
+      onUpdate(defaultFavicon); // 如果是，则使用默认图片
+    } else {
+      onUpdate(faviconUrl); // 否则，使用获取到的 favicon
+    }
+  };
+  img.onerror = () => onUpdate(defaultFavicon); // 加载失败时使用默认图片
   img.src = faviconUrl;
 }
+
 
 // 展示 Top Sites
 function updateTopSitesList(topSites) {
