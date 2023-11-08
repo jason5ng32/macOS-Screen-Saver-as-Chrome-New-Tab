@@ -103,9 +103,9 @@
       transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, opacity 0.5s ease-in-out;
       opacity: 0;
       background-image: url('res/gpt.png');
-    background-repeat: no-repeat;
-    background-size: 16pt;
-    background-position: 3%;
+      background-repeat: no-repeat;
+      background-size: 16pt;
+      background-position: 3%;
     }
 
     input[type="text"] {
@@ -417,10 +417,60 @@
     }
 
     .toggle {
-      top:2%;
+      top: 2%;
       right: 1%;
       position: fixed;
       z-index: 100;
+    }
+
+    .zenmode {
+      position: fixed;
+      top: 2%;
+      left: 1%;
+      width: 30pt;
+      height: 30pt;
+      display: none;
+    }
+
+    #fullscreen-btn {
+      width: 80%;
+      height: 80%;
+      border: none;
+      background: none;
+      /* Remove background from the button itself */
+      outline: none;
+      position: relative;
+      opacity: 0.5;
+      transition: opacity 2s ease;
+      /* Transition for opacity */
+      border: 1pt solid #ffffffa6;
+      border-radius: 50pt;
+      box-shadow: 0 0 3pt white;
+      background-color: rgba(255, 255, 255, 0.509);
+      overflow: hidden;
+      /* Prevent any pseudo-element from overflowing */
+    }
+
+    #fullscreen-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('res/zenmode.png') no-repeat center center;
+      background-size: 100%;
+      transition: background-size 1s ease;
+      border-radius: inherit;
+    }
+
+    #fullscreen-btn:hover::after {
+      background-size: 120%;
+    }
+
+    #fullscreen-btn:hover {
+      opacity: 0.777;
+      background-color: white;
     }
   </style>
 </head>
@@ -438,6 +488,11 @@
   <div class="refresh top-layer">
     <button id="switchVideoBtn" title="Refresh video"></button>
   </div>
+  <div class="zenmode top-layer" id="zenmode">
+    <button id="fullscreen-btn" title="Zen Mode"></button>
+    <audio id="background-audio" loop>
+    </audio>
+  </div>
   <div class="toggle top-layer">
     <div class="wth" id="wth">
       <button id="wthBtn" title="Weather"></button>
@@ -445,9 +500,9 @@
     <div class="tss" id="tss">
       <button id="tssBtn" title="Top Sites"></button>
     </div>
-    </div>
+  </div>
   <div class="topsites-area top-layer" id="topsites-area">
-    
+
     <div class="topsites-info top-layer" id="topsites">
       <span>Loading Top sites...</span>
     </div>
@@ -498,7 +553,6 @@
 
     <div class="motto" id="motto"><span>Loading motto...</span>
     </div>
-
   </div>
 
   <script src="popup.js"></script>

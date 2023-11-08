@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Macify - macOS screensaver videos new tab",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Turn your Chrome's new tab page into macOS's gorgeous screensaver aerial videos.",
   "permissions": ["storage","scripting"],
   "optional_permissions": ["history"],
