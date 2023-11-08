@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Macify - macOS screensaver videos new tab",
+  "name": "__MSG_sys_name__",
   "version": "1.6.0",
-  "description": "Turn your Chrome's new tab page into macOS's gorgeous screensaver aerial videos.",
-  "permissions": ["storage","scripting"],
+  "description": "__MSG_sys_description__",
+  "permissions": ["storage", "scripting"],
   "optional_permissions": ["history"],
   "action": {
     "default_popup": "options.html"
@@ -13,16 +13,17 @@
     "128": "res/icon.png"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "js/background.js"
   },
   "content_scripts": [
     {
       "matches": ["https://chat.openai.com/*"],
-      "js": ["content.js"]
+      "js": ["js/content.js"]
     }
   ],
   "host_permissions": ["*://chat.openai.com/*"],
   "chrome_url_overrides": {
     "newtab": "popup.html"
-  }
+  },
+  "default_locale": "en"
 }

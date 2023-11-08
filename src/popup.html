@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Macify Tab</title>
-  <script src="fonts.js"></script>
+  <script src="js/fonts.js"></script>
+  <script src="js/lang.js"></script>
   <style>
     body {
       margin: 0;
@@ -103,9 +104,9 @@
       transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, opacity 0.5s ease-in-out;
       opacity: 0;
       background-image: url('res/gpt.png');
-    background-repeat: no-repeat;
-    background-size: 16pt;
-    background-position: 3%;
+      background-repeat: no-repeat;
+      background-size: 16pt;
+      background-position: 3%;
     }
 
     input[type="text"] {
@@ -417,7 +418,7 @@
     }
 
     .toggle {
-      top:2%;
+      top: 2%;
       right: 1%;
       position: fixed;
       z-index: 100;
@@ -432,24 +433,24 @@
 
   <div id="author" class="author top-layer">
     <p>Created by Jason Ng, Dofy, Setilis.</p>
-    <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab" target="_blank"
-      title="Project's Github"><img src="res/github.png" /></a>
+    <a href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab" target="_blank" title="%_pop_github"><img
+        src="res/github.png" /></a>
   </div>
   <div class="refresh top-layer">
-    <button id="switchVideoBtn" title="Refresh video"></button>
+    <button id="switchVideoBtn" title="%_pop_refresh_video"></button>
   </div>
   <div class="toggle top-layer">
     <div class="wth" id="wth">
-      <button id="wthBtn" title="Weather"></button>
+      <button id="wthBtn" title="%_pop_weather"></button>
     </div>
     <div class="tss" id="tss">
-      <button id="tssBtn" title="Top Sites"></button>
+      <button id="tssBtn" title="%_pop_top_sites"></button>
     </div>
-    </div>
+  </div>
   <div class="topsites-area top-layer" id="topsites-area">
-    
+
     <div class="topsites-info top-layer" id="topsites">
-      <span>Loading Top sites...</span>
+      <span>%_pop_load_top_sites</span>
     </div>
 
 
@@ -459,7 +460,7 @@
 
       <div class="current-aera">
         <div class="weather-text">
-          <p>Now</p>
+          <p>%_pop_now</p>
         </div>
         <img id="weather-icon" src="res/weather.webp" alt="Weather Icon">
         <p id="current-weather">-</p>
@@ -467,7 +468,7 @@
 
       <div id="forcast-vertical">
         <div class="weather-text">
-          <p>Today</p>
+          <p>%_pop_today</p>
         </div>
         <img id="weather-icon1" src="res/weather.webp" alt="Weather Icon">
         <p id="forecast1">-</p>
@@ -475,7 +476,7 @@
 
       <div id="forcast-vertical">
         <div class="weather-text">
-          <p>T + 1</p>
+          <p>%_pop_t_1</p>
         </div>
         <img id="weather-icon2" src="res/weather.webp" alt="Weather Icon">
         <p id="forecast2">-</p>
@@ -483,7 +484,7 @@
 
       <div id="forcast-vertical">
         <div class="weather-text">
-          <p>T + 2</p>
+          <p>%_pop_t_2</p>
         </div>
         <img id="weather-icon3" src="res/weather.webp" alt="Weather Icon">
         <p id="forecast3">-</p>
@@ -494,14 +495,14 @@
   </div>
   <div class="centered top-layer">
     <div id="current-time">--:--</div>
-    <input type="text" id="search" placeholder="Ask ChatGPT...">
+    <input type="text" id="search" placeholder="%_pop_ask_chat_gpt">
 
-    <div class="motto" id="motto"><span>Loading motto...</span>
+    <div class="motto" id="motto"><span>%_pop_load_motto</span>
     </div>
 
   </div>
 
-  <script src="popup.js"></script>
+  <script src="js/popup.js"></script>
 </body>
 
 </html>
