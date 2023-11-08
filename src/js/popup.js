@@ -346,7 +346,7 @@ function switchToNextVideo() {
   } else {
     const errorBox = document.getElementById("errorBox");
     errorBox.textContent = getMsg("error_video_source");
-    errorBox.style.display = "flex";
+    errorBox.style.display = "block";
     errorBox.style.backgroundColor = "#ff000094";
     document.body.style.backgroundColor = "black";
   }
@@ -366,7 +366,7 @@ function videoSettingsSuggestion(videoStatus) {
     errorBox.innerHTML = getMsg("message_video_3");
     errorBox.style.backgroundColor = "#328d6e";
   }
-  errorBox.style.display = "flex";
+  errorBox.style.display = "block";
 }
 
 // 搜索框
@@ -456,7 +456,7 @@ async function fetchRandomMotto() {
     const errorBox = document.getElementById("errorBox");
     errorBox.textContent = getMsg("error_get_motto");
     errorBox.style.backgroundColor = "#ff000094";
-    errorBox.style.display = "flex";
+    errorBox.style.display = "block";
     document.body.style.backgroundColor = "black";
     await new Promise((resolve) => setTimeout(resolve, 3000));
     errorBox.style.display = "none";
@@ -548,7 +548,7 @@ async function getCurrentWeather(city, tempUnit, weatherAPIKEY, shouldUpdate) {
     console.error(`Get weather failed: ${error}`);
     const errorBox = document.getElementById("errorBox");
     errorBox.textContent = getMsg("error_get_weather");
-    errorBox.style.display = "flex";
+    errorBox.style.display = "block";
     errorBox.style.backgroundColor = "#ff000094";
     document.body.style.backgroundColor = "black";
   }
