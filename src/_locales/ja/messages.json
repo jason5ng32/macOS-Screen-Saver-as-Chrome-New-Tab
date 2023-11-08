@@ -38,6 +38,9 @@
   "pop_top_sites": {
     "message": "トップサイト"
   },
+  "pop_zen_mode": {
+    "message": "禅モード"
+  },
   "error_video_source": {
     "message": "切り替える動画要素が見つかりませんでした。"
   },
@@ -181,6 +184,9 @@
   },
   "set_show_refresh_button": {
     "message": "更新ボタンを表示"
+  },
+  "set_show_zen_button": {
+    "message": "禅ボタンを表示"
   },
   "set_show_author_info": {
     "message": "作者情報を表示"

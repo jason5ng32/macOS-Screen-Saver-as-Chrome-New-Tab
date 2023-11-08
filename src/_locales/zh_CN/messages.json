@@ -38,6 +38,9 @@
   "pop_top_sites": {
     "message": "热门网站"
   },
+  "pop_zen_mode": {
+    "message": "禅模式"
+  },
   "error_video_source": {
     "message": "未找到视频元素以切换源。"
   },
@@ -181,6 +184,9 @@
   },
   "set_show_refresh_button": {
     "message": "显示刷新按钮"
+  },
+  "set_show_zen_button": {
+    "message": "显示禅按钮"
   },
   "set_show_author_info": {
     "message": "显示作者信息"

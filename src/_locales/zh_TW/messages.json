@@ -38,6 +38,9 @@
   "pop_top_sites": {
     "message": "熱門站點"
   },
+  "pop_zen_mode": {
+    "message": "禅模式"
+  },
   "error_video_source": {
     "message": "找不到要切換來源的視訊元素。"
   },
@@ -181,6 +184,9 @@
   },
   "set_show_refresh_button": {
     "message": "顯示重新整理按鈕"
+  },
+  "set_show_zen_button": {
+    "message": "顯示禪按鈕"
   },
   "set_show_author_info": {
     "message": "顯示作者資訊"

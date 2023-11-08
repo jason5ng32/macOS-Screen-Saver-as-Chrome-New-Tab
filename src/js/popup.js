@@ -96,6 +96,15 @@ async function initSettings() {
     updateTopSites(newdata.sitesCycle);
     topSitesUI();
   }
+  // Zen Mode
+  if (newdata.showZenMode) {
+    var fullscreenButton = document.getElementById("fullscreen-btn");
+    var videoElement = document.getElementById("videoBox"); // 确保替换成您视频元素的实际 ID
+
+    fullscreenButton.addEventListener("click", function () {
+      enterFullScreen(videoElement);
+    });
+  }
 }
 
 //
@@ -140,6 +149,7 @@ function updateUI({
   refreshButton,
   authorInfo,
   showTopSites,
+  showZenMode,
 }) {
   setDisplay("current-time", showTime ? "block" : "none");
   setDisplay("weather-area", showWeather ? "flex" : "none");
@@ -150,6 +160,7 @@ function updateUI({
   setDisplay("switchVideoBtn", refreshButton ? "" : "none");
   setDisplay("motto", showMotto ? "block" : "none");
   setDisplay("author", authorInfo ? "" : "none");
+  setDisplay("zenmode", showZenMode ? "block" : "none");
 }
 
 // 设置显示或隐藏
@@ -823,4 +834,66 @@ function topSitesUI() {
       );
     }, 100);
   });
+}
+
+// Zen Mode
+function enterFullScreen(videoElement) {
+  var audioElement = document.getElementById("background-audio");
+
+  // 随机选择音乐并播放
+  function playRandomMusic() {
+    var musicList = [
+      "res/music1.mp3",
+      "res/music2.mp3",
+      "res/music3.mp3",
+      "res/music4.mp3",
+    ];
+    var randomIndex = Math.floor(Math.random() * musicList.length);
+    audioElement.src = musicList[randomIndex];
+    audioElement.play();
+  }
+
+  if (
+    !document.fullscreenElement &&
+    !document.mozFullScreenElement &&
+    !document.webkitFullscreenElement &&
+    !document.msFullscreenElement
+  ) {
+    setupFullScreenListener(videoElement, audioElement);
+  }
+
+  if (videoElement.requestFullscreen) {
+    videoElement.requestFullscreen();
+  } else if (videoElement.mozRequestFullScreen) {
+    videoElement.mozRequestFullScreen();
+  } else if (videoElement.webkitRequestFullscreen) {
+    videoElement.webkitRequestFullscreen();
+  } else if (videoElement.msRequestFullscreen) {
+    videoElement.msRequestFullscreen();
+  }
+
+  playRandomMusic(); // 调用函数播放随机音乐
+}
+
+function setupFullScreenListener(videoElement, audioElement) {
+  // 全屏变化事件处理器
+  function onFullScreenChange() {
+    var isFullScreen =
+      document.fullscreenElement ||
+      document.mozFullScreenElement ||
+      document.webkitFullscreenElement ||
+      document.msFullscreenElement;
+
+    // 如果不在全屏模式，停止音频播放
+    if (!isFullScreen) {
+      audioElement.pause();
+      audioElement.currentTime = 0; // 可选：重置音频到开始
+    }
+  }
+
+  // 添加事件监听器
+  document.addEventListener("fullscreenchange", onFullScreenChange);
+  document.addEventListener("mozfullscreenchange", onFullScreenChange);
+  document.addEventListener("webkitfullscreenchange", onFullScreenChange);
+  document.addEventListener("MSFullscreenChange", onFullScreenChange);
 }

@@ -38,6 +38,9 @@
   "pop_top_sites": {
     "message": "Top Sites"
   },
+  "pop_zen_mode": {
+    "message": "Zen Mode"
+  },
   "error_video_source": {
     "message": "No video element found to switch source."
   },
@@ -181,6 +184,9 @@
   },
   "set_show_refresh_button": {
     "message": "Show Refresh Button"
+  },
+  "set_show_zen_button": {
+    "message": "Show Zen Button"
   },
   "set_show_author_info": {
     "message": "Show Author Info"
