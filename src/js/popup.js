@@ -838,27 +838,25 @@ function topSitesUI() {
 
 // Zen Mode
 function enterFullScreen(videoElement) {
-  var audioElement = document.getElementById("background-audio");
+  var audioElement = document.getElementById('background-audio');
 
   // 随机选择音乐并播放
   function playRandomMusic() {
-    var musicList = [
-      "res/music1.mp3",
-      "res/music2.mp3",
-      "res/music3.mp3",
-      "res/music4.mp3",
-    ];
+    var musicList = [];
+    for (var i = 1; i <= 40; i++) {
+      // 使用字符串的 padStart 方法补全音频文件名
+      var musicName = `music${String(i).padStart(5, '0')}`;
+      musicList.push(`https://macifymusic.macify.workers.dev/music/${musicName}`);
+    }
+  
+    // 随机选择音频文件
     var randomIndex = Math.floor(Math.random() * musicList.length);
     audioElement.src = musicList[randomIndex];
     audioElement.play();
   }
 
-  if (
-    !document.fullscreenElement &&
-    !document.mozFullScreenElement &&
-    !document.webkitFullscreenElement &&
-    !document.msFullscreenElement
-  ) {
+  if (!document.fullscreenElement && !document.mozFullScreenElement &&
+    !document.webkitFullscreenElement && !document.msFullscreenElement) {
     setupFullScreenListener(videoElement, audioElement);
   }
 
@@ -878,8 +876,7 @@ function enterFullScreen(videoElement) {
 function setupFullScreenListener(videoElement, audioElement) {
   // 全屏变化事件处理器
   function onFullScreenChange() {
-    var isFullScreen =
-      document.fullscreenElement ||
+    var isFullScreen = document.fullscreenElement ||
       document.mozFullScreenElement ||
       document.webkitFullscreenElement ||
       document.msFullscreenElement;
@@ -892,8 +889,8 @@ function setupFullScreenListener(videoElement, audioElement) {
   }
 
   // 添加事件监听器
-  document.addEventListener("fullscreenchange", onFullScreenChange);
-  document.addEventListener("mozfullscreenchange", onFullScreenChange);
-  document.addEventListener("webkitfullscreenchange", onFullScreenChange);
-  document.addEventListener("MSFullscreenChange", onFullScreenChange);
+  document.addEventListener('fullscreenchange', onFullScreenChange);
+  document.addEventListener('mozfullscreenchange', onFullScreenChange);
+  document.addEventListener('webkitfullscreenchange', onFullScreenChange);
+  document.addEventListener('MSFullscreenChange', onFullScreenChange);
 }
