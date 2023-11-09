@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   chrome.storage.sync.get(Object.keys(SETTINGS_KEYS), function (data) {
     for (const [key, defaultValue] of Object.entries(SETTINGS_KEYS)) {
-      console.log(key, defaultValue);
+      // console.log(key, defaultValue);
       const element = document.getElementById(key);
       if (element.type === "checkbox") {
         element.checked = data[key] !== undefined ? data[key] : defaultValue;
@@ -146,6 +146,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 async function fetchDefaultSettings() {
   const response = await fetch("data/default_settings.json");
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   return data;
 }

@@ -217,5 +217,11 @@
   },
   "message_saved": {
     "message": "設定が保存されました"
+  },
+  "language": {
+    "message": "言語"
+  },
+  "language_selector": {
+    "message": "言語選択"
   }
 }

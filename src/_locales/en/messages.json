@@ -217,5 +217,11 @@
   },
   "message_saved": {
     "message": "Settings saved"
+  },
+  "language": {
+    "message": "Language"
+  },
+  "language_selector": {
+    "message": "Choose Language"
   }
 }

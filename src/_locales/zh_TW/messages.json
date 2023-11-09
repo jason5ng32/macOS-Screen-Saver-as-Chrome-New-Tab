@@ -217,5 +217,11 @@
   },
   "message_saved": {
     "message": "保存成功"
+  },
+  "language": {
+    "message": "語言"
+  },
+  "language_selector": {
+    "message": "選擇語言"
   }
 }

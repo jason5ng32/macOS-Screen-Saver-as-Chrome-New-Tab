@@ -16,6 +16,7 @@
     "tempUnit": "celsius",
     "authorInfo": true,
     "videoSrc": "apple",
+    "languageSelector": "systemDefault",
     "reverseProxy": true,
     "delayTime": 2000
 }  

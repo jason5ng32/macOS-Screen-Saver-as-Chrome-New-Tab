@@ -6,7 +6,7 @@
     "message": "将 Chrome 的新标签页变成 macOS 的华丽屏幕保护器航拍视频。"
   },
   "pop_load_top_sites": {
-    "message": "正在加载热门网站..."
+    "message": "正在加载高频网站..."
   },
   "pop_now": {
     "message": "现在"
@@ -217,5 +217,11 @@
   },
   "message_saved": {
     "message": "设置已保存"
+  },
+  "language": {
+    "message": "语言"
+  },
+  "language_selector": {
+    "message": "选择语言"
   }
 }
