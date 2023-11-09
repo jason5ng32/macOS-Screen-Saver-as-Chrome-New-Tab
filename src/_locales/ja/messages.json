@@ -1,0 +1,221 @@
+{
+  "sys_name": {
+    "message": "Macify - macOSのスクリーンセーバー動画を新しいタブに"
+  },
+  "sys_description": {
+    "message": "Chromeの新しいタブページをmacOSの美しいスクリーンセーバーの空撮動画に変えます。"
+  },
+  "pop_load_top_sites": {
+    "message": "トップサイトを読み込んでいます..."
+  },
+  "pop_now": {
+    "message": "現在"
+  },
+  "pop_today": {
+    "message": "今日"
+  },
+  "pop_t_1": {
+    "message": "明日"
+  },
+  "pop_t_2": {
+    "message": "明後日"
+  },
+  "pop_ask_chat_gpt": {
+    "message": "ChatGPTに聞く..."
+  },
+  "pop_load_motto": {
+    "message": "モットーを読み込んでいます..."
+  },
+  "pop_github": {
+    "message": "プロジェクトのGithub"
+  },
+  "pop_refresh_video": {
+    "message": "動画を更新"
+  },
+  "pop_weather": {
+    "message": "天気"
+  },
+  "pop_top_sites": {
+    "message": "トップサイト"
+  },
+  "pop_zen_mode": {
+    "message": "禅モード"
+  },
+  "error_video_source": {
+    "message": "切り替える動画要素が見つかりませんでした。"
+  },
+  "message_video_1": {
+    "message": "ローカル動画サーバーを使用していますが、動画の取得に失敗しました。正しいURLを設定していることを確認してください。\nここで&nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp;に従って動作させることができます。"
+  },
+  "message_video_2": {
+    "message": "Apple Serverを動画ソースとして使用しているようですが、Appleのルート証明書を信頼していません。\nここで&nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp;に従って動作させることができます。"
+  },
+  "message_video_3": {
+    "message": "リバースプロキシを使用しています。Macifyを使用する最良の方法は、ローカルサーバーを設定するか、リバースプロキシを使用せずにAppleのサーバーを使用することです。\nここで&nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp;に従って動作させることができます。"
+  },
+  "set_options_title": {
+    "message": "Macify新しいタブの設定"
+  },
+  "set_options_note": {
+    "message": "この拡張機能を使用する前に、以下のオプションを設定してください。"
+  },
+  "set_note": {
+    "message": "動画をApple Serverから取得する場合、ChromeはAppleのルート証明書を信頼しない場合があります。そのため、一時的に私のCloudflareリバースプロキシを使用して動画を取得できます（チェックボックスをオンにします）。ただし、このサービスの長期的な可用性を保証することはできません。したがって、手動で信頼する<a href=\"instructions.html\" target=_blank>instructions</a>に従うことを強くお勧めします。"
+  },
+  "set_videos": {
+    "message": "動画"
+  },
+  "set_video_source": {
+    "message": "動画ソース"
+  },
+  "set_apple_server": {
+    "message": "Apple Server"
+  },
+  "set_local_server": {
+    "message": "ローカルサーバー"
+  },
+  "set_reverse_proxy": {
+    "message": "リバースプロキシ"
+  },
+  "set_Local_Videos_list_URL": {
+    "message": "ローカル動画リストURL"
+  },
+  "set_video_note": {
+    "message": "この拡張機能を使用する最良の方法は、<a href=\"instructions.html\" target=_blank>instructions</a>に従ってローカルHTTPサービスを設定することです。"
+  },
+  "set_weather": {
+    "message": "天気"
+  },
+  "set_show_weather": {
+    "message": "天気を表示"
+  },
+  "set_city_name": {
+    "message": "都市名（英語）"
+  },
+  "set_temp_unit": {
+    "message": "温度単位"
+  },
+  "set_celsius": {
+    "message": "摂氏（°C）"
+  },
+  "set_fahrenheit": {
+    "message": "華氏（°F）"
+  },
+  "set_weather_api": {
+    "message": "Weatherapi.com API"
+  },
+  "set_your_weather_api_key": {
+    "message": "API KEYを入力してください"
+  },
+  "set_weather_note": {
+    "message": "<a href=\"https://www.weatherapi.com/\" target=_blank>weatherapi.com</a>にアクセスして、無料のAPIキーを取得してください。"
+  },
+  "set_ask_chatgpt": {
+    "message": "ChatGPTに聞く"
+  },
+  "set_show_chatgpt": {
+    "message": "ChatGPTを表示"
+  },
+  "set_default_model": {
+    "message": "デフォルトモデルを選択"
+  },
+  "set_delay_time": {
+    "message": "遅延時間をミリ秒で入力してください"
+  },
+  "set_delay_note": {
+    "message": "2000以上が推奨されます。"
+  },
+  "set_time": {
+    "message": "時間"
+  },
+  "set_show_clock": {
+    "message": "時計を表示"
+  },
+  "set_hour_system": {
+    "message": "時間制度"
+  },
+  "set_12_hour": {
+    "message": "12時間"
+  },
+  "set_24_hour": {
+    "message": "24時間"
+  },
+  "set_clock_note": {
+    "message": "時計が表示されている場合にのみ影響します。"
+  },
+  "set_top_sites": {
+    "message": "トップサイト"
+  },
+  "set_show_top_sites": {
+    "message": "トップサイトを表示"
+  },
+  "set_histories_within": {
+    "message": "履歴範囲"
+  },
+  "set_1_month": {
+    "message": "1ヶ月"
+  },
+  "set_2_weeks": {
+    "message": "2週間"
+  },
+  "set_1_week": {
+    "message": "1週間"
+  },
+  "set_3_days": {
+    "message": "3日間"
+  },
+  "set_1_day": {
+    "message": "1日"
+  },
+  "set_history_permission": {
+    "message": "この機能を有効にするには、履歴許可が必要です。"
+  },
+  "set_others": {
+    "message": "その他"
+  },
+  "set_choose_font": {
+    "message": "フォントを選択"
+  },
+  "set_system_default": {
+    "message": "システムデフォルト"
+  },
+  "set_show_motto": {
+    "message": "モットーを表示"
+  },
+  "set_show_refresh_button": {
+    "message": "更新ボタンを表示"
+  },
+  "set_show_zen_button": {
+    "message": "禅ボタンを表示"
+  },
+  "set_show_author_info": {
+    "message": "作者情報を表示"
+  },
+  "set_save": {
+    "message": "保存"
+  },
+  "error_get_motto": {
+    "message": "モットーの取得に失敗しました。"
+  },
+  "error_get_weather": {
+    "message": "天気の取得に失敗しました。APIキーと都市名を確認してから、もう一度お試しください。"
+  },
+  "error_video_url": {
+    "message": "動画リストURLを入力してください"
+  },
+  "error_delay_time": {
+    "message": "遅延時間は1から10000の整数でなければなりません。"
+  },
+  "error_weather": {
+    "message": "都市名とweatherapi.com API KEYを入力してください"
+  },
+  "error_weather_api_key": {
+    "message": "APIキーは30文字以上で、文字と数字のみで構成されている必要があります。"
+  },
+  "error_history_permission": {
+    "message": "この機能を有効にするには、履歴許可が必要です。"
+  },
+  "message_saved": {
+    "message": "設定が保存されました"
+  }
+}

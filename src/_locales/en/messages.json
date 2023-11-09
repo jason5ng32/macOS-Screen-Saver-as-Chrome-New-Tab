@@ -1,0 +1,221 @@
+{
+  "sys_name": {
+    "message": "Macify - macOS screensaver videos new tab"
+  },
+  "sys_description": {
+    "message": "Turn your Chrome's new tab page into macOS's gorgeous screensaver aerial videos."
+  },
+  "pop_load_top_sites": {
+    "message": "Loading Top sites..."
+  },
+  "pop_now": {
+    "message": "Now"
+  },
+  "pop_today": {
+    "message": "Today"
+  },
+  "pop_t_1": {
+    "message": "T + 1"
+  },
+  "pop_t_2": {
+    "message": "T + 2"
+  },
+  "pop_ask_chat_gpt": {
+    "message": "Ask ChatGPT..."
+  },
+  "pop_load_motto": {
+    "message": "Loading motto..."
+  },
+  "pop_github": {
+    "message": "Project's Github"
+  },
+  "pop_refresh_video": {
+    "message": "Refresh video"
+  },
+  "pop_weather": {
+    "message": "Weather"
+  },
+  "pop_top_sites": {
+    "message": "Top Sites"
+  },
+  "pop_zen_mode": {
+    "message": "Zen Mode"
+  },
+  "error_video_source": {
+    "message": "No video element found to switch source."
+  },
+  "message_video_1": {
+    "message": "It looks like you are using local video server but fetching videos failed. Please make sure you have set the correct URL.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work."
+  },
+  "message_video_2": {
+    "message": "It looks like you are using Apple Server as video source, but havn't trust Apple's Root Certificate yet.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it work."
+  },
+  "message_video_3": {
+    "message": "It looks like you are our reverse proxy. The great way to use Macify is to set up local server or use Apple's Server without reverse proxy.\nFollow the &nbsp;<a href=\"instructions.html\" target=_blank >instructions</a>&nbsp; here to make it better."
+  },
+  "set_options_title": {
+    "message": "Macify new tab settings"
+  },
+  "set_options_note": {
+    "message": "Please config the options below before using this extension."
+  },
+  "set_note": {
+    "message": "If you choose to fetch videos from Apple Server, Chrome may not trust Apple's root certificate, so you can temporarily use my Cloudflare reverse proxy to fetch videos (check the checkbox below). However, I cannot guarantee the long-term availability of this service. Therefore, I strongly recommend that you follow the <a href=\"instructions.html\" target=_blank>instructions</a> to manual trust it."
+  },
+  "set_videos": {
+    "message": "Videos"
+  },
+  "set_video_source": {
+    "message": "Video Source"
+  },
+  "set_apple_server": {
+    "message": "Apple Server"
+  },
+  "set_local_server": {
+    "message": "Local Server"
+  },
+  "set_reverse_proxy": {
+    "message": "Reverse Proxy "
+  },
+  "set_Local_Videos_list_URL": {
+    "message": "Local Videos list URL"
+  },
+  "set_video_note": {
+    "message": "The better way to use this extension is setting up a local HTTP service, following these <a href=\"instructions.html\" target=_blank>instructions</a>."
+  },
+  "set_weather": {
+    "message": "Weather"
+  },
+  "set_show_weather": {
+    "message": "Show Weather"
+  },
+  "set_city_name": {
+    "message": "City Name (EN)"
+  },
+  "set_temp_unit": {
+    "message": "Temperature Unit"
+  },
+  "set_celsius": {
+    "message": "Celsius (°C)"
+  },
+  "set_fahrenheit": {
+    "message": "Fahrenheit (°F)"
+  },
+  "set_weather_api": {
+    "message": "Weatherapi.com API"
+  },
+  "set_your_weather_api_key": {
+    "message": "Enter your own API KEY"
+  },
+  "set_weather_note": {
+    "message": "Go to <a href=\"https://www.weatherapi.com/\" target=_blank>weatherapi.com</a> to get your free API key."
+  },
+  "set_ask_chatgpt": {
+    "message": "Ask ChatGPT"
+  },
+  "set_show_chatgpt": {
+    "message": "Show ChatGPT"
+  },
+  "set_default_model": {
+    "message": "Choose default model"
+  },
+  "set_delay_time": {
+    "message": "Input delay time in ms"
+  },
+  "set_delay_note": {
+    "message": "2000 or more would be recommended."
+  },
+  "set_time": {
+    "message": "Time"
+  },
+  "set_show_clock": {
+    "message": "Show Clock"
+  },
+  "set_hour_system": {
+    "message": "Hour System"
+  },
+  "set_12_hour": {
+    "message": "12-Hour"
+  },
+  "set_24_hour": {
+    "message": "24-Hour"
+  },
+  "set_clock_note": {
+    "message": "Only affected when clock is shown."
+  },
+  "set_top_sites": {
+    "message": "Top Sites"
+  },
+  "set_show_top_sites": {
+    "message": "Show Top Sites"
+  },
+  "set_histories_within": {
+    "message": "Histories within"
+  },
+  "set_1_month": {
+    "message": "1 Month"
+  },
+  "set_2_weeks": {
+    "message": "2 Weeks"
+  },
+  "set_1_week": {
+    "message": "1 Week"
+  },
+  "set_3_days": {
+    "message": "3 Days"
+  },
+  "set_1_day": {
+    "message": "1 Day"
+  },
+  "set_history_permission": {
+    "message": "History permission is required for this feature."
+  },
+  "set_others": {
+    "message": "Others"
+  },
+  "set_choose_font": {
+    "message": "Choose font"
+  },
+  "set_system_default": {
+    "message": "System Default"
+  },
+  "set_show_motto": {
+    "message": "Show Motto"
+  },
+  "set_show_refresh_button": {
+    "message": "Show Refresh Button"
+  },
+  "set_show_zen_button": {
+    "message": "Show Zen Button"
+  },
+  "set_show_author_info": {
+    "message": "Show Author Info"
+  },
+  "set_save": {
+    "message": "Save"
+  },
+  "error_get_motto": {
+    "message": "Get motto failed."
+  },
+  "error_get_weather": {
+    "message": "Get weather failed. Please check the API key and city name then try again."
+  },
+  "error_video_url": {
+    "message": "Please input Videos list URL"
+  },
+  "error_delay_time": {
+    "message": "Delay time must be an integer between 1 and 10000."
+  },
+  "error_weather": {
+    "message": "Please input City Name and weatherapi.com API KEY"
+  },
+  "error_weather_api_key": {
+    "message": "The API Key must be at least 30 characters long and consist only of letters and numbers."
+  },
+  "error_history_permission": {
+    "message": "History permission is required to enable this feature."
+  },
+  "message_saved": {
+    "message": "Settings saved"
+  }
+}

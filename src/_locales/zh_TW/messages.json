@@ -1,0 +1,221 @@
+{
+  "sys_name": {
+    "message": "Macify -  macOS 螢幕保護視訊標籤頁"
+  },
+  "sys_description": {
+    "message": "將您的 Chrome 新分頁頁面變成 macOS 美麗的螢幕保護視訊。"
+  },
+  "pop_load_top_sites": {
+    "message": "載入熱門站點..."
+  },
+  "pop_now": {
+    "message": "而家"
+  },
+  "pop_today": {
+    "message": "今日"
+  },
+  "pop_t_1": {
+    "message": "聽日"
+  },
+  "pop_t_2": {
+    "message": "後日"
+  },
+  "pop_ask_chat_gpt": {
+    "message": "問問 ChatGPT..."
+  },
+  "pop_load_motto": {
+    "message": "加載座右銘..."
+  },
+  "pop_github": {
+    "message": "Github 專案位址"
+  },
+  "pop_refresh_video": {
+    "message": "更新視訊"
+  },
+  "pop_weather": {
+    "message": "天氣"
+  },
+  "pop_top_sites": {
+    "message": "熱門站點"
+  },
+  "pop_zen_mode": {
+    "message": "禅模式"
+  },
+  "error_video_source": {
+    "message": "找不到要切換來源的視訊元素。"
+  },
+  "message_video_1": {
+    "message": "看起來您正在使用本地視頻服務器，但獲取視頻失敗了。請確保您已經設置了正確的 URL。\n按照此處的&nbsp;<a href=\"instructions.html\" target=_blank >說明</a>&nbsp;進行操作。"
+  },
+  "message_video_2": {
+    "message": "看起來您正在使用 Apple 伺服器作為視訊來源，但尚未信任 Apple 的根憑證。\n請按照此處的&nbsp;<a href=\"instructions.html\" target=_blank >說明</a>&nbsp;進行操作。"
+  },
+  "message_video_3": {
+    "message": "這看起來像是您正在使用我們的反向代理。使用 Macify 的最佳方式是設置本地服務器或使用 Apple 的服務器而不使用反向代理。請按照&nbsp;<a href=\"instructions.html\" target=_blank >此說明</a>&nbsp;進行更好的設置。"
+  },
+  "set_note": {
+    "message": "如果您選擇從 Apple 伺服器獲取視頻，Chrome 可能不信任 Apple 的根證書，因此您可以暫時使用我的 Cloudflare 反向代理來獲取視頻（勾選下面的複選框）。但是，我無法保證此服務的長期可用性。因此，我強烈建議您遵循&nbsp;<a href=\"instructions.html\" target=_blank>說明</a>&nbsp;手動信任它。"
+  },
+  "set_videos": {
+    "message": "視訊"
+  },
+  "set_video_source": {
+    "message": "視訊來源"
+  },
+  "set_apple_server": {
+    "message": "Apple 伺服器"
+  },
+  "set_local_server": {
+    "message": "本地伺服器"
+  },
+  "set_reverse_proxy": {
+    "message": "逆向代理"
+  },
+  "set_Local_Videos_list_URL": {
+    "message": "本地視訊列表 URL"
+  },
+  "set_video_note": {
+    "message": "使用此擴展程序的更好方法是設置本地 HTTP 服務，按照&nbsp;<a href=\"instructions.html\" target=_blank>此說明</a>&nbsp;進行操作。"
+  },
+  "set_weather": {
+    "message": "天氣"
+  },
+  "set_show_weather": {
+    "message": "顯示天氣"
+  },
+  "set_city_name": {
+    "message": "城市名稱 (英文)"
+  },
+  "set_temp_unit": {
+    "message": "溫度單位"
+  },
+  "set_celsius": {
+    "message": "攝氏度 (°C)"
+  },
+  "set_fahrenheit": {
+    "message": "華氏度 (°F)"
+  },
+  "set_weather_api": {
+    "message": "Weatherapi.com API"
+  },
+  "set_your_weather_api_key": {
+    "message": "輸入您自己的 API 金鑰"
+  },
+  "set_weather_note": {
+    "message": "前往<a href=\"https://www.weatherapi.com/\" target=_blank>weatherapi.com</a>獲取您的免費 API 金鑰。"
+  },
+  "set_ask_chatgpt": {
+    "message": "問問 ChatGPT"
+  },
+  "set_show_chatgpt": {
+    "message": "顯示 ChatGPT"
+  },
+  "set_default_model": {
+    "message": "選擇預設模型"
+  },
+  "set_delay_time": {
+    "message": "輸入延遲時間（毫秒）"
+  },
+  "set_options_title": {
+    "message": "Macify 標籤頁設置項"
+  },
+  "set_options_note": {
+    "message": "在使用此擴展程序之前，請先設置以下選項。"
+  },
+  "set_delay_note": {
+    "message": "建議使用 2000 或更多。"
+  },
+  "set_time": {
+    "message": "時間"
+  },
+  "set_show_clock": {
+    "message": "顯示時鐘"
+  },
+  "set_hour_system": {
+    "message": "時間制"
+  },
+  "set_12_hour": {
+    "message": "12 小時制"
+  },
+  "set_24_hour": {
+    "message": "24 小時制"
+  },
+  "set_clock_note": {
+    "message": "僅在顯示時鐘時有效。"
+  },
+  "set_top_sites": {
+    "message": "熱門站點"
+  },
+  "set_show_top_sites": {
+    "message": "顯示熱門站點"
+  },
+  "set_histories_within": {
+    "message": "歷史記錄範圍"
+  },
+  "set_1_month": {
+    "message": "1 個月"
+  },
+  "set_2_weeks": {
+    "message": "2 週"
+  },
+  "set_1_week": {
+    "message": "1 週"
+  },
+  "set_3_days": {
+    "message": "3 天"
+  },
+  "set_1_day": {
+    "message": "1 天"
+  },
+  "set_history_permission": {
+    "message": "此功能需要歷史記錄權限。"
+  },
+  "set_others": {
+    "message": "其他設置"
+  },
+  "set_choose_font": {
+    "message": "選擇字體"
+  },
+  "set_system_default": {
+    "message": "系統默認字體"
+  },
+  "set_show_motto": {
+    "message": "顯示座右銘"
+  },
+  "set_show_refresh_button": {
+    "message": "顯示重新整理按鈕"
+  },
+  "set_show_zen_button": {
+    "message": "顯示禪按鈕"
+  },
+  "set_show_author_info": {
+    "message": "顯示作者資訊"
+  },
+  "set_save": {
+    "message": "保存"
+  },
+  "error_get_motto": {
+    "message": "加載座右銘失敗。"
+  },
+  "error_get_weather": {
+    "message": "天氣資料獲取失敗。請檢查 API 金鑰和城市名稱，然後重試。"
+  },
+  "error_video_url": {
+    "message": "請輸入影片列表網址"
+  },
+  "error_delay_time": {
+    "message": "延遲時間必須是介於 1 到 10000 的整數。"
+  },
+  "error_weather": {
+    "message": "請輸入城市名稱和 weatherapi.com API 金鑰"
+  },
+  "error_weather_api_key": {
+    "message": "API 金鑰必須至少為 30 個字元，並且只能包含字母和數字。"
+  },
+  "error_history_permission": {
+    "message": "啟用此功能需要歷史記錄權限。"
+  },
+  "message_saved": {
+    "message": "保存成功"
+  }
+}

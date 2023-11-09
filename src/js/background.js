@@ -26,7 +26,7 @@ function handleOpenUrlAndType(request) {
         try {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
-            files: ['content.js']
+            files: ['js/content.js']
           }, () => {
             chrome.tabs.sendMessage(tab.id, { action: 'typeInput', input: request.input });
           });
