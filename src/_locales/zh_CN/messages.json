@@ -1,0 +1,245 @@
+{
+  "sys_name": {
+    "message": "Macify - macOS 屏保视频标签页"
+  },
+  "sys_description": {
+    "message": "将 Chrome 的新标签页变成 macOS 华丽的航拍视频。"
+  },
+  "pop_load_top_sites": {
+    "message": "正在加载高频网站..."
+  },
+  "pop_now": {
+    "message": "现在"
+  },
+  "pop_today": {
+    "message": "今天"
+  },
+  "pop_t_1": {
+    "message": "明天"
+  },
+  "pop_t_2": {
+    "message": "后天"
+  },
+  "pop_ask_chat_gpt": {
+    "message": "问问 ChatGPT..."
+  },
+  "pop_load_motto": {
+    "message": "正在加载格言..."
+  },
+  "pop_github": {
+    "message": "Github 项目地址"
+  },
+  "pop_refresh_video": {
+    "message": "刷新视频"
+  },
+  "pop_weather": {
+    "message": "天气"
+  },
+  "pop_top_sites": {
+    "message": "热门网站"
+  },
+  "pop_zen_mode": {
+    "message": "禅模式"
+  },
+  "error_video_source": {
+    "message": "未找到视频元素以切换源。"
+  },
+  "message_video_1": {
+    "message": "看起来您正在使用本地视频服务器，但获取视频失败。请确保您已设置正确的 URL。请按照此处的&nbsp;<a href=\"instructions.html\" target=_blank >说明</a>&nbsp;进行操作。"
+  },
+  "message_video_2": {
+    "message": "看起来您正在使用 Apple 服务器作为视频源，但尚未信任 Apple 的根证书。请按照此处的&nbsp;<a href=\"instructions.html\" target=_blank >说明</a>&nbsp;进行操作。"
+  },
+  "message_video_3": {
+    "message": "看起来您正在使用我们的反向代理。使用 Macify 的好方法是设置本地服务器或使用 Apple 的服务器而不使用反向代理。请按照此处的&nbsp;<a href=\"instructions.html\" target=_blank >说明</a>&nbsp;进行操作，使其更好。"
+  },
+  "set_options_title": {
+    "message": "Macify 新标签页设置"
+  },
+  "set_options_note": {
+    "message": "在使用此扩展之前，请配置以下选项。"
+  },
+  "set_note": {
+    "message": "如果您选择从 Apple 服务器获取视频，则 Chrome 可能不信任 Apple 的根证书，因此您可以暂时使用我的 Cloudflare 反向代理来获取视频（选中下面的复选框）。但是，我无法保证此服务的长期可用性。因此，我强烈建议您按照<a href=\"instructions.html\" target=_blank>说明</a>手动信任它。"
+  },
+  "set_videos": {
+    "message": "视频"
+  },
+  "set_video_source": {
+    "message": "视频源"
+  },
+  "set_apple_server": {
+    "message": "Apple 服务器"
+  },
+  "set_local_server": {
+    "message": "本地服务器"
+  },
+  "set_reverse_proxy": {
+    "message": "反向代理"
+  },
+  "set_local_videos_list_url": {
+    "message": "本地视频列表 URL"
+  },
+  "set_video_note": {
+    "message": "使用此扩展的更好方法是设置本地 HTTP 服务，请按照 <a href=\"instructions.html\" target=_blank>说明</a> 进行操作。"
+  },
+  "set_weather": {
+    "message": "天气"
+  },
+  "set_show_weather": {
+    "message": "显示天气"
+  },
+  "set_city_name": {
+    "message": "城市名称（英文）"
+  },
+  "set_temp_unit": {
+    "message": "温度单位"
+  },
+  "set_celsius": {
+    "message": "摄氏度（°C）"
+  },
+  "set_fahrenheit": {
+    "message": "华氏度（°F）"
+  },
+  "set_weather_api": {
+    "message": "Weatherapi.com API"
+  },
+  "set_your_weather_api_key": {
+    "message": "输入您自己的 API KEY"
+  },
+  "set_weather_note": {
+    "message": "前往<a href=\"https://www.weatherapi.com/\" target=_blank>weatherapi.com</a>获取您的免费 API 密钥。"
+  },
+  "set_ask_chatgpt": {
+    "message": "问问 ChatGPT"
+  },
+  "set_show_chatgpt": {
+    "message": "显示 ChatGPT"
+  },
+  "set_default_model": {
+    "message": "选择默认模型"
+  },
+  "set_delay_time": {
+    "message": "输入延迟时间（毫秒）"
+  },
+  "set_delay_note": {
+    "message": "建议使用 2000 或更多。"
+  },
+  "set_time": {
+    "message": "时间"
+  },
+  "set_show_clock": {
+    "message": "显示时钟"
+  },
+  "set_hour_system": {
+    "message": "小时制"
+  },
+  "set_12_hour": {
+    "message": "12 小时制"
+  },
+  "set_24_hour": {
+    "message": "24 小时制"
+  },
+  "set_clock_note": {
+    "message": "仅在显示时钟时有效。"
+  },
+  "set_top_sites": {
+    "message": "热门网站"
+  },
+  "set_show_top_sites": {
+    "message": "显示热门网站"
+  },
+  "set_histories_within": {
+    "message": "历史记录范围"
+  },
+  "set_1_month": {
+    "message": "1 个月"
+  },
+  "set_2_weeks": {
+    "message": "2 周"
+  },
+  "set_1_week": {
+    "message": "1 周"
+  },
+  "set_3_days": {
+    "message": "3 天"
+  },
+  "set_1_day": {
+    "message": "1 天"
+  },
+  "set_history_permission": {
+    "message": "启用此功能需要历史记录权限。"
+  },
+  "set_others": {
+    "message": "其他"
+  },
+  "set_choose_font": {
+    "message": "选择字体"
+  },
+  "set_system_default": {
+    "message": "系统默认自体"
+  },
+  "set_show_motto": {
+    "message": "显示格言"
+  },
+  "set_show_refresh_button": {
+    "message": "显示刷新按钮"
+  },
+  "set_show_zen_button": {
+    "message": "显示禅按钮"
+  },
+  "set_show_author_info": {
+    "message": "显示作者信息"
+  },
+  "set_save": {
+    "message": "保存"
+  },
+  "error_get_motto": {
+    "message": "获取格言失败。"
+  },
+  "error_get_weather": {
+    "message": "获取天气失败。请检查 API 密钥和城市名称，然后重试。"
+  },
+  "error_video_url": {
+    "message": "请输入视频列表 URL"
+  },
+  "error_delay_time": {
+    "message": "延迟时间必须是介于 1 和 10000 之间的整数。"
+  },
+  "error_weather": {
+    "message": "请输入城市名称和 weatherapi.com API KEY"
+  },
+  "error_weather_api_key": {
+    "message": "API 密钥长度必须至少为 30 个字符，并且只能由字母和数字组成。"
+  },
+  "error_history_permission": {
+    "message": "启用此功能需要历史记录权限。"
+  },
+  "message_saved": {
+    "message": "设置已保存"
+  },
+  "set_language": {
+    "message": "语言"
+  },
+  "set_language_selector": {
+    "message": "选择语言"
+  },
+  "set_motto" : {
+    "message": "格言"
+  },
+  "set_deepl_api" : {
+    "message": "DeepL API"
+  },
+  "set_your_deepl_api_key" :{
+    "message": "填入你的 DeepL API KEY"
+  },
+  "error_deepL_api_key": {
+    "message": "API 密钥长度必须至少为 38 个字符。"
+  },
+  "set_deepl_api_note" : {
+    "message": "如果你希望将格言翻译成你的语言，请前往<a href=\"https://www.deepl.com/\" target=_blank>DeepL</a>获取您的免费 API 密钥。"
+  },
+  "set_translate_motto" : {
+    "message": "翻译格言"
+  }
+}

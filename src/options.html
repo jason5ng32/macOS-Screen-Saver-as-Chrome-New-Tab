@@ -4,295 +4,176 @@
 <head>
   <meta charset="UTF-8">
   <title>Macify Settings</title>
-  <style id="dynamic-styles">
-    @font-face {
-      font-family: 'CustomFont';
-      src: url('res/font.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    body {
-      background-color: #f2f2f2;
-      width: min-content;
-      margin: 0 auto;
-      font-family: "CustomFont";
-    }
-
-    main {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: center;
-      justify-content: center;
-      align-items: flex-start;
-      margin: 0 auto;
-      background-color: white;
-      box-shadow: 0 0 3px #c0c0c0;
-      padding: 30pt;
-      font-family: "CustomFont";
-      width: min-content;
-
-    }
-
-    .area {
-      width: 100%;
-    }
-
-    .setting {
-      margin-bottom: 10pt;
-      font-size: 14pt;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      margin-left: 16pt;
-    }
-
-    .input {
-      font-family: "CustomFont";
-      font-size: 14pt;
-      padding-left: 4pt;
-      margin-left: 3pt;
-      width: 250pt;
-    }
-
-    h1 {
-      margin-bottom: 20pt;
-    }
-
-    button {
-      border: 1px solid #318fff;
-      background-color: #0275ff;
-      color: white;
-      border-radius: 18px;
-      height: 25pt;
-      margin-top: 16pt;
-      width: 70pt;
-      margin-top: 16pt;
-      font-size: 14pt;
-      font-family: "CustomFont";
-    }
-
-    button:active {
-      background-color: #005ecf;
-      /* 稍微深一点的颜色 */
-      border-color: #005ecf;
-      /* 与背景颜色相同 */
-    }
-
-    .note {
-      font-size: 11pt;
-      margin-top: 2pt;
-      color: #252525;
-      margin-left: 16pt;
-      margin-bottom: 16pt;
-    }
-
-    select {
-      font-family: "CustomFont";
-      font-size: 14pt;
-      padding-left: 4pt;
-      margin-left: 3pt;
-      padding-bottom: 4pt;
-      width: 258pt;
-    }
-
-    input {
-      font-family: "CustomFont";
-    }
-
-    footer {
-      float: right;
-      width: 100%;
-      text-align: right;
-      padding-top: 10px;
-    }
-
-    label {
-      display: inline-block;
-      padding-right: 10pt;
-      min-width: 150pt;
-    }
-
-    .success {
-      color: green;
-      font-size: 14pt;
-    }
-
-    .error {
-      color: red;
-      font-size: 14pt;
-    }
-
-    #message {
-      margin-top: 10pt;
-      height: 20pt;
-    }
-
-    .saveinfo {
-      margin-left: 16pt;
-    }
-  </style>
-  <script src="fonts.js"></script>
+  <script src="js/fonts.js"></script>
+  <script src="js/lang.js"></script>
+  <link href="css/options.css" rel="stylesheet" />
 </head>
 
 <body>
   <main>
-    <h1>Macify new tab settings</h1>
-    <div class="note" style="margin-left: 0;">
-      Please config the options below before using this extension.
+    <h1>%_set_options_title</h1>
+    <div class="note" style="margin-left: 0;">%_set_options_note</div>
+    <div class="area">
+      <h2>🔤 %_set_language</h2>
+      <div class="setting">
+        <label for="userLanguage">%_set_language_selector :</label>
+        <select id="userLanguage">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="ja">日本語</option>
+          <option value="zh_CN">简体中文</option>
+          <option value="zh_TW">繁體中文</option>
+        </select>
+      </div>
     </div>
     <div class="area">
-      <h2>📺 Videos</h2>
-      <div class="note">
-        If you choose to fetch videos from Apple Server, Chrome may not trust Apple's root certificate, so you can
-        temporarily use my Cloudflare reverse proxy to fetch videos (check the checkbox below). However, I cannot
-        guarantee the long-term availability of this service. Therefore, I strongly recommend that you follow the <a
-          href="instructions.html">instructions</a> to manual trust it.
-      </div>
+      <h2>📺 %_set_videos</h2>
+      <div class="note">%_set_note</div>
       <div class="setting">
-        <label for="videoSrc">Video Source :</label>
+        <label for="videoSrc">%_set_video_source :</label>
         <select id="videoSrc">
-          <option value="apple">Apple Server</option>
-          <option value="local">Local Server</option>
+          <option value="apple">%_set_apple_server</option>
+          <option value="local">%_set_local_server</option>
         </select>
       </div>
       <div class="setting" id="reverseProxySetting">
-        <label for="reverseProxy">Reverse Proxy :</label>
+        <label for="reverseProxy">%_set_reverse_proxy :</label>
         <input type="checkbox" id="reverseProxy">
       </div>
       <div class="setting" id="videoSourceUrlSetting">
-        <label for="videoSourceUrl">Local Videos list URL :</label>
+        <label for="videoSourceUrl">%_set_local_videos_list_url :</label>
         <input type="text" class="input" id="videoSourceUrl">
       </div>
-      <div class="note" id="videoSourceUrlNote">
-        The better way to use this extension is setting up a local HTTP service, following these <a
-          href="instructions.html">instructions</a>.
-      </div>
+      <div class="note" id="videoSourceUrlNote">%_set_video_note</div>
     </div>
     <div class="area">
-      <h2>🌥️ Weather</h2>
+      <h2>🌥️ %_set_weather</h2>
       <div class="setting">
-        <label for="showWeather">Show Weather</label>
+        <label for="showWeather">%_set_show_weather</label>
         <input type="checkbox" id="showWeather">
       </div>
       <div class="setting">
-        <label for="city">City name (EN) :</label>
+        <label for="city">%_set_city_name :</label>
         <input type="text" class="input" id="city">
       </div>
       <div class="setting">
-        <label for="tempUnit">Temperature Unit :</label>
+        <label for="tempUnit">%_set_temp_unit :</label>
         <select id="tempUnit">
-          <option value="celsius">Celsius (°C)</option>
-          <option value="fahrenheit">Fahrenheit (°F)</option>
+          <option value="celsius">%_set_celsius</option>
+          <option value="fahrenheit">%_set_fahrenheit</option>
         </select>
       </div>
       <div class="setting">
-        <label for="weatherAPIKEY">Weatherapi.com API:</label>
-        <input type="text" class="input" id="weatherAPIKEY" placeholder="Enter your own API KEY">
+        <label for="weatherAPIKEY">%_set_weather_api:</label>
+        <input type="text" class="input" id="weatherAPIKEY" placeholder="%_set_your_weather_api_key">
 
       </div>
-      <div class="note">
-        Go to <a href="https://www.weatherapi.com/">weatherapi.com</a> to get your free API key.
-      </div>
+      <div class="note">%_set_weather_note</div>
     </div>
 
     <div class="area">
-      <h2>💬 Ask ChatGPT</h2>
+      <h2>💬 %_set_ask_chatgpt</h2>
       <div class="setting">
-        <label for="showSearch">Show ChatGPT</label>
+        <label for="showSearch">%_set_show_chatgpt</label>
         <input type="checkbox" id="showSearch">
       </div>
       <div class="setting">
-        <label for="modelType">Choose default model:</label>
+        <label for="modelType">%_set_default_model :</label>
         <select id="modelType">
           <option value="gpt-4">GPT-4</option>
           <option value="text-davinci-002-render-sha">GPT-3</option>
         </select>
       </div>
       <div class="setting">
-        <label for="delayTime">Input delay time in ms:</label>
+        <label for="delayTime">%_set_delay_time :</label>
         <input type="text" class="input" id="delayTime" min="0">
       </div>
-      <div class="note">
-        2000 or more would be recommended.
-      </div>
+      <div class="note">%_set_delay_note</div>
     </div>
 
     <div class="area">
-      <h2>🕑 Time</h2>
+      <h2>🕑 %_set_time</h2>
       <div class="setting">
-        <label for="showTime">Show Clock</label>
+        <label for="showTime">%_set_show_clock</label>
         <input type="checkbox" id="showTime">
       </div>
       <div class="setting">
-        <label for="hourSystem">Hour System</label>
+        <label for="hourSystem">%_set_hour_system</label>
         <select id="hourSystem">
-          <option value="12">12-Hour</option>
-          <option value="24">24-Hour</option>
+          <option value="12">%_set_12_hour</option>
+          <option value="24">%_set_24_hour</option>
         </select>
       </div>
-      <div class="note">
-        Only affected when clock is shown.
-      </div>
+      <div class="note">%_set_clock_note</div>
     </div>
 
     <div class="area">
-      <h2>🔗 Top Sites</h2>
+      <h2>🔗 %_set_top_sites</h2>
       <div class="setting">
-        <label for="showTopSites">Show Top Sites</label>
+        <label for="showTopSites">%_set_show_top_sites</label>
         <input type="checkbox" id="showTopSites">
       </div>
       <div class="setting">
-        <label for="sitesCycle">Histories within</label>
+        <label for="sitesCycle">%_set_histories_within</label>
         <select id="sitesCycle">
-          <option value="30">1 Month</option>
-          <option value="14">2 Weeks</option>
-          <option value="7">1 Week</option>
-          <option value="3">3 Days</option>
-          <option value="1">1 Day</option>
+          <option value="30">%_set_1_month</option>
+          <option value="14">%_set_2_weeks</option>
+          <option value="7">%_set_1_week</option>
+          <option value="3">%_set_3_days</option>
+          <option value="1">%_set_1_day</option>
         </select>
       </div>
-      <div class="note">
-        History permission is required for this feature.
+      <div class="note">%_set_history_permission</div>
+    </div>
+    <div class="area">
+      <h2>🗣️ %_set_motto</h2>
+      <div class="setting">
+        <label for="showMotto">%_set_show_motto</label>
+        <input type="checkbox" id="showMotto">
       </div>
+      <div class="setting" id="translateMotto_area_check">
+        <label for="translateMotto">%_set_translate_motto</label>
+        <input type="checkbox" id="translateMotto">
+      </div>
+      <div class="setting" id="translateMotto_area">
+        <label for="deepLAPIKEY">%_set_deepl_api:</label>
+        <input type="text" class="input" id="deepLAPIKEY" placeholder="%_set_your_deepl_api_key">
+      </div>
+      <div class="note" id="translateMotto_area_note">%_set_deepl_api_note</div>
     </div>
 
 
     <div class="area">
-      <h2>🔘 Others</h2>
+      <h2>🔘 %_set_others</h2>
       <div class="setting">
-        <label for="fontChoice">Choose font:</label>
+        <label for="fontChoice">%_set_choose_font :</label>
         <select id="fontChoice">
-          <option value="system-default">System Default</option>
-          <option value="infinity">Infinity</option>
+          <option value="system-default">%_set_system_default</option>
+          <option value="Dosis">Dosis</option>
         </select>
       </div>
+
       <div class="setting">
-        <label for="showMotto">Show Motto</label>
-        <input type="checkbox" id="showMotto">
-      </div>
-      <div class="setting">
-        <label for="refreshButton">Show Refresh Button</label>
+        <label for="refreshButton">%_set_show_refresh_button</label>
         <input type="checkbox" id="refreshButton">
       </div>
       <div class="setting">
-        <label for="showZenMode">Show Zen Button</label>
+        <label for="showZenMode">%_set_show_zen_button</label>
         <input type="checkbox" id="showZenMode">
       </div>
       <div class="setting">
-        <label for="authorInfo">Show Author Info</label>
+        <label for="authorInfo">%_set_show_author_info</label>
         <input type="checkbox" id="authorInfo">
       </div>
     </div>
 
     <div class="saveinfo">
-      <button id="save">Save</button>
+      <button id="save">%_set_save</button>
       <div id="message"></div>
     </div>
-    <footer>Created by <a href="https://jasonng.org">Jason Ng</a>, <a href="https://dofy.net/">Dofy</a>, Setilis.</footer>
-    <script src="options.js"></script>
+    <footer>Created by <a href="https://jasonng.org">Jason Ng</a>, <a href="https://dofy.net/">Dofy</a>, Setilis.
+    </footer>
+    <script src="js/options.js"></script>
   </main>
 </body>
 
