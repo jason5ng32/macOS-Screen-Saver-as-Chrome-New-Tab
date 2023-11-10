@@ -1,5 +1,11 @@
 # Chrome-macOS-Screen-Saver-Tab
 
+![GitHub Repo stars](https://img.shields.io/github/stars/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab)
+![GitHub](https://img.shields.io/github/license/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab)
+![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/lgdipcalomggcjkohjhkhkbcpgladnoe)
+![GitHub contributors](https://img.shields.io/github/contributors/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab)
+
 Transform your Chrome's new tab page by showcasing macOS's aerial screen saver videos.
 
 🖥️ If you're not using macOS, fear not! This extension remains compatible.
