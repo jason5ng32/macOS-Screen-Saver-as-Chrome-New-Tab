@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   document
     .getElementById("videoSrc")
     .addEventListener("change", updateVideoSrcSettings);
-  addEventListener("change", updateDeepLSettings);
+
+  document.getElementById("translateMotto").addEventListener("change", updateDeepLSettings);
 
   document.getElementById("save").addEventListener("click", function () {
     let isValid = true;
