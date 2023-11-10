@@ -1,0 +1,136 @@
+
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../res/font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #f2f2f2;
+    width: min-content;
+    margin: 0 auto;
+    font-family: "CustomFont";
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 3px #c0c0c0;
+    padding: 30pt;
+    font-family: "CustomFont";
+    width: min-content;
+
+}
+
+.area {
+    width: 100%;
+}
+
+.setting {
+    margin-bottom: 10pt;
+    font-size: 14pt;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 16pt;
+    font-weight: lighter;
+}
+
+.input {
+    font-family: "CustomFont";
+    font-size: 14pt;
+    padding-left: 4pt;
+    margin-left: 3pt;
+    width: 250pt;
+}
+
+h1 {
+    margin-bottom: 20pt;
+}
+
+button {
+    border: 1px solid #318fff;
+    background-color: #0275ff;
+    color: white;
+    border-radius: 18px;
+    height: 25pt;
+    margin-top: 16pt;
+    width: 70pt;
+    margin-top: 16pt;
+    font-size: 14pt;
+    font-family: "CustomFont";
+}
+
+button:active {
+    background-color: #005ecf;
+    /* 稍微深一点的颜色 */
+    border-color: #005ecf;
+    /* 与背景颜色相同 */
+}
+
+.note {
+    font-size: 11pt;
+    margin-top: 2pt;
+    color: #252525;
+    margin-left: 16pt;
+    margin-bottom: 16pt;
+    font-weight: lighter;
+}
+
+select {
+    font-family: "CustomFont";
+    font-size: 14pt;
+    padding-left: 4pt;
+    margin-left: 3pt;
+    padding-bottom: 4pt;
+    width: 258pt;
+    font-weight: lighter;
+}
+
+input {
+    font-family: "CustomFont";
+}
+
+footer {
+    float: right;
+    width: 100%;
+    text-align: right;
+    padding-top: 10px;
+}
+
+label {
+    display: inline-block;
+    padding-right: 10pt;
+    min-width: 150pt;
+}
+
+.success {
+    color: green;
+    font-size: 14pt;
+}
+
+.error {
+    color: red;
+    font-size: 14pt;
+}
+
+#message {
+    margin-top: 10pt;
+    height: 20pt;
+}
+
+.saveinfo {
+    margin-left: 16pt;
+}
+
+h2 {
+    font-weight: 300;
+}

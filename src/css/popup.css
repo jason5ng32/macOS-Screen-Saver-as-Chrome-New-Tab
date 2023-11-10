@@ -1,0 +1,471 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+@font-face {
+    font-family: "CustomFont";
+    src: url('../res/font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#errorBox {
+    position: relative;
+    margin: 0 auto;
+    color: rgb(255 255 255);
+    font-size: 12pt;
+    background-color: #ff000094;
+    padding: 12pt;
+    /* border: 1px solid white; */
+    /* box-shadow: 0 0 5pt white; */
+    /* border-radius: 5pt; */
+    font-family: "CustomFont";
+    width: fit-content;
+    max-width: 80%;
+    display: none;
+    margin: 15pt auto;
+    z-index: 9;
+}
+
+#errorBox a {
+    color: white;
+}
+
+#videoBox {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+
+video {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.65s;
+}
+
+#myVideo {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.background {
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: cover;
+}
+
+
+.top-layer {
+    z-index: 2;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* search bar styling */
+
+::placeholder {
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    font-weight: 400;
+    font-family: "CustomFont";
+}
+
+#search {
+    display: none;
+    transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+    background-image: url('../res/gpt.png');
+    background-repeat: no-repeat;
+    background-size: 16pt;
+    background-position: 3%;
+}
+
+#search::placeholder {
+    font-weight: 300;
+}
+
+input[type="text"] {
+    width: 35vw;
+    height: 10vh;
+    max-height: 50px;
+    min-width: 400px;
+    border-radius: 40px;
+    border: 2px solid #ffffff;
+    outline: none;
+    padding-left: 36pt;
+    font-size: large;
+    font-weight: lighter;
+    background-color: #ffffff36;
+    color: white;
+}
+
+input[type="text"]:hover {
+    box-shadow: 0 0 5pt white;
+}
+
+
+input[type="text"]:focus {
+    background-color: rgba(62, 62, 62, 0.375);
+}
+
+/* motto styling */
+.motto {
+    color: white;
+    padding: 40px;
+    font-size: 3.3vh;
+    font-weight: 300;
+    text-align: center;
+    font-family: "CustomFont";
+    margin-top: 35pt;
+    height: 20vh;
+    cursor: default;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.author {
+    position: fixed;
+    left: 1%;
+    bottom: 1%;
+    color: white;
+    font-family: "CustomFont";
+    font-size: 10pt;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    opacity: 0.6;
+    cursor: default;
+}
+
+.author:hover {
+    opacity: 1;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.author img {
+    width: 12pt;
+    height: 12pt;
+    margin-left: 4pt;
+    background-color: white;
+    border-radius: 50pt;
+}
+
+#current-time {
+    margin-bottom: 20px;
+    color: white;
+    font-family: "CustomFont";
+    font-size: 10vh;
+    cursor: default;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#weather-area {
+    top: 2%;
+    right: 1%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: fixed;
+    justify-content: flex-end;
+    margin-right: 28pt;
+}
+
+#weather-info {
+    color: white;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    max-width: 30vw;
+    background-color: rgba(0, 0, 0, 0.45);
+    border-radius: 8pt;
+    box-shadow: 0 0 4pt rgba(255, 255, 255, 0.777);
+    border: 1pt solid #ffffff;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    margin-right: 1vw;
+
+}
+
+#weather-info img {
+    width: 30pt;
+    height: 30pt;
+}
+
+.wth {
+    width: 30pt;
+    height: 30pt;
+    display: none;
+}
+
+#wthBtn {
+    width: 80%;
+    height: 80%;
+    border: none;
+    background: url('../res/weather.png') no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    opacity: 0.5;
+    transition: opacity 0.5s ease, background-position 0.5s ease-in-out;
+    border: 1pt solid #ffffffa6;
+    border-radius: 50pt;
+    box-shadow: 0 0 3pt white;
+    background-color: rgba(255, 255, 255, 0.509);
+    background-position: bottom;
+}
+
+#wthBtn:hover {
+    opacity: 0.777;
+    background-color: white;
+    background-position: top;
+}
+
+
+
+.current-aera {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    align-items: center;
+    width: 60pt;
+    text-align: center;
+    overflow: auto;
+    border-radius: 4pt;
+    transition: box-shadow 0.3s, background-color 0.3s;
+
+}
+
+#forcast-aera {
+    display: flex;
+    flex-direction: row;
+}
+
+#forcast-aera img {
+    width: 25pt;
+    height: 25pt;
+}
+
+#forcast-vertical {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    align-items: center;
+    width: 60pt;
+    text-align: center;
+    border-radius: 4pt;
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.refresh {
+    position: fixed;
+    bottom: 1%;
+    right: 1%;
+    width: 30pt;
+    height: 30pt;
+}
+
+#switchVideoBtn {
+    width: 80%;
+    height: 80%;
+    border: none;
+    background: url('../res/refresh.png') no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    opacity: 0.5;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    border: 1pt solid #ffffffa6;
+    border-radius: 50pt;
+    box-shadow: 0 0 3pt white;
+    background-color: rgba(255, 255, 255, 0.509);
+}
+
+#switchVideoBtn:hover {
+    transform: rotate(120deg);
+    opacity: 0.777;
+    background-color: white;
+}
+
+#switchVideoBtn.rotating {
+    transform: rotate(480deg);
+    opacity: 0.777;
+    background-color: #e0e0e0;
+}
+
+#switchVideoBtn.rotating2 {
+    opacity: 0.777;
+    background-color: #e0e0e0;
+}
+
+/* topsites */
+
+.topsites-area {
+    top: 2%;
+    right: 1%;
+    flex-direction: row;
+    align-items: flex-start;
+    position: fixed;
+    justify-content: flex-end;
+    /* margin-top: -8pt; */
+    margin-right: 28pt;
+    display: flex;
+    flex-direction: row-reverse;
+    z-index: 1000;
+}
+
+.favicon {
+    width: 12pt;
+    height: auto;
+    cursor: pointer;
+}
+
+.title {
+    margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.topsites-info {
+    color: white;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    max-width: 30vw;
+    background-color: rgba(0, 0, 0, 0.45);
+    border-radius: 8pt;
+    box-shadow: 0 0 4pt rgba(255, 255, 255, 0.777);
+    border: 1pt solid #ffffff;
+    opacity: 0;
+    transform: translateX(+140%);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    margin-right: 1vw;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1vw;
+}
+
+.tss {
+    width: 30pt;
+    height: 30pt;
+    display: none;
+}
+
+#tssBtn {
+    width: 80%;
+    height: 80%;
+    border: none;
+    background: url('../res/topsites.png') no-repeat;
+    background-size: 200%;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    opacity: 0.5;
+    transition: opacity 0.5s ease, background-position 0.5s ease-in-out;
+    border: 1pt solid #ffffffa6;
+    border-radius: 50pt;
+    box-shadow: 0 0 3pt white;
+    background-color: rgba(255, 255, 255, 0.509);
+    background-position: left;
+}
+
+#tssBtn:hover {
+    opacity: 0.777;
+    background-color: white;
+    background-position: right;
+}
+
+#tssBtn.active-hover {
+    opacity: 0.777;
+    background-color: white;
+    background-position: right;
+}
+
+.toggle {
+    top: 2%;
+    right: 1%;
+    position: fixed;
+    z-index: 100;
+}
+
+.zenmode {
+    position: fixed;
+    top: 2%;
+    left: 1%;
+    width: 30pt;
+    height: 30pt;
+    display: none;
+}
+
+#fullscreen-btn {
+    width: 80%;
+    height: 80%;
+    border: none;
+    background: none;
+    /* Remove background from the button itself */
+    outline: none;
+    position: relative;
+    opacity: 0.5;
+    transition: opacity 2s ease;
+    /* Transition for opacity */
+    border: 1pt solid #ffffffa6;
+    border-radius: 50pt;
+    box-shadow: 0 0 3pt white;
+    background-color: rgba(255, 255, 255, 0.509);
+    overflow: hidden;
+    /* Prevent any pseudo-element from overflowing */
+}
+
+#fullscreen-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../res/zenmode.png') no-repeat center center;
+    background-size: 100%;
+    transition: background-size 1s ease;
+    border-radius: inherit;
+}
+
+#fullscreen-btn:hover::after {
+    background-size: 120%;
+}
+
+#fullscreen-btn:hover {
+    opacity: 0.777;
+    background-color: white;
+}
