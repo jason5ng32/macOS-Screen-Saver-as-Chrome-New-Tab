@@ -1,4 +1,34 @@
-const getMsg = chrome.i18n.getMessage;
+let langDict = null;
+const supportLanguages = ["en", "zh-TW", "zh-CN", "ja"];
+
+const getBrowserLanguage = () => {
+  const lang = chrome.i18n.getUILanguage();
+  const langShort = lang.split("-")[0];
+  if (supportLanguages.includes(lang)) {
+    return lang.replace("-", "_");
+  } else if (supportLanguages.includes(langShort)) {
+    return langShort;
+  } else {
+    return "en";
+  }
+};
+
+const getCurrentLanguage = async () => {
+  const langSettings = await chrome.storage.sync.get("userLanguage");
+  return langSettings?.userLanguage || getBrowserLanguage();
+};
+
+const loadLanguages = async () => {
+  const lang = await getCurrentLanguage();
+  const res = await fetch(`_locales/${lang}/messages.json`);
+  langDict = await res.json();
+};
+
+// const getMsg = chrome.i18n.getMessage;
+const getMsg = (key) => {
+  result = langDict[key]?.message || key;
+  return result;
+};
 
 const translatePage = (prefix) => {
   const pre = prefix || "__MSG_";

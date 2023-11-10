@@ -218,13 +218,13 @@
   "message_saved": {
     "message": "Settings saved"
   },
-  "language": {
+  "set_language": {
     "message": "Language"
   },
-  "language_selector": {
+  "set_language_selector": {
     "message": "Choose Language"
   },
-  "Motto" : {
+  "set_motto" : {
     "message": "Motto"
   },
   "set_deepl_api" : {
@@ -239,7 +239,7 @@
   "set_deepl_api_note" : {
     "message": "If your browser's language is English, you don't need DeepL API key."
   },
-  "translateMotto" : {
+  "set_translate_motto" : {
     "message": "Translate Motto"
   }
 }

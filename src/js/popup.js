@@ -1,6 +1,3 @@
-// include `lang.js` first in html page
-translatePage("%_"); // translate the page
-
 let allAvailableVideos = [];
 let currentVideoIndex = -1; // 用于跟踪当前播放的视频
 let currentIndex = 0; // 用于跟踪当前展示到哪条格言
@@ -58,6 +55,10 @@ document.addEventListener("DOMContentLoaded", initSettings);
 
 // 主程序
 async function initSettings() {
+  // include `lang.js` first in html page
+  await loadLanguages();
+  translatePage("%_"); // translate the page
+
   // 获取默认设置和初始化设置
   SETTINGS_KEYS = await fetchDefaultSettings();
   const data = await getSettings();
@@ -425,14 +426,16 @@ function updateTime(hourSystem) {
 // 调用 DeepL 翻译格言
 async function translateText(text, targetLang, deepLAPIKEY) {
   const apiKey = deepLAPIKEY;
-  const url = `https://api-free.deepl.com/v2/translate?auth_key=${apiKey}&text=${encodeURIComponent(text)}&target_lang=${targetLang}`;
+  const url = `https://api-free.deepl.com/v2/translate?auth_key=${apiKey}&text=${encodeURIComponent(
+    text
+  )}&target_lang=${targetLang}`;
 
   try {
-    const response = await fetch(url, { method: 'POST' });
+    const response = await fetch(url, { method: "POST" });
     const data = await response.json();
     return data.translations[0].text;
   } catch (error) {
-    console.error('Translation failed:', error);
+    console.error("Translation failed:", error);
     return text; // 如果翻译失败，返回原文本
   }
 }
@@ -444,8 +447,10 @@ async function fetchRandomMotto(deepLAPIKEY, translateMotto) {
   try {
     let quotes = JSON.parse(localStorage.getItem("quotes"));
     let currentIndex = parseInt(localStorage.getItem("currentIndex")) || 0;
-    let usingDefaults = JSON.parse(localStorage.getItem("usingDefaults")) || false;
-    let browserLang = navigator.language || 'en'; // 获取浏览器语言
+    let usingDefaults =
+      JSON.parse(localStorage.getItem("usingDefaults")) || false;
+    // let browserLang = navigator.language || "en"; // 获取浏览器语言
+    let browserLang = await getCurrentLanguage();
 
     if (!quotes || currentIndex >= quotes.length) {
       try {
@@ -474,10 +479,14 @@ async function fetchRandomMotto(deepLAPIKEY, translateMotto) {
     let finalContent = content;
     let finalAuthor = author;
     // 如果浏览器语言不是英语，翻译格言
-    if (browserLang !== 'en' && translateMotto) {
+    if (browserLang !== "en" && translateMotto) {
       const combinedText = content + "\n" + author; // 合并文本和作者，用换行符分隔
-      const translatedText = await translateText(combinedText, browserLang.split('-')[0].toUpperCase(), deepLAPIKEY);
-    
+      const translatedText = await translateText(
+        combinedText,
+        browserLang.split(/-|_/)[0].toUpperCase(),
+        deepLAPIKEY
+      );
+
       // 将翻译后的文本分割回原来的格言和作者
       const splitText = translatedText.split("\n");
       finalContent = splitText[0];
@@ -866,15 +875,17 @@ function topSitesUI() {
 
 // Zen Mode
 function enterFullScreen(videoElement) {
-  var audioElement = document.getElementById('background-audio');
+  var audioElement = document.getElementById("background-audio");
 
   // 随机选择音乐并播放
   function playRandomMusic() {
     var musicList = [];
     for (var i = 1; i <= 40; i++) {
       // 使用字符串的 padStart 方法补全音频文件名
-      var musicName = `music${String(i).padStart(5, '0')}`;
-      musicList.push(`https://macifymusic.macify.workers.dev/music/${musicName}`);
+      var musicName = `music${String(i).padStart(5, "0")}`;
+      musicList.push(
+        `https://macifymusic.macify.workers.dev/music/${musicName}`
+      );
     }
 
     // 随机选择音频文件
@@ -883,8 +894,12 @@ function enterFullScreen(videoElement) {
     audioElement.play();
   }
 
-  if (!document.fullscreenElement && !document.mozFullScreenElement &&
-    !document.webkitFullscreenElement && !document.msFullscreenElement) {
+  if (
+    !document.fullscreenElement &&
+    !document.mozFullScreenElement &&
+    !document.webkitFullscreenElement &&
+    !document.msFullscreenElement
+  ) {
     setupFullScreenListener(videoElement, audioElement);
   }
 
@@ -904,7 +919,8 @@ function enterFullScreen(videoElement) {
 function setupFullScreenListener(videoElement, audioElement) {
   // 全屏变化事件处理器
   function onFullScreenChange() {
-    var isFullScreen = document.fullscreenElement ||
+    var isFullScreen =
+      document.fullscreenElement ||
       document.mozFullScreenElement ||
       document.webkitFullscreenElement ||
       document.msFullscreenElement;
@@ -917,8 +933,8 @@ function setupFullScreenListener(videoElement, audioElement) {
   }
 
   // 添加事件监听器
-  document.addEventListener('fullscreenchange', onFullScreenChange);
-  document.addEventListener('mozfullscreenchange', onFullScreenChange);
-  document.addEventListener('webkitfullscreenchange', onFullScreenChange);
-  document.addEventListener('MSFullscreenChange', onFullScreenChange);
+  document.addEventListener("fullscreenchange", onFullScreenChange);
+  document.addEventListener("mozfullscreenchange", onFullScreenChange);
+  document.addEventListener("webkitfullscreenchange", onFullScreenChange);
+  document.addEventListener("MSFullscreenChange", onFullScreenChange);
 }

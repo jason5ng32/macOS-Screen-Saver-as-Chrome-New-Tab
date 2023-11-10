@@ -24,7 +24,7 @@
     "message": "詢問 ChatGPT..."
   },
   "pop_load_motto": {
-    "message": "加載座右銘..."
+    "message": "加載格言..."
   },
   "pop_github": {
     "message": "Github 項目地址"
@@ -180,7 +180,7 @@
     "message": "系統默認字體"
   },
   "set_show_motto": {
-    "message": "顯示座右銘"
+    "message": "顯示格言"
   },
   "set_show_refresh_button": {
     "message": "顯示重新整理按鈕"
@@ -195,7 +195,7 @@
     "message": "保存"
   },
   "error_get_motto": {
-    "message": "加載座右銘失敗。"
+    "message": "加載格言失敗。"
   },
   "error_get_weather": {
     "message": "天氣資料獲取失敗。請檢查 API 金鑰和城市名稱，然後重試。"
@@ -218,28 +218,28 @@
   "message_saved": {
     "message": "保存成功"
   },
-  "language": {
+  "set_language": {
     "message": "語言"
   },
-  "language_selector": {
+  "set_language_selector": {
     "message": "選擇語言"
   },
-  "Motto" : {
+  "set_motto": {
     "message": "格言"
   },
-  "set_deepl_api" : {
+  "set_deepl_api": {
     "message": "設定 DeepL API"
   },
-  "set_your_deepl_api_key" :{
+  "set_your_deepl_api_key": {
     "message": "填入您的 DeepL API 金鑰"
   },
   "error_deepL_api_key": {
     "message": "API 金鑰長度必須至少為 38 個字元。"
   },
-  "set_deepl_api_note" : {
+  "set_deepl_api_note": {
     "message": "如果您希望將格言翻譯成您的語言，請前往<a href=\"https://www.deepl.com/\" target=_blank>DeepL</a>獲取您的免費 API 金鑰。"
   },
-  "translateMotto" : {
+  "set_translate_motto": {
     "message": "翻譯格言"
   }
 }
