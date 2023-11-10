@@ -475,8 +475,13 @@ async function fetchRandomMotto(deepLAPIKEY, translateMotto) {
     let finalAuthor = author;
     // 如果浏览器语言不是英语，翻译格言
     if (browserLang !== 'en' && translateMotto) {
-      finalContent = await translateText(content, browserLang.split('-')[0].toUpperCase(), deepLAPIKEY);
-      finalAuthor = await translateText(author, browserLang.split('-')[0].toUpperCase(), deepLAPIKEY);
+      const combinedText = content + "\n" + author; // 合并文本和作者，用换行符分隔
+      const translatedText = await translateText(combinedText, browserLang.split('-')[0].toUpperCase(), deepLAPIKEY);
+    
+      // 将翻译后的文本分割回原来的格言和作者
+      const splitText = translatedText.split("\n");
+      finalContent = splitText[0];
+      finalAuthor = splitText[1] || author; // 如果分割失败，保留原作者名
     }
 
     await new Promise((resolve) => setTimeout(resolve, 10));
