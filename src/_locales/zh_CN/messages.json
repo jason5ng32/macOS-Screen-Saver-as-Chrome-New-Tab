@@ -227,17 +227,17 @@
   "set_motto" : {
     "message": "格言"
   },
-  "set_deepl_api" : {
-    "message": "DeepL API"
+  "set_google_api" : {
+    "message": "Google 翻译 API KEY"
   },
-  "set_your_deepl_api_key" :{
-    "message": "填入你的 DeepL API KEY"
+  "set_your_google_api_key" :{
+    "message": "填入你的 Google Cloud 翻译 API KEY"
   },
-  "error_deepL_api_key": {
-    "message": "API 密钥长度必须至少为 38 个字符。"
+  "error_google_api_key": {
+    "message": "API 密钥长度必须至少为 39 个字符。"
   },
-  "set_deepl_api_note" : {
-    "message": "如果你希望将格言翻译成你的语言，请前往<a href=\"https://www.deepl.com/\" target=_blank>DeepL</a>获取您的免费 API 密钥。"
+  "set_google_api_note" : {
+    "message": "如果你希望将格言翻译成你的语言，请前往<a href=\"https://console.cloud.google.com/apis/api/translate.googleapis.com/\" target=_blank>Google Cloud</a>获取您的翻译 API 密钥。"
   },
   "set_translate_motto" : {
     "message": "翻译格言"

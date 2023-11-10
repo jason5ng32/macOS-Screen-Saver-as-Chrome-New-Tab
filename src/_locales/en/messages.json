@@ -227,17 +227,17 @@
   "set_motto" : {
     "message": "Motto"
   },
-  "set_deepl_api" : {
-    "message": "Set DeepL API"
+  "set_google_api" : {
+    "message": "Google Translation API KEY"
   },
-  "set_your_deepl_api_key" :{
-    "message": "Enter Your DeepL API Key"
+  "set_your_google_api_key" :{
+    "message": "Enter Your Google Cloud Translation API Key"
   },
-  "error_deepL_api_key": {
-    "message": "API Key length must be at least 38 characters."
+  "error_google_api_key": {
+    "message": "API Key length must be at least 39 characters."
   },
-  "set_deepl_api_note" : {
-    "message": "If your browser's language is English, you don't need DeepL API key."
+  "set_google_api_note" : {
+    "message": "If your browser's language is English, you don't need Cloud Translation API key."
   },
   "set_translate_motto" : {
     "message": "Translate Motto"

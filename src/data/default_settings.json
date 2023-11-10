@@ -7,7 +7,7 @@
   "showSearch": true,
   "showMotto": true,
   "translateMotto": false,
-  "deepLAPIKEY": "",
+  "googleAPIKEY": "",
   "showTopSites": false,
   "showZenMode": true,
   "sitesCycle": "7",
