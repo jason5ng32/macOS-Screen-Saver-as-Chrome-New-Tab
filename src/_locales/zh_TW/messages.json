@@ -71,7 +71,7 @@
   "set_reverse_proxy": {
     "message": "逆向代理"
   },
-  "set_Local_Videos_list_URL": {
+  "set_local_videos_list_url": {
     "message": "本地視訊列表 URL"
   },
   "set_video_note": {
