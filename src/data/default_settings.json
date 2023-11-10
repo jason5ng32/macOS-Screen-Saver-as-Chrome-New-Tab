@@ -11,7 +11,7 @@
   "showTopSites": false,
   "showZenMode": true,
   "sitesCycle": "7",
-  "fontChoice": "infinity",
+  "fontChoice": "Dosis",
   "videoSourceUrl": "http://localhost:18000/videos/",
   "weatherAPIKEY": "",
   "modelType": "gpt-4",

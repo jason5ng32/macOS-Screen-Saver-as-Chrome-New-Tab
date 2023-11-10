@@ -1,5 +1,5 @@
 let langDict = null;
-const supportLanguages = ["en", "zh-TW", "zh-CN", "ja"];
+const supportLanguages = ["en", "es", "zh-TW", "zh-CN", "ja"];
 
 const getBrowserLanguage = () => {
   const lang = chrome.i18n.getUILanguage();

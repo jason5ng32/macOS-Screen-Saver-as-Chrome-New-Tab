@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: 'CustomFont';
-    src: url('../res/font.ttf') format('truetype');
+    src: url('../res/Dosis-ExtraLight.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -23,7 +23,7 @@ main {
     margin: 0 auto;
     background-color: white;
     box-shadow: 0 0 3px #c0c0c0;
-    padding: 30pt;
+    padding: 20pt;
     font-family: "CustomFont";
     width: min-content;
 
@@ -49,7 +49,8 @@ main {
     font-size: 14pt;
     padding-left: 4pt;
     margin-left: 3pt;
-    width: 250pt;
+    width: 240pt;
+    font-weight: lighter;
 }
 
 h1 {
@@ -91,7 +92,7 @@ select {
     padding-left: 4pt;
     margin-left: 3pt;
     padding-bottom: 4pt;
-    width: 258pt;
+    width: 248pt;
     font-weight: lighter;
 }
 
@@ -109,7 +110,7 @@ footer {
 label {
     display: inline-block;
     padding-right: 10pt;
-    min-width: 150pt;
+    min-width: 180pt;
 }
 
 .success {
