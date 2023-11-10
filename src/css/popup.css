@@ -177,7 +177,8 @@ input[type="text"]:focus {
     margin-bottom: 20px;
     color: white;
     font-family: "CustomFont";
-    font-size: 10vh;
+    font-size: 9vh;
+    font-weight: lighter;
     cursor: default;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
