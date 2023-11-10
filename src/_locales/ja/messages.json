@@ -77,7 +77,7 @@
   "set_reverse_proxy": {
     "message": "リバースプロキシ"
   },
-  "set_Local_Videos_list_URL": {
+  "set_local_videos_list_url": {
     "message": "ローカル動画リストURL"
   },
   "set_video_note": {
