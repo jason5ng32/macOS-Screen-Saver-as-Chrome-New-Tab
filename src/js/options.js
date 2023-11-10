@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", async function () {
   // include `lang.js` first in html page
-  translatePage("%_"); // translate the page
+  await loadLanguages();
+  translatePage("%_");
 
   let SETTINGS_KEYS = await fetchDefaultSettings();
+  const langSettings = await getCurrentLanguage();
 
   chrome.storage.sync.get(Object.keys(SETTINGS_KEYS), function (data) {
     for (const [key, defaultValue] of Object.entries(SETTINGS_KEYS)) {
@@ -11,7 +13,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (element.type === "checkbox") {
         element.checked = data[key] !== undefined ? data[key] : defaultValue;
       } else if (element.tagName === "SELECT") {
-        element.value = data[key] || defaultValue; // 这里处理 <select> 元素
+        if (key === "userLanguage") {
+          element.value = langSettings;
+        } else {
+          element.value = data[key] || defaultValue; // 这里处理 <select> 元素
+        }
       } else {
         element.value = data[key] || defaultValue;
       }
@@ -34,10 +40,21 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   document
+    .getElementById("userLanguage")
+    .addEventListener("change", function () {
+      const lang = this.value;
+      chrome.storage.sync.set({ userLanguage: lang }, function () {
+        location.reload();
+      });
+    });
+
+  document
     .getElementById("videoSrc")
     .addEventListener("change", updateVideoSrcSettings);
 
-  document.getElementById("translateMotto").addEventListener("change", updateDeepLSettings);
+  document
+    .getElementById("translateMotto")
+    .addEventListener("change", updateDeepLSettings);
 
   document.getElementById("save").addEventListener("click", function () {
     let isValid = true;
@@ -88,10 +105,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       isValid = false;
     }
 
-    if (
-      translateMotto &&
-      (deepLAPIKEY.length < 38)
-    ) {
+    if (translateMotto && deepLAPIKEY.length < 38) {
       showMessage(getMsg("error_deepL_api_key"), "error");
       isValid = false;
     }
@@ -129,7 +143,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         settingObj[key] = element.value;
       }
     });
-
     chrome.storage.sync.set(settingObj, function () {
       showMessage(getMsg("message_saved"), "success");
     });
@@ -156,14 +169,19 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
-function updateDeepLSettings() {
+async function updateDeepLSettings() {
   const translateMotto = document.getElementById("translateMotto").checked;
   const translateMotto_area = document.getElementById("translateMotto_area");
-  const translateMotto_area_note = document.getElementById("translateMotto_area_note");
-  const translateMotto_area_check = document.getElementById("translateMotto_area_check");
+  const translateMotto_area_note = document.getElementById(
+    "translateMotto_area_note"
+  );
+  const translateMotto_area_check = document.getElementById(
+    "translateMotto_area_check"
+  );
 
-  let browserLang = navigator.language;
-  if (browserLang === 'en') {
+  // let browserLang = navigator.language;
+  const browserLang = await getCurrentLanguage();
+  if (browserLang === "en") {
     translateMotto_area_check.style.display = "none";
     translateMotto_area.style.display = "none";
     translateMotto_area_note.style.display = "none";
@@ -173,7 +191,6 @@ function updateDeepLSettings() {
   } else {
     translateMotto_area.style.display = "none";
     translateMotto_area_note.style.display = "none";
-
   }
 }
 

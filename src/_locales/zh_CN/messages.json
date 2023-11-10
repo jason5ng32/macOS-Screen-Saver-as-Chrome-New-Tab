@@ -218,13 +218,13 @@
   "message_saved": {
     "message": "设置已保存"
   },
-  "language": {
+  "set_language": {
     "message": "语言"
   },
-  "language_selector": {
+  "set_language_selector": {
     "message": "选择语言"
   },
-  "Motto" : {
+  "set_motto" : {
     "message": "格言"
   },
   "set_deepl_api" : {
@@ -239,7 +239,7 @@
   "set_deepl_api_note" : {
     "message": "如果你希望将格言翻译成你的语言，请前往<a href=\"https://www.deepl.com/\" target=_blank>DeepL</a>获取您的免费 API 密钥。"
   },
-  "translateMotto" : {
+  "set_translate_motto" : {
     "message": "翻译格言"
   }
 }
