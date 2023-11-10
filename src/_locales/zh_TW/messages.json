@@ -1,33 +1,33 @@
 {
   "sys_name": {
-    "message": "Macify -  macOS 螢幕保護視訊標籤頁"
+    "message": "Macify -  macOS 屏幕保護視訊標籤頁"
   },
   "sys_description": {
-    "message": "將您的 Chrome 新分頁頁面變成 macOS 美麗的螢幕保護視訊。"
+    "message": "將您的 Chrome 新分頁頁面變成 macOS 美麗的屏幕保護視訊。"
   },
   "pop_load_top_sites": {
     "message": "載入熱門站點..."
   },
   "pop_now": {
-    "message": "而家"
+    "message": "現在"
   },
   "pop_today": {
     "message": "今日"
   },
   "pop_t_1": {
-    "message": "聽日"
+    "message": "明日"
   },
   "pop_t_2": {
     "message": "後日"
   },
   "pop_ask_chat_gpt": {
-    "message": "問問 ChatGPT..."
+    "message": "詢問 ChatGPT..."
   },
   "pop_load_motto": {
     "message": "加載座右銘..."
   },
   "pop_github": {
-    "message": "Github 專案位址"
+    "message": "Github 項目地址"
   },
   "pop_refresh_video": {
     "message": "更新視訊"
@@ -39,7 +39,7 @@
     "message": "熱門站點"
   },
   "pop_zen_mode": {
-    "message": "禅模式"
+    "message": "禪模式"
   },
   "error_video_source": {
     "message": "找不到要切換來源的視訊元素。"
