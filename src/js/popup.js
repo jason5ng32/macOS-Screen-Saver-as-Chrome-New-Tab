@@ -83,8 +83,8 @@ async function initSettings() {
 
   // 展示 Motto
   if (newdata.showMotto) {
-    fetchRandomMotto();
-    refreshRandomMotto();
+    fetchRandomMotto(newdata.deepLAPIKEY, newdata.translateMotto);
+    refreshRandomMotto(newdata.deepLAPIKEY, newdata.translateMotto);
   } else {
     let elements = document.querySelectorAll(".centered");
     elements.forEach(function (element) {
@@ -422,15 +422,30 @@ function updateTime(hourSystem) {
   currentTimeElement.style.opacity = "1";
 }
 
+// 调用 DeepL 翻译格言
+async function translateText(text, targetLang, deepLAPIKEY) {
+  const apiKey = deepLAPIKEY;
+  const url = `https://api-free.deepl.com/v2/translate?auth_key=${apiKey}&text=${encodeURIComponent(text)}&target_lang=${targetLang}`;
+
+  try {
+    const response = await fetch(url, { method: 'POST' });
+    const data = await response.json();
+    return data.translations[0].text;
+  } catch (error) {
+    console.error('Translation failed:', error);
+    return text; // 如果翻译失败，返回原文本
+  }
+}
+
 // 获取格言
-async function fetchRandomMotto() {
+async function fetchRandomMotto(deepLAPIKEY, translateMotto) {
   const mottoElement = document.getElementById("motto");
 
   try {
     let quotes = JSON.parse(localStorage.getItem("quotes"));
     let currentIndex = parseInt(localStorage.getItem("currentIndex")) || 0;
-    let usingDefaults =
-      JSON.parse(localStorage.getItem("usingDefaults")) || false;
+    let usingDefaults = JSON.parse(localStorage.getItem("usingDefaults")) || false;
+    let browserLang = navigator.language || 'en'; // 获取浏览器语言
 
     if (!quotes || currentIndex >= quotes.length) {
       try {
@@ -456,11 +471,19 @@ async function fetchRandomMotto() {
     const { content, author } = quotes[currentIndex];
     localStorage.setItem("currentIndex", currentIndex + 1);
 
+    let finalContent = content;
+    let finalAuthor = author;
+    // 如果浏览器语言不是英语，翻译格言
+    if (browserLang !== 'en' && translateMotto) {
+      finalContent = await translateText(content, browserLang.split('-')[0].toUpperCase(), deepLAPIKEY);
+      finalAuthor = await translateText(author, browserLang.split('-')[0].toUpperCase(), deepLAPIKEY);
+    }
+
     await new Promise((resolve) => setTimeout(resolve, 10));
     mottoElement.style.opacity = "0";
     await new Promise((resolve) => setTimeout(resolve, 400));
     mottoElement.style.opacity = "1";
-    mottoElement.textContent = `${content} — ${author}`;
+    mottoElement.textContent = `${finalContent} — ${finalAuthor}`;
   } catch (error) {
     mottoElement.style.opacity = "1";
     console.error("Get motto failed.");
@@ -475,7 +498,7 @@ async function fetchRandomMotto() {
 }
 
 // 刷新格言
-async function refreshRandomMotto() {
+async function refreshRandomMotto(deepLAPIKEY, translateMotto) {
   var mottoElement = document.querySelector(".motto");
   mottoElement.addEventListener("click", function (e) {
     var clickedElement = e.target;
@@ -495,7 +518,7 @@ async function refreshRandomMotto() {
               e.clientY >= rectList[j].top &&
               e.clientY <= rectList[j].bottom
             ) {
-              fetchRandomMotto();
+              fetchRandomMotto(deepLAPIKEY, translateMotto);
               return;
             }
           }
@@ -848,7 +871,7 @@ function enterFullScreen(videoElement) {
       var musicName = `music${String(i).padStart(5, '0')}`;
       musicList.push(`https://macifymusic.macify.workers.dev/music/${musicName}`);
     }
-  
+
     // 随机选择音频文件
     var randomIndex = Math.floor(Math.random() * musicList.length);
     audioElement.src = musicList[randomIndex];

@@ -81,7 +81,7 @@
     "message": "本地视频列表 URL"
   },
   "set_video_note": {
-    "message": "使用此扩展的更好方法是设置本地 HTTP 服务，请按照&nbsp;<a&nbsp; href=\"instructions.html\" target=_blank>说明</a&nbsp;>&nbsp;进行操作。"
+    "message": "使用此扩展的更好方法是设置本地 HTTP 服务，请按照 <a href=\"instructions.html\" target=_blank>说明</a> 进行操作。"
   },
   "set_weather": {
     "message": "天气"
@@ -223,5 +223,23 @@
   },
   "language_selector": {
     "message": "选择语言"
+  },
+  "Motto" : {
+    "message": "格言"
+  },
+  "set_deepl_api" : {
+    "message": "DeepL API"
+  },
+  "set_your_deepl_api_key" :{
+    "message": "填入你的 DeepL API KEY"
+  },
+  "error_deepL_api_key": {
+    "message": "API 密钥长度必须至少为 38 个字符。"
+  },
+  "set_deepl_api_note" : {
+    "message": "如果你希望将格言翻译成你的语言，请前往<a href=\"https://www.deepl.com/\" target=_blank>DeepL</a>获取您的免费 API 密钥。"
+  },
+  "translateMotto" : {
+    "message": "翻译格言"
   }
 }

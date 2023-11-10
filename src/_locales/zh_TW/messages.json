@@ -75,7 +75,7 @@
     "message": "本地視訊列表 URL"
   },
   "set_video_note": {
-    "message": "使用此擴展程序的更好方法是設置本地 HTTP 服務，按照&nbsp;<a href=\"instructions.html\" target=_blank>此說明</a>&nbsp;進行操作。"
+    "message": "使用此擴展程序的更好方法是設置本地 HTTP 服務，按照 <a href=\"instructions.html\" target=_blank>此說明</a> 進行操作。"
   },
   "set_weather": {
     "message": "天氣"
@@ -223,5 +223,23 @@
   },
   "language_selector": {
     "message": "選擇語言"
+  },
+  "Motto" : {
+    "message": "格言"
+  },
+  "set_deepl_api" : {
+    "message": "設定 DeepL API"
+  },
+  "set_your_deepl_api_key" :{
+    "message": "填入您的 DeepL API 金鑰"
+  },
+  "error_deepL_api_key": {
+    "message": "API 金鑰長度必須至少為 38 個字元。"
+  },
+  "set_deepl_api_note" : {
+    "message": "如果您希望將格言翻譯成您的語言，請前往<a href=\"https://www.deepl.com/\" target=_blank>DeepL</a>獲取您的免費 API 金鑰。"
+  },
+  "translateMotto" : {
+    "message": "翻譯格言"
   }
 }

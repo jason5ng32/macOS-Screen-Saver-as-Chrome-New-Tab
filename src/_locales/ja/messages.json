@@ -223,5 +223,23 @@
   },
   "language_selector": {
     "message": "言語選択"
+  },
+  "Motto" : {
+    "message": "モットー"
+  },
+  "set_deepl_api" : {
+    "message": "DeepL APIを設定する"
+  },
+  "set_your_deepl_api_key" :{
+    "message": "あなたのDeepL APIキーを入力してください"
+  },
+  "error_deepL_api_key": {
+    "message": "APIキーの長さは少なくとも38文字でなければなりません。"
+  },
+  "set_deepl_api_note" : {
+    "message": "格言をあなたの言語に翻訳したい場合は、<a href=\"https://www.deepl.com/\" target=_blank>DeepL</a>で無料のAPIキーを取得してください。"
+  },
+  "translateMotto" : {
+    "message": "モットーを翻訳する"
   }
 }

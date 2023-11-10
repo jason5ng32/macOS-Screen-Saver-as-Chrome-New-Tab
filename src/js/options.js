@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     }
     updateVideoSrcSettings();
+    updateDeepLSettings();
   });
 
   // 创建提示信息
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   document
     .getElementById("videoSrc")
     .addEventListener("change", updateVideoSrcSettings);
+  addEventListener("change", updateDeepLSettings);
 
   document.getElementById("save").addEventListener("click", function () {
     let isValid = true;
@@ -42,6 +44,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     let showWeather = document.getElementById("showWeather").checked;
     let city = document.getElementById("city").value;
     let weatherAPIKEY = document.getElementById("weatherAPIKEY").value;
+    let translateMotto = document.getElementById("translateMotto").checked;
+    let deepLAPIKEY = document.getElementById("deepLAPIKEY").value;
     let delayTime = document.getElementById("delayTime").value; // 获取 delayTime 的值
     let delayTimeInt = parseInt(delayTime, 10); // 转换为整数
     let historyPermissionNeeded =
@@ -80,6 +84,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     ) {
       showMessage(getMsg("error_weather_api_key"), "error");
       document.getElementById("showWeather").checked = false;
+      isValid = false;
+    }
+
+    if (
+      translateMotto &&
+      (deepLAPIKEY.length < 38)
+    ) {
+      showMessage(getMsg("error_deepL_api_key"), "error");
       isValid = false;
     }
 
@@ -142,6 +154,27 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 });
+
+function updateDeepLSettings() {
+  const translateMotto = document.getElementById("translateMotto").checked;
+  const translateMotto_area = document.getElementById("translateMotto_area");
+  const translateMotto_area_note = document.getElementById("translateMotto_area_note");
+  const translateMotto_area_check = document.getElementById("translateMotto_area_check");
+
+  let browserLang = navigator.language;
+  if (browserLang === 'en') {
+    translateMotto_area_check.style.display = "none";
+    translateMotto_area.style.display = "none";
+    translateMotto_area_note.style.display = "none";
+  } else if (translateMotto) {
+    translateMotto_area.style.display = "";
+    translateMotto_area_note.style.display = "";
+  } else {
+    translateMotto_area.style.display = "none";
+    translateMotto_area_note.style.display = "none";
+
+  }
+}
 
 async function fetchDefaultSettings() {
   const response = await fetch("data/default_settings.json");

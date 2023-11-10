@@ -223,5 +223,23 @@
   },
   "language_selector": {
     "message": "Choose Language"
+  },
+  "Motto" : {
+    "message": "Motto"
+  },
+  "set_deepl_api" : {
+    "message": "Set DeepL API"
+  },
+  "set_your_deepl_api_key" :{
+    "message": "Enter Your DeepL API Key"
+  },
+  "error_deepL_api_key": {
+    "message": "API Key length must be at least 38 characters."
+  },
+  "set_deepl_api_note" : {
+    "message": "If your browser's language is English, you don't need DeepL API key."
+  },
+  "translateMotto" : {
+    "message": "Translate Motto"
   }
 }

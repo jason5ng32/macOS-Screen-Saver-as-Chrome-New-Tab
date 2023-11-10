@@ -5,6 +5,8 @@
     "showWeather": false,
     "showSearch": true,
     "showMotto": true,
+    "translateMotto": false,
+    "deepLAPIKEY": "",
     "showTopSites": false,
     "showZenMode": true,
     "sitesCycle": "7",
@@ -16,7 +18,6 @@
     "tempUnit": "celsius",
     "authorInfo": true,
     "videoSrc": "apple",
-    "languageSelector": "systemDefault",
     "reverseProxy": true,
     "delayTime": 2000
 }  

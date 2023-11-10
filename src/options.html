@@ -136,6 +136,7 @@
     .saveinfo {
       margin-left: 16pt;
     }
+
     h2 {
       font-weight: 300;
     }
@@ -148,7 +149,7 @@
   <main>
     <h1>%_set_options_title</h1>
     <div class="note" style="margin-left: 0;">%_set_options_note</div>
-    <div class="area">
+    <!-- <div class="area">
       <h2>🔤 %_language</h2>
       <div class="setting">
         <label for="languageSelector">%_language_selector :</label>
@@ -159,7 +160,7 @@
         <option value="zh_TW">繁體中文</option>
       </select>
     </div>
-    </div>
+    </div> -->
     <div class="area">
       <h2>📺 %_set_videos</h2>
       <div class="note">%_set_note</div>
@@ -259,6 +260,22 @@
       </div>
       <div class="note">%_set_history_permission</div>
     </div>
+    <div class="area">
+      <h2>🗣️ %_Motto</h2>
+      <div class="setting">
+        <label for="showMotto">%_set_show_motto</label>
+        <input type="checkbox" id="showMotto">
+      </div>
+      <div class="setting" id="translateMotto_area_check">
+        <label for="translateMotto">%_translateMotto</label>
+        <input type="checkbox" id="translateMotto">
+      </div>
+      <div class="setting" id="translateMotto_area">
+        <label for="deepLAPIKEY">%_set_deepl_api:</label>
+        <input type="text" class="input" id="deepLAPIKEY" placeholder="%_set_your_deepl_api_key">
+      </div>
+      <div class="note" id="translateMotto_area_note">%_set_deepl_api_note</div>
+    </div>
 
 
     <div class="area">
@@ -270,10 +287,7 @@
           <option value="infinity">Infinity</option>
         </select>
       </div>
-      <div class="setting">
-        <label for="showMotto">%_set_show_motto</label>
-        <input type="checkbox" id="showMotto">
-      </div>
+
       <div class="setting">
         <label for="refreshButton">%_set_show_refresh_button</label>
         <input type="checkbox" id="refreshButton">
