@@ -99,7 +99,7 @@ async function initSettings() {
   // Zen Mode
   if (newdata.showZenMode) {
     var fullscreenButton = document.getElementById("fullscreen-btn");
-    var videoElement = document.getElementById("videoBox"); // 确保替换成您视频元素的实际 ID
+    var videoElement = document.getElementById("videoBox");
 
     fullscreenButton.addEventListener("click", function () {
       enterFullScreen(videoElement);
