@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     .addEventListener("change", updateVideoSrcSettings);
 
   document
-    .getElementById("translateMotto_area_check")
+    .getElementById("translateMotto")
     .addEventListener("change", updateDeepLSettings);
 
   document.getElementById("save").addEventListener("click", function () {
