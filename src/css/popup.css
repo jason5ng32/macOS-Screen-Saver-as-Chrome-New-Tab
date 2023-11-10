@@ -6,7 +6,7 @@ body {
 
 @font-face {
     font-family: "CustomFont";
-    src: url('../res/font.ttf') format('truetype');
+    src: url('../res/Dosis-ExtraLight.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -177,7 +177,8 @@ input[type="text"]:focus {
     margin-bottom: 20px;
     color: white;
     font-family: "CustomFont";
-    font-size: 10vh;
+    font-size: 9vh;
+    font-weight: lighter;
     cursor: default;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;

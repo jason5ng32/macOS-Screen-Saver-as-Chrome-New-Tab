@@ -1,0 +1,245 @@
+{
+    "sys_name": {
+        "message": "Macify: vídeos de salvapantallas de macOS en la nueva pestaña de Chrome"
+    },
+    "sys_description": {
+        "message": "Convierta la nueva página de pestañas de Chrome en los hermosos videos de salvapantallas aéreos de macOS."
+    },
+    "pop_load_top_sites": {
+        "message": "Cargando sitios principales..."
+    },
+    "pop_now": {
+        "message": "Ahora"
+    },
+    "pop_today": {
+        "message": "Hoy"
+    },
+    "pop_t_1": {
+        "message": "mañana"
+    },
+    "pop_t_2": {
+        "message": "pasado"
+    },
+    "pop_ask_chat_gpt": {
+        "message": "Pregúntale a ChatGPT..."
+    },
+    "pop_load_motto": {
+        "message": "Cargando lema..."
+    },
+    "pop_github": {
+        "message": "Github del proyecto"
+    },
+    "pop_refresh_video": {
+        "message": "Actualizar video"
+    },
+    "pop_weather": {
+        "message": "Clima"
+    },
+    "pop_top_sites": {
+        "message": "Sitios principales"
+    },
+    "pop_zen_mode": {
+        "message": "Modo Zen"
+    },
+    "error_video_source": {
+        "message": "No se encontró ningún elemento de video para cambiar la fuente."
+    },
+    "message_video_1": {
+        "message": "Parece que está utilizando un servidor de video local pero la recuperación de videos falló. Asegúrese de haber configurado la URL correcta.\nSiga las &nbsp;<a href=\"instructions.html\" target=_blank >instrucciones</a>&nbsp; aquí para hacerlo funcionar."
+    },
+    "message_video_2": {
+        "message": "Parece que está utilizando el servidor de Apple como fuente de video, pero aún no ha confiado en el certificado raíz de Apple.\nSiga las &nbsp;<a href=\"instructions.html\" target=_blank >instrucciones</a>&nbsp; aquí para hacerlo funcionar."
+    },
+    "message_video_3": {
+        "message": "Parece que está utilizando nuestro proxy inverso. La mejor manera de usar Macify es configurar un servidor HTTP local o usar el servidor de Apple sin proxy inverso.\nSiga las &nbsp;<a href=\"instructions.html\" target=_blank >instrucciones</a>&nbsp; aquí para mejorarlo."
+    },
+    "set_options_title": {
+        "message": "Configuración de la nueva pestaña de Macify"
+    },
+    "set_options_note": {
+        "message": "Configure las opciones a continuación antes de usar esta extensión."
+    },
+    "set_note": {
+        "message": "Si elige recuperar videos del servidor de Apple, Chrome puede no confiar en el certificado raíz de Apple, por lo que puede usar temporalmente mi proxy inverso de Cloudflare para recuperar videos (marque la casilla de verificación a continuación). Sin embargo, no puedo garantizar la disponibilidad a largo plazo de este servicio. Por lo tanto, le recomiendo encarecidamente que siga las <a href=\"instructions.html\" target=_blank>instrucciones</a> para confiarlo manualmente."
+    },
+    "set_videos": {
+        "message": "Videos"
+    },
+    "set_video_source": {
+        "message": "Fuente de video"
+    },
+    "set_apple_server": {
+        "message": "Servidor de Apple"
+    },
+    "set_local_server": {
+        "message": "Servidor local"
+    },
+    "set_reverse_proxy": {
+        "message": "Proxy inverso"
+    },
+    "set_local_videos_list_url": {
+        "message": "URL de lista de videos locales"
+    },
+    "set_video_note": {
+        "message": "La mejor manera de usar esta extensión es configurar un servicio HTTP local, siguiendo estas <a href=\"instructions.html\" target=_blank>instrucciones</a>."
+    },
+    "set_weather": {
+        "message": "Clima"
+    },
+    "set_show_weather": {
+        "message": "Mostrar clima"
+    },
+    "set_city_name": {
+        "message": "Nombre de la ciudad (EN)"
+    },
+    "set_temp_unit": {
+        "message": "Unidad de temperatura"
+    },
+    "set_celsius": {
+        "message": "Celsius (°C)"
+    },
+    "set_fahrenheit": {
+        "message": "Fahrenheit (°F)"
+    },
+    "set_weather_api": {
+        "message": "API de Weatherapi.com"
+    },
+    "set_your_weather_api_key": {
+        "message": "Ingrese su propia clave API"
+    },
+    "set_weather_note": {
+        "message": "Vaya a <a href=\"https://www.weatherapi.com/\" target=_blank>weatherapi.com</a> para obtener su clave API gratuita."
+    },
+    "set_ask_chatgpt": {
+        "message": "Pregúntale a ChatGPT"
+    },
+    "set_show_chatgpt": {
+        "message": "Mostrar ChatGPT"
+    },
+    "set_default_model": {
+        "message": "Elegir modelo predeterminado"
+    },
+    "set_delay_time": {
+        "message": "Latencia de entrada (ms)"
+    },
+    "set_delay_note": {
+        "message": "Se recomienda 2000 o más."
+    },
+    "set_time": {
+        "message": "Hora"
+    },
+    "set_show_clock": {
+        "message": "Mostrar reloj"
+    },
+    "set_hour_system": {
+        "message": "Sistema horario"
+    },
+    "set_12_hour": {
+        "message": "12 horas"
+    },
+    "set_24_hour": {
+        "message": "24 horas"
+    },
+    "set_clock_note": {
+        "message": "Solo afecta cuando se muestra el reloj."
+    },
+    "set_top_sites": {
+        "message": "Sitios principales"
+    },
+    "set_show_top_sites": {
+        "message": "Mostrar sitios principales"
+    },
+    "set_histories_within": {
+        "message": "Historias dentro de"
+    },
+    "set_1_month": {
+        "message": "1 mes"
+    },
+    "set_2_weeks": {
+        "message": "2 semanas"
+    },
+    "set_1_week": {
+        "message": "1 semana"
+    },
+    "set_3_days": {
+        "message": "3 días"
+    },
+    "set_1_day": {
+        "message": "1 día"
+    },
+    "set_history_permission": {
+        "message": "Se requiere permiso de historial para esta función."
+    },
+    "set_others": {
+        "message": "Otros"
+    },
+    "set_choose_font": {
+        "message": "Elegir fuente"
+    },
+    "set_system_default": {
+        "message": "Predeterminado del sistema"
+    },
+    "set_show_motto": {
+        "message": "Mostrar lema"
+    },
+    "set_show_refresh_button": {
+        "message": "Mostrar botón de actualización"
+    },
+    "set_show_zen_button": {
+        "message": "Mostrar botón Zen"
+    },
+    "set_show_author_info": {
+        "message": "Mostrar información del autor"
+    },
+    "set_save": {
+        "message": "Guardar"
+    },
+    "error_get_motto": {
+        "message": "Error al obtener el lema."
+    },
+    "error_get_weather": {
+        "message": "Error al obtener el clima. Verifique la clave API y el nombre de la ciudad y vuelva a intentarlo."
+    },
+    "error_video_url": {
+        "message": "Ingrese la URL de la lista de videos"
+    },
+    "error_delay_time": {
+        "message": "El tiempo de retraso debe ser un número entero entre 1 y 10000."
+    },
+    "error_weather": {
+        "message": "Ingrese el nombre de la ciudad y la clave API de weatherapi.com"
+    },
+    "error_weather_api_key": {
+        "message": "La clave API debe tener al menos 30 caracteres y consistir solo en letras y números."
+    },
+    "error_history_permission": {
+        "message": "Se requiere permiso de historial para habilitar esta función."
+    },
+    "message_saved": {
+        "message": "Configuración guardada"
+    },
+    "set_language": {
+        "message": "Idioma"
+    },
+    "set_language_selector": {
+        "message": "Elegir idioma"
+    },
+    "set_motto": {
+        "message": "Lema"
+    },
+    "set_google_api": {
+        "message": "API de Google Translation"
+    },
+    "set_your_google_api_key": {
+        "message": "Ingrese su clave API de Google Cloud Translation"
+    },
+    "error_google_api_key": {
+        "message": "La longitud de la clave API debe ser de al menos 39 caracteres."
+    },
+    "set_google_api_note": {
+        "message": "Si el idioma de su navegador es inglés, no necesita una clave API de <a href=\"https://console.cloud.google.com/apis/api/translate.googleapis.com/\" target=_blank>Google Cloud</a>."
+    },
+    "set_translate_motto": {
+        "message": "Traducir lema"
+    }
+}
