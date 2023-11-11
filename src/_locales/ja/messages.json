@@ -120,7 +120,7 @@
     "message": "デフォルトモデルを選択"
   },
   "set_delay_time": {
-    "message": "遅延時間をミリ秒で入力してください"
+    "message": "遅延時間(ms)"
   },
   "set_delay_note": {
     "message": "2000以上が推奨されます。"
