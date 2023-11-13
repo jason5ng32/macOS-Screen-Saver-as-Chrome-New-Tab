@@ -504,6 +504,7 @@ async function fetchRandomMotto(googleAPIKEY, translateMotto) {
 
     let finalContent = content;
     let finalAuthor = author;
+    let isTranslated = false;
     // 如果浏览器语言不是英语，翻译格言
     if (browserLang !== "en" && translateMotto) {
       const combinedText = content + "||" + author; // 合并文本和作者，用换行符分隔
@@ -521,6 +522,7 @@ async function fetchRandomMotto(googleAPIKEY, translateMotto) {
       const splitText = translatedText.split("||");
       finalContent = splitText[0];
       finalAuthor = splitText[1] || author; // 如果分割失败，保留原作者名
+      isTranslated = true;
     }
 
     await new Promise((resolve) => setTimeout(resolve, 10));
@@ -528,6 +530,9 @@ async function fetchRandomMotto(googleAPIKEY, translateMotto) {
     await new Promise((resolve) => setTimeout(resolve, 400));
     mottoElement.style.opacity = "1";
     mottoElement.textContent = `${finalContent} — ${finalAuthor}`;
+    if(isTranslated) {
+      mottoElement.title = `${content} — ${author}`;
+    }
   } catch (error) {
     mottoElement.style.opacity = "1";
     console.error("Get motto failed.");
