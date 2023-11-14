@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const overrideStyle = document.createElement('style');
       overrideStyle.innerHTML = `
         * { font-family: sans-serif !important; }
+        *::placeholder { font-family: sans-serif !important; }
       `;
       document.head.appendChild(overrideStyle);
     }

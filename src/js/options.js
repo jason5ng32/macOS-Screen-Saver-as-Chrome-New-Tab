@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     let city = document.getElementById("city").value;
     let weatherAPIKEY = document.getElementById("weatherAPIKEY").value;
     let translateMotto = document.getElementById("translateMotto").checked;
-    let deepLAPIKEY = document.getElementById("deepLAPIKEY").value;
+    let googleAPIKEY = document.getElementById("googleAPIKEY").value;
     let delayTime = document.getElementById("delayTime").value; // 获取 delayTime 的值
     let delayTimeInt = parseInt(delayTime, 10); // 转换为整数
     let historyPermissionNeeded =
@@ -105,8 +105,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       isValid = false;
     }
 
-    if (translateMotto && deepLAPIKEY.length < 38) {
-      showMessage(getMsg("error_deepL_api_key"), "error");
+    if (translateMotto && googleAPIKEY.length < 39) {
+      showMessage(getMsg("error_google_api_key"), "error");
       isValid = false;
     }
 

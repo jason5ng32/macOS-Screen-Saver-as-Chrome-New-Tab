@@ -120,7 +120,7 @@
     "message": "デフォルトモデルを選択"
   },
   "set_delay_time": {
-    "message": "遅延時間をミリ秒で入力してください"
+    "message": "遅延時間(ms)"
   },
   "set_delay_note": {
     "message": "2000以上が推奨されます。"
@@ -227,17 +227,17 @@
   "set_motto" : {
     "message": "モットー"
   },
-  "set_deepl_api" : {
-    "message": "DeepL APIを設定する"
+  "set_google_api" : {
+    "message": "Google 翻訳 APIを設定する"
   },
-  "set_your_deepl_api_key" :{
-    "message": "あなたのDeepL APIキーを入力してください"
+  "set_your_google_api_key" :{
+    "message": "あなたのGoogle 翻訳 APIキーを入力してください"
   },
-  "error_deepL_api_key": {
-    "message": "APIキーの長さは少なくとも38文字でなければなりません。"
+  "error_google_api_key": {
+    "message": "APIキーの長さは少なくとも39文字でなければなりません。"
   },
-  "set_deepl_api_note" : {
-    "message": "格言をあなたの言語に翻訳したい場合は、<a href=\"https://www.deepl.com/\" target=_blank>DeepL</a>で無料のAPIキーを取得してください。"
+  "set_google_api_note" : {
+    "message": "格言をあなたの言語に翻訳したい場合は、<a href=\"https://console.cloud.google.com/apis/api/translate.googleapis.com/\" target=_blank>Google Cloud</a>で無料のAPIキーを取得してください。"
   },
   "set_translate_motto" : {
     "message": "モットーを翻訳する"

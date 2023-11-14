@@ -3,7 +3,7 @@
     "message": "Macify - macOS 屏保视频标签页"
   },
   "sys_description": {
-    "message": "将 Chrome 的新标签页变成 macOS 华丽的航拍视频。"
+    "message": "将 Chrome 的新标签页变成 macOS 屏保的华丽航拍视频。"
   },
   "pop_load_top_sites": {
     "message": "正在加载高频网站..."
@@ -42,7 +42,7 @@
     "message": "禅模式"
   },
   "error_video_source": {
-    "message": "未找到视频元素以切换源。"
+    "message": "未找到可切换的视频。"
   },
   "message_video_1": {
     "message": "看起来您正在使用本地视频服务器，但获取视频失败。请确保您已设置正确的 URL。请按照此处的&nbsp;<a href=\"instructions.html\" target=_blank >说明</a>&nbsp;进行操作。"
@@ -51,7 +51,7 @@
     "message": "看起来您正在使用 Apple 服务器作为视频源，但尚未信任 Apple 的根证书。请按照此处的&nbsp;<a href=\"instructions.html\" target=_blank >说明</a>&nbsp;进行操作。"
   },
   "message_video_3": {
-    "message": "看起来您正在使用我们的反向代理。使用 Macify 的好方法是设置本地服务器或使用 Apple 的服务器而不使用反向代理。请按照此处的&nbsp;<a href=\"instructions.html\" target=_blank >说明</a>&nbsp;进行操作，使其更好。"
+    "message": "看起来您正在使用我们的反向代理。使用 Macify 更好的方法是设置本地服务器或直接使用 Apple 的服务器。请按照此处的&nbsp;<a href=\"instructions.html\" target=_blank >说明</a>&nbsp;进行操作。"
   },
   "set_options_title": {
     "message": "Macify 新标签页设置"
@@ -60,7 +60,7 @@
     "message": "在使用此扩展之前，请配置以下选项。"
   },
   "set_note": {
-    "message": "如果您选择从 Apple 服务器获取视频，则 Chrome 可能不信任 Apple 的根证书，因此您可以暂时使用我的 Cloudflare 反向代理来获取视频（选中下面的复选框）。但是，我无法保证此服务的长期可用性。因此，我强烈建议您按照<a href=\"instructions.html\" target=_blank>说明</a>手动信任它。"
+    "message": "如果您选择从 Apple 服务器获取视频，Chrome 可能不信任 Apple 的根证书，因此您可以暂时使用我的 Cloudflare 反向代理来获取视频（选中下面的复选框）。但是，我无法保证此服务的长期可用性。因此，我强烈建议您按照<a href=\"instructions.html\" target=_blank>说明</a>让 Chrome 信任 Apple 的证书。"
   },
   "set_videos": {
     "message": "视频"
@@ -78,7 +78,7 @@
     "message": "反向代理"
   },
   "set_local_videos_list_url": {
-    "message": "本地视频列表 URL"
+    "message": "本地视频源 URL"
   },
   "set_video_note": {
     "message": "使用此扩展的更好方法是设置本地 HTTP 服务，请按照 <a href=\"instructions.html\" target=_blank>说明</a> 进行操作。"
@@ -123,7 +123,7 @@
     "message": "输入延迟时间（毫秒）"
   },
   "set_delay_note": {
-    "message": "建议使用 2000 或更多。"
+    "message": "2000 或以上会更好。"
   },
   "set_time": {
     "message": "时间"
@@ -141,16 +141,16 @@
     "message": "24 小时制"
   },
   "set_clock_note": {
-    "message": "仅在显示时钟时有效。"
+    "message": "仅在显示时钟时生效。"
   },
   "set_top_sites": {
-    "message": "热门网站"
+    "message": "高频网站"
   },
   "set_show_top_sites": {
-    "message": "显示热门网站"
+    "message": "显示高频网站"
   },
   "set_histories_within": {
-    "message": "历史记录范围"
+    "message": "计算历史记录范围"
   },
   "set_1_month": {
     "message": "1 个月"
@@ -171,13 +171,13 @@
     "message": "启用此功能需要历史记录权限。"
   },
   "set_others": {
-    "message": "其他"
+    "message": "其它"
   },
   "set_choose_font": {
     "message": "选择字体"
   },
   "set_system_default": {
-    "message": "系统默认自体"
+    "message": "系统默认字体"
   },
   "set_show_motto": {
     "message": "显示格言"
@@ -201,7 +201,7 @@
     "message": "获取天气失败。请检查 API 密钥和城市名称，然后重试。"
   },
   "error_video_url": {
-    "message": "请输入视频列表 URL"
+    "message": "请输入视频源 URL"
   },
   "error_delay_time": {
     "message": "延迟时间必须是介于 1 和 10000 之间的整数。"
@@ -213,7 +213,7 @@
     "message": "API 密钥长度必须至少为 30 个字符，并且只能由字母和数字组成。"
   },
   "error_history_permission": {
-    "message": "启用此功能需要历史记录权限。"
+    "message": "启用此功能需要授权历史记录权限。"
   },
   "message_saved": {
     "message": "设置已保存"
@@ -227,17 +227,17 @@
   "set_motto" : {
     "message": "格言"
   },
-  "set_deepl_api" : {
-    "message": "DeepL API"
+  "set_google_api" : {
+    "message": "Google 翻译 API KEY"
   },
-  "set_your_deepl_api_key" :{
-    "message": "填入你的 DeepL API KEY"
+  "set_your_google_api_key" :{
+    "message": "填入你的 Google Cloud 翻译 API KEY"
   },
-  "error_deepL_api_key": {
-    "message": "API 密钥长度必须至少为 38 个字符。"
+  "error_google_api_key": {
+    "message": "API 密钥长度必须至少为 39 个字符。"
   },
-  "set_deepl_api_note" : {
-    "message": "如果你希望将格言翻译成你的语言，请前往<a href=\"https://www.deepl.com/\" target=_blank>DeepL</a>获取您的免费 API 密钥。"
+  "set_google_api_note" : {
+    "message": "如果你希望将格言翻译成你的语言，请前往<a href=\"https://console.cloud.google.com/apis/api/translate.googleapis.com/\" target=_blank>Google Cloud</a>获取您的翻译 API 密钥。"
   },
   "set_translate_motto" : {
     "message": "翻译格言"

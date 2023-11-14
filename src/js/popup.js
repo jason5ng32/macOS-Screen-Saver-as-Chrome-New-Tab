@@ -84,8 +84,8 @@ async function initSettings() {
 
   // 展示 Motto
   if (newdata.showMotto) {
-    fetchRandomMotto(newdata.deepLAPIKEY, newdata.translateMotto);
-    refreshRandomMotto(newdata.deepLAPIKEY, newdata.translateMotto);
+    fetchRandomMotto(newdata.googleAPIKEY, newdata.translateMotto);
+    refreshRandomMotto(newdata.googleAPIKEY, newdata.translateMotto);
   } else {
     let elements = document.querySelectorAll(".centered");
     elements.forEach(function (element) {
@@ -424,24 +424,50 @@ function updateTime(hourSystem) {
 }
 
 // 调用 DeepL 翻译格言
-async function translateText(text, targetLang, deepLAPIKEY) {
-  const apiKey = deepLAPIKEY;
-  const url = `https://api-free.deepl.com/v2/translate?auth_key=${apiKey}&text=${encodeURIComponent(
-    text
-  )}&target_lang=${targetLang}`;
+// async function translateText(text, targetLang, deepLAPIKEY) {
+//   const apiKey = deepLAPIKEY;
+//   const url = `https://api-free.deepl.com/v2/translate?auth_key=${apiKey}&text=${encodeURIComponent(
+//     text
+//   )}&target_lang=${targetLang}`;
+
+//   try {
+//     const response = await fetch(url, { method: "POST" });
+//     const data = await response.json();
+//     return data.translations[0].text;
+//   } catch (error) {
+//     console.error("Translation failed:", error);
+//     return text; // 如果翻译失败，返回原文本
+//   }
+// }
+
+// 调用 Google 翻译格言
+async function translateTextWithGoogle(text, targetLang, googleAPIKEY) {
+  const apiKey = googleAPIKEY;
+  const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
+
+  const requestBody = {
+    q: text,
+    target: targetLang
+  };
 
   try {
-    const response = await fetch(url, { method: "POST" });
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(requestBody),
+      headers: { "Content-Type": "application/json" },
+    });
+
     const data = await response.json();
-    return data.translations[0].text;
+    return data.data.translations[0].translatedText;
   } catch (error) {
-    console.error("Translation failed:", error);
+    console.error("Google Translate API request failed:", error);
     return text; // 如果翻译失败，返回原文本
   }
 }
 
+
 // 获取格言
-async function fetchRandomMotto(deepLAPIKEY, translateMotto) {
+async function fetchRandomMotto(googleAPIKEY, translateMotto) {
   const mottoElement = document.getElementById("motto");
 
   try {
@@ -455,7 +481,7 @@ async function fetchRandomMotto(deepLAPIKEY, translateMotto) {
     if (!quotes || currentIndex >= quotes.length) {
       try {
         const response = await fetch(
-          "https://api.quotable.io/quotes/random?limit=50&maxLength=150"
+          "https://api.quotable.io/quotes/random?limit=50&maxLength=220"
         );
         const data = await response.json();
         quotes = data;
@@ -478,19 +504,25 @@ async function fetchRandomMotto(deepLAPIKEY, translateMotto) {
 
     let finalContent = content;
     let finalAuthor = author;
+    let isTranslated = false;
     // 如果浏览器语言不是英语，翻译格言
     if (browserLang !== "en" && translateMotto) {
-      const combinedText = content + "\n" + author; // 合并文本和作者，用换行符分隔
-      const translatedText = await translateText(
-        combinedText,
-        browserLang.split(/-|_/)[0].toUpperCase(),
-        deepLAPIKEY
-      );
+      const combinedText = content + "||" + author; // 合并文本和作者，用换行符分隔
+      let targetLang = browserLang.split(/-|_/)[0];
+      if (browserLang.toLowerCase() === "zh_cn") {
+        targetLang = "zh_CN";
+      } else if (browserLang.toLowerCase() === "zh_tw") {
+        targetLang = "zh_TW";
+      } else {
+        targetLang = targetLang.toUpperCase();
+      }
+      const translatedText = await translateTextWithGoogle(combinedText, targetLang, googleAPIKEY);
 
       // 将翻译后的文本分割回原来的格言和作者
-      const splitText = translatedText.split("\n");
+      const splitText = translatedText.split("||");
       finalContent = splitText[0];
       finalAuthor = splitText[1] || author; // 如果分割失败，保留原作者名
+      isTranslated = true;
     }
 
     await new Promise((resolve) => setTimeout(resolve, 10));
@@ -498,6 +530,9 @@ async function fetchRandomMotto(deepLAPIKEY, translateMotto) {
     await new Promise((resolve) => setTimeout(resolve, 400));
     mottoElement.style.opacity = "1";
     mottoElement.textContent = `${finalContent} — ${finalAuthor}`;
+    if(isTranslated) {
+      mottoElement.title = `${content} — ${author}`;
+    }
   } catch (error) {
     mottoElement.style.opacity = "1";
     console.error("Get motto failed.");
@@ -512,7 +547,7 @@ async function fetchRandomMotto(deepLAPIKEY, translateMotto) {
 }
 
 // 刷新格言
-async function refreshRandomMotto(deepLAPIKEY, translateMotto) {
+async function refreshRandomMotto(googleAPIKEY, translateMotto) {
   var mottoElement = document.querySelector(".motto");
   mottoElement.addEventListener("click", function (e) {
     var clickedElement = e.target;
@@ -532,7 +567,7 @@ async function refreshRandomMotto(deepLAPIKEY, translateMotto) {
               e.clientY >= rectList[j].top &&
               e.clientY <= rectList[j].bottom
             ) {
-              fetchRandomMotto(deepLAPIKEY, translateMotto);
+              fetchRandomMotto(googleAPIKEY, translateMotto);
               return;
             }
           }
