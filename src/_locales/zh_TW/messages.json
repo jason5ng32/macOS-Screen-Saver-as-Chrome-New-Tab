@@ -21,7 +21,7 @@
     "message": "後日"
   },
   "pop_ask_chat_gpt": {
-    "message": "詢問 ChatGPT..."
+    "message": "ChatGPT..."
   },
   "pop_load_motto": {
     "message": "加載格言..."
@@ -241,5 +241,44 @@
   },
   "set_translate_motto": {
     "message": "翻譯格言"
+  },
+  "pop_ask": {
+    "message": "詢問"
+  },
+  "error_gizmo_number": {
+    "message": "第 "
+  },
+  "error_gizmo_configuration": {
+    "message": " 個 GPTs 設定錯誤。請確保兩個值都填寫或都保持空白。"
+  },
+  "set_gpts_name": {
+    "message": "GPTs 名稱"
+  },
+  "set_gpts_id": {
+    "message": "GPTs ID"
+  },
+  "set_gizmo1_name": {
+    "message": "GPTs-1 的名稱"
+  },
+  "set_gizmo1_id": {
+    "message": "GPTs-1 的 ID"
+  },
+  "set_gizmo2_name": {
+    "message": "GPTs-2 的名稱"
+  },
+  "set_gizmo2_id": {
+    "message": "GPTs-2 的 ID"
+  },
+  "set_gizmo3_name": {
+    "message": "GPTs-3 的名稱"
+  },
+  "set_gizmo3_id": {
+    "message": "GPTs-3 的 ID"
+  },
+  "set_show_gizmo": {
+    "message": "顯示 GPTs"
+  },
+  "set_gizmo_note": {
+    "message": "GPTs ID 就是以下範例 URL 中標為綠色的那部分 https://chat.openai.com/g/<span style=\"color:green;font-weight:bold;\">g-dqSxf0sSW-shan-shu-fan-yi-gong-si<\/span>。"
   }
 }

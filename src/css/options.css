@@ -135,3 +135,7 @@ label {
 h2 {
     font-weight: 300;
 }
+
+#gizmo_area {
+    display: none;
+}

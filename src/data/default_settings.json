@@ -20,5 +20,12 @@
   "authorInfo": true,
   "videoSrc": "apple",
   "reverseProxy": true,
-  "delayTime": 2000
+  "delayTime": 2000,
+  "showGizmo":false,
+  "gizmo1_id":"",
+  "gizmo1_name":"",
+  "gizmo2_id":"",
+  "gizmo2_name":"",
+  "gizmo3_id":"",
+  "gizmo3_name":""
 }

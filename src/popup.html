@@ -7,6 +7,9 @@
   <script src="js/fonts.js"></script>
   <script src="js/lang.js"></script>
   <link href="css/popup.css" rel="stylesheet" />
+  <!-- <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <script src="js/bootstrap.bundle.js"></script> -->
+
 </head>
 
 <body>
@@ -83,7 +86,19 @@
   </div>
   <div class="centered top-layer">
     <div id="current-time">--:--</div>
-    <input type="text" id="search" placeholder="%_pop_ask_chat_gpt">
+    <div class="search_area" id="search_area">
+      <div class="searchnav" id="searchnav">
+        <ul class="nav nav-tabs">
+          <li class="nav-item search_active" id="chatgpt"><span>ChatGPT</li>
+          <li class="nav-item search_inactive" id="gizmo1">Gizmo1</li>
+          <li class="nav-item search_inactive" id="gizmo2">Gizmo2</li>
+          <li class="nav-item search_inactive" id="gizmo3">Gizmo3</li>
+        </ul>
+      </div>
+      <div class="searchbox">
+        <input type="text" id="search" placeholder="%_pop_ask %_pop_ask_chat_gpt">
+      </div>
+    </div>
 
     <div class="motto" id="motto"><span>%_pop_load_motto</span>
     </div>

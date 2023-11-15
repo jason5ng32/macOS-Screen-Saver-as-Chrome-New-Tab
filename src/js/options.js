@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     updateVideoSrcSettings();
     updateDeepLSettings();
+    updateChatGPTSettings();
   });
 
   // 创建提示信息
@@ -56,12 +57,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     .getElementById("translateMotto")
     .addEventListener("change", updateDeepLSettings);
 
+  document
+    .getElementById("showGizmo")
+    .addEventListener("change", updateChatGPTSettings);
+
   document.getElementById("save").addEventListener("click", function () {
     let isValid = true;
     let videoSourceUrl = document.getElementById("videoSourceUrl").value;
     let showWeather = document.getElementById("showWeather").checked;
     let city = document.getElementById("city").value;
     let weatherAPIKEY = document.getElementById("weatherAPIKEY").value;
+    let showGizmo = document.getElementById("showGizmo").checked;
     let translateMotto = document.getElementById("translateMotto").checked;
     let googleAPIKEY = document.getElementById("googleAPIKEY").value;
     let delayTime = document.getElementById("delayTime").value; // 获取 delayTime 的值
@@ -108,6 +114,20 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (translateMotto && googleAPIKEY.length < 39) {
       showMessage(getMsg("error_google_api_key"), "error");
       isValid = false;
+    }
+
+    if (showGizmo) {
+      for (let i = 1; i <= 3; i++) {
+        let gizmoName = document.getElementById(`gizmo${i}_name`).value;
+        let gizmoId = document.getElementById(`gizmo${i}_id`).value;
+
+        // 检查 gizmo 对是否一个为空而另一个不为空
+        if ((gizmoName && !gizmoId) || (!gizmoName && gizmoId)) {
+          showMessage(getMsg("error_gizmo_number") + `${i}` + getMsg("error_gizmo_configuration"), "error");
+          isValid = false;
+          break;
+        }
+      }
     }
 
     if (isValid) {
@@ -168,6 +188,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 });
+
+function updateChatGPTSettings() {
+  const showGizmo = document.getElementById("showGizmo").checked;
+  const gizmoArea = document.getElementById("gizmo_area");
+
+  if (showGizmo === true) {
+    gizmoArea.style.display = "block";
+  } else {
+    gizmoArea.style.display = "none";
+  }
+}
 
 async function updateDeepLSettings() {
   const translateMotto = document.getElementById("translateMotto").checked;
