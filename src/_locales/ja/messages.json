@@ -111,7 +111,7 @@
     "message": "<a href=\"https://www.weatherapi.com/\" target=_blank>weatherapi.com</a>にアクセスして、無料のAPIキーを取得してください。"
   },
   "set_ask_chatgpt": {
-    "message": "ChatGPTに聞く"
+    "message": "ChatGPT"
   },
   "set_show_chatgpt": {
     "message": "ChatGPTを表示"
@@ -241,5 +241,44 @@
   },
   "set_translate_motto" : {
     "message": "モットーを翻訳する"
+  },
+  "pop_ask" : {
+    "message": "に聞く："
+  },
+  "error_gizmo_number": {
+    "message": "第 "
+  },
+  "error_gizmo_configuration": {
+    "message": " 個の GPTs 設定が間違っています。両方の値を入力するか、空白にしてください。"
+  },
+  "set_gpts_name": {
+    "message": "GPTs 名称"
+  },
+  "set_gpts_id": {
+    "message": "GPTs ID"
+  },
+  "set_gizmo1_name": {
+    "message": "GPTs-1 の名称"
+  },
+  "set_gizmo1_id": {
+    "message": "GPTs-1 の ID"
+  },
+  "set_gizmo2_name": {
+    "message": "GPTs-2 の名称"
+  },
+  "set_gizmo2_id": {
+    "message": "GPTs-2 の ID"
+  },
+  "set_gizmo3_name": {
+    "message": "GPTs-3 の名称"
+  },
+  "set_gizmo3_id": {
+    "message": "GPTs-3 の ID"
+  },
+  "set_show_gizmo": {
+    "message": "GPTs を表示"
+  },
+  "set_gizmo_note": {
+    "message": "GPTs ID は、以下のサンプル URL にある緑色で強調された部分です https://chat.openai.com/g/<span style=\"color:green;font-weight:bold;\">g-dqSxf0sSW-shan-shu-fan-yi-gong-si<\/span>。"
   }
 }

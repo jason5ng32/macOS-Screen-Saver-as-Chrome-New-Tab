@@ -75,7 +75,10 @@ async function initSettings() {
 
   // 展示搜索框
   if (newdata.showSearch) {
-    initSearch();
+    initSearch(newdata);
+    if (newdata.showGizmo) {
+      searchUI(newdata);
+    }
   }
   // 展示时间
   if (newdata.showTime) {
@@ -151,17 +154,19 @@ function updateUI({
   authorInfo,
   showTopSites,
   showZenMode,
+  showGizmo
 }) {
   setDisplay("current-time", showTime ? "block" : "none");
   setDisplay("weather-area", showWeather ? "flex" : "none");
   setDisplay("wth", showWeather ? "block" : "none");
   setDisplay("topsites-area", showTopSites ? "flex" : "none");
   setDisplay("tss", showTopSites ? "block" : "none");
-  setDisplay("search", showSearch ? "inline" : "none");
+  setDisplay("search_area", showSearch ? "inline" : "none");
   setDisplay("switchVideoBtn", refreshButton ? "" : "none");
   setDisplay("motto", showMotto ? "block" : "none");
   setDisplay("author", authorInfo ? "" : "none");
   setDisplay("zenmode", showZenMode ? "block" : "none");
+  setDisplay("searchnav", showGizmo ? "flex" : "none");
 }
 
 // 设置显示或隐藏
@@ -382,18 +387,105 @@ function videoSettingsSuggestion(videoStatus) {
 }
 
 // 搜索框
-async function initSearch() {
+async function initSearch({ gizmo1_id, gizmo2_id, gizmo3_id }) {
   const searchInput = document.getElementById("search");
   await new Promise((resolve) => setTimeout(resolve, 200));
-  search.style.opacity = "1";
+  searchInput.style.opacity = "1";
   searchInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
+      // 获取当前激活的 gizmo 的 ID
+      const activeGizmoId = document.querySelector('.search_active').id;
+      let GizmoId = "ChatGPT";
+      switch (activeGizmoId) {
+        case 'gizmo1':
+          GizmoId = gizmo1_id;
+          break;
+        case 'gizmo2':
+          GizmoId = gizmo2_id;
+          break;
+        case 'gizmo3':
+          GizmoId = gizmo3_id;
+          break;
+      }
       // 通过 Chrome 扩展 API 发送消息给 background.js
       const input = encodeURIComponent(event.target.value);
-      chrome.runtime.sendMessage({ action: "openUrlAndType", input });
+      chrome.runtime.sendMessage({ action: "openUrlAndType", input, gizmoId: GizmoId });
     }
   });
 }
+
+
+// 搜索样式变换
+function searchUI({ gizmo1_name, gizmo2_name, gizmo3_name }) {
+  var navItems = document.querySelectorAll('.nav-item');
+  var searchInput = document.getElementById('search');
+  var originalPlaceholder = searchInput.placeholder;
+  var splitPlaceholder = originalPlaceholder.split(' ');
+  var firstPartOfPlaceholder = splitPlaceholder[0];
+
+  // 检索并设置上次选中的 tab
+  chrome.storage.local.get(['lastSelectedTab'], function (result) {
+    if (result.lastSelectedTab) {
+      var lastSelectedTab = document.getElementById(result.lastSelectedTab);
+      if (lastSelectedTab) {
+        lastSelectedTab.click(); // 模拟点击事件，以激活 tab
+      }
+    }
+  });
+
+  // 初始化各个选项的名称
+  var gizmo1Item = document.getElementById('gizmo1');
+  var gizmo2Item = document.getElementById('gizmo2');
+  var gizmo3Item = document.getElementById('gizmo3');
+
+  gizmo1Item.textContent = gizmo1_name || 'Gizmo 1'; // 如果 gizmo1_name 为空，则使用默认值
+  gizmo2Item.textContent = gizmo2_name || 'Gizmo 2'; // 如果 gizmo2_name 为空，则使用默认值
+  gizmo3Item.textContent = gizmo3_name || 'Gizmo 3'; // 如果 gizmo3_name 为空，则使用默认值
+
+  if (!gizmo1_name) gizmo1Item.style.display = 'none';
+  if (!gizmo2_name) gizmo2Item.style.display = 'none';
+  if (!gizmo3_name) gizmo3Item.style.display = 'none';
+
+  navItems.forEach(function (item) {
+    item.addEventListener('click', function () {
+      // 移除当前激活项的激活类
+      var currentActive = document.querySelector('.search_active');
+      if (currentActive) {
+        currentActive.classList.remove('search_active');
+        currentActive.classList.add('search_inactive');
+      }
+
+      // 为被点击的项添加激活类
+      this.classList.remove('search_inactive');
+      this.classList.add('search_active');
+
+      // 为被点击的项添加激活类并保存 tab ID
+      this.classList.remove('search_inactive');
+      this.classList.add('search_active');
+      chrome.storage.local.set({ 'lastSelectedTab': this.id });
+
+      // 根据被点击项的 ID 更新 placeholder
+      var itemId = this.id;
+      switch (itemId) {
+        case 'chatgpt':
+          searchInput.placeholder = firstPartOfPlaceholder + " ChatGPT";
+          break;
+        case 'gizmo1':
+          searchInput.placeholder = firstPartOfPlaceholder + " " + gizmo1_name;
+          break;
+        case 'gizmo2':
+          searchInput.placeholder = firstPartOfPlaceholder + " " + gizmo2_name;
+          break;
+        case 'gizmo3':
+          searchInput.placeholder = firstPartOfPlaceholder + " " + gizmo3_name;
+          break;
+        default:
+          searchInput.placeholder = firstPartOfPlaceholder + " ChatGPT";
+      }
+    });
+  });
+}
+
 
 // 启动时钟
 function initClock(hourSystem) {
@@ -530,7 +622,7 @@ async function fetchRandomMotto(googleAPIKEY, translateMotto) {
     await new Promise((resolve) => setTimeout(resolve, 400));
     mottoElement.style.opacity = "1";
     mottoElement.textContent = `${finalContent} — ${finalAuthor}`;
-    if(isTranslated) {
+    if (isTranslated) {
       mottoElement.title = `${content} — ${author}`;
     }
   } catch (error) {

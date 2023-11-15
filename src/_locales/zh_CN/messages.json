@@ -21,7 +21,7 @@
     "message": "后天"
   },
   "pop_ask_chat_gpt": {
-    "message": "问问 ChatGPT..."
+    "message": "ChatGPT..."
   },
   "pop_load_motto": {
     "message": "正在加载格言..."
@@ -241,5 +241,44 @@
   },
   "set_translate_motto" : {
     "message": "翻译格言"
+  },
+  "pop_ask" : {
+    "message": "问问"
+  },
+  "error_gizmo_number": {
+    "message": "第 "
+  },
+  "error_gizmo_configuration": {
+    "message": " 个 GPTs 设置错误。请确保两个值都填写或都留空。"
+  },
+  "set_gpts_name": {
+    "message": "GPTs 名称"
+  },
+  "set_gpts_id": {
+    "message": "GPTs ID"
+  },
+  "set_gizmo1_name": {
+    "message": "GPTs-1 的名称"
+  },
+  "set_gizmo1_id": {
+    "message": "GPTs-1 的 ID"
+  },
+  "set_gizmo2_name": {
+    "message": "GPTs-2 的名称"
+  },
+  "set_gizmo2_id": {
+    "message": "GPTs-2 的 ID"
+  },
+  "set_gizmo3_name": {
+    "message": "GPTs-3 的名称"
+  },
+  "set_gizmo3_id": {
+    "message": "GPTs-3 的 ID"
+  },
+  "set_show_gizmo": {
+    "message": "显示 GPTs"
+  },
+  "set_gizmo_note": {
+    "message": "GPTs ID 是下面这个示例 URL 中标记为绿色的部分 https://chat.openai.com/g/<span style=\"color:green;font-weight:bold;\">g-dqSxf0sSW-shan-shu-fan-yi-gong-si<\/span>。"
   }
 }
