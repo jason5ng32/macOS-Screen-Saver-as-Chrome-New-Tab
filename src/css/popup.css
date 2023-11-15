@@ -112,13 +112,14 @@ video {
 .searchnav ul li {
     list-style: none;
     cursor: pointer;
-    padding: 2pt 10pt 2pt 10pt;
+    padding: 2pt 10pt 2pt 12pt;
     margin: 0 10pt 10pt 10pt;
     font-size: 10pt;
     max-width: 100pt;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    transition: border 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .search_active {
@@ -132,10 +133,10 @@ video {
 }
 
 .search_active:before {
-    content: "●";
+    content: "◉";
     position: absolute;
-    margin-left: -7pt;
-    font-size: 5pt;
+    margin-left: -8pt;
+    font-size: 6pt;
     height: 100%;
     display: flex;
     align-content: center;
@@ -145,20 +146,22 @@ video {
 }
 
 .searchnav ul li a {
-text-decoration: none;
+    text-decoration: none;
 }
 
 .search_inactive {
-    transition: box-shadow 0.7s ease-in-out,opacity 0.5s ease-in-out;
+    transition: box-shadow 0.7s ease-in-out, opacity 0.5s ease-in-out;
     border: 2px solid transparent;
     border-radius: 12pt;
+    opacity: 0.5;
 }
 
 .search_inactive:hover {
-    transition: box-shadow 0.7s ease-in-out,opacity 0.5s ease-in-out;
-    border: 2px solid transparent;
+    transition: box-shadow 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    border: 2px solid white;
     border-radius: 12pt;
-    box-shadow: 0 0 2pt white;
+    /* box-shadow: 0 0 2pt white; */
+    opacity: 1;
 }
 
 ::placeholder {
