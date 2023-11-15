@@ -120,6 +120,7 @@ video {
     text-overflow: ellipsis;
     overflow: hidden;
     transition: border 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    font-family: "CustomFont";
 }
 
 .search_active {
@@ -129,6 +130,7 @@ video {
     border-radius: 12pt;
     display: block;
     align-items: center;
+    background-color: #ffffff36;
 
 }
 
