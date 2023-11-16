@@ -280,6 +280,9 @@
   },
   "set_gizmo_note": {
     "message": "The GPTs ID is the part marked in green in the example URL below https://chat.openai.com/g/<span style=\"color:green;font-weight:bold;\">g-dqSxf0sSW-shan-shu-fan-yi-gong-si</span>."
+  },
+  "set_auto_enter":{
+    "message": "Auto press Enter"
   }
 
 }

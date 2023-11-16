@@ -280,5 +280,8 @@
       },
       "set_gizmo_note": {
         "message": "El ID de GPTs es la parte marcada en verde en el siguiente ejemplo de URL https://chat.openai.com/g/<span style=\"color:green;font-weight:bold;\">g-dqSxf0sSW-shan-shu-fan-yi-gong-si<\/span>."
+      },
+      "set_auto_enter":{
+        "message": "Entrar automáticamente"
       }
 }

@@ -15,17 +15,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 function handleOpenUrlAndType(request) {
-  chrome.storage.sync.get(["modelType", "delayTime"], function (data) {
+  chrome.storage.sync.get(["modelType", "delayTime", "isAutoEnter"], function (data) {
     const modelType = data.modelType || "gpt-4";
     const delayTime = data.delayTime || 2000;
+    const isAutoEnter = data.isAutoEnter || false;
     let url = "";
 
     console.log("Received input:", decodeURIComponent(request.input));
 
     if (request.gizmoId === "ChatGPT") {
-    url = `https://chat.openai.com/?model=${modelType}`;
+      url = `https://chat.openai.com/?model=${modelType}`;
     } else {
-    url = `https://chat.openai.com/g/${request.gizmoId}`;
+      url = `https://chat.openai.com/g/${request.gizmoId}`;
     }
 
     chrome.tabs.create({ url: url }, (tab) => {
@@ -40,6 +41,7 @@ function handleOpenUrlAndType(request) {
               chrome.tabs.sendMessage(tab.id, {
                 action: "typeInput",
                 input: request.input,
+                autoEnter: isAutoEnter,
               });
             }
           );
@@ -50,4 +52,5 @@ function handleOpenUrlAndType(request) {
     });
   });
 }
+
 
