@@ -430,6 +430,8 @@ function searchUI({ gizmo1_name, gizmo2_name, gizmo3_name }) {
       if (lastSelectedTab) {
         lastSelectedTab.click(); // 模拟点击事件，以激活 tab
       }
+    } else {
+      navItems[0].click();
     }
   });
 

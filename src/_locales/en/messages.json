@@ -57,7 +57,7 @@
     "message": "Macify new tab settings"
   },
   "set_options_note": {
-    "message": "Please config the options below before using this extension."
+    "message": "<a href=\"instructions.html\" target=\"_blank\">Instructions</a> | <a href=\"changelogs.html\" target=\"_blank\">Changelogs</a> | <a href=\"https://chromewebstore.google.com/detail/macify-macos-screensaver/lgdipcalomggcjkohjhkhkbcpgladnoe\" target=\"_blank\">Rate Macify</a>"
   },
   "set_note": {
     "message": "If you choose to fetch videos from Apple Server, Chrome may not trust Apple's root certificate, so you can temporarily use my Cloudflare reverse proxy to fetch videos (check the checkbox below). However, I cannot guarantee the long-term availability of this service. Therefore, I strongly recommend that you follow the <a href=\"instructions.html\" target=_blank>instructions</a> to manual trust it."

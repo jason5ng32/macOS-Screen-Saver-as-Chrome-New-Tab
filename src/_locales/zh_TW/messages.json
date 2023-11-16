@@ -120,7 +120,7 @@
     "message": "Macify 標籤頁設置項"
   },
   "set_options_note": {
-    "message": "在使用此擴展程序之前，請先設置以下選項。"
+    "message": "<a href=\"instructions.html\" target=\"_blank\">使用說明</a> | <a href=\"changelogs.html\" target=\"_blank\">更新記錄</a> | <a href=\"https://chromewebstore.google.com/detail/macify-macos-screensaver/lgdipcalomggcjkohjhkhkbcpgladnoe\" target=\"_blank\">評價 Macify</a>"
   },
   "set_delay_note": {
     "message": "建議使用 2000 或更多。"
