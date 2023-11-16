@@ -389,10 +389,22 @@ function videoSettingsSuggestion(videoStatus) {
 // 搜索框
 async function initSearch({ gizmo1_id, gizmo2_id, gizmo3_id }) {
   const searchInput = document.getElementById("search");
+  let lineHeight = 18; // 单行高度设置为 18pt
+  let currentLines = 1; // 初始行数为 1
+
   await new Promise((resolve) => setTimeout(resolve, 200));
   searchInput.style.opacity = "1";
-  searchInput.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
+
+  searchInput.addEventListener("input", function () {
+    const lines = this.value.split(/\r\n|\r|\n/).length;
+    if (lines !== currentLines) {
+      this.style.height = (lines * lineHeight) + 'pt';
+      currentLines = lines;
+    }
+  });
+  searchInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault(); // 阻止默认的换行行为
       // 获取当前激活的 gizmo 的 ID
       const activeGizmoId = document.querySelector('.search_active').id;
       let GizmoId = "ChatGPT";
@@ -413,6 +425,7 @@ async function initSearch({ gizmo1_id, gizmo2_id, gizmo3_id }) {
     }
   });
 }
+
 
 
 // 搜索样式变换
