@@ -83,6 +83,88 @@ video {
 }
 
 /* search bar styling */
+.search_area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchnav {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20pt;
+    color: white;
+
+}
+
+.searchnav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+}
+
+.searchnav ul li {
+    list-style: none;
+    cursor: pointer;
+    padding: 2pt 10pt 2pt 12pt;
+    margin: 0 10pt 10pt 10pt;
+    font-size: 10pt;
+    max-width: 100pt;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: border 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    font-family: "CustomFont";
+}
+
+.search_active {
+    position: relative;
+    transition: transform 0.5s ease-in-out;
+    border: 2px solid white;
+    border-radius: 12pt;
+    display: block;
+    align-items: center;
+    background-color: #ffffff36;
+
+}
+
+.search_active:before {
+    content: "◉";
+    position: absolute;
+    margin-left: -8pt;
+    font-size: 6pt;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: -2pt;
+}
+
+.searchnav ul li a {
+    text-decoration: none;
+}
+
+.search_inactive {
+    transition: box-shadow 0.7s ease-in-out, opacity 0.5s ease-in-out;
+    border: 2px solid transparent;
+    border-radius: 12pt;
+    opacity: 0.7;
+}
+
+.search_inactive:hover {
+    transition: box-shadow 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    border: 2px solid white;
+    border-radius: 12pt;
+    /* box-shadow: 0 0 2pt white; */
+    opacity: 1;
+}
 
 ::placeholder {
     color: rgb(255, 255, 255);
@@ -92,7 +174,7 @@ video {
 }
 
 #search {
-    display: none;
+    display: inline;
     transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, opacity 0.5s ease-in-out;
     opacity: 0;
     background-image: url('../res/gpt.png');
@@ -133,7 +215,7 @@ input[type="text"]:focus {
 .motto {
     color: white;
     padding: 40px;
-    font-size: 3.3vh;
+    font-size: 3vh;
     font-weight: 300;
     text-align: center;
     font-family: "CustomFont";

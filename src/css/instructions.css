@@ -98,3 +98,57 @@ code {
 blockquote {
     margin-left: 10pt;
 }
+
+ol li {
+    color: #4b4b4b;
+    font-size: 10pt;
+}
+
+h2 {
+    font-size: 15pt;
+    margin-top: 20pt;
+    margin-bottom: 10pt;
+
+}
+
+.changelog ul li {
+list-style-type: disclosure-closed;
+color: #4b4b4b;
+font-size: 11pt;
+text-indent: 4pt;
+line-height: 20pt;
+}
+
+.changelog ul {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 10pt;
+    margin: 8pt 0 8pt 0;
+}
+
+.cl_new {
+    background-color: #098019;
+    font-size: 10pt;
+    color: white;
+    padding: 1pt 2pt 1pt 2pt;
+    border-radius: 2pt;
+    margin-right: 3pt;
+}
+
+.cl_improve {
+    background-color: #ff9a00;
+    font-size: 10pt;
+    color: white;
+    padding: 1pt 2pt 1pt 2pt;
+    border-radius: 2pt;
+    margin-right: 3pt;
+}
+
+.cl_fix {
+    background-color: #e73838;
+    font-size: 10pt;
+    color: white;
+    padding: 1pt 2pt 1pt 2pt;
+    border-radius: 2pt;
+    margin-right: 3pt;
+}

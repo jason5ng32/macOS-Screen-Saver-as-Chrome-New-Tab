@@ -57,7 +57,7 @@
     "message": "Macify新しいタブの設定"
   },
   "set_options_note": {
-    "message": "この拡張機能を使用する前に、以下のオプションを設定してください。"
+    "message": "<a href=\"instructions.html\" target=\"_blank\">使用説明</a> | <a href=\"changelogs.html\" target=\"_blank\">更新履歴</a> | <a href=\"https://chromewebstore.google.com/detail/macify-macos-screensaver/lgdipcalomggcjkohjhkhkbcpgladnoe\" target=\"_blank\">Macifyを評価する</a>"
   },
   "set_note": {
     "message": "動画をApple Serverから取得する場合、ChromeはAppleのルート証明書を信頼しない場合があります。そのため、一時的に私のCloudflareリバースプロキシを使用して動画を取得できます（チェックボックスをオンにします）。ただし、このサービスの長期的な可用性を保証することはできません。したがって、手動で信頼する<a href=\"instructions.html\" target=_blank>instructions</a>に従うことを強くお勧めします。"
@@ -111,7 +111,7 @@
     "message": "<a href=\"https://www.weatherapi.com/\" target=_blank>weatherapi.com</a>にアクセスして、無料のAPIキーを取得してください。"
   },
   "set_ask_chatgpt": {
-    "message": "ChatGPTに聞く"
+    "message": "ChatGPT"
   },
   "set_show_chatgpt": {
     "message": "ChatGPTを表示"
@@ -241,5 +241,47 @@
   },
   "set_translate_motto" : {
     "message": "モットーを翻訳する"
+  },
+  "pop_ask" : {
+    "message": "に聞く："
+  },
+  "error_gizmo_number": {
+    "message": "第 "
+  },
+  "error_gizmo_configuration": {
+    "message": " 個の GPTs 設定が間違っています。両方の値を入力するか、空白にしてください。"
+  },
+  "set_gpts_name": {
+    "message": "GPTs 名称"
+  },
+  "set_gpts_id": {
+    "message": "GPTs ID"
+  },
+  "set_gizmo1_name": {
+    "message": "GPTs-1 の名称"
+  },
+  "set_gizmo1_id": {
+    "message": "GPTs-1 の ID"
+  },
+  "set_gizmo2_name": {
+    "message": "GPTs-2 の名称"
+  },
+  "set_gizmo2_id": {
+    "message": "GPTs-2 の ID"
+  },
+  "set_gizmo3_name": {
+    "message": "GPTs-3 の名称"
+  },
+  "set_gizmo3_id": {
+    "message": "GPTs-3 の ID"
+  },
+  "set_show_gizmo": {
+    "message": "GPTs を表示"
+  },
+  "set_gizmo_note": {
+    "message": "GPTs ID は、以下のサンプル URL にある緑色で強調された部分です https://chat.openai.com/g/<span style=\"color:green;font-weight:bold;\">g-dqSxf0sSW-shan-shu-fan-yi-gong-si<\/span>。"
+  },
+  "set_auto_enter":{
+    "message": "自動入力"
   }
 }

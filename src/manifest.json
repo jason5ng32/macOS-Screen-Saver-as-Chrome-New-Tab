@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_sys_name__",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "__MSG_sys_description__",
   "permissions": ["storage", "scripting"],
   "optional_permissions": ["history"],

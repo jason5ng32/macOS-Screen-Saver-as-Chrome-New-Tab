@@ -21,7 +21,7 @@
     "message": "T + 2"
   },
   "pop_ask_chat_gpt": {
-    "message": "Ask ChatGPT..."
+    "message": "ChatGPT..."
   },
   "pop_load_motto": {
     "message": "Loading motto..."
@@ -57,7 +57,7 @@
     "message": "Macify new tab settings"
   },
   "set_options_note": {
-    "message": "Please config the options below before using this extension."
+    "message": "<a href=\"instructions.html\" target=\"_blank\">Instructions</a> | <a href=\"changelogs.html\" target=\"_blank\">Changelogs</a> | <a href=\"https://chromewebstore.google.com/detail/macify-macos-screensaver/lgdipcalomggcjkohjhkhkbcpgladnoe\" target=\"_blank\">Rate Macify</a>"
   },
   "set_note": {
     "message": "If you choose to fetch videos from Apple Server, Chrome may not trust Apple's root certificate, so you can temporarily use my Cloudflare reverse proxy to fetch videos (check the checkbox below). However, I cannot guarantee the long-term availability of this service. Therefore, I strongly recommend that you follow the <a href=\"instructions.html\" target=_blank>instructions</a> to manual trust it."
@@ -241,5 +241,48 @@
   },
   "set_translate_motto" : {
     "message": "Translate Motto"
+  },
+  "pop_ask" : {
+    "message": "Ask"
+  },
+  "error_gizmo_number": {
+    "message": "No."
+  },
+  "error_gizmo_configuration": {
+    "message": "'s GPTs setting is incorrect. Please ensure both values are either filled or left blank."
+  },
+  "set_gpts_name": {
+    "message": "GPTs Name"
+  },
+  "set_gpts_id": {
+    "message": "GPTs ID"
+  },
+  "set_gizmo1_name": {
+    "message": "Name of GPTs-1"
+  },
+  "set_gizmo1_id": {
+    "message": "ID of GPTs-1"
+  },
+  "set_gizmo2_name": {
+    "message": "Name of GPTs-2"
+  },
+  "set_gizmo2_id": {
+    "message": "ID of GPTs-2"
+  },
+  "set_gizmo3_name": {
+    "message": "Name of GPTs-3"
+  },
+  "set_gizmo3_id": {
+    "message": "ID of GPTs-3"
+  },
+  "set_show_gizmo": {
+    "message": "Show GPTs"
+  },
+  "set_gizmo_note": {
+    "message": "The GPTs ID is the part marked in green in the example URL below https://chat.openai.com/g/<span style=\"color:green;font-weight:bold;\">g-dqSxf0sSW-shan-shu-fan-yi-gong-si</span>."
+  },
+  "set_auto_enter":{
+    "message": "Auto press Enter"
   }
+
 }

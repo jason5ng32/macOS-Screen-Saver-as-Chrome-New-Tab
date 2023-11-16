@@ -15,34 +15,42 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 function handleOpenUrlAndType(request) {
-  chrome.storage.sync.get(["modelType", "delayTime"], function (data) {
+  chrome.storage.sync.get(["modelType", "delayTime", "isAutoEnter"], function (data) {
     const modelType = data.modelType || "gpt-4";
     const delayTime = data.delayTime || 2000;
+    const isAutoEnter = data.isAutoEnter || false;
+    let url = "";
 
     console.log("Received input:", decodeURIComponent(request.input));
 
-    chrome.tabs.create(
-      { url: `https://chat.openai.com/?model=${modelType}` },
-      (tab) => {
-        setTimeout(() => {
-          try {
-            chrome.scripting.executeScript(
-              {
-                target: { tabId: tab.id },
-                files: ["js/content.js"],
-              },
-              () => {
-                chrome.tabs.sendMessage(tab.id, {
-                  action: "typeInput",
-                  input: request.input,
-                });
-              }
-            );
-          } catch (error) {
-            console.error(error);
-          }
-        }, delayTime);
-      }
-    );
+    if (request.gizmoId === "ChatGPT") {
+      url = `https://chat.openai.com/?model=${modelType}`;
+    } else {
+      url = `https://chat.openai.com/g/${request.gizmoId}`;
+    }
+
+    chrome.tabs.create({ url: url }, (tab) => {
+      setTimeout(() => {
+        try {
+          chrome.scripting.executeScript(
+            {
+              target: { tabId: tab.id },
+              files: ["js/content.js"],
+            },
+            () => {
+              chrome.tabs.sendMessage(tab.id, {
+                action: "typeInput",
+                input: request.input,
+                autoEnter: isAutoEnter,
+              });
+            }
+          );
+        } catch (error) {
+          console.error(error);
+        }
+      }, delayTime);
+    });
   });
 }
+
+

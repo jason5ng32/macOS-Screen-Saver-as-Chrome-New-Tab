@@ -21,7 +21,7 @@
         "message": "pasado"
     },
     "pop_ask_chat_gpt": {
-        "message": "Pregúntale a ChatGPT..."
+        "message": "ChatGPT..."
     },
     "pop_load_motto": {
         "message": "Cargando lema..."
@@ -57,8 +57,8 @@
         "message": "Configuración de la nueva pestaña de Macify"
     },
     "set_options_note": {
-        "message": "Configure las opciones a continuación antes de usar esta extensión."
-    },
+        "message": "<a href=\"instructions.html\" target=\"_blank\">Instrucciones de uso</a> | <a href=\"changelogs.html\" target=\"_blank\">Registro de cambios</a> | <a href=\"https://chromewebstore.google.com/detail/macify-macos-screensaver/lgdipcalomggcjkohjhkhkbcpgladnoe\" target=\"_blank\">Evaluar Macify</a>"
+      },
     "set_note": {
         "message": "Si elige recuperar videos del servidor de Apple, Chrome puede no confiar en el certificado raíz de Apple, por lo que puede usar temporalmente mi proxy inverso de Cloudflare para recuperar videos (marque la casilla de verificación a continuación). Sin embargo, no puedo garantizar la disponibilidad a largo plazo de este servicio. Por lo tanto, le recomiendo encarecidamente que siga las <a href=\"instructions.html\" target=_blank>instrucciones</a> para confiarlo manualmente."
     },
@@ -241,5 +241,47 @@
     },
     "set_translate_motto": {
         "message": "Traducir lema"
-    }
+    },
+    "pop_ask" : {
+        "message": "Pregúntale a "
+    },
+    "error_gizmo_number": {
+        "message": "El "
+      },
+      "error_gizmo_configuration": {
+        "message": "º GPT está mal configurado. Asegúrese de que ambos valores se rellenan o se dejan en blanco."
+      },
+      "set_gpts_name": {
+        "message": "Nombre de GPTs"
+      },
+      "set_gpts_id": {
+        "message": "ID de GPTs"
+      },
+      "set_gizmo1_name": {
+        "message": "Nombre de GPTs-1"
+      },
+      "set_gizmo1_id": {
+        "message": "ID de GPTs-1"
+      },
+      "set_gizmo2_name": {
+        "message": "Nombre de GPTs-2"
+      },
+      "set_gizmo2_id": {
+        "message": "ID de GPTs-2"
+      },
+      "set_gizmo3_name": {
+        "message": "Nombre de GPTs-3"
+      },
+      "set_gizmo3_id": {
+        "message": "ID de GPTs-3"
+      },
+      "set_show_gizmo": {
+        "message": "Mostrar GPTs"
+      },
+      "set_gizmo_note": {
+        "message": "El ID de GPTs es la parte marcada en verde en el siguiente ejemplo de URL https://chat.openai.com/g/<span style=\"color:green;font-weight:bold;\">g-dqSxf0sSW-shan-shu-fan-yi-gong-si<\/span>."
+      },
+      "set_auto_enter":{
+        "message": "Entrar automáticamente"
+      }
 }
