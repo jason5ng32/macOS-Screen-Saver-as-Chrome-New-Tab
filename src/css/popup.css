@@ -183,6 +183,7 @@ video {
     background-position: 12pt 11pt;
     width: 35vw;
     height: 18pt;
+    max-height: 216pt;
     line-height: 18pt;
     min-width: 400px;
     border-radius: 40px;
@@ -194,7 +195,7 @@ video {
     background-color: #ffffff36;
     color: white;
     resize: none;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 #search:hover {
