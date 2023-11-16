@@ -5,6 +5,7 @@
   "hourSystem": "12",
   "showWeather": false,
   "showSearch": true,
+  "isAutoEnter": false,
   "showMotto": true,
   "translateMotto": false,
   "googleAPIKEY": "",
