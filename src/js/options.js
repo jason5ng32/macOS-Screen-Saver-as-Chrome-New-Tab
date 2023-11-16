@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   let SETTINGS_KEYS = await fetchDefaultSettings();
   const langSettings = await getCurrentLanguage();
 
+  var version = chrome.runtime.getManifest().version;
+  document.getElementById('version').textContent = version;
+
   chrome.storage.sync.get(Object.keys(SETTINGS_KEYS), function (data) {
     for (const [key, defaultValue] of Object.entries(SETTINGS_KEYS)) {
       // console.log(key, defaultValue);
@@ -117,18 +120,30 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     if (showGizmo) {
+      let allGizmosEmpty = true;
+
       for (let i = 1; i <= 3; i++) {
         let gizmoName = document.getElementById(`gizmo${i}_name`).value;
         let gizmoId = document.getElementById(`gizmo${i}_id`).value;
 
-        // 检查 gizmo 对是否一个为空而另一个不为空
+        if (gizmoName || gizmoId) {
+          allGizmosEmpty = false;
+        }
+
         if ((gizmoName && !gizmoId) || (!gizmoName && gizmoId)) {
           showMessage(getMsg("error_gizmo_number") + `${i}` + getMsg("error_gizmo_configuration"), "error");
           isValid = false;
           break;
         }
       }
+
+      if (allGizmosEmpty) {
+        isValid = false;
+        document.getElementById("showGizmo").checked = false;
+        showMessage(getMsg("error_all_gizmos_empty"), "error"); // 显示相应的错误信息
+      }
     }
+
 
     if (isValid) {
       if (historyPermissionNeeded) {

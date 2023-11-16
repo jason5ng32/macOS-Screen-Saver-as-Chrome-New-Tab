@@ -283,6 +283,9 @@
   },
   "set_auto_enter":{
     "message": "Auto press Enter"
+  },
+  "error_all_gizmos_empty": {
+    "message": "All GPTs are empty. Please fill in at least one."
   }
 
 }

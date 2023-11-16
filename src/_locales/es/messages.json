@@ -283,5 +283,8 @@
       },
       "set_auto_enter":{
         "message": "Entrar automáticamente"
+      },
+      "error_all_gizmos_empty": {
+        "message": "Todos los GPTs están vacíos. Por favor, rellene al menos uno."
       }
 }
