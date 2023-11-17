@@ -283,5 +283,8 @@
   },
   "set_auto_enter":{
     "message": "自動入力"
+  },
+  "error_all_gizmos_empty": {
+    "message": "GPTs が空です，少なくとも1つのGPTsを有効にしてください。"
   }
 }

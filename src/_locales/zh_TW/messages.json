@@ -283,5 +283,8 @@
   },
     "set_auto_enter":{
     "message": "自動按下 Enter"
+  },
+  "error_all_gizmos_empty": {
+    "message": "所有 GPTs 都是空的，請至少填寫一個。"
   }
 }

@@ -283,5 +283,8 @@
   },
   "set_auto_enter":{
     "message": "自动按下回车键"
+  },
+  "error_all_gizmos_empty": {
+    "message": "所有 GPTs 都为空，至少要完整填一个。"
   }
 }
