@@ -6,7 +6,7 @@ body {
 
 @font-face {
     font-family: "CustomFont";
-    src: url('../res/Dosis-ExtraLight.ttf') format('truetype');
+    src: url("../res/Dosis-ExtraLight.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
@@ -69,7 +69,6 @@ video {
     background-size: cover;
 }
 
-
 .top-layer {
     z-index: 2;
 }
@@ -96,7 +95,6 @@ video {
     justify-content: center;
     margin-top: 20pt;
     color: white;
-
 }
 
 .searchnav ul {
@@ -106,7 +104,6 @@ video {
     justify-content: center;
     margin: 0;
     padding: 0;
-
 }
 
 .searchnav ul li {
@@ -131,7 +128,6 @@ video {
     display: block;
     align-items: center;
     background-color: #ffffff36;
-
 }
 
 .search_active:before {
@@ -175,9 +171,10 @@ video {
 
 #search {
     display: inline-block;
-    transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out,
+        opacity 0.5s ease-in-out;
     opacity: 0;
-    background-image: url('../res/gpt.png');
+    background-image: url("../res/gpt.png");
     background-repeat: no-repeat;
     background-size: 16pt;
     background-position: 12pt 11pt;
@@ -195,7 +192,7 @@ video {
     background-color: #ffffff36;
     color: white;
     resize: none;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 #search:hover {
@@ -211,6 +208,45 @@ video {
     font-size: 12pt;
 }
 
+.scrollbar {
+    overflow: auto;
+    /* for Firefox: */
+    scrollbar-color: rgba(0, 0, 0, 0.6) rgba(0, 0, 0, 0.25);
+    scrollbar-width: thin;
+    /* for IE */
+    /*三角箭头的颜色*/
+    scrollbar-arrow-color: #fff;
+    /*滚动条滑块按钮的颜色*/
+    scrollbar-face-color: #4c4c4c;
+    /*滚动条整体颜色*/
+    scrollbar-highlight-color: #4c4c4c;
+    /*滚动条阴影*/
+    scrollbar-shadow-color: #4c4c4c;
+    /*滚动条轨道颜色*/
+    scrollbar-track-color: #bfbfbf;
+    /*滚动条3d亮色阴影边框的外观颜色——左边和上边的阴影色*/
+    scrollbar-3dlight-color: #4c4c4c;
+    /*滚动条3d暗色阴影边框的外观颜色——右边和下边的阴影色*/
+    scrollbar-darkshadow-color: #4c4c4c;
+    /*滚动条基准颜色*/
+    scrollbar-base-color: #4c4c4c;
+}
+/* for chrome safari */
+/* 滚动条大小 */
+.scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+.scrollbar::-webkit-scrollbar-track {
+    border-radius: 5px;
+    /* background-color: rgba(0, 0, 0, 0.25); */
+}
+/*定义滑块 内阴影+圆角*/
+.scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    /* background-color: rgba(0, 0, 0, 0.6); */
+}
 
 input[type="text"] {
     width: 35vw;
@@ -230,7 +266,6 @@ input[type="text"] {
 input[type="text"]:hover {
     box-shadow: 0 0 5pt white;
 }
-
 
 input[type="text"]:focus {
     background-color: rgba(62, 62, 62, 0.375);
@@ -316,7 +351,6 @@ input[type="text"]:focus {
     transform: translateY(-100%);
     transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
     margin-right: 1vw;
-
 }
 
 #weather-info img {
@@ -334,7 +368,7 @@ input[type="text"]:focus {
     width: 80%;
     height: 80%;
     border: none;
-    background: url('../res/weather.png') no-repeat;
+    background: url("../res/weather.png") no-repeat;
     background-size: 100%;
     cursor: pointer;
     outline: none;
@@ -354,8 +388,6 @@ input[type="text"]:focus {
     background-position: top;
 }
 
-
-
 .current-aera {
     display: flex;
     flex-direction: column;
@@ -367,7 +399,6 @@ input[type="text"]:focus {
     overflow: auto;
     border-radius: 4pt;
     transition: box-shadow 0.3s, background-color 0.3s;
-
 }
 
 #forcast-aera {
@@ -404,7 +435,7 @@ input[type="text"]:focus {
     width: 80%;
     height: 80%;
     border: none;
-    background: url('../res/refresh.png') no-repeat center center;
+    background: url("../res/refresh.png") no-repeat center center;
     background-size: contain;
     cursor: pointer;
     outline: none;
@@ -495,7 +526,7 @@ input[type="text"]:focus {
     width: 80%;
     height: 80%;
     border: none;
-    background: url('../res/topsites.png') no-repeat;
+    background: url("../res/topsites.png") no-repeat;
     background-size: 200%;
     cursor: pointer;
     outline: none;
@@ -557,13 +588,13 @@ input[type="text"]:focus {
 }
 
 #fullscreen-btn::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('../res/zenmode.png') no-repeat center center;
+    background: url("../res/zenmode.png") no-repeat center center;
     background-size: 100%;
     transition: background-size 1s ease;
     border-radius: inherit;
