@@ -196,7 +196,7 @@ video {
 }
 
 #search:hover {
-    box-shadow: 0 0 5pt white;
+    box-shadow: 0 0 3pt white;
 }
 
 #search:focus {
@@ -214,23 +214,16 @@ video {
     scrollbar-color: rgba(0, 0, 0, 0.6) rgba(0, 0, 0, 0.25);
     scrollbar-width: thin;
     /* for IE */
-    /*三角箭头的颜色*/
     scrollbar-arrow-color: #fff;
-    /*滚动条滑块按钮的颜色*/
     scrollbar-face-color: #4c4c4c;
-    /*滚动条整体颜色*/
     scrollbar-highlight-color: #4c4c4c;
-    /*滚动条阴影*/
     scrollbar-shadow-color: #4c4c4c;
-    /*滚动条轨道颜色*/
     scrollbar-track-color: #bfbfbf;
-    /*滚动条3d亮色阴影边框的外观颜色——左边和上边的阴影色*/
     scrollbar-3dlight-color: #4c4c4c;
-    /*滚动条3d暗色阴影边框的外观颜色——右边和下边的阴影色*/
     scrollbar-darkshadow-color: #4c4c4c;
-    /*滚动条基准颜色*/
     scrollbar-base-color: #4c4c4c;
 }
+
 /* for chrome safari */
 /* 滚动条大小 */
 .scrollbar::-webkit-scrollbar {
