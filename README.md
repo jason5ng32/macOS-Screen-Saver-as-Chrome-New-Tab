@@ -76,7 +76,7 @@ To conserve storage, it's advised against downloading the entire video collectio
 ### Step 2️⃣: Initiate a Local Server
 
 1. Download the `videoserver.conf` file from the [code repository](https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab).
-2. Store it in a directory that you intend to keep intact. For demonstration, let's use:
+2. Store it in a directory that you intend to keep intact. And make sure the directory can be read by `everyone`, permission of drwxr-xr-x or `755` is great. For demonstration, let's use:
 
 ```shell
 /path/to/your/videoserver.conf
