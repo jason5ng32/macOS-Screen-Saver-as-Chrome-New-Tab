@@ -313,13 +313,18 @@ function appendVideo(src) {
     id: "myVideo",
     src,
     autoplay: true,
-    loop: true,
+    loop: false,
     muted: true,
   });
 
   // 当视频可以播放时，改变透明度
   video.addEventListener("canplay", function () {
     video.style.opacity = "1";
+  });
+
+  // 视频结束时调用 switchToNextVideo 函数
+  video.addEventListener("ended", function () {
+    switchToNextVideo();
   });
 
   // 监听视频加载错误
@@ -387,7 +392,7 @@ function videoSettingsSuggestion(videoStatus) {
 }
 
 // 搜索框
-async function initSearch({ gizmo1_id, gizmo2_id, gizmo3_id,showGizmo }) {
+async function initSearch({ gizmo1_id, gizmo2_id, gizmo3_id, showGizmo }) {
   const searchInput = document.getElementById("search");
   let lineHeight = 18; // 单行高度设置为 18pt
   let currentLines = 1; // 初始行数为 1
