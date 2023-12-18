@@ -85,15 +85,15 @@ To conserve storage, it's advised against downloading the entire video collectio
 3. Launch the terminal application.
 4. Link the configuration file to the Apache configuration folder:
 
-```shell
-sudo ln -s /path/to/your/videoserver.conf /private/etc/apache2/other
-```
+    ```shell
+    sudo ln -s /path/to/your/videoserver.conf /private/etc/apache2/other
+    ```
 
 5. To activate the changes, restart Apache:
 
-```shell
-sudo apachectl restart
-```
+    ```shell
+    sudo apachectl restart
+    ```
 
 Your local backend service should now be operational, with port 18000 as its designated listening port.
 
