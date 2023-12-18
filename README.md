@@ -78,20 +78,20 @@ To conserve storage, it's advised against downloading the entire video collectio
 1. Download the `videoserver.conf` file from the [code repository](https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab).
 2. Store it in a directory that you intend to keep intact. And make sure the directory can be read by `everyone`, permission of `drwxr-xr-x` or `755` is great. For demonstration, let's use:
 
-    ```shell
+    ```bash
     /path/to/your/videoserver.conf
     ```
 
 3. Launch the terminal application.
 4. Link the configuration file to the Apache configuration folder:
 
-    ```shell
+    ```bash
     sudo ln -s /path/to/your/videoserver.conf /private/etc/apache2/other
     ```
 
 5. To activate the changes, restart Apache:
 
-    ```shell
+    ```bash
     sudo apachectl restart
     ```
 
