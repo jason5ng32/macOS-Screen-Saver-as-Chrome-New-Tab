@@ -243,7 +243,8 @@ async function fetchRandomVideo() {
       : videoSourceUrl;
     const subDirLinks = Array.from(doc.querySelectorAll("a"))
       .map((a) => new URL(a.getAttribute("href"), baseHref).href)
-      .filter((href) => href.endsWith("/"));
+      .filter((href) => href.endsWith("/") && href != (new URL('/',baseHref)).href
+      );
 
     for (const dirLink of subDirLinks) {
       const dirName = dirLink.split("/").slice(-2, -1)[0]; // 获取子目录名称
