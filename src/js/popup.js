@@ -407,9 +407,6 @@ async function initSearch({modelType}) {
     }
   });
 
-    // 初始化各个选项的名称
-  let query = searchInput.value;
-
 
   searchInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter" && !event.shiftKey) {
@@ -434,13 +431,11 @@ async function initSearch({modelType}) {
           break;
       }
 
-      console.log(searchURL);
 
-
-      // 通过 Chrome 扩展 API 发送消息给 background.js
+      // 打开搜索
       const input = encodeURIComponent(event.target.value);
-      console.log(input);
-      chrome.runtime.sendMessage({ action: "openSearch", input, searchURL });
+      searchURL = searchURL.replace("{query}", input);
+      chrome.tabs.create({ url: searchURL });
     }
   });
 }

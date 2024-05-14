@@ -4,20 +4,3 @@ chrome.runtime.onInstalled.addListener((details) => {
   }
 });
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  switch (request.action) {
-    case "openSearch":
-      handleOpenSearch(request);
-      break;
-    default:
-      console.log("Unknown action:", request.action);
-  }
-});
-
-function handleOpenSearch(request) {
-  let query = request.input;
-  let url = request.searchURL.replace("{query}", query);
-  chrome.tabs.create({ url: url });
-}
-
-

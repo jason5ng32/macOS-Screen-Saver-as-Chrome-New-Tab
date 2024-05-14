@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "__MSG_sys_name__",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "__MSG_sys_description__",
-  "permissions": ["storage", "scripting"],
+  "permissions": ["storage"],
   "optional_permissions": ["history"],
   "action": {
     "default_popup": "options.html"
