@@ -5,7 +5,6 @@
   "hourSystem": "12",
   "showWeather": false,
   "showSearch": true,
-  "isAutoEnter": false,
   "showMotto": true,
   "translateMotto": false,
   "googleAPIKEY": "",
@@ -15,18 +14,10 @@
   "fontChoice": "Dosis",
   "videoSourceUrl": "http://localhost:18000/videos/",
   "weatherAPIKEY": "",
-  "modelType": "gpt-4",
+  "modelType": "gpt-4o",
   "refreshButton": true,
   "tempUnit": "celsius",
   "authorInfo": true,
   "videoSrc": "apple",
-  "reverseProxy": true,
-  "delayTime": 2500,
-  "showGizmo":false,
-  "gizmo1_id":"",
-  "gizmo1_name":"",
-  "gizmo2_id":"",
-  "gizmo2_name":"",
-  "gizmo3_id":"",
-  "gizmo3_name":""
+  "reverseProxy": true
 }

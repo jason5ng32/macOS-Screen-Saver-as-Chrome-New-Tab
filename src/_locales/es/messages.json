@@ -117,8 +117,14 @@
         "message": "Mostrar ChatGPT"
     },
     "set_default_model": {
-        "message": "Elegir modelo predeterminado"
-    },
+        "message": "Modelo predeterminado de GPT"
+      },
+      "set_show_search": {
+        "message": "Mostrar cuadro de búsqueda"
+      },
+      "set_search_option": {
+        "message": "Opción de búsqueda"
+      },
     "set_delay_time": {
         "message": "Latencia de entrada (ms)"
     },

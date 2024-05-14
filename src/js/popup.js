@@ -1,6 +1,7 @@
 let allAvailableVideos = [];
 let currentVideoIndex = -1; // 用于跟踪当前播放的视频
 let currentIndex = 0; // 用于跟踪当前展示到哪条格言
+let showMultiSearch = true; // 是否展示多个搜索引擎
 const defaultQuotes = [
   {
     content:
@@ -76,9 +77,7 @@ async function initSettings() {
   // 展示搜索框
   if (newdata.showSearch) {
     initSearch(newdata);
-    if (newdata.showGizmo) {
-      searchUI(newdata);
-    }
+      searchUI();
   }
   // 展示时间
   if (newdata.showTime) {
@@ -154,7 +153,6 @@ function updateUI({
   authorInfo,
   showTopSites,
   showZenMode,
-  showGizmo
 }) {
   setDisplay("current-time", showTime ? "block" : "none");
   setDisplay("weather-area", showWeather ? "flex" : "none");
@@ -166,7 +164,7 @@ function updateUI({
   setDisplay("motto", showMotto ? "block" : "none");
   setDisplay("author", authorInfo ? "" : "none");
   setDisplay("zenmode", showZenMode ? "block" : "none");
-  setDisplay("searchnav", showGizmo ? "flex" : "none");
+  setDisplay("searchnav", showMultiSearch ? "flex" : "none");
 }
 
 // 设置显示或隐藏
@@ -393,7 +391,7 @@ function videoSettingsSuggestion(videoStatus) {
 }
 
 // 搜索框
-async function initSearch({ gizmo1_id, gizmo2_id, gizmo3_id, showGizmo }) {
+async function initSearch({modelType}) {
   const searchInput = document.getElementById("search");
   let lineHeight = 18; // 单行高度设置为 18pt
   let currentLines = 1; // 初始行数为 1
@@ -408,31 +406,41 @@ async function initSearch({ gizmo1_id, gizmo2_id, gizmo3_id, showGizmo }) {
       currentLines = lines;
     }
   });
+
+    // 初始化各个选项的名称
+  let query = searchInput.value;
+
+
   searchInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault(); // 阻止默认的换行行为
       // 获取当前激活的 gizmo 的 ID
-      let activeGizmoId = "";
-      if (showGizmo) {
-        activeGizmoId = document.querySelector(".search_active").id;
+      let activeSearch = "";
+      if (showMultiSearch) {
+        activeSearch = document.querySelector(".search_active").id;
       } else {
-        activeGizmoId = "ChatGPT";
+        activeSearch = "ChatGPT";
       }
-      let GizmoId = "ChatGPT";
-      switch (activeGizmoId) {
-        case 'gizmo1':
-          GizmoId = gizmo1_id;
+      let searchURL = `https://chatgpt.com/?q={query}&model=${modelType}`
+      switch (activeSearch) {
+        case 'Google':
+          searchURL = `https://www.google.com/search?q={query}`;
           break;
-        case 'gizmo2':
-          GizmoId = gizmo2_id;
+        case 'Bing':
+          searchURL = `https://www.bing.com/search?q={query}`;
           break;
-        case 'gizmo3':
-          GizmoId = gizmo3_id;
+        case 'DuckDuckGo':
+          searchURL = `https://duckduckgo.com/?q={query}`;
           break;
       }
+
+      console.log(searchURL);
+
+
       // 通过 Chrome 扩展 API 发送消息给 background.js
       const input = encodeURIComponent(event.target.value);
-      chrome.runtime.sendMessage({ action: "openUrlAndType", input, gizmoId: GizmoId });
+      console.log(input);
+      chrome.runtime.sendMessage({ action: "openSearch", input, searchURL });
     }
   });
 }
@@ -440,12 +448,8 @@ async function initSearch({ gizmo1_id, gizmo2_id, gizmo3_id, showGizmo }) {
 
 
 // 搜索样式变换
-function searchUI({ gizmo1_name, gizmo2_name, gizmo3_name }) {
+function searchUI() {
   var navItems = document.querySelectorAll('.nav-item');
-  var searchInput = document.getElementById('search');
-  var originalPlaceholder = searchInput.placeholder;
-  var splitPlaceholder = originalPlaceholder.split(' ');
-  var firstPartOfPlaceholder = splitPlaceholder[0];
 
   // 检索并设置上次选中的 tab
   chrome.storage.local.get(['lastSelectedTab'], function (result) {
@@ -458,19 +462,6 @@ function searchUI({ gizmo1_name, gizmo2_name, gizmo3_name }) {
       navItems[0].click();
     }
   });
-
-  // 初始化各个选项的名称
-  var gizmo1Item = document.getElementById('gizmo1');
-  var gizmo2Item = document.getElementById('gizmo2');
-  var gizmo3Item = document.getElementById('gizmo3');
-
-  gizmo1Item.textContent = gizmo1_name || 'Gizmo 1'; // 如果 gizmo1_name 为空，则使用默认值
-  gizmo2Item.textContent = gizmo2_name || 'Gizmo 2'; // 如果 gizmo2_name 为空，则使用默认值
-  gizmo3Item.textContent = gizmo3_name || 'Gizmo 3'; // 如果 gizmo3_name 为空，则使用默认值
-
-  if (!gizmo1_name) gizmo1Item.style.display = 'none';
-  if (!gizmo2_name) gizmo2Item.style.display = 'none';
-  if (!gizmo3_name) gizmo3Item.style.display = 'none';
 
   navItems.forEach(function (item) {
     item.addEventListener('click', function () {
@@ -489,25 +480,6 @@ function searchUI({ gizmo1_name, gizmo2_name, gizmo3_name }) {
       this.classList.remove('search_inactive');
       this.classList.add('search_active');
       chrome.storage.local.set({ 'lastSelectedTab': this.id });
-
-      // 根据被点击项的 ID 更新 placeholder
-      var itemId = this.id;
-      switch (itemId) {
-        case 'chatgpt':
-          searchInput.placeholder = firstPartOfPlaceholder + " ChatGPT";
-          break;
-        case 'gizmo1':
-          searchInput.placeholder = firstPartOfPlaceholder + " " + gizmo1_name;
-          break;
-        case 'gizmo2':
-          searchInput.placeholder = firstPartOfPlaceholder + " " + gizmo2_name;
-          break;
-        case 'gizmo3':
-          searchInput.placeholder = firstPartOfPlaceholder + " " + gizmo3_name;
-          break;
-        default:
-          searchInput.placeholder = firstPartOfPlaceholder + " ChatGPT";
-      }
     });
   });
 }

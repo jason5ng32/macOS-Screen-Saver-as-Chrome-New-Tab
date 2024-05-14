@@ -72,61 +72,21 @@
     </div>
 
     <div class="area">
-      <h2>💬 %_set_ask_chatgpt</h2>
+      <h2>💬 %_set_search_option</h2>
       <div class="setting">
-        <label for="showSearch">%_set_show_chatgpt</label>
+        <label for="showSearch">%_set_show_search</label>
         <input type="checkbox" id="showSearch">
       </div>
       <div class="setting">
         <label for="modelType">%_set_default_model :</label>
         <select id="modelType">
+          <option value="gpt-4o">GPT-4o</option>
           <option value="gpt-4">GPT-4</option>
           <option value="text-davinci-002-render-sha">GPT-3</option>
         </select>
       </div>
-      <div class="setting">
-        <label for="delayTime">%_set_delay_time :</label>
-        <input type="text" class="input" id="delayTime" min="0">
-      </div>
-      <div class="note">%_set_delay_note</div>
-      <div class="setting">
-        <label for="isAutoEnter">%_set_auto_enter :</label>
-        <input type="checkbox" id="isAutoEnter">
-      </div>
-      <!-- Set GPT Gizmo -->
-      <div class="setting">
-        <label for="showGizmo">%_set_show_gizmo :</label>
-        <input type="checkbox" id="showGizmo">
-      </div>
-      <div id="gizmo_area">
-        <div class="setting">
-          <label for="gizmo1_name">%_set_gizmo1_name :</label>
-          <input type="text" class="input" id="gizmo1_name" placeholder="%_set_gpts_name">
-        </div>
-        <div class="setting">
-          <label for="gizmo1_id">%_set_gizmo1_id :</label>
-          <input type="text" class="input" id="gizmo1_id" placeholder="%_set_gpts_id">
-        </div>
-        <div class="setting">
-          <label for="gizmo2_name">%_set_gizmo2_name :</label>
-          <input type="text" class="input" id="gizmo2_name" placeholder="%_set_gpts_name">
-        </div>
-        <div class="setting">
-          <label for="gizmo2_id">%_set_gizmo2_id :</label>
-          <input type="text" class="input" id="gizmo2_id" placeholder="%_set_gpts_id">
-        </div>
-        <div class="setting">
-          <label for="gizmo3_name">%_set_gizmo3_name :</label>
-          <input type="text" class="input" id="gizmo3_name" placeholder="%_set_gpts_name">
-        </div>
-        <div class="setting">
-          <label for="gizmo3_id">%_set_gizmo3_id :</label>
-          <input type="text" class="input" id="gizmo3_id" placeholder="%_set_gpts_id">
-        </div>
-        <div class="note">%_set_gizmo_note</div>
-      </div>
     </div>
-    </div>
+
     <div class="area">
       <h2>🕑 %_set_time</h2>
       <div class="setting">

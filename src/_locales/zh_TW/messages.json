@@ -111,7 +111,13 @@
     "message": "顯示 ChatGPT"
   },
   "set_default_model": {
-    "message": "選擇預設模型"
+    "message": "GPT 默認模型"
+  },
+  "set_show_search": {
+    "message": "顯示搜索框"
+  },
+  "set_search_option": {
+    "message": "搜索選項"
   },
   "set_delay_time": {
     "message": "輸入延遲時間（毫秒）"
