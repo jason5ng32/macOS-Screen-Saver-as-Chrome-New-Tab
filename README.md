@@ -101,4 +101,4 @@ Your local backend service should now be operational, with port 18000 as its des
 
 After you set up your local video server, you need to change the server settings in the extension's option page.
 
-In the extension's option, change the video source to "Local Server" and then enter your local address. If you are using the configuration file I provided, the default address is `http://localhost:18000/videos/`.
+In the extension's option page, change the video source to "Local Server" and then enter your local address. If you are using the configuration file I provided, the default address is `http://localhost:18000/videos/`.
