@@ -78,28 +78,22 @@ To conserve storage, it's advised against downloading the entire video collectio
 1. Download the `videoserver.conf` file from the [code repository](https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab).
 2. Store it in a directory that you intend to keep intact. And make sure the directory can be read by `everyone`, permission of `drwxr-xr-x` or `755` is great. For demonstration, let's use:
 
-```shell
-/path/to/your/videoserver.conf
-```
+    ```bash
+    /path/to/your/videoserver.conf
+    ```
 
-3. Launch the terminal application, and input the following commands.
-4. Make a backup of your apache config file utilizing the command below (optional) :
+3. Launch the terminal application.
+4. Link the configuration file to the Apache configuration folder:
 
-```shell
-sudo cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk
-```
+    ```bash
+    sudo ln -s /path/to/your/videoserver.conf /private/etc/apache2/other
+    ```
 
-5. Next, ensure to replace the path placeholder with your actual path:
+5. To activate the changes, restart Apache:
 
-```shell
-echo -e "\nInclude /path/to/your/videoserver.conf" | sudo tee -a /private/etc/apache2/httpd.conf
-```
-
-6. To activate the changes, restart Apache:
-
-```shell
-sudo apachectl restart
-```
+    ```bash
+    sudo apachectl restart
+    ```
 
 Your local backend service should now be operational, with port 18000 as its designated listening port.
 

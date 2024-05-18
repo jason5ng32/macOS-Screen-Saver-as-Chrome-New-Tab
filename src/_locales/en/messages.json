@@ -117,7 +117,13 @@
     "message": "Show ChatGPT"
   },
   "set_default_model": {
-    "message": "Choose default model"
+    "message": "Default GPT Model"
+  },
+  "set_show_search": {
+    "message": "Show Search Box"
+  },
+  "set_search_option": {
+    "message": "Search Options"
   },
   "set_delay_time": {
     "message": "Input delay time in ms"

@@ -80,11 +80,9 @@
           href="https://github.com/jason5ng32/macOS-Screen-Saver-as-Chrome-New-Tab">code repository</a>.</li>
       <li>Store it in a directory that you intend to keep intact. And make sure the directory can be read by <code>everyone</code>, permission of <code>drwxr-xr-x</code> or <code>755</code> is great. For demonstration, let's use:</li>
       <pre><code>/path/to/your/videoserver.conf</code></pre>
-      <li>Launch the terminal application, and input the following commands.</li>
-      <li>Make a backup of your apache config file utilizing the command below(optional):</li>
-      <pre><code>sudo cp /private/etc/apache2/httpd.conf /private/etc/apache2/httpd.conf.bk</code></pre>
-      <li>Next, ensure to replace the path placeholder with your actual path:</li>
-      <pre><code>echo -e "\nInclude /path/to/your/videoserver.conf" | sudo tee -a /private/etc/apache2/httpd.conf</code></pre>
+      <li>Launch the terminal application.</li>
+      <li>Link the configuration file to the Apache configuration folder:</li>
+      <pre><code>sudo ln -s /path/to/your/videoserver.conf /private/etc/apache2/other</code></pre>
       <li>To activate the changes, restart Apache:</li>
       <pre><code>sudo apachectl restart</code></pre>
     </ol>

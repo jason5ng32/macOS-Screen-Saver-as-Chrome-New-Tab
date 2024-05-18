@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "__MSG_sys_name__",
-  "version": "1.8.2",
+  "version": "1.9.1",
   "description": "__MSG_sys_description__",
-  "permissions": ["storage", "scripting"],
+  "permissions": ["storage"],
   "optional_permissions": ["history"],
   "action": {
     "default_popup": "options.html"
@@ -15,13 +15,6 @@
   "background": {
     "service_worker": "js/background.js"
   },
-  "content_scripts": [
-    {
-      "matches": ["https://chat.openai.com/*"],
-      "js": ["js/content.js"]
-    }
-  ],
-  "host_permissions": ["*://chat.openai.com/*"],
   "chrome_url_overrides": {
     "newtab": "popup.html"
   },

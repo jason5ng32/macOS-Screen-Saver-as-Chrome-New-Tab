@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     updateVideoSrcSettings();
     updateDeepLSettings();
-    updateChatGPTSettings();
   });
 
   // 创建提示信息
@@ -60,21 +59,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     .getElementById("translateMotto")
     .addEventListener("change", updateDeepLSettings);
 
-  document
-    .getElementById("showGizmo")
-    .addEventListener("change", updateChatGPTSettings);
-
   document.getElementById("save").addEventListener("click", function () {
     let isValid = true;
     let videoSourceUrl = document.getElementById("videoSourceUrl").value;
     let showWeather = document.getElementById("showWeather").checked;
     let city = document.getElementById("city").value;
     let weatherAPIKEY = document.getElementById("weatherAPIKEY").value;
-    let showGizmo = document.getElementById("showGizmo").checked;
     let translateMotto = document.getElementById("translateMotto").checked;
     let googleAPIKEY = document.getElementById("googleAPIKEY").value;
-    let delayTime = document.getElementById("delayTime").value; // 获取 delayTime 的值
-    let delayTimeInt = parseInt(delayTime, 10); // 转换为整数
     let historyPermissionNeeded =
       document.getElementById("showTopSites").checked;
 
@@ -83,22 +75,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       showMessage(getMsg("error_video_url"), "error");
       isValid = false;
     }
-
-    // 验证 delayTime 是否在 1 到 10000 的范围内
-    if (
-      isNaN(delayTimeInt) ||
-      delayTimeInt < 1 ||
-      delayTimeInt > 10000 ||
-      delayTime !== String(delayTimeInt)
-    ) {
-      showMessage(getMsg("error_delay_time"), "error");
-      isValid = false;
-    }
-
-    // if (!videoSourceUrl) {
-    //   showMessage(getMsg("error_video_url"), "error");
-    //   isValid = false;
-    // }
 
     if (showWeather && (!city || !weatherAPIKEY)) {
       showMessage(getMsg("error_weather"), "error");
@@ -117,31 +93,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (translateMotto && googleAPIKEY.length < 39) {
       showMessage(getMsg("error_google_api_key"), "error");
       isValid = false;
-    }
-
-    if (showGizmo) {
-      let allGizmosEmpty = true;
-
-      for (let i = 1; i <= 3; i++) {
-        let gizmoName = document.getElementById(`gizmo${i}_name`).value;
-        let gizmoId = document.getElementById(`gizmo${i}_id`).value;
-
-        if (gizmoName || gizmoId) {
-          allGizmosEmpty = false;
-        }
-
-        if ((gizmoName && !gizmoId) || (!gizmoName && gizmoId)) {
-          showMessage(getMsg("error_gizmo_number") + `${i}` + getMsg("error_gizmo_configuration"), "error");
-          isValid = false;
-          break;
-        }
-      }
-
-      if (allGizmosEmpty) {
-        isValid = false;
-        document.getElementById("showGizmo").checked = false;
-        showMessage(getMsg("error_all_gizmos_empty"), "error"); // 显示相应的错误信息
-      }
     }
 
 
@@ -203,17 +154,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 });
-
-function updateChatGPTSettings() {
-  const showGizmo = document.getElementById("showGizmo").checked;
-  const gizmoArea = document.getElementById("gizmo_area");
-
-  if (showGizmo === true) {
-    gizmoArea.style.display = "block";
-  } else {
-    gizmoArea.style.display = "none";
-  }
-}
 
 async function updateDeepLSettings() {
   const translateMotto = document.getElementById("translateMotto").checked;

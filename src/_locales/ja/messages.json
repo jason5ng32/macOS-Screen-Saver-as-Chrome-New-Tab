@@ -117,7 +117,13 @@
     "message": "ChatGPTを表示"
   },
   "set_default_model": {
-    "message": "デフォルトモデルを選択"
+    "message": "GPT デフォルトモデル"
+  },
+  "set_show_search": {
+    "message": "検索ボックスを表示"
+  },
+  "set_search_option": {
+    "message": "検索オプション"
   },
   "set_delay_time": {
     "message": "遅延時間(ms)"
