@@ -18,7 +18,7 @@ This Chrome extension delivers the following features:
 
 1. 🎥 Enhance your Chrome start page and new tab view with breathtaking 4K videos, taken directly from macOS' native aerial screen savers.
 2. 🌦️ Receive up-to-the-minute weather updates accompanied by a 3-day forecast.
-3. 💬 Engage with the web version of ChatGPT: simply type into the search box and begin your conversation.
+3. 💬 Search everything with Google/ChatGPT/Bing/Duckduckgo.
 4. 🌟 Discover motivational quotes that change randomly with each new tab.
 5. 🔗 Compile your browsing history from the chosen timeframe and offer a quick-access list for your convenience.
 6. 😑 Zen mode, you can comfortably space out while accompanied by carefully selected music and watching videos.
