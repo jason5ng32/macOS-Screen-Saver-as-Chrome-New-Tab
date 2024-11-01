@@ -149,6 +149,9 @@
   "set_clock_note": {
     "message": "仅在显示时钟时生效。"
   },
+  "set_chatgpt_note": {
+    "message": "目前 ChatGPT Search 仅支持 GPT-4o 和 GPT-4o-mini。"
+  },
   "set_top_sites": {
     "message": "高频网站"
   },
@@ -230,25 +233,25 @@
   "set_language_selector": {
     "message": "选择语言"
   },
-  "set_motto" : {
+  "set_motto": {
     "message": "格言"
   },
-  "set_google_api" : {
+  "set_google_api": {
     "message": "Google 翻译 API KEY"
   },
-  "set_your_google_api_key" :{
+  "set_your_google_api_key": {
     "message": "填入你的 Google Cloud 翻译 API KEY"
   },
   "error_google_api_key": {
     "message": "API 密钥长度必须至少为 39 个字符。"
   },
-  "set_google_api_note" : {
+  "set_google_api_note": {
     "message": "如果你希望将格言翻译成你的语言，请前往<a href=\"https://console.cloud.google.com/apis/api/translate.googleapis.com/\" target=_blank>Google Cloud</a>获取您的翻译 API 密钥。"
   },
-  "set_translate_motto" : {
+  "set_translate_motto": {
     "message": "翻译格言"
   },
-  "pop_ask" : {
+  "pop_ask": {
     "message": "问问"
   },
   "error_gizmo_number": {
@@ -287,7 +290,7 @@
   "set_gizmo_note": {
     "message": "GPTs ID 是下面这个示例 URL 中标记为绿色的部分 https://chat.openai.com/g/<span style=\"color:green;font-weight:bold;\">g-dqSxf0sSW-shan-shu-fan-yi-gong-si<\/span>。"
   },
-  "set_auto_enter":{
+  "set_auto_enter": {
     "message": "自动按下回车键"
   },
   "error_all_gizmos_empty": {

@@ -418,7 +418,7 @@ async function initSearch({modelType}) {
       } else {
         activeSearch = "ChatGPT";
       }
-      let searchURL = `https://chatgpt.com/?q={query}&model=${modelType}`
+      let searchURL = `https://chatgpt.com/?q={query}&hints=search&model=${modelType}`
       switch (activeSearch) {
         case 'Google':
           searchURL = `https://www.google.com/search?q={query}`;

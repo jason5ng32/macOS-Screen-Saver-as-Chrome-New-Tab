@@ -149,6 +149,9 @@
   "set_clock_note": {
     "message": "時計が表示されている場合にのみ影響します。"
   },
+  "set_chatgpt_note": {
+    "message": "ChatGPT検索は現在GPT-4oおよびGPT-4o-miniのみをサポートしています。"
+  },
   "set_top_sites": {
     "message": "トップサイト"
   },
@@ -230,25 +233,25 @@
   "set_language_selector": {
     "message": "言語選択"
   },
-  "set_motto" : {
+  "set_motto": {
     "message": "モットー"
   },
-  "set_google_api" : {
+  "set_google_api": {
     "message": "Google 翻訳 APIを設定する"
   },
-  "set_your_google_api_key" :{
+  "set_your_google_api_key": {
     "message": "あなたのGoogle 翻訳 APIキーを入力してください"
   },
   "error_google_api_key": {
     "message": "APIキーの長さは少なくとも39文字でなければなりません。"
   },
-  "set_google_api_note" : {
+  "set_google_api_note": {
     "message": "格言をあなたの言語に翻訳したい場合は、<a href=\"https://console.cloud.google.com/apis/api/translate.googleapis.com/\" target=_blank>Google Cloud</a>で無料のAPIキーを取得してください。"
   },
-  "set_translate_motto" : {
+  "set_translate_motto": {
     "message": "モットーを翻訳する"
   },
-  "pop_ask" : {
+  "pop_ask": {
     "message": "に聞く："
   },
   "error_gizmo_number": {
@@ -287,7 +290,7 @@
   "set_gizmo_note": {
     "message": "GPTs ID は、以下のサンプル URL にある緑色で強調された部分です https://chat.openai.com/g/<span style=\"color:green;font-weight:bold;\">g-dqSxf0sSW-shan-shu-fan-yi-gong-si<\/span>。"
   },
-  "set_auto_enter":{
+  "set_auto_enter": {
     "message": "自動入力"
   },
   "error_all_gizmos_empty": {
