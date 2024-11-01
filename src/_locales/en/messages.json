@@ -149,6 +149,9 @@
   "set_clock_note": {
     "message": "Only affected when clock is shown."
   },
+  "set_chatgpt_note": {
+    "message": "Currently ChatGPT Search only supports GPT-4o and GPT-4o-mini."
+  },
   "set_top_sites": {
     "message": "Top Sites"
   },
@@ -230,25 +233,25 @@
   "set_language_selector": {
     "message": "Choose Language"
   },
-  "set_motto" : {
+  "set_motto": {
     "message": "Motto"
   },
-  "set_google_api" : {
+  "set_google_api": {
     "message": "Google Translation API KEY"
   },
-  "set_your_google_api_key" :{
+  "set_your_google_api_key": {
     "message": "Enter Your Google Cloud Translation API Key"
   },
   "error_google_api_key": {
     "message": "API Key length must be at least 39 characters."
   },
-  "set_google_api_note" : {
+  "set_google_api_note": {
     "message": "If your browser's language is English, you don't need Cloud Translation API key."
   },
-  "set_translate_motto" : {
+  "set_translate_motto": {
     "message": "Translate Motto"
   },
-  "pop_ask" : {
+  "pop_ask": {
     "message": "Ask"
   },
   "error_gizmo_number": {
@@ -287,11 +290,10 @@
   "set_gizmo_note": {
     "message": "The GPTs ID is the part marked in green in the example URL below https://chat.openai.com/g/<span style=\"color:green;font-weight:bold;\">g-dqSxf0sSW-shan-shu-fan-yi-gong-si</span>."
   },
-  "set_auto_enter":{
+  "set_auto_enter": {
     "message": "Auto press Enter"
   },
   "error_all_gizmos_empty": {
     "message": "All GPTs are empty. Please fill in at least one."
   }
-
 }
