@@ -110,6 +110,10 @@
     scheduleVideoChange(scopes);
   }
 
+  function handleVideoEnded() {
+    if (!settings.repeatCurrentVideo) nextVideo();
+  }
+
   function onCanPlay() {
     opacity = 1;
     consecutiveErrors = 0;
@@ -154,9 +158,10 @@
       src={currentUrl}
       autoplay
       muted
+      loop={settings.repeatCurrentVideo}
       style:opacity={opacity}
       oncanplay={onCanPlay}
-      onended={nextVideo}
+      onended={handleVideoEnded}
       onerror={onError}
     ></video>
   {/key}

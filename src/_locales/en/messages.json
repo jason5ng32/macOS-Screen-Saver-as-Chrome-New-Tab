@@ -71,6 +71,9 @@
   "options_video_shuffle_scope_hint": {
     "message": "If the selected category has no videos in the current source, all videos will play instead."
   },
+  "options_video_repeat_current": {
+    "message": "Repeat current video"
+  },
   "shuffle_scope_all": {
     "message": "All"
   },
