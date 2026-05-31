@@ -20,6 +20,7 @@
   let errorMessage = $state('');
   let consecutiveErrors = 0;
   let proxyFallbackUsedThisLoad = false;
+  let localRefreshUsedThisLoad = false;
   let activeShuffleScopesKey = JSON.stringify(normalizeShuffleScopes(settings.shuffleScopes));
   let transitionTimer = null;
 
@@ -29,6 +30,7 @@
   async function loadPlaylist({ forceRefresh = false } = {}) {
     errorMessage = '';
     proxyFallbackUsedThisLoad = false;
+    if (!forceRefresh) localRefreshUsedThisLoad = false;
     try {
       const result =
         forceRefresh && settings.videoSrc === 'local'
@@ -58,10 +60,10 @@
   }
 
   $effect(() => {
-    settings.videoSrc;
+    const videoSrc = settings.videoSrc;
     settings.videoSourceUrl;
     settings.reverseProxy;
-    loadPlaylist();
+    loadPlaylist({ forceRefresh: videoSrc === 'local' });
   });
 
   $effect(() => {
@@ -133,6 +135,13 @@
       reportAppleProxyFailure();
       console.info('Apple proxy worker failing, falling back to direct sylvan.apple.com');
       loadPlaylist();
+      return;
+    }
+
+    if (settings.videoSrc === 'local' && !localRefreshUsedThisLoad) {
+      localRefreshUsedThisLoad = true;
+      console.info('Local video failed, refreshing local playlist cache');
+      loadPlaylist({ forceRefresh: true });
       return;
     }
 
