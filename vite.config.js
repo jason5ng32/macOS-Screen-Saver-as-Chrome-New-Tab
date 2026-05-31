@@ -12,7 +12,7 @@ const REQUIRED_ENV = ['VITE_MACIFY_BASE'];
 
 export default defineConfig(({ mode }) => {
   // loadEnv() resolves its envDir argument relative to process.cwd(),
-  // which is already the project root when invoked via `npm run build`.
+  // which is already the project root when invoked via `pnpm run build`.
   // The vite `envDir` config is resolved relative to vite's `root`
   // (= 'src'), so '..' points to the same project root.
   const env = loadEnv(mode, process.cwd(), 'VITE_');

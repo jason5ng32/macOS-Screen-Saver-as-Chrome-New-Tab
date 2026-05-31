@@ -46,8 +46,8 @@ cd Macify
 cp .env.example .env
 # edit .env — fill in VITE_MACIFY_BASE (required)
 # and VITE_APPLE_PROXY_KEY (only if you set up the WAF rule above)
-npm install
-npm run build
+pnpm install
+pnpm run build
 ```
 
 If `.env` is missing or incomplete the build aborts with a list of what's missing. See [`.env.example`](.env.example) for the full reference.
@@ -58,26 +58,26 @@ The built extension is in `dist/`. Chrome → `chrome://extensions` → Develope
 
 ## Aerial video batch downloader
 
-The downloader is exposed to end users via a one-line bash wrapper (see [README.md](README.md#first--download-the-videos)). For local development against an unmerged branch or to run it without `curl`-ing from GitHub, use the npm script:
+The downloader is exposed to end users via a one-line bash wrapper (see [README.md](README.md#first--download-the-videos)). For local development against an unmerged branch or to run it without `curl`-ing from GitHub, use the pnpm script:
 
 ```bash
 # Interactive menu (default — pick full catalog / random N / by category)
-npm run download:aerials
+pnpm run download:aerials
 
 # Preview without writing files (counts, sizes, disk space, what's already present)
-npm run download:aerials -- --dry-run
+pnpm run download:aerials -- --dry-run
 
 # Test with a small sample
-npm run download:aerials -- --limit 5
+pnpm run download:aerials -- --limit 5
 
 # List available categories
-npm run download:aerials -- --list-categories
+pnpm run download:aerials -- --list-categories
 
 # Filter by category
-npm run download:aerials -- --category Landscapes,Cities
+pnpm run download:aerials -- --category Landscapes,Cities
 
 # Tune parallel download workers (default 3, max 8)
-npm run download:aerials -- --parallel 3
+pnpm run download:aerials -- --parallel 3
 ```
 
 Under the hood, both paths invoke `python3 -m aerial_downloader.main`. The bash wrapper at [`scripts/aerial_downloader/install.sh`](scripts/aerial_downloader/install.sh) just `curl`s the package's nine `.py` files into a temp dir before running them — no clone required.
@@ -152,7 +152,7 @@ A few conventions:
 
 - Keep code comments and frontmatter fields in English; prose in PR descriptions can be either language.
 - Match the existing commit message style in `git log` — short imperative subject + a body when context helps reviewers (`why` more than `what`).
-- For multi-step changes, run `npm run build` at least once before pushing.
+- For multi-step changes, run `pnpm run build` at least once before pushing.
 
 ## License
 

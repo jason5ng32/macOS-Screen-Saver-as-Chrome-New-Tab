@@ -16,8 +16,8 @@
 // Production default: 7 days. Override at build time via the
 // VITE_DONATE_INTERVAL_MS environment variable (milliseconds), e.g.
 //
-//   VITE_DONATE_INTERVAL_MS=60000 npm run build   # 1 minute
-//   VITE_DONATE_INTERVAL_MS=10000 npm run dev     # 10 seconds
+//   VITE_DONATE_INTERVAL_MS=60000 pnpm run build   # 1 minute
+//   VITE_DONATE_INTERVAL_MS=10000 pnpm run dev     # 10 seconds
 //
 // You can also persist a value in .env.local (gitignored) — see
 // .env.example. Vite inlines this at build time.

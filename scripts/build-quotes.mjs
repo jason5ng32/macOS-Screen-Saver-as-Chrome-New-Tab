@@ -6,7 +6,7 @@
  *  public-domain attributions; we take a 500-quote subset, dedupe by
  *  text, and cap any single author so no one dominates the rotation.)
  *
- * Usage: npm run build:quotes
+ * Usage: pnpm run build:quotes
  */
 
 import fs from 'node:fs';

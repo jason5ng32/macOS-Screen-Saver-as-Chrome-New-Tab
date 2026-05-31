@@ -10,7 +10,7 @@
  * This script extracts what we need and writes it to a project-local
  * JSON we can bundle into the extension.
  *
- * Usage: npm run build:videos
+ * Usage: pnpm run build:videos
  *
  * Note: URLs are at sylvan.apple.com/itunes-assets/Aerials<N>/v4/...,
  * a different path than the legacy /Videos/comp_<...>.mov set. The

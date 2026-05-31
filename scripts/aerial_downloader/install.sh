@@ -94,7 +94,7 @@ ok "package ready"
 
 # --- Run ----------------------------------------------------------------------
 
-# Some users habitually pass `--` like with `npm run X -- --flag`. Eat a
+# Some users habitually pass `--` like with `pnpm run X -- --flag`. Eat a
 # leading `--` so both forms work; argparse otherwise mistakes it for a
 # positional and errors out.
 if [ "${1:-}" = "--" ]; then
