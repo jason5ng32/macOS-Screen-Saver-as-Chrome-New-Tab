@@ -15,9 +15,9 @@ importers:
       '@crxjs/vite-plugin':
         specifier: ^2.4.0
         version: 2.4.0(vite@8.0.10(jiti@2.6.1))
-      '@iconify/json':
-        specifier: ^2.2.469
-        version: 2.2.469
+      '@iconify-json/mingcute':
+        specifier: ^1.2.8
+        version: 1.2.8
       '@sveltejs/vite-plugin-svelte':
         specifier: ^7.0.0
         version: 7.0.0(svelte@5.55.5)(vite@8.0.10(jiti@2.6.1))
@@ -56,8 +56,8 @@ packages:
   '@emnapi/wasi-threads@1.2.1':
     resolution: {integrity: sha512-uTII7OYF+/Mes/MrcIOYp5yOtSMLBWSIoLPpcgwipoiKbli6k322tcoFsxoIIxPDqW01SQGAgko4EzZi2BNv2w==}
 
-  '@iconify/json@2.2.469':
-    resolution: {integrity: sha512-ARAC23HXrR1QpoR/z+tjGqI3kWgkYsYKJwezWLc8m47dvGpuvZTmQYXSIJVpnHGtUPKylC3jqWb0udXfoDLWeg==}
+  '@iconify-json/mingcute@1.2.8':
+    resolution: {integrity: sha512-J8VXpRwTpx5yzOzyhx3T4IXnfXIKTWFl3rZ9okcW4c+NMMuwkLvdmM4rkjB83tnYIhg5+kkeMpmw8tvSnxd4rQ==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -826,10 +826,9 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@iconify/json@2.2.469':
+  '@iconify-json/mingcute@1.2.8':
     dependencies:
       '@iconify/types': 2.0.0
-      pathe: 2.0.3
 
   '@iconify/types@2.0.0': {}
 
