@@ -60,6 +60,18 @@
       {t('options_video_shuffle_scope_hint')}
     </p>
 
+    <label class="flex items-center justify-between gap-4">
+      <span class="text-sm text-slate-700">
+        {t('options_video_repeat_current')}
+      </span>
+      <input
+        type="checkbox"
+        class="h-4 w-4 cursor-pointer accent-blue-600"
+        checked={settings.repeatCurrentVideo}
+        onchange={bindSetting('repeatCurrentVideo')}
+      />
+    </label>
+
     {#if settings.videoSrc === 'apple'}
       <label class="flex items-center justify-between gap-4">
         <span class="text-sm text-slate-700">
