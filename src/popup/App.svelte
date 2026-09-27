@@ -14,15 +14,53 @@
   import PillStack from "../components/PillStack.svelte";
   import BreathingGuide from "../components/BreathingGuide.svelte";
 
+  const CURSOR_IDLE_MS = 2000;
+  let zenStage = $state();
+  let cursorHidden = $state(false);
+
   $effect(() => {
     loadLanguage(resolveLanguage(settings.userLanguage));
+  });
+
+  $effect(() => {
+    if (!zen.active || !zenStage || document.fullscreenElement !== zenStage) return;
+
+    const stage = zenStage;
+    let idleTimer;
+
+    function showCursor() {
+      clearTimeout(idleTimer);
+      cursorHidden = false;
+      idleTimer = setTimeout(() => {
+        cursorHidden = true;
+      }, CURSOR_IDLE_MS);
+    }
+
+    function cleanup() {
+      clearTimeout(idleTimer);
+      cursorHidden = false;
+      stage.removeEventListener('pointermove', showCursor);
+      stage.removeEventListener('pointerdown', showCursor);
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    }
+
+    function handleFullscreenChange() {
+      if (document.fullscreenElement !== stage) cleanup();
+    }
+
+    stage.addEventListener('pointermove', showCursor);
+    stage.addEventListener('pointerdown', showCursor);
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    // Start the countdown even if the mouse never moves after entering Zen.
+    showCursor();
+    return cleanup;
   });
 </script>
 
 <!-- Zen stage: the element fullscreened on entering Zen. Wrapping the
      video lets sibling overlays (BreathingGuide) appear inside the
      fullscreen view rather than being hidden by it. -->
-<div id="zen-stage">
+<div id="zen-stage" bind:this={zenStage} class:cursor-hidden={cursorHidden}>
   <VideoBackground />
   {#if zen.active && settings.zenBreathingPattern !== 'off'}
     <BreathingGuide />
@@ -78,5 +116,9 @@
      paints. */
   #zen-stage {
     background: #000;
+  }
+  #zen-stage:fullscreen.cursor-hidden,
+  #zen-stage:fullscreen.cursor-hidden :global(*) {
+    cursor: none;
   }
 </style>
