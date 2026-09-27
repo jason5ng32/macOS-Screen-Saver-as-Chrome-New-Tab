@@ -71,6 +71,9 @@
   "options_video_shuffle_scope_hint": {
     "message": "現在のソースに選択したカテゴリの動画がない場合、すべての動画が再生されます。"
   },
+  "options_video_repeat_current": {
+    "message": "現在の動画を繰り返す"
+  },
   "shuffle_scope_all": {
     "message": "すべて"
   },

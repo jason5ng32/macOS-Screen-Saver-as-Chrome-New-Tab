@@ -71,6 +71,9 @@
   "options_video_shuffle_scope_hint": {
     "message": "如果当前视频源中没有所选类别的视频，将改为播放所有视频。"
   },
+  "options_video_repeat_current": {
+    "message": "重复播放当前视频"
+  },
   "shuffle_scope_all": {
     "message": "所有视频"
   },

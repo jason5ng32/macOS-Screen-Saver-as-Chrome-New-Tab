@@ -18,6 +18,7 @@ export const DEFAULTS = Object.freeze({
   videoSrc: 'apple',
   reverseProxy: true,
   shuffleScopes: ['all'],
+  repeatCurrentVideo: false,
   showVideoMetadata: true,
   translateMotto: false,
   zenMusic: true,
